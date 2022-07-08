@@ -97,37 +97,30 @@ struct CheckBoxView1: View {
                         .fill(self.checked1 ? Color.blue : Color.gray.opacity(0.2))
                         .opacity(self.checked1 ? 0 : 1)
                         .frame(width: 200, height: 55)
-                    //   .foregroundColor(self.checked3 ? Color.gray : Color.white)
+                        .foregroundColor(Color.white)
                 )
             if checked1 {
                 Image(systemName: "checkmark")
-                    .foregroundColor(Color.black).opacity(Double(trimVal))
+                    .foregroundColor(Color.white).opacity(Double(trimVal))
             }
             if !removeText {
                 Text(""+t1)
                     .bold()
+                    .foregroundColor(Color.white)
             }
         }
     }
 }
 
-
-
-struct HomeView: View {
-    var body: some View {
-        NavigationView {
-            ZStack {
-                Color.red
-            }
-        }
-    }
-}
 struct ContactsAdd: View {
     var relation = ["Personal ❤️", "Professional 💼", "Group 🏘"]
     @State private var selectedRelation = "Professional 💼"
-    @State var value = ""
+    @State var value = "0"
     @ObservedObject var viewModel = ContactsAddVM()
     @AppStorage("user_id") var userId: String = ""
+    @State var isSelected : Bool = false
+    @State var isSelected1 : Bool = false
+    @State var isSelected2 : Bool = false
     
     let buttons: [[CalcButton]] = [
         [.one, .two, .three],
@@ -144,32 +137,52 @@ struct ContactsAdd: View {
     @State var checked = false
     var body: some View {
         ZStack{
-            Color.white.edgesIgnoringSafeArea(.all)
+            Color.init(UIColor.transitionPage).ignoresSafeArea()
             VStack {
-                Text("Add A Contact")
-                    .bold()
-                    .font(.system(size:42))
-                    .foregroundColor(.black)
                 VStack(alignment: .center, spacing: -1, content: {
                     HStack{
                         Text(value)
                             .frame(minWidth: 0, maxWidth: .infinity)
-                            .font(.system(size: 32))
+                            .font(.system(size: 54))
                             .padding()
-                            .foregroundColor(.black)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 25)
-                                    .stroke(Color.black, lineWidth: 2)
-                            )
+                            .foregroundColor(.white)
                     }
                     .padding()
-                    Picker("Choose a relationship", selection: $selectedRelation) {
-                        ForEach(relation, id: \.self) {
-                            Text($0)
-                        }
+//                    Picker("Choose a relationship", selection: $selectedRelation) {
+//                        ForEach(relation, id: \.self) {
+//                            Text($0)
+//                        }
+//                    }
+//                    .pickerStyle(.wheel)
+//                    .frame(height: 110)
+                    
+                    
+                    HStack {
+                        Button(action: {
+                            self.isSelected.toggle()
+                        }, label: {Text("Friend")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.gray.opacity(0.2)).cornerRadius(20).foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(self.isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.transitionPage))
+                        ).padding(.bottom, 17).padding(.horizontal, 4)
+                        
+                        Button(action: {
+                            self.isSelected1.toggle()
+                        }, label: {Text("Work")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected1 ? Color.init(UIColor.afterStartPageTransition) : Color.gray.opacity(0.2)).cornerRadius(20).foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(self.isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.transitionPage))
+                        ).padding(.bottom, 17).padding(.horizontal, 4)
+                        
+                        Button(action: {
+                            self.isSelected2.toggle()
+                        }, label: {Text("Group")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.afterStartPageTransition) : Color.gray.opacity(0.2)).cornerRadius(20).foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 20)
+                                .stroke(self.isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.transitionPage))
+                        ).padding(.bottom, 17).padding(.horizontal, 4)
+                        
+                        
+                        
                     }
-                    .pickerStyle(.wheel)
-                    .frame(height: 110)
+                    
                     Spacer()
                         .frame(height: 20)
                 })
@@ -185,15 +198,15 @@ struct ContactsAdd: View {
                                         width: self.buttonWidth(item: item),
                                         height: self.buttonHeight()
                                     )
-                                    .background(Color.blue)
+                                    .background(Color.init(UIColor.transitionPage))
                                     .foregroundColor(.white)
-                                    .cornerRadius(self.buttonWidth(item: item)/2)
+                                    .padding(.horizontal, 30)
                             })
                         }
                     }
                 }
                 Spacer()
-                    .frame(height: 15)
+                    .frame(height: 20)
                 Button(action: {
                     if !self.checked1{
                         withAnimation(Animation.easeIn(duration: 0.8)) {

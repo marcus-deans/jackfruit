@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import WrappingHStack
 
 class Theme {
     static func navigationBarColors(background : UIColor?,
@@ -119,7 +120,21 @@ struct ContactsList: View {
     @ObservedObject var viewModel = ContactsListVM()
     
     init(){
-        Theme.navigationBarColors(background: .white, titleColor: .black)
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.shadowColor = nil // or a custom tint color
+//        appearance.shadowImage = UIImage(named: "shadow")
+//        UINavigationBar.appearance().standardAppearance = appearance
+        
+        Theme.navigationBarColors(background: .transitionPage, titleColor: .black)
+        UITableView.appearance().backgroundColor = UIColor(Color.clear)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
+        //Use this if NavigationBarTitle is with Large Font
+         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.transitionPage]
+
+         //Use this if NavigationBarTitle is with displayMode = .inline
+         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
     }
     
     //    private let userList: [UserModel] = [
@@ -136,34 +151,45 @@ struct ContactsList: View {
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
     var body: some View {
-        if #available(iOS 15.0, *) {
-            NavigationView {
-                List {
-                    ForEach(searchResults) {
-                        userItem in
-                        NavigationLink(destination: DetailsView(userItem: userItem)) {
-                            HStack{
-                                //                                EmojiCircleView(emojiItem: emojiItem)
-                                Text(userItem.firstName!)
-                                    .font(Font.custom("PTSans-Bold", size: 15))
-                                Text(userItem.lastName!)
-                                    .font(Font.custom("PTSans-Bold",
-                                                      size: 15))
-                            }
-                            
-                        }
-                    }
+        ZStack {
+            Color.white.ignoresSafeArea()
+            if #available(iOS 15.0, *) {
+                NavigationView {
                     
-                }
-                .searchable(text: $searchText).padding()
-                .onAppear() { // (3)
-                    self.viewModel.fetchData(userId: userId)
-                }
+                    List {
+                        
+                        ForEach(searchResults) {
+                            userItem in
+                            NavigationLink(destination: DetailsView(userItem: userItem)) {
+                                HStack{
+                                    EmojiCircleView().padding(.vertical, 10)
+                                    Text(userItem.firstName!)
+                                        .font(Font.custom("PTSans-Bold", size: 20))
+                                    + Text(" ")
+                                    + Text(userItem.lastName!)
+                                        .font(Font.custom("PTSans-Bold",
+                                                          size: 20))
+                                }
+                            }.listRowSeparator(.hidden)
+                        }.background(
+                            RoundedRectangle(cornerRadius: 9, style: .continuous)
+                                .foregroundColor(.init(UIColor.contactCardColor))
+                        )
+                        
+                        .listRowBackground(Color.white)
+                    }.listStyle(.plain).background(Color.white)
+                        .navigationBarTitle("My Contacts").navigationBarHidden(false)
+                   
+                    
+                }.searchable(text: $searchText, placement: .automatic)
+                //.padding()
+                    .onAppear() { // (3)
+                        self.viewModel.fetchData(userId: userId)
+                    }
                 
+            } else {
+                // Fallback on earlier versions
             }
-            
-        } else {
-            // Fallback on earlier versions
         }
         
     }
@@ -184,65 +210,59 @@ struct DetailsView: View {
     var body: some View {
         
         VStack() {
-            VStack(alignment: .leading, spacing: 1) {
+            VStack(alignment: .center, spacing: 1) {
                 //might cause a bug depending on the name size
+                LargerProfileView().padding(.bottom, 40)
                 HStack{
-                    //                        EmojiCircleView(emojiItem: emojiItem)
                     Text(userItem.firstName!)
-                        .font(Font.custom("PTSans-Bold", size: 22))
-                    
-                }
+                        .font(Font.custom("PTSans-Bold", size: 24))
+                    + Text(" ")
+                        .font(Font.custom("PTSans-Bold", size: 24))
+                    + Text(userItem.lastName!)
+                        .font(Font.custom("PTSans-Bold", size: 24))
+                        
+                }.padding(.bottom, 5)
+                
                 HStack{
-                    Text("Phone Number:")
-                        .font(Font.custom("PTSans-Bold", size: 20))
-                        .fontWeight(.black).bold()
-                    
                     Text(userItem.phoneNumber!)
-                        .font(Font.custom("PTSans-Bold", size: 20))
+                        .font(Font.custom("PTSans-Bold", size: 16))
                         .fontWeight(.black).bold()
-                        .underlineTextField()
                 }
-                HStack{
-                    Text("Email:")
-                        .font(Font.custom("PTSans-Bold", size: 20))
-                        .fontWeight(.black).bold()
-                    
-                    Text(userItem.emailAddress!)
-                        .font(Font.custom("PTSans-Bold", size: 15))
-                        .fontWeight(.black).bold()
-                        .underlineTextField()
-                }
-                HStack{
-                    Text("Location:")
-                        .font(Font.custom("PTSans-Bold", size: 20))
-                        .fontWeight(.black).bold()
-                    
-                    Text(userItem.location!)
-                        .font(Font.custom("PTSans-Bold", size: 15))
-                        .fontWeight(.black).bold()
-                        .underlineTextField()
-                }
-            }
-            
-            VStack(alignment: .center) {
                 
-                
-                List {
-                    Section(header: Text("Parameters")) {
-                        ForEach(userItem.parameters!, id : \.self) { child in
-                            Text(child)
+                    HStack{
+                                              
+                        Text(userItem.emailAddress!)
+                            .font(Font.custom("PTSans-Bold", size: 15))
+                            .fontWeight(.black).bold()
+                            .underlineTextField()
+                    
+                        HStack{
+                            Text("Currently In ")
                                 .font(Font.custom("PTSans-Bold", size: 20))
                                 .fontWeight(.black).bold()
+                            
+                            Text(userItem.location!)
+                                .font(Font.custom("PTSans-Bold", size: 15))
+                                .fontWeight(.black).bold()
+                                .underlineTextField()
                         }
                     }
+                    Text("Interests")
+                        .font(Font.custom("PTSans-Bold", size: 20))
+                        .fontWeight(.black).bold()
+                
+                
+            }
+            
+            WrappingHStack {
+                ForEach(userItem.parameters!, id : \.self) { child in
+                    StoreRow(title: child)
                 }
-                
-                // Need a function which creates Professional Facts
-                
             }
             
             
         }
+        //
         .padding()
         .navigationBarTitle(Text(userItem.firstName!), displayMode: .inline)
     }
@@ -250,35 +270,65 @@ struct DetailsView: View {
 }
 
 
-struct EmojiCircleView: View {
-    let emojiItem: EmojiItem
+struct StoreRow: View {
+    
+    var title: String
+
+    
     var body: some View {
-        ZStack {
-            Text(emojiItem.emoji)
-                .shadow(radius: 3)
-                .font(.largeTitle)
-                .frame(width: 65, height: 45)
-                .overlay(
-                    Circle().stroke(Color.black, lineWidth: 3)
-                )
+        ZStack(alignment: .leading) {
+            
+       
+                ZStack {
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        ).frame(height: 40).padding(.horizontal, 5)
+                    
+                    VStack {
+                        Text("\(title)")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.black)
+                    }
+                }
+
         }
     }
 }
 
 
-
-struct EmojiItem: Identifiable {
-    let id = UUID()
-    let emoji: String
-    let name: String
-    let description: String
-    let phoneNunber : String
+struct EmojiCircleView: View {
+    var body: some View {
+        ZStack {
+            Text("")
+                .shadow(radius: 3)
+                .font(.largeTitle)
+                .frame(width: 65, height: 45)
+                .overlay(
+                    Circle()
+                        .stroke(Color.black, lineWidth: 3)
+                        
+                )
+        }
+    }
 }
+
+struct LargerProfileView: View {
+    var body: some View {
+        Image("Profilephoto").resizable().frame(width: 350.0, height: 250.0)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .shadow(radius: 10)
+            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.init(UIColor.redGradient), lineWidth: 5))
+    }
+}
+
 
 struct ContactsMain_Previews: PreviewProvider {
     static var previews: some View {
         ContactsList()
     }
 }
-
-

@@ -2,10 +2,11 @@
 //  MainTabView.swift
 //  jackfruit
 //
-//  Created by Marcus Deans on 2022-07-07.
+//  Created by Aryan Mahindra on 6/24/22.
 //
 
 import SwiftUI
+
 
 struct TabItemData {
     let image: String
@@ -67,7 +68,7 @@ struct TabBottomView: View {
             }
         }
         .frame(width: width, height: height)
-        .background(Color.white)
+        .background(Color.clear)
         //.cornerRadius(13)
         //.shadow(radius: 5, x: 5, y: 10)
     }
@@ -154,4 +155,3 @@ struct MainTabView_Previews: PreviewProvider {
         MainTabView()
     }
 }
-
