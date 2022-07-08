@@ -32,8 +32,6 @@ final class Screen2FirstNameVM: ObservableObject, Completeable {
     }
 }
 
-
-
 struct RoundedRectangleButtonStyle: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {
     Button(action: {}, label: {
@@ -103,7 +101,7 @@ struct ProgressBar: View {
 struct Screen2FirstNameView: View {
     @StateObject var vm: Screen2FirstNameVM
     @State private var editing = false
-    @State var progressValue: Float = 0.0
+    @State var progressValue: Float = 0.16
     @State private var keyboardHeight: CGFloat = 0
     
     
@@ -170,7 +168,7 @@ extension View {
 
 
 
-struct ViewPreview : PreviewProvider {
+struct Screen2FirstNameView_Previews : PreviewProvider {
  static var previews: some View {
      Screen2FirstNameView(vm: Screen2FirstNameVM(
         firstName: "Aditya"))

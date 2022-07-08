@@ -42,7 +42,7 @@ final class Screen7LocationVM: ObservableObject, Completeable {
 struct Screen7LocationView: View {
     @StateObject var vm: Screen7LocationVM
     @State private var editing = false
-    @State var progressValue: Float = 0.4
+    @State var progressValue: Float = 0.80
     @State private var keyboardHeight: CGFloat = 0
     
     var body: some View {
@@ -92,9 +92,8 @@ struct Screen7LocationView: View {
     }
 }
 
-//struct Screen6LocationView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        Screen6LocationView()
-//    }
-//}
-
+struct Screen7LocationView_Previews: PreviewProvider {
+    static var previews: some View {
+        Screen7LocationView(vm: Screen7LocationVM(location: "San Francisco"))
+    }
+}

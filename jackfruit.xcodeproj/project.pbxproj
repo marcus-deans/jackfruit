@@ -37,6 +37,7 @@
 		253A74AB2877E5670005D7E1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74AA2877E5670005D7E1 /* Extensions.swift */; };
 		253A74AD2877E5820005D7E1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74AC2877E5820005D7E1 /* UserModel.swift */; };
 		253A74AF2877E6530005D7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */; };
+		253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 253A74B32877ED660005D7E1 /* WrappingHStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */,
 				253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */,
 				253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
@@ -241,6 +243,7 @@
 				253A747F2877E2540005D7E1 /* FirebaseAuth */,
 				253A74812877E2540005D7E1 /* FirebaseFirestore */,
 				253A74832877E2540005D7E1 /* FirebaseStorage */,
+				253A74B32877ED660005D7E1 /* WrappingHStack */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -316,6 +319,7 @@
 			mainGroup = 253A74462877E1920005D7E1;
 			packageReferences = (
 				253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -719,6 +723,14 @@
 				minimumVersion = 8.1.0;
 			};
 		};
+		253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -736,6 +748,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		253A74B32877ED660005D7E1 /* WrappingHStack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

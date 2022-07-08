@@ -38,18 +38,10 @@ final class Screen4NumberVM: ObservableObject, Completeable {
     }
 }
 
-// ProfessionalParameters (for reference)
-//var experienceYears: String?
-//var companyTitle: String?
-//var companyPosition: String?
-//var professional: Bool?
-//var backend: Bool?
-//var frontend: Bool?
-//var cloud: Bool?
 struct Screen4NumberView: View {
     @StateObject var vm: Screen4NumberVM
     @State private var editing = false
-    @State var progressValue: Float = 0.4
+    @State var progressValue: Float = 0.48
     @State private var keyboardHeight: CGFloat = 0
     @AppStorage("user_id") var userId: String = ""
 
@@ -77,8 +69,7 @@ struct Screen4NumberView: View {
                         }).padding(.bottom, 200)
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.telephoneNumber)
-                    //TODO: fix the keyboard
-                        .keyboardType(.namePhonePad)
+                        .keyboardType(.phonePad)
                     
                 }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     .fixedSize(horizontal: false, vertical: true)
@@ -98,9 +89,12 @@ struct Screen4NumberView: View {
                 .disabled(!vm.isValid)
                 .buttonStyle(BlueButtonStyle())
             }
-            .onTapGesture {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-            }
         }.ignoresSafeArea(.keyboard)
+    }
+}
+
+struct Screen4NumberView_Previews : PreviewProvider {
+ static var previews: some View {
+     Screen4NumberView(vm: Screen4NumberVM(phoneNumber: "9196414032"))
     }
 }

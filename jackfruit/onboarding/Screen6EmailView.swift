@@ -48,7 +48,7 @@ final class Screen6EmailVM: ObservableObject, Completeable {
 struct Screen6EmailView: View {
     @StateObject var vm: Screen6EmailVM
     @State private var editing = false
-    @State var progressValue: Float = 0.6
+    @State var progressValue: Float = 0.64
     @State private var keyboardHeight: CGFloat = 0
     
     var body: some View {
@@ -99,3 +99,9 @@ struct Screen6EmailView: View {
     }
 }
 
+
+struct Screen6EmailView_Previews : PreviewProvider {
+ static var previews: some View {
+     Screen6EmailView(vm: Screen6EmailVM(email: "marcusddeans@outlook.com"))
+    }
+}

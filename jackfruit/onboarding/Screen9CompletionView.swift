@@ -29,7 +29,6 @@ struct Screen9CompletionView: View {
     @AppStorage("is_onboarded") var isOnboarded: Bool = false
     
     var body: some View {
-
         ZStack {
             Color.init(UIColor.transitionPage).ignoresSafeArea()
             VStack(alignment: .center) {
@@ -44,5 +43,11 @@ struct Screen9CompletionView: View {
                 }, label: { Text("Next") }).buttonStyle(RoundedRectangleButtonStyle())
             }.padding()
         }
+    }
+}
+
+struct Screen9CompletionView_Previews: PreviewProvider {
+    static var previews: some View {
+        Screen9CompletionView(vm: Screen9CompletionVM(name: "Marcus Deans"))
     }
 }

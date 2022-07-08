@@ -41,7 +41,7 @@ final class Screen3LastNameVM: ObservableObject {
 struct Screen3LastNameView: View {
     @StateObject var vm: Screen3LastNameVM
     @State private var editing = false
-    @State var progressValue: Float = 0.2
+    @State var progressValue: Float = 0.32
     @State private var keyboardHeight: CGFloat = 0
     
     
@@ -89,5 +89,11 @@ struct Screen3LastNameView: View {
                 .buttonStyle(BlueButtonStyle())
             }
         }.ignoresSafeArea(.keyboard)
+    }
+}
+
+struct Screen3LastNameView_Previews : PreviewProvider {
+ static var previews: some View {
+     Screen3LastNameView(vm: Screen3LastNameVM(lastName: "Deans"))
     }
 }

@@ -1,8 +1,8 @@
 //
 //  Theme.swift
-//  jackfruit
+//  contacts-frontend
 //
-//  Created by Marcus Deans on 2022-07-07.
+//  Created by Marcus Deans on 2022-06-21.
 //
 
 import SwiftUI
@@ -30,9 +30,13 @@ extension UIColor {
  
     static let afterStartPageTransition = UIColor(rgb: 0x44AA92)
     static let underLine = UIColor(rgb: 0x9667E0)
-    static let transitionPage = UIColor(rgb: 0x8CC152)
+    static let transitionPage = UIColor(rgb: 0xff5400)
+    static let redGradient = UIColor(rgb : 0xff7900)
     static let greenShaddow = UIColor(rgb: 0x628343)
     static let greenBackground = UIColor(rgb: 0x8CC152)
+    static let flatDarkBackground = UIColor(red: 36, green: 36, blue: 36)
+    static let contactCardColor = UIColor(rgb: 0xFFE6D9)
+    
     
     static let greenStatusBar = UIColor(rgb: 0x4D643C)
     

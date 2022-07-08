@@ -6,7 +6,7 @@
 //
 
 
-//import WrappingHStack
+import WrappingHStack
 import SwiftUI
 import Combine
 
@@ -56,7 +56,7 @@ struct Screen8ParametersView: View {
     @State var isSelected3 : Bool = false
     @State var isSelected4 : Bool = false
     @State var isSelected5 : Bool = false
-    @State var progressValue: Float = 0.8
+    @State var progressValue: Float = 1.0
     @State private var editing = false
 
     var body: some View {
@@ -77,6 +77,8 @@ struct Screen8ParametersView: View {
                             
                         Text("When you share your contact this information will be shared too!")
                             .font(Font.custom("CircularStd-Book", size: 20))
+                            
+                        
                         
               
                         
@@ -85,8 +87,7 @@ struct Screen8ParametersView: View {
                         .background(Color.init(UIColor.transitionPage))
                 }
 
-//            WrappingHStack {
-                HStack{
+            WrappingHStack {
                     Button(action: {self.vm.didToggleSports()
                         self.isSelected.toggle()
                     }, label: {Text("Sports")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
@@ -107,7 +108,7 @@ struct Screen8ParametersView: View {
                     }, label: {Text("Traveling")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(self.isSelected2 ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 17).padding(.horizontal, 4)
+                    ).padding(.bottom, 100).padding(.horizontal, 4)
                     
                     
                     
@@ -116,7 +117,7 @@ struct Screen8ParametersView: View {
                     }, label: {Text("Hobbies")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected4 ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(self.isSelected4 ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 17).padding(.horizontal, 4)
+                    ).padding(.bottom, 100).padding(.horizontal, 4)
                     
                     
                     Button(action: {self.vm.didTogglePets()
@@ -124,13 +125,12 @@ struct Screen8ParametersView: View {
                     }, label: {Text("Pets")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected5 ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(self.isSelected5 ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 17).padding(.horizontal, 4)
+                    ).padding(.bottom, 100).padding(.horizontal, 4)
               
             }.padding(.horizontal, 40)
                 
                 VStack (alignment: .trailing) {
-                    Spacer()
-                         .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
+                  
                     Button(action: {
                         self.vm.didTapNext()
                     }, label: { Text(">") })
@@ -145,4 +145,8 @@ struct Screen8ParametersView: View {
     }
 }
 
-
+struct Screen8ParametersView_Previews: PreviewProvider {
+    static var previews: some View {
+        Screen8ParametersView(vm: Screen8ParametersVM(parameters: ["traveling", "pets"]))
+    }
+}

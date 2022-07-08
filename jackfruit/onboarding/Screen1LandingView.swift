@@ -33,7 +33,7 @@ struct Screen1LandingView: View {
             Color.init(UIColor.transitionPage).ignoresSafeArea()
             
             VStack(alignment: .center) {
-                Image("relationship")
+                Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 150.0, height: 150.0)
@@ -51,6 +51,13 @@ struct Screen1LandingView: View {
         }
     }
 }
+
+struct Screen1LandingView_Previews : PreviewProvider {
+ static var previews: some View {
+     Screen1LandingView(vm: Screen1LandingVM())
+    }
+}
+
 
 
 
