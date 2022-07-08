@@ -167,18 +167,18 @@ class FlowVM: ObservableObject {
     }
     
     func didComplete5(vm: Screen5VerificationVM){
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
-        Auth.auth().signIn(with: credential) { (authResult, error) in
-          if let error = error {
-            let authError = error as NSError
-            print(authError.description)
-            return
-          }
-
-          // User has signed in successfully and currentUser object is valid
-          let currentUserInstance = Auth.auth().currentUser
-            self.navigateTo6 = true
-        }
+//        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
+//        Auth.auth().signIn(with: credential) { (authResult, error) in
+//          if let error = error {
+//            let authError = error as NSError
+//            print(authError.description)
+//            return
+//          }
+//
+//          // User has signed in successfully and currentUser object is valid
+//          let currentUserInstance = Auth.auth().currentUser
+//            self.navigateTo6 = true
+//        }
         self.navigateTo6 = true
     }
     
