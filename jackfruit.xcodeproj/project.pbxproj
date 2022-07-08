@@ -1,0 +1,588 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
+		253A74552877E1920005D7E1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74542877E1920005D7E1 /* ContentView.swift */; };
+		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
+		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
+		253A74642877E1940005D7E1 /* jackfruitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74632877E1940005D7E1 /* jackfruitTests.swift */; };
+		253A746E2877E1940005D7E1 /* jackfruitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A746D2877E1940005D7E1 /* jackfruitUITests.swift */; };
+		253A74702877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A746F2877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		253A74602877E1940005D7E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 253A74472877E1920005D7E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 253A744E2877E1920005D7E1;
+			remoteInfo = jackfruit;
+		};
+		253A746A2877E1940005D7E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 253A74472877E1920005D7E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 253A744E2877E1920005D7E1;
+			remoteInfo = jackfruit;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		253A744F2877E1920005D7E1 /* jackfruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jackfruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		253A74522877E1920005D7E1 /* jackfruitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitApp.swift; sourceTree = "<group>"; };
+		253A74542877E1920005D7E1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		253A74562877E1940005D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		253A74592877E1940005D7E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		253A745F2877E1940005D7E1 /* jackfruitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jackfruitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		253A74632877E1940005D7E1 /* jackfruitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitTests.swift; sourceTree = "<group>"; };
+		253A74692877E1940005D7E1 /* jackfruitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jackfruitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		253A746D2877E1940005D7E1 /* jackfruitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitUITests.swift; sourceTree = "<group>"; };
+		253A746F2877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		253A744C2877E1920005D7E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		253A745C2877E1940005D7E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		253A74662877E1940005D7E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		253A74462877E1920005D7E1 = {
+			isa = PBXGroup;
+			children = (
+				253A74512877E1920005D7E1 /* jackfruit */,
+				253A74622877E1940005D7E1 /* jackfruitTests */,
+				253A746C2877E1940005D7E1 /* jackfruitUITests */,
+				253A74502877E1920005D7E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		253A74502877E1920005D7E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				253A744F2877E1920005D7E1 /* jackfruit.app */,
+				253A745F2877E1940005D7E1 /* jackfruitTests.xctest */,
+				253A74692877E1940005D7E1 /* jackfruitUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		253A74512877E1920005D7E1 /* jackfruit */ = {
+			isa = PBXGroup;
+			children = (
+				253A74522877E1920005D7E1 /* jackfruitApp.swift */,
+				253A74542877E1920005D7E1 /* ContentView.swift */,
+				253A74562877E1940005D7E1 /* Assets.xcassets */,
+				253A74582877E1940005D7E1 /* Preview Content */,
+			);
+			path = jackfruit;
+			sourceTree = "<group>";
+		};
+		253A74582877E1940005D7E1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				253A74592877E1940005D7E1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		253A74622877E1940005D7E1 /* jackfruitTests */ = {
+			isa = PBXGroup;
+			children = (
+				253A74632877E1940005D7E1 /* jackfruitTests.swift */,
+			);
+			path = jackfruitTests;
+			sourceTree = "<group>";
+		};
+		253A746C2877E1940005D7E1 /* jackfruitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				253A746D2877E1940005D7E1 /* jackfruitUITests.swift */,
+				253A746F2877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift */,
+			);
+			path = jackfruitUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		253A744E2877E1920005D7E1 /* jackfruit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 253A74732877E1940005D7E1 /* Build configuration list for PBXNativeTarget "jackfruit" */;
+			buildPhases = (
+				253A744B2877E1920005D7E1 /* Sources */,
+				253A744C2877E1920005D7E1 /* Frameworks */,
+				253A744D2877E1920005D7E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = jackfruit;
+			productName = jackfruit;
+			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		253A745E2877E1940005D7E1 /* jackfruitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 253A74762877E1940005D7E1 /* Build configuration list for PBXNativeTarget "jackfruitTests" */;
+			buildPhases = (
+				253A745B2877E1940005D7E1 /* Sources */,
+				253A745C2877E1940005D7E1 /* Frameworks */,
+				253A745D2877E1940005D7E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				253A74612877E1940005D7E1 /* PBXTargetDependency */,
+			);
+			name = jackfruitTests;
+			productName = jackfruitTests;
+			productReference = 253A745F2877E1940005D7E1 /* jackfruitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		253A74682877E1940005D7E1 /* jackfruitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 253A74792877E1940005D7E1 /* Build configuration list for PBXNativeTarget "jackfruitUITests" */;
+			buildPhases = (
+				253A74652877E1940005D7E1 /* Sources */,
+				253A74662877E1940005D7E1 /* Frameworks */,
+				253A74672877E1940005D7E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				253A746B2877E1940005D7E1 /* PBXTargetDependency */,
+			);
+			name = jackfruitUITests;
+			productName = jackfruitUITests;
+			productReference = 253A74692877E1940005D7E1 /* jackfruitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		253A74472877E1920005D7E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					253A744E2877E1920005D7E1 = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+					253A745E2877E1940005D7E1 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 253A744E2877E1920005D7E1;
+					};
+					253A74682877E1940005D7E1 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = 253A744E2877E1920005D7E1;
+					};
+				};
+			};
+			buildConfigurationList = 253A744A2877E1920005D7E1 /* Build configuration list for PBXProject "jackfruit" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 253A74462877E1920005D7E1;
+			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				253A744E2877E1920005D7E1 /* jackfruit */,
+				253A745E2877E1940005D7E1 /* jackfruitTests */,
+				253A74682877E1940005D7E1 /* jackfruitUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		253A744D2877E1920005D7E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */,
+				253A74572877E1940005D7E1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		253A745D2877E1940005D7E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		253A74672877E1940005D7E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		253A744B2877E1920005D7E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				253A74552877E1920005D7E1 /* ContentView.swift in Sources */,
+				253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		253A745B2877E1940005D7E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				253A74642877E1940005D7E1 /* jackfruitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		253A74652877E1940005D7E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				253A74702877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift in Sources */,
+				253A746E2877E1940005D7E1 /* jackfruitUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		253A74612877E1940005D7E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 253A744E2877E1920005D7E1 /* jackfruit */;
+			targetProxy = 253A74602877E1940005D7E1 /* PBXContainerItemProxy */;
+		};
+		253A746B2877E1940005D7E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 253A744E2877E1920005D7E1 /* jackfruit */;
+			targetProxy = 253A746A2877E1940005D7E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		253A74712877E1940005D7E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		253A74722877E1940005D7E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		253A74742877E1940005D7E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"jackfruit/Preview Content\"";
+				DEVELOPMENT_TEAM = TG99963V5J;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		253A74752877E1940005D7E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"jackfruit/Preview Content\"";
+				DEVELOPMENT_TEAM = TG99963V5J;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		253A74772877E1940005D7E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TG99963V5J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jackfruit.app/jackfruit";
+			};
+			name = Debug;
+		};
+		253A74782877E1940005D7E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TG99963V5J;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/jackfruit.app/jackfruit";
+			};
+			name = Release;
+		};
+		253A747A2877E1940005D7E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TG99963V5J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = jackfruit;
+			};
+			name = Debug;
+		};
+		253A747B2877E1940005D7E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = TG99963V5J;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruitUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = jackfruit;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		253A744A2877E1920005D7E1 /* Build configuration list for PBXProject "jackfruit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				253A74712877E1940005D7E1 /* Debug */,
+				253A74722877E1940005D7E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		253A74732877E1940005D7E1 /* Build configuration list for PBXNativeTarget "jackfruit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				253A74742877E1940005D7E1 /* Debug */,
+				253A74752877E1940005D7E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		253A74762877E1940005D7E1 /* Build configuration list for PBXNativeTarget "jackfruitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				253A74772877E1940005D7E1 /* Debug */,
+				253A74782877E1940005D7E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		253A74792877E1940005D7E1 /* Build configuration list for PBXNativeTarget "jackfruitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				253A747A2877E1940005D7E1 /* Debug */,
+				253A747B2877E1940005D7E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 253A74472877E1920005D7E1 /* Project object */;
+}
