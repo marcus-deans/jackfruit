@@ -36,6 +36,7 @@
 		253A74A92877E5420005D7E1 /* JSONConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74A82877E5420005D7E1 /* JSONConverter.swift */; };
 		253A74AB2877E5670005D7E1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74AA2877E5670005D7E1 /* Extensions.swift */; };
 		253A74AD2877E5820005D7E1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74AC2877E5820005D7E1 /* UserModel.swift */; };
+		253A74AF2877E6530005D7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		253A74A82877E5420005D7E1 /* JSONConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONConverter.swift; sourceTree = "<group>"; };
 		253A74AA2877E5670005D7E1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		253A74AC2877E5820005D7E1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		253A74B02877E6630005D7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
+				253A74B02877E6630005D7E1 /* Info.plist */,
+				253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */,
 				253A74A52877E51C0005D7E1 /* util */,
 				253A749E2877E4990005D7E1 /* home */,
 				253A74852877E27A0005D7E1 /* onboarding */,
@@ -327,6 +332,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */,
+				253A74AF2877E6530005D7E1 /* GoogleService-Info.plist in Resources */,
 				253A747D2877E1C20005D7E1 /* .gitignore in Resources */,
 				253A74572877E1940005D7E1 /* Assets.xcassets in Resources */,
 			);
@@ -534,6 +540,7 @@
 				DEVELOPMENT_TEAM = TG99963V5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = jackfruit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -563,6 +570,7 @@
 				DEVELOPMENT_TEAM = TG99963V5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = jackfruit/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

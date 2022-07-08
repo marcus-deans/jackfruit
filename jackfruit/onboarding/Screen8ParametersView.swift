@@ -6,7 +6,7 @@
 //
 
 
-import WrappingHStack
+//import WrappingHStack
 import SwiftUI
 import Combine
 
@@ -85,7 +85,8 @@ struct Screen8ParametersView: View {
                         .background(Color.init(UIColor.transitionPage))
                 }
 
-            WrappingHStack {
+//            WrappingHStack {
+                HStack{
                     Button(action: {self.vm.didToggleSports()
                         self.isSelected.toggle()
                     }, label: {Text("Sports")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
