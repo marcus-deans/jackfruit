@@ -1,0 +1,209 @@
+//
+//  FlowVM.swift
+//  jackfruit
+//
+//  Created by Marcus Deans on 2022-07-07.
+//
+
+import SwiftUI
+import Combine
+import Firebase
+import FirebaseFirestore
+import FirebaseAuth
+
+protocol Completeable {
+    var didComplete: PassthroughSubject<Self, Never> { get }
+}
+
+class FlowVM: ObservableObject {
+    
+    // Note the final model is manually "bound" to the view models here.
+    // Automatic binding would be possible with combine or even a single VM.
+    // However this may not scale well
+    // and the views become dependant on something that is external to the view.
+    private var model: UserModel
+    var subscription = Set<AnyCancellable>()
+    var verificationID = ""
+   let db = Firestore.firestore()
+
+    
+    @Published var navigateTo1: Bool = true
+    @Published var navigateTo2: Bool = false
+    @Published var navigateTo3: Bool = false
+    @Published var navigateTo4: Bool = false
+    @Published var navigateTo5: Bool = false
+    @Published var navigateTo6: Bool = false
+    @Published var navigateTo7: Bool = false
+    @Published var navigateTo8: Bool = false
+    @Published var navigateTo9: Bool = false
+    @Published var navigateToHome: Bool = false
+    @Published var navigateToFinalFrom3: Bool = false
+    @Published var navigateToFinalFrom4: Bool = false
+    
+    init() {
+        self.model = UserModel()
+    }
+    
+    func makeScreen1LandingView() -> Screen1LandingVM {
+        let vm = Screen1LandingVM()
+        vm.didComplete
+            .sink(receiveValue: didComplete1)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen2StandardView() -> Screen2FirstNameVM {
+        let vm = Screen2FirstNameVM(
+            firstName: model.firstName
+            )
+        vm.didComplete
+            .sink(receiveValue: didComplete2)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen3DetailsView() -> Screen3LastNameVM {
+        let vm = Screen3LastNameVM(
+            lastName: model.lastName
+        )
+        vm.didComplete
+            .sink(receiveValue: didComplete3)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen4NumberView() -> Screen4NumberVM {
+        let vm = Screen4NumberVM(
+            phoneNumber: model.phoneNumber
+        )
+        vm.didComplete
+            .sink(receiveValue: didComplete4)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen5VerificationView() -> Screen5VerificationVM{
+        let vm = Screen5VerificationVM(
+            verificationID: self.verificationID
+        )
+        vm.didComplete
+            .sink(receiveValue: didComplete5)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    
+    func makeScreen6EmailView() -> Screen6EmailVM {
+        let vm = Screen6EmailVM(
+            email: model.emailAddress
+        )
+        vm.didComplete
+            .sink(receiveValue: didComplete6)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen7LocationView() -> Screen7LocationVM {
+        let vm = Screen7LocationVM(
+            location: model.location
+        )
+        vm.didComplete
+            .sink(receiveValue: didComplete7)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen8ParametersView() -> Screen8ParametersVM {
+        let vm = Screen8ParametersVM(
+            parameters: model.parameters
+        )
+        vm.didComplete
+            .sink(receiveValue: didComplete8)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen9CompletionView() -> Screen9CompletionVM {
+        let vm = Screen9CompletionVM(name: model.firstName)
+        vm.didComplete
+            .sink(receiveValue: didComplete9)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    
+    func didComplete1(vm: Screen1LandingVM) {
+        // Additional logic inc. updating model
+        navigateTo2 = true
+    }
+    
+    func didComplete2(vm: Screen2FirstNameVM) {
+        // Additional logic
+        model.firstName = vm.firstName
+        navigateTo3 = true
+    }
+    
+    func didComplete3(vm: Screen3LastNameVM) {
+        // Additional logic inc. updating model
+        model.lastName = vm.lastName
+        navigateTo4 = true
+    }
+    
+    
+    func didComplete4(vm: Screen4NumberVM) {
+        model.phoneNumber = vm.phoneNumber
+        // Additional logic inc. updating model
+        PhoneAuthProvider.provider()
+            .verifyPhoneNumber(vm.phoneNumber, uiDelegate: nil) { verificationID, error in
+              if let error = error {
+                print(error.localizedDescription)
+                return
+              }
+              // Sign in using the verificationID and the code sent to the user
+              // ...
+                self.verificationID = verificationID!
+          }
+        navigateTo5 = true
+    }
+    
+    func didComplete5(vm: Screen5VerificationVM){
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+          if let error = error {
+            let authError = error as NSError
+            print(authError.description)
+            return
+          }
+
+          // User has signed in successfully and currentUser object is valid
+          let currentUserInstance = Auth.auth().currentUser
+            self.navigateTo6 = true
+        }
+        self.navigateTo6 = true
+    }
+    
+    func didComplete6(vm: Screen6EmailVM) {
+        model.emailAddress = vm.emailAddress
+        navigateTo7 = true
+    }
+    
+    func didComplete7(vm: Screen7LocationVM){
+        model.location = vm.location
+        navigateTo8 = true
+    }
+    
+    func didComplete8(vm: Screen8ParametersVM){
+        model.parameters = vm.parameters
+        navigateTo9 = true
+    }
+    
+    func didComplete9(vm: Screen9CompletionVM) {
+        do {
+            let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
+        }
+        catch {
+            print(error)
+        }
+        navigateTo2 = false
+    }
+}

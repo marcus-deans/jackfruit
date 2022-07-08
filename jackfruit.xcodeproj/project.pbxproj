@@ -14,6 +14,22 @@
 		253A74642877E1940005D7E1 /* jackfruitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74632877E1940005D7E1 /* jackfruitTests.swift */; };
 		253A746E2877E1940005D7E1 /* jackfruitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A746D2877E1940005D7E1 /* jackfruitUITests.swift */; };
 		253A74702877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A746F2877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift */; };
+		253A747D2877E1C20005D7E1 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 253A747C2877E1C20005D7E1 /* .gitignore */; };
+		253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 253A747F2877E2540005D7E1 /* FirebaseAuth */; };
+		253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 253A74812877E2540005D7E1 /* FirebaseFirestore */; };
+		253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 253A74832877E2540005D7E1 /* FirebaseStorage */; };
+		253A74872877E2960005D7E1 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74862877E2960005D7E1 /* Flow.swift */; };
+		253A74892877E2B70005D7E1 /* FlowVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74882877E2B70005D7E1 /* FlowVM.swift */; };
+		253A748B2877E3030005D7E1 /* FlowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A748A2877E3030005D7E1 /* FlowView.swift */; };
+		253A748D2877E3250005D7E1 /* Screen1LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A748C2877E3250005D7E1 /* Screen1LandingView.swift */; };
+		253A748F2877E33E0005D7E1 /* Screen2FirstNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A748E2877E33E0005D7E1 /* Screen2FirstNameView.swift */; };
+		253A74912877E35D0005D7E1 /* Screen3LastNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74902877E35D0005D7E1 /* Screen3LastNameView.swift */; };
+		253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74922877E36E0005D7E1 /* Screen4NumberView.swift */; };
+		253A74952877E38C0005D7E1 /* Screen5VerificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74942877E38C0005D7E1 /* Screen5VerificationView.swift */; };
+		253A74972877E39D0005D7E1 /* Screen6EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74962877E39D0005D7E1 /* Screen6EmailView.swift */; };
+		253A74992877E3C60005D7E1 /* Screen7LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74982877E3C60005D7E1 /* Screen7LocationView.swift */; };
+		253A749B2877E3D80005D7E1 /* Screen8ParametersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A749A2877E3D80005D7E1 /* Screen8ParametersView.swift */; };
+		253A749D2877E4170005D7E1 /* Screen9CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A749C2877E4170005D7E1 /* Screen9CompletionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +60,19 @@
 		253A74692877E1940005D7E1 /* jackfruitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = jackfruitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		253A746D2877E1940005D7E1 /* jackfruitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitUITests.swift; sourceTree = "<group>"; };
 		253A746F2877E1940005D7E1 /* jackfruitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		253A747C2877E1C20005D7E1 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		253A74862877E2960005D7E1 /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		253A74882877E2B70005D7E1 /* FlowVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowVM.swift; sourceTree = "<group>"; };
+		253A748A2877E3030005D7E1 /* FlowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowView.swift; sourceTree = "<group>"; };
+		253A748C2877E3250005D7E1 /* Screen1LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen1LandingView.swift; sourceTree = "<group>"; };
+		253A748E2877E33E0005D7E1 /* Screen2FirstNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen2FirstNameView.swift; sourceTree = "<group>"; };
+		253A74902877E35D0005D7E1 /* Screen3LastNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen3LastNameView.swift; sourceTree = "<group>"; };
+		253A74922877E36E0005D7E1 /* Screen4NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen4NumberView.swift; sourceTree = "<group>"; };
+		253A74942877E38C0005D7E1 /* Screen5VerificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen5VerificationView.swift; sourceTree = "<group>"; };
+		253A74962877E39D0005D7E1 /* Screen6EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen6EmailView.swift; sourceTree = "<group>"; };
+		253A74982877E3C60005D7E1 /* Screen7LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen7LocationView.swift; sourceTree = "<group>"; };
+		253A749A2877E3D80005D7E1 /* Screen8ParametersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen8ParametersView.swift; sourceTree = "<group>"; };
+		253A749C2877E4170005D7E1 /* Screen9CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen9CompletionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +80,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */,
+				253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */,
+				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -74,6 +106,7 @@
 		253A74462877E1920005D7E1 = {
 			isa = PBXGroup;
 			children = (
+				253A747C2877E1C20005D7E1 /* .gitignore */,
 				253A74512877E1920005D7E1 /* jackfruit */,
 				253A74622877E1940005D7E1 /* jackfruitTests */,
 				253A746C2877E1940005D7E1 /* jackfruitUITests */,
@@ -94,6 +127,7 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
+				253A74852877E27A0005D7E1 /* onboarding */,
 				253A74522877E1920005D7E1 /* jackfruitApp.swift */,
 				253A74542877E1920005D7E1 /* ContentView.swift */,
 				253A74562877E1940005D7E1 /* Assets.xcassets */,
@@ -127,6 +161,25 @@
 			path = jackfruitUITests;
 			sourceTree = "<group>";
 		};
+		253A74852877E27A0005D7E1 /* onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				253A74862877E2960005D7E1 /* Flow.swift */,
+				253A74882877E2B70005D7E1 /* FlowVM.swift */,
+				253A748A2877E3030005D7E1 /* FlowView.swift */,
+				253A748C2877E3250005D7E1 /* Screen1LandingView.swift */,
+				253A748E2877E33E0005D7E1 /* Screen2FirstNameView.swift */,
+				253A74902877E35D0005D7E1 /* Screen3LastNameView.swift */,
+				253A74922877E36E0005D7E1 /* Screen4NumberView.swift */,
+				253A74942877E38C0005D7E1 /* Screen5VerificationView.swift */,
+				253A74962877E39D0005D7E1 /* Screen6EmailView.swift */,
+				253A74982877E3C60005D7E1 /* Screen7LocationView.swift */,
+				253A749A2877E3D80005D7E1 /* Screen8ParametersView.swift */,
+				253A749C2877E4170005D7E1 /* Screen9CompletionView.swift */,
+			);
+			path = onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +196,11 @@
 			dependencies = (
 			);
 			name = jackfruit;
+			packageProductDependencies = (
+				253A747F2877E2540005D7E1 /* FirebaseAuth */,
+				253A74812877E2540005D7E1 /* FirebaseFirestore */,
+				253A74832877E2540005D7E1 /* FirebaseStorage */,
+			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +273,9 @@
 				Base,
 			);
 			mainGroup = 253A74462877E1920005D7E1;
+			packageReferences = (
+				253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -232,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */,
+				253A747D2877E1C20005D7E1 /* .gitignore in Resources */,
 				253A74572877E1940005D7E1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -257,8 +319,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				253A74872877E2960005D7E1 /* Flow.swift in Sources */,
 				253A74552877E1920005D7E1 /* ContentView.swift in Sources */,
+				253A748D2877E3250005D7E1 /* Screen1LandingView.swift in Sources */,
+				253A749B2877E3D80005D7E1 /* Screen8ParametersView.swift in Sources */,
+				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
+				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
+				253A749D2877E4170005D7E1 /* Screen9CompletionView.swift in Sources */,
+				253A748F2877E33E0005D7E1 /* Screen2FirstNameView.swift in Sources */,
+				253A74892877E2B70005D7E1 /* FlowVM.swift in Sources */,
+				253A74952877E38C0005D7E1 /* Screen5VerificationView.swift in Sources */,
 				253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */,
+				253A74972877E39D0005D7E1 /* Screen6EmailView.swift in Sources */,
+				253A74912877E35D0005D7E1 /* Screen3LastNameView.swift in Sources */,
+				253A74992877E3C60005D7E1 /* Screen7LocationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,6 +657,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		253A747F2877E2540005D7E1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		253A74812877E2540005D7E1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		253A74832877E2540005D7E1 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 253A74472877E1920005D7E1 /* Project object */;
 }
