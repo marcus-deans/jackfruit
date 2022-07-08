@@ -13,5 +13,13 @@
 			</array>
 		</dict>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>PTSans-Bold.ttf</string>
+		<string>PTSans-Regular.ttf</string>
+		<string>PTSansProBlk.otf</string>
+		<string>CircularStd-Black.otf</string>
+		<string>CircularStd-Book.otf</string>
+	</array>
 </dict>
 </plist>

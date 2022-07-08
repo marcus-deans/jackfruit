@@ -38,6 +38,11 @@
 		253A74AD2877E5820005D7E1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74AC2877E5820005D7E1 /* UserModel.swift */; };
 		253A74AF2877E6530005D7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */; };
 		253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 253A74B32877ED660005D7E1 /* WrappingHStack */; };
+		253A74BE2877F4750005D7E1 /* CircularStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74BC2877F4750005D7E1 /* CircularStd-Black.otf */; };
+		253A74BF2877F4750005D7E1 /* CircularStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74BD2877F4750005D7E1 /* CircularStd-Book.otf */; };
+		253A74C32877F4A00005D7E1 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C02877F4A00005D7E1 /* PTSans-Regular.ttf */; };
+		253A74C42877F4A00005D7E1 /* PTSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */; };
+		253A74C52877F4A00005D7E1 /* PTSansProBlk.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +95,11 @@
 		253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		253A74B02877E6630005D7E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		253A74B12877E7710005D7E1 /* jackfruit.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jackfruit.entitlements; sourceTree = "<group>"; };
+		253A74BC2877F4750005D7E1 /* CircularStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Black.otf"; sourceTree = "<group>"; };
+		253A74BD2877F4750005D7E1 /* CircularStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "CircularStd-Book.otf"; sourceTree = "<group>"; };
+		253A74C02877F4A00005D7E1 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
+		253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Bold.ttf"; sourceTree = "<group>"; };
+		253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansProBlk.OTF; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +162,7 @@
 				253A749E2877E4990005D7E1 /* home */,
 				253A74852877E27A0005D7E1 /* onboarding */,
 				253A74522877E1920005D7E1 /* jackfruitApp.swift */,
+				253A74B72877F4240005D7E1 /* fonts */,
 				253A74562877E1940005D7E1 /* Assets.xcassets */,
 				253A74582877E1940005D7E1 /* Preview Content */,
 				253A74AC2877E5820005D7E1 /* UserModel.swift */,
@@ -221,6 +232,18 @@
 				253A74AA2877E5670005D7E1 /* Extensions.swift */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		253A74B72877F4240005D7E1 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */,
+				253A74C02877F4A00005D7E1 /* PTSans-Regular.ttf */,
+				253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */,
+				253A74BC2877F4750005D7E1 /* CircularStd-Black.otf */,
+				253A74BD2877F4750005D7E1 /* CircularStd-Book.otf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,9 +361,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */,
+				253A74BF2877F4750005D7E1 /* CircularStd-Book.otf in Resources */,
+				253A74C42877F4A00005D7E1 /* PTSans-Bold.ttf in Resources */,
 				253A74AF2877E6530005D7E1 /* GoogleService-Info.plist in Resources */,
 				253A747D2877E1C20005D7E1 /* .gitignore in Resources */,
 				253A74572877E1940005D7E1 /* Assets.xcassets in Resources */,
+				253A74C52877F4A00005D7E1 /* PTSansProBlk.OTF in Resources */,
+				253A74BE2877F4750005D7E1 /* CircularStd-Black.otf in Resources */,
+				253A74C32877F4A00005D7E1 /* PTSans-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
