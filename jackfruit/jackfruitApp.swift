@@ -8,6 +8,9 @@
 import SwiftUI
 import Firebase
 
+let transition: AnyTransition = .asymmetric(insertion: .move(edge: .bottom),
+    removal: .move(edge: .top))
+
 @main
 struct jackfruitApp: App {
     @AppStorage("is_onboarded") var isOnboarded: Bool = false
