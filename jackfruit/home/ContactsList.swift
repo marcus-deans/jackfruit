@@ -15,9 +15,11 @@ class Theme {
         
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.configureWithOpaqueBackground()
-        navigationAppearance.backgroundColor = background ?? .clear
+        navigationAppearance.backgroundColor =  .clear
         navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .black]
-        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black]
+        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black, .font : UIFont(name: "CircularStd-Black", size: 20)!]
+        
+        navigationAppearance.backgroundImage = UIImage(named: "Gradient2")
         
         UINavigationBar.appearance().standardAppearance = navigationAppearance
         UINavigationBar.appearance().compactAppearance = navigationAppearance
@@ -127,6 +129,7 @@ struct ContactsList: View {
 //        UINavigationBar.appearance().standardAppearance = appearance
         
         Theme.navigationBarColors(background: .transitionPage, titleColor: .black)
+        
         UITableView.appearance().backgroundColor = UIColor(Color.clear)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
@@ -172,8 +175,10 @@ struct ContactsList: View {
                                 }
                             }.listRowSeparator(.hidden)
                         }.background(
-                            RoundedRectangle(cornerRadius: 9, style: .continuous)
-                                .foregroundColor(.init(UIColor.contactCardColor))
+                            Rectangle()
+                                .foregroundColor(.init(UIColor.white))
+                                .shadow(radius: 3)
+                                
                         )
                         
                         .listRowBackground(Color.white)
@@ -305,7 +310,7 @@ struct EmojiCircleView: View {
     var body: some View {
         ZStack {
             Text("")
-                .shadow(radius: 3)
+                .shadow(radius: 2)
                 .font(.largeTitle)
                 .frame(width: 65, height: 45)
                 .overlay(
