@@ -154,31 +154,35 @@ class FlowVM: ObservableObject {
         model.phoneNumber = vm.phoneNumber
         // Additional logic inc. updating model
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber(vm.phoneNumber, uiDelegate: nil) { verificationID, error in
+            .verifyPhoneNumber("+1\(vm.phoneNumber)", uiDelegate: nil) { verificationID, error in
               if let error = error {
                 print(error.localizedDescription)
                 return
               }
               // Sign in using the verificationID and the code sent to the user
               // ...
+                print("Verification ID is \(verificationID!)")
                 self.verificationID = verificationID!
           }
         navigateTo5 = true
     }
     
     func didComplete5(vm: Screen5VerificationVM){
-//        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
-//        Auth.auth().signIn(with: credential) { (authResult, error) in
-//          if let error = error {
-//            let authError = error as NSError
-//            print(authError.description)
-//            return
-//          }
-//
-//          // User has signed in successfully and currentUser object is valid
-//          let currentUserInstance = Auth.auth().currentUser
-//            self.navigateTo6 = true
-//        }
+        print("Verification Code is \(vm.verificationCode)")
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+          if let error = error {
+            let authError = error as NSError
+            print(authError.description)
+            return
+          }
+        
+            print("No error, successful sign-in.")
+
+          // User has signed in successfully and currentUser object is valid
+          let currentUserInstance = Auth.auth().currentUser
+            self.navigateTo6 = true
+        }
         self.navigateTo6 = true
     }
     
