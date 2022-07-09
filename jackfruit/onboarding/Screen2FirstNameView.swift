@@ -116,11 +116,11 @@ struct Screen2FirstNameView: View {
                     ProgressBar(value: $progressValue).frame(height: 10)
                         
                     Text("What's your first name?")
-                        .font(Font.custom("PTSans-Regular", size: 40))
+                        .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
                         
                     Text("You won't be able to change this later!")
-                        .font(Font.custom("PTSans-Bold", size: 20))
+                        .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
           
                         
