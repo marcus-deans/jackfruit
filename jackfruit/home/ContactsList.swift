@@ -17,13 +17,14 @@ class Theme {
         navigationAppearance.configureWithOpaqueBackground()
         navigationAppearance.backgroundColor =  .clear
         navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .black]
-        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black, .font : UIFont(name: "CircularStd-Black", size: 20)!]
+        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black, .font : UIFont(name: "CircularStd-Black", size: 35)!]
         
         navigationAppearance.backgroundImage = UIImage(named: "Gradient2")
         
         UINavigationBar.appearance().standardAppearance = navigationAppearance
         UINavigationBar.appearance().compactAppearance = navigationAppearance
         UINavigationBar.appearance().scrollEdgeAppearance = navigationAppearance
+        UINavigationBar.appearance().largeTitleTextAttributes = [.font : UIFont(name: "CircularStd-Book", size: 20)!]
         
         UINavigationBar.appearance().tintColor = tintColor ?? titleColor ?? .black
     }
@@ -165,15 +166,15 @@ struct ContactsList: View {
                             userItem in
                             NavigationLink(destination: DetailsView(userItem: userItem)) {
                                 HStack{
-                                    EmojiCircleView().padding(.vertical, 10)
+                                    EmojiCircleView().padding(.vertical, 7)
                                     Text(userItem.firstName!)
-                                        .font(Font.custom("PTSans-Bold", size: 20))
+                                        .font(Font.custom("CircularStd-Book", size: 20))
                                     + Text(" ")
                                     + Text(userItem.lastName!)
-                                        .font(Font.custom("PTSans-Bold",
+                                        .font(Font.custom("CircularStd-Book",
                                                           size: 20))
                                 }
-                            }.listRowSeparator(.hidden)
+                            }.listRowSeparator(.hidden).padding(.trailing, 20)
                         }.background(
                             Rectangle()
                                 .foregroundColor(.init(UIColor.white))
@@ -183,14 +184,24 @@ struct ContactsList: View {
                         
                         .listRowBackground(Color.white)
                     }.listStyle(.plain).background(Color.white)
-                        .navigationBarTitle("My Contacts").navigationBarHidden(false)
+//                        .toolbar { // <2>
+//                                    ToolbarItem(placement: .principal) { // <3>
+//                                        VStack {
+//                                            Text("Contacts").font(Font.custom("CircularStd-Black",
+//                                                                              size: 25))
+//                                            .searchable(text: $searchText, placement: .automatic)
+//
+//                                        }
+//                                    }
+//                                }
+                        .searchable(text: $searchText, placement: .automatic)
+                    //.padding()
+                        .onAppear() { // (3)
+                            self.viewModel.fetchData(userId: userId)
+                        }                        .navigationBarTitle("Contacts",  displayMode: .inline).navigationBarHidden(false)
                    
                     
-                }.searchable(text: $searchText, placement: .automatic)
-                //.padding()
-                    .onAppear() { // (3)
-                        self.viewModel.fetchData(userId: userId)
-                    }
+                }
                 
             } else {
                 // Fallback on earlier versions
@@ -312,7 +323,7 @@ struct EmojiCircleView: View {
             Text("")
                 .shadow(radius: 2)
                 .font(.largeTitle)
-                .frame(width: 65, height: 45)
+                .frame(width: 65, height: 35)
                 .overlay(
                     Circle()
                         .stroke(Color.black, lineWidth: 3)
