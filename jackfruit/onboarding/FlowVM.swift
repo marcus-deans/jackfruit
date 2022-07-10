@@ -36,6 +36,7 @@ class FlowVM: ObservableObject {
     @Published var navigateTo7: Bool = false
     @Published var navigateTo8: Bool = false
     @Published var navigateTo9: Bool = false
+    @Published var navigateTo10: Bool = false
     @Published var navigateToHome: Bool = false
     @Published var navigateToFinalFrom3: Bool = false
     @Published var navigateToFinalFrom4: Bool = false
@@ -123,10 +124,19 @@ class FlowVM: ObservableObject {
         return vm
     }
     
-    func makeScreen9CompletionView() -> Screen9CompletionVM {
-        let vm = Screen9CompletionVM(name: model.firstName)
+    func makeScreen9PhotoView() -> Screen9PhotoVM {
+        let vm = Screen9PhotoVM(
+            photoURL: model.phoneNumber
+        )
         vm.didComplete
             .sink(receiveValue: didComplete9)
+            .store(in: &subscription)
+    }
+    
+    func makeScreen10CompletionView() -> Screen10CompletionVM {
+        let vm = Screen10CompletionVM(name: model.firstName)
+        vm.didComplete
+            .sink(receiveValue: didComplete10)
             .store(in: &subscription)
         return vm
     }
@@ -161,7 +171,6 @@ class FlowVM: ObservableObject {
               }
               // Sign in using the verificationID and the code sent to the user
               // ...
-                print("Verification ID is \(verificationID!)")
                 self.verificationID = verificationID!
           }
         navigateTo5 = true
@@ -177,13 +186,10 @@ class FlowVM: ObservableObject {
             return
           }
         
-            print("No error, successful sign-in.")
-
           // User has signed in successfully and currentUser object is valid
           let currentUserInstance = Auth.auth().currentUser
             self.navigateTo6 = true
         }
-        self.navigateTo6 = true
     }
     
     func didComplete6(vm: Screen6EmailVM) {
@@ -201,7 +207,12 @@ class FlowVM: ObservableObject {
         navigateTo9 = true
     }
     
-    func didComplete9(vm: Screen9CompletionVM) {
+    func didComplete9(vm: Screen9PhotoVM){
+//        model.parameters = vm.parameters
+        navigateTo10 = true
+    }
+    
+    func didComplete10(vm: Screen10CompletionVM) {
         do {
             let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
