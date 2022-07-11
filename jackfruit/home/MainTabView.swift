@@ -37,6 +37,8 @@ struct TabItemView: View {
             Spacer()
             Spacer()
             Spacer()
+            Spacer()
+    
         }
     }
 }
@@ -68,8 +70,10 @@ struct TabBottomView: View {
             }
         }
         .frame(width: width, height: height)
-        .background(Color.clear)
-        //.cornerRadius(13)
+        .background(Color.init(UIColor.middleColor))
+        
+        .cornerRadius(25)
+        
         //.shadow(radius: 5, x: 5, y: 10)
     }
     }
