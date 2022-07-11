@@ -17,7 +17,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     )
 //    let logger = Logger()
     
-    @Binding var image:UIImage
+    @Binding var image:UIImage?
     @Binding var showPicker: Bool
     
     func makeUIViewController(context: Context) -> PHPickerViewController {
@@ -44,6 +44,9 @@ struct ImagePicker: UIViewControllerRepresentable {
         }
         
         func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+            
+            parent.showPicker.toggle()
+            
             for img in results{
                 if img.itemProvider.canLoadObject(ofClass: UIImage.self){
                     img.itemProvider.loadObject(ofClass: UIImage.self){
