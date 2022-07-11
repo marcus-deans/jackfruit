@@ -126,11 +126,12 @@ class FlowVM: ObservableObject {
     
     func makeScreen9PhotoView() -> Screen9PhotoVM {
         let vm = Screen9PhotoVM(
-            photoURL: model.phoneNumber
+            photoURL: model.photoURL
         )
         vm.didComplete
             .sink(receiveValue: didComplete9)
             .store(in: &subscription)
+        return vm
     }
     
     func makeScreen10CompletionView() -> Screen10CompletionVM {
@@ -204,21 +205,23 @@ class FlowVM: ObservableObject {
     
     func didComplete8(vm: Screen8ParametersVM){
         model.parameters = vm.parameters
-        navigateTo9 = true
-    }
-    
-    func didComplete9(vm: Screen9PhotoVM){
-//        model.parameters = vm.parameters
-        navigateTo10 = true
-    }
-    
-    func didComplete10(vm: Screen10CompletionVM) {
         do {
             let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
             print(error)
         }
+        navigateTo9 = true
+    }
+    
+    func didComplete9(vm: Screen9PhotoVM){
+        model.photoURL = vm.photoURL
+//        model.parameters = vm.parameters
+        navigateTo10 = true
+    }
+    
+    func didComplete10(vm: Screen10CompletionVM) {
+
         navigateTo2 = false
     }
 }

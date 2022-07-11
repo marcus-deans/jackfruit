@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
+import Combine
 
 final class Screen9PhotoVM: ObservableObject, Completeable {
     @Published var photoURL: String?
-    
     
     let didComplete = PassthroughSubject<Screen9PhotoVM, Never>()
     
@@ -23,14 +23,31 @@ final class Screen9PhotoVM: ObservableObject, Completeable {
     }
 }
 
+
 struct Screen9PhotoView: View {
+    @StateObject var vm: Screen9PhotoVM
+    @AppStorage("is_onboarded") var isOnboarded: Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.init(UIColor.transitionPage).ignoresSafeArea()
+            VStack(alignment: .center) {
+                Text("Welcome to the app")  .font(Font.custom("PTSans-Bold", size: 34))
+                    .fontWeight(.black).bold()
+        
+                Button(action: {
+                    withAnimation(.spring()){
+                        self.vm.didTapNext()
+//                        isOnboarded=true
+                    }
+                }, label: { Text("Next") }).buttonStyle(RoundedRectangleButtonStyle())
+            }.padding()
+        }
     }
 }
 
 struct Screen9PhotoView_Previews: PreviewProvider {
     static var previews: some View {
-        Screen9PhotoView()
+        Screen9PhotoView(vm: Screen9PhotoVM(photoURL: ""))
     }
 }

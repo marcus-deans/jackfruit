@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */; };
+		251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8537287BF840000F64C4 /* ImagePicker.swift */; };
+		251F853A287BFD04000F64C4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8539287BFD04000F64C4 /* Log.swift */; };
 		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
 		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
 		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
@@ -65,6 +67,8 @@
 
 /* Begin PBXFileReference section */
 		251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen9PhotoView.swift; sourceTree = "<group>"; };
+		251F8537287BF840000F64C4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		251F8539287BFD04000F64C4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		253A744F2877E1920005D7E1 /* jackfruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jackfruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253A74522877E1920005D7E1 /* jackfruitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitApp.swift; sourceTree = "<group>"; };
 		253A74562877E1940005D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -233,6 +237,8 @@
 				253A74A62877E52B0005D7E1 /* Theme.swift */,
 				253A74A82877E5420005D7E1 /* JSONConverter.swift */,
 				253A74AA2877E5670005D7E1 /* Extensions.swift */,
+				251F8537287BF840000F64C4 /* ImagePicker.swift */,
+				251F8539287BFD04000F64C4 /* Log.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -397,12 +403,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				253A74872877E2960005D7E1 /* Flow.swift in Sources */,
+				251F853A287BFD04000F64C4 /* Log.swift in Sources */,
 				253A74AD2877E5820005D7E1 /* UserModel.swift in Sources */,
 				253A74A92877E5420005D7E1 /* JSONConverter.swift in Sources */,
 				253A74A42877E4E40005D7E1 /* ContactsList.swift in Sources */,
 				253A748D2877E3250005D7E1 /* Screen1LandingView.swift in Sources */,
 				253A749B2877E3D80005D7E1 /* Screen8ParametersView.swift in Sources */,
 				253A74A22877E4D00005D7E1 /* ContactsAdd.swift in Sources */,
+				251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */,
 				251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */,
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,

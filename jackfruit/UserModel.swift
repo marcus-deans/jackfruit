@@ -14,6 +14,7 @@ struct UserModel : Codable, Identifiable{
     var emailAddress: String?
     var phoneNumber: String?
     var location: String?
+    var photoURL: String?
     var parameters: [String]?
     var personalContacts: [String]?
     var professionalContacts: [String]?
@@ -21,13 +22,14 @@ struct UserModel : Codable, Identifiable{
 //    var professionalParameters: ProfessionalParameters?
 //    var personalParameters: PersonalParameters?
     
-    init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = []) {
+    init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", photoURL: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = []) {
         self.id = id ?? UUID()
         self.firstName = firstName ?? ""
         self.lastName = lastName ?? ""
         self.emailAddress = emailAddress ?? ""
         self.phoneNumber = phoneNumber ?? ""
         self.location = location ?? ""
+        self.photoURL = photoURL ?? ""
         self.parameters = parameters ?? []
         self.personalContacts = personalContacts
         self.professionalContacts = professionalContacts
@@ -40,6 +42,7 @@ struct UserModel : Codable, Identifiable{
         case emailAddress = "email_address"
         case phoneNumber = "phone_number"
         case location
+        case photoURL = "photo_url"
         case parameters
         case personalContacts = "personal_contacts"
         case professionalContacts = "professional_contacts"
@@ -126,6 +129,7 @@ struct UserModel : Codable, Identifiable{
             self.phoneNumber = try String(values.decode(String.self, forKey: .phoneNumber))
         }
         self.location = try values.decode(String.self, forKey: .location)
+        self.photoURL = try values.decode(String.self, forKey: .photoURL)
         self.parameters = try values.decode([String].self,forKey: .parameters)
         self.personalContacts = try values.decode([String].self, forKey: .personalContacts)
         self.professionalContacts = try values.decode([String].self, forKey: .professionalContacts)
@@ -166,6 +170,7 @@ extension UserModel: RawRepresentable {
         try container.encode(emailAddress, forKey: .emailAddress)
         try container.encode(phoneNumber, forKey: .phoneNumber)
         try container.encode(location, forKey: .location)
+        try container.encode(photoURL, forKey: .photoURL)
         try container.encode(parameters, forKey: .parameters)
         try container.encode(personalContacts, forKey: .personalContacts)
         try container.encode(professionalContacts, forKey: .professionalContacts)
