@@ -31,6 +31,11 @@ extension UIColor {
     static let afterStartPageTransition = UIColor(rgb: 0x44AA92)
     static let underLine = UIColor(rgb: 0x9667E0)
     static let transitionPage = UIColor(rgb: 0xff5400)
+    
+    static let activitiesLeft = UIColor(rgb: 0xFFC900)
+    
+    static let activitiesRight = UIColor(rgb: 0xFFB700)
+    
     static let redGradient = UIColor(rgb : 0xff7900)
     static let greenShaddow = UIColor(rgb: 0x628343)
     static let greenBackground = UIColor(rgb: 0x8CC152)

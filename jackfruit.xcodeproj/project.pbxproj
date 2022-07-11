@@ -43,6 +43,8 @@
 		253A74C32877F4A00005D7E1 /* PTSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C02877F4A00005D7E1 /* PTSans-Regular.ttf */; };
 		253A74C42877F4A00005D7E1 /* PTSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */; };
 		253A74C52877F4A00005D7E1 /* PTSansProBlk.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */; };
+		696D0ACC287B98E1008F4C34 /* ContactsDiscover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */; };
+		696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 696D0ACE287B9A27008F4C34 /* ToastUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,7 @@
 		253A74C02877F4A00005D7E1 /* PTSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Regular.ttf"; sourceTree = "<group>"; };
 		253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Bold.ttf"; sourceTree = "<group>"; };
 		253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansProBlk.OTF; sourceTree = "<group>"; };
+		696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDiscover.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,7 @@
 				253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */,
 				253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */,
 				253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */,
+				696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -220,6 +224,7 @@
 				253A749F2877E4AF0005D7E1 /* MainTabView.swift */,
 				253A74A12877E4D00005D7E1 /* ContactsAdd.swift */,
 				253A74A32877E4E40005D7E1 /* ContactsList.swift */,
+				696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 				253A74812877E2540005D7E1 /* FirebaseFirestore */,
 				253A74832877E2540005D7E1 /* FirebaseStorage */,
 				253A74B32877ED660005D7E1 /* WrappingHStack */,
+				696D0ACE287B9A27008F4C34 /* ToastUI */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -343,6 +349,7 @@
 			packageReferences = (
 				253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
+				696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -413,6 +420,7 @@
 				253A74912877E35D0005D7E1 /* Screen3LastNameView.swift in Sources */,
 				253A74992877E3C60005D7E1 /* Screen7LocationView.swift in Sources */,
 				253A74A02877E4AF0005D7E1 /* MainTabView.swift in Sources */,
+				696D0ACC287B98E1008F4C34 /* ContactsDiscover.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -759,6 +767,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -781,6 +797,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
 			productName = WrappingHStack;
+		};
+		696D0ACE287B9A27008F4C34 /* ToastUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */;
+			productName = ToastUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

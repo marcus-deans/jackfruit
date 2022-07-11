@@ -137,13 +137,14 @@ struct ContactsAdd: View {
     @State var checked = false
     var body: some View {
         ZStack{
-            Color.init(UIColor.transitionPage).ignoresSafeArea()
+            //Color.init(UIColor.transitionPage).ignoresSafeArea()
+            RadialGradient(gradient: Gradient(colors: [.init(UIColor.transitionPage), .orange]), center: .center, startRadius: 2, endRadius: 650).ignoresSafeArea()
             VStack {
                 VStack(alignment: .center, spacing: -1, content: {
                     HStack{
                         Text(value)
                             .frame(minWidth: 0, maxWidth: .infinity)
-                            .font(.system(size: 54))
+                            .font(Font.custom("CircularStd-Black", size: 50))
                             .padding()
                             .foregroundColor(.white)
                     }
@@ -193,12 +194,12 @@ struct ContactsAdd: View {
                                 self.didTap(button: item)
                             }, label: {
                                 Text(item.rawValue)
-                                    .font(.system(size: 30))
+                                    .font(Font.custom("CircularStd-Black", size: 35))
                                     .frame(
                                         width: self.buttonWidth(item: item),
                                         height: self.buttonHeight()
                                     )
-                                    .background(Color.init(UIColor.transitionPage))
+                                    .background(Color.clear)
                                     .foregroundColor(.white)
                                     .padding(.horizontal, 30)
                             })

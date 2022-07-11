@@ -133,7 +133,7 @@ struct ContactsList: View {
         
         UITableView.appearance().backgroundColor = UIColor(Color.clear)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
-        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
         //Use this if NavigationBarTitle is with Large Font
          UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.transitionPage]
 
@@ -176,7 +176,7 @@ struct ContactsList: View {
                                 }
                             }.listRowSeparator(.hidden).padding(.trailing, 20)
                         }.background(
-                            Rectangle()
+                            RoundedRectangle(cornerRadius: 5, style: .continuous)
                                 .foregroundColor(.init(UIColor.white))
                                 .shadow(radius: 3)
                                 

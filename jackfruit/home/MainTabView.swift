@@ -142,7 +142,7 @@ struct MainTabView: View {
         case .myFile:
             ContactsAdd()
         case .profile:
-            ContactsAdd()
+            ContactsDiscover()
         }
     }
 }
