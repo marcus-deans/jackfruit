@@ -9,10 +9,10 @@ import SwiftUI
 import Combine
 import Firebase
 
-final class Screen9CompletionVM: ObservableObject, Completeable {
+final class Screen10CompletionVM: ObservableObject, Completeable {
     let name: String
     
-    let didComplete = PassthroughSubject<Screen9CompletionVM, Never>()
+    let didComplete = PassthroughSubject<Screen10CompletionVM, Never>()
     
     init(name: String?) {
         self.name = name ?? ""
@@ -24,8 +24,8 @@ final class Screen9CompletionVM: ObservableObject, Completeable {
     }
 }
 
-struct Screen9CompletionView: View {
-    @StateObject var vm: Screen9CompletionVM
+struct Screen10CompletionView: View {
+    @StateObject var vm: Screen10CompletionVM
     @AppStorage("is_onboarded") var isOnboarded: Bool = false
     
     var body: some View {
@@ -46,8 +46,8 @@ struct Screen9CompletionView: View {
     }
 }
 
-struct Screen9CompletionView_Previews: PreviewProvider {
+struct Screen10CompletionView_Previews: PreviewProvider {
     static var previews: some View {
-        Screen9CompletionView(vm: Screen9CompletionVM(name: "Marcus Deans"))
+        Screen10CompletionView(vm: Screen10CompletionVM(name: "Marcus Deans"))
     }
 }

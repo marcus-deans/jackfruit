@@ -55,7 +55,7 @@ struct Screen4NumberView: View {
                  
                     ProgressBar(value: $progressValue).frame(height: 10)
                         
-                    Text("What's your   phone number?")
+                    Text("What's your phone number?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
                         

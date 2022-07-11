@@ -36,6 +36,7 @@ class FlowVM: ObservableObject {
     @Published var navigateTo7: Bool = false
     @Published var navigateTo8: Bool = false
     @Published var navigateTo9: Bool = false
+    @Published var navigateTo10: Bool = false
     @Published var navigateToHome: Bool = false
     @Published var navigateToFinalFrom3: Bool = false
     @Published var navigateToFinalFrom4: Bool = false
@@ -123,10 +124,20 @@ class FlowVM: ObservableObject {
         return vm
     }
     
-    func makeScreen9CompletionView() -> Screen9CompletionVM {
-        let vm = Screen9CompletionVM(name: model.firstName)
+    func makeScreen9PhotoView() -> Screen9PhotoVM {
+        let vm = Screen9PhotoVM(
+            photoURL: model.photoURL
+        )
         vm.didComplete
             .sink(receiveValue: didComplete9)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen10CompletionView() -> Screen10CompletionVM {
+        let vm = Screen10CompletionVM(name: model.firstName)
+        vm.didComplete
+            .sink(receiveValue: didComplete10)
             .store(in: &subscription)
         return vm
     }
@@ -154,7 +165,7 @@ class FlowVM: ObservableObject {
         model.phoneNumber = vm.phoneNumber
         // Additional logic inc. updating model
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber(vm.phoneNumber, uiDelegate: nil) { verificationID, error in
+            .verifyPhoneNumber("+1\(vm.phoneNumber)", uiDelegate: nil) { verificationID, error in
               if let error = error {
                 print(error.localizedDescription)
                 return
@@ -167,19 +178,19 @@ class FlowVM: ObservableObject {
     }
     
     func didComplete5(vm: Screen5VerificationVM){
-//        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
-//        Auth.auth().signIn(with: credential) { (authResult, error) in
-//          if let error = error {
-//            let authError = error as NSError
-//            print(authError.description)
-//            return
-//          }
-//
-//          // User has signed in successfully and currentUser object is valid
-//          let currentUserInstance = Auth.auth().currentUser
-//            self.navigateTo6 = true
-//        }
-        self.navigateTo6 = true
+        print("Verification Code is \(vm.verificationCode)")
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+          if let error = error {
+            let authError = error as NSError
+            print(authError.description)
+            return
+          }
+        
+          // User has signed in successfully and currentUser object is valid
+          let currentUserInstance = Auth.auth().currentUser
+            self.navigateTo6 = true
+        }
     }
     
     func didComplete6(vm: Screen6EmailVM) {
@@ -194,16 +205,23 @@ class FlowVM: ObservableObject {
     
     func didComplete8(vm: Screen8ParametersVM){
         model.parameters = vm.parameters
-        navigateTo9 = true
-    }
-    
-    func didComplete9(vm: Screen9CompletionVM) {
         do {
             let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
             print(error)
         }
+        navigateTo9 = true
+    }
+    
+    func didComplete9(vm: Screen9PhotoVM){
+        model.photoURL = vm.photoURL
+//        model.parameters = vm.parameters
+        navigateTo10 = true
+    }
+    
+    func didComplete10(vm: Screen10CompletionVM) {
+
         navigateTo2 = false
     }
 }
