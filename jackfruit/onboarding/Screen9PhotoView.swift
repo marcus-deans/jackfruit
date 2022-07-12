@@ -65,11 +65,21 @@ struct Screen9PhotoView: View {
                     else {
                         Button(action: {
                             pickerSelected.toggle()
-                        }, label: { Text("Pick Image") })
-                        .padding(.vertical, 10)
-                        .padding(.horizontal, 35)
-                        .disabled(!vm.isValid)
-                        .buttonStyle(BlueButtonStyle())
+                        }, label: {
+                            Text("Pick Images")
+                                .foregroundColor(.white)
+                                .padding(.vertical, 10)
+                                .padding(.horizontal, 35)
+                                .background(Color.blue)
+                                .clipShape(Capsule())
+                        })
+                        //                        Button(action: {
+                        //                            pickerSelected.toggle()
+                        //                        }, label: { Text("Pick Image") })
+                        //                        .padding(.vertical, 10)
+                        //                        .padding(.horizontal, 35)
+                        //                        .disabled(!vm.isValid)
+                        //                        .buttonStyle(BlueButtonStyle())
                     }
                     
                     //                    TextField("Image", text: $vm.photoURL, onEditingChanged: { edit in
@@ -93,13 +103,14 @@ struct Screen9PhotoView: View {
                 
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-//                .disabled(!vm.isValid)
+                //                .disabled(!vm.isValid)
                 .buttonStyle(BlueButtonStyle())
             }
         }
-        .ignoresSafeArea(.keyboard)
         .sheet(isPresented: $pickerSelected){
             ImagePicker(image: $image, showPicker: $pickerSelected)
+        .ignoresSafeArea(.keyboard)
+
         }
     }
 }
