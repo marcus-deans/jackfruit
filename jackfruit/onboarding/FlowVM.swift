@@ -236,6 +236,7 @@ class FlowVM: ObservableObject {
         storageUserRef.putData(imageData, metadata: metadata)
         storageUserRef.downloadURL(completion: { (url, error) in
             if let metaImageURL = url?.absoluteString {
+                self.logger.log("Photo URL is \(metaImageURL)")
                 self.model.photoURL = metaImageURL
             }
         })
