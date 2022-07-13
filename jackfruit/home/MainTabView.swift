@@ -25,6 +25,7 @@ struct TabItemView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 32, height: 32)
                 .animation(.default)
+                
             
             //Spacer().frame(height: 19)
             

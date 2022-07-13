@@ -56,7 +56,7 @@ struct ImagePicker: UIViewControllerRepresentable {
                             self.parent.logger.log("Error in loading image.")
                             return
                         }
-                        self.parent.image = image1 as! UIImage
+                        self.parent.image = image1 as? UIImage
                         
                     }
                 } else {

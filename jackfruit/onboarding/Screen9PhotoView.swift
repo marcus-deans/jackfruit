@@ -7,21 +7,31 @@
 
 import SwiftUI
 import Combine
+import os
 
 final class Screen9PhotoVM: ObservableObject, Completeable {
-    @Published var photoURL = ""
+    @Published var profilePhoto:UIImage?
+    var phoneNumber = ""
+
+    
+    let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: String(describing: Screen9PhotoVM.self)
+    )
     
     let didComplete = PassthroughSubject<Screen9PhotoVM, Never>()
     
-    init(photoURL: String?) {
-        self.photoURL = photoURL ?? ""
+    init(phoneNumber: String) {
+        self.phoneNumber = phoneNumber
     }
     
     var isValid: Bool {
-        !photoURL.isEmpty
+        profilePhoto != nil
     }
     
-    func didTapNext() {
+    
+    func didTapNext(image: UIImage)  {
+        self.profilePhoto = image
         //do some network calls etc
         didComplete.send(self)
     }
@@ -59,7 +69,7 @@ struct Screen9PhotoView: View {
                     if let selectedImage = image {
                         Image(uiImage: selectedImage)
                             .resizable()
-                            .frame(width: UIScreen.main.bounds.width-50, height: 200)
+                            .frame(width: 250, height: 250)
                             .cornerRadius(20)
                     }
                     else {
@@ -97,12 +107,14 @@ struct Screen9PhotoView: View {
                 Spacer()
                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
-                    self.vm.didTapNext()
+//                    self.vm.addToStorage(image: image!)
+                    self.vm.didTapNext(image:image!)
                 }, label: { Text(">") })
                 
                 
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
+                .disabled(image == nil)
                 //                .disabled(!vm.isValid)
                 .buttonStyle(BlueButtonStyle())
             }
@@ -118,6 +130,6 @@ struct Screen9PhotoView: View {
 struct Screen9PhotoView_Previews: PreviewProvider {
     static var previews: some View {
         let testImage = UIImage(named: "Profilephoto.jpeg")
-        Screen9PhotoView(vm: Screen9PhotoVM(photoURL: ""), image: testImage!)
+        Screen9PhotoView(vm: Screen9PhotoVM(phoneNumber: "5555555555"), image: testImage!)
     }
 }
