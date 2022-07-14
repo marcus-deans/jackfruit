@@ -27,6 +27,7 @@ class FlowVM: ObservableObject {
     var subscription = Set<AnyCancellable>()
     var verificationID = ""
     let db = Firestore.firestore()
+    let storage = Storage.storage()
     
     let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
@@ -216,39 +217,58 @@ class FlowVM: ObservableObject {
     
     func didComplete9(vm: Screen9PhotoVM) {
         let image = vm.profilePhoto!
-        let phoneNumber = model.phoneNumber ?? "5555555555"
+        let phoneNumber = model.phoneNumber
         Task {
-                await addProfileToStorage(image: image, phoneNumber: phoneNumber)
+            print("calling async stuff")
+            await doAsyncStuff(image: image, phoneNumber: phoneNumber!)
         }
         navigateTo10 = true
     }
     
-    func addProfileToStorage(image: UIImage, phoneNumber: String) async {
-        let storageURL = "gs://jackfruit-c9dab.appspot.com"
-        let metadata = StorageMetadata()
-        guard let imageData = image.jpegData(compressionQuality: 0.3) else {
+    func doAsyncStuff(image: UIImage, phoneNumber: String) async {
+        await addProfileToStorage(image: image, phoneNumber: phoneNumber){ profilePhoto in
+            self.model.photoURL = profilePhoto
+            self.updateUserModel()
+        }
+    }
+    
+    func addProfileToStorage(image: UIImage, phoneNumber: String, completion: @escaping (String) -> Void) async {
+        guard let imageData = image.jpegData(compressionQuality: 0.05) else {
             logger.log("Error in getting profile image data")
             return
         }
-        let storageRef = Storage.storage().reference(forURL: storageURL)
-        let storageUserRef = storageRef.child("users").child(phoneNumber)
-        metadata.contentType = "image/jpg"
-        storageUserRef.putData(imageData, metadata: metadata)
-        storageUserRef.downloadURL(completion: { (url, error) in
-            if let metaImageURL = url?.absoluteString {
-                self.logger.log("Photo URL is \(metaImageURL)")
-                self.model.photoURL = metaImageURL
+        let storageRef = storage.reference()
+        let storageUserRef = storageRef.child("users").child("\(phoneNumber).jpg")
+        var photoURL:String = ""
+        storageUserRef.putData(imageData, metadata: nil){ (metadata, error) in
+            guard metadata != nil else {
+                print(error?.localizedDescription ?? "No image data")
+                return
             }
-        })
+            
+            storageUserRef.downloadURL{ (url, error) in
+                guard let downloadURL = url else {
+                    print(error?.localizedDescription ?? "Could not obtain URL")
+                    return
+                }
+                photoURL = downloadURL.absoluteString
+                completion(photoURL)
+            }
+        }
+        
     }
     
+    
     func didComplete10(vm: Screen10CompletionVM) {
+        navigateTo2 = false
+    }
+    
+    func updateUserModel() {
         do {
             let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
             print(error)
         }
-        navigateTo2 = false
     }
 }
