@@ -1,99 +1,224 @@
-
+//
+//  ContactsList.swift
+//  jackfruit
+//
+//  Created by Marcus Deans on 2022-07-07.
 //
 
 import SwiftUI
-import ToastUI
+import FirebaseFirestore
+import WrappingHStack
+
+
+class ContactsDiscVM: ObservableObject {
+    @Published var users = [UserModel]()
+    
+    private var db = Firestore.firestore()
+    
+    func fetchData(userId: String) {
+        users = [UserModel]()
+        db.collection("users").document(userId).addSnapshotListener { (documentSnapshot, error) in
+            guard let data = documentSnapshot?.data() else {
+                print("No documents")
+                return
+            }
+            
+            let personalRelationships:[String] = data["personal_contacts"] as? [String] ?? []
+            
+            personalRelationships.forEach { personalId in
+                self.db.collection("users").document(personalId)
+                    .addSnapshotListener { documentSnapshot, error in
+                        guard let document = documentSnapshot else {
+                            print("Error fetching document: \(error!)")
+                            return
+                        }
+                        guard let data = document.data() else {
+                            print("Document data was empty.")
+                            return
+                        }
+                        let id = data["id"] as? UUID ?? UUID()
+                        let firstName = data["first_name"] as? String ?? ""
+                        let lastName = data["last_name"] as? String ?? ""
+                        let phoneNumber = data["phone_number"] as? String ?? ""
+                        let emailAddress = data["last_name"] as? String ?? ""
+                        let location = data["location"] as? String ?? ""
+                        let parameters = data["parameters"] as? [String] ?? []
+                        
+                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                    }
+            }
+            
+            
+            let professionalRelationships:[String] = data["professional_contacts"] as? [String] ?? []
+            
+            professionalRelationships.forEach { professionalId in
+                self.db.collection("users").document(professionalId)
+                    .addSnapshotListener { documentSnapshot, error in
+                        guard let document = documentSnapshot else {
+                            print("Error fetching document: \(error!)")
+                            return
+                        }
+                        guard let data = document.data() else {
+                            print("Document data was empty.")
+                            return
+                        }
+                        let id = data["id"] as? UUID ?? UUID()
+                        let firstName = data["first_name"] as? String ?? ""
+                        let lastName = data["last_name"] as? String ?? ""
+                        let phoneNumber = data["phone_number"] as? String ?? ""
+                        let emailAddress = data["last_name"] as? String ?? ""
+                        let location = data["location"] as? String ?? ""
+                        let parameters = data["parameters"] as? [String] ?? []
+                        
+                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                    }
+            }
+        }
+    }
+    
+    func fetchAllUsers() {
+        db.collection("users").addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+            
+            self.users = documents.map { queryDocumentSnapshot -> UserModel in
+                let data = queryDocumentSnapshot.data()
+                let id = data["id"] as? UUID ?? UUID()
+                let firstName = data["first_name"] as? String ?? ""
+                let lastName = data["last_name"] as? String ?? ""
+                let phoneNumber = data["phone_number"] as? String ?? ""
+                let emailAddress = data["last_name"] as? String ?? ""
+                let location = data["location"] as? String ?? ""
+                let parameters = data["parameters"] as? [String] ?? []
+                
+                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters)
+            }
+        }
+    }
+}
+
 
 struct ContactsDiscover: View {
-   @State var showingPopup = false // 1
-   @State private var presentingToast: Bool = false
-
-   //let words = ["tennis", "working out",  "hiking", "spikeball"]
-   let words = ["tennis", "criket", "baseball"]
-   @State var isPresented = false
-     
-   var body: some View {
-       ZStack{
-           Color.white
-               .edgesIgnoringSafeArea(.all)
-       VStack{
-       
-       let data = words.map { " \($0)" }
-       let screenWidth = UIScreen.main.bounds.width
-
-           let columns = [
-               GridItem(.fixed(screenWidth-200), spacing: 5),
-         
-               GridItem(.flexible()),
-           ]
-             
-      
-       ZStack{
-            NavigationView {
-                ScrollView {
-                        LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(data, id: \.self) { item in
-                                Button {
-                                    presentingToast = true
-                                    showingPopup = true // 2
-                                    isPresented = true
-                                } label: {
-                                    VStack {
-                                        Text(item).font(Font.custom("CircularStd-Book", size: 25))
-                                        Text("9 Contacts").font(Font.custom("CircularStd-Book", size: 15))
-                                    }
-                                        
-                                        .frame(width: screenWidth-220, height: 100)
-                                        .background(RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                        .fill(
-                                            LinearGradient(
-                                                gradient: Gradient(colors: [.init(UIColor.activitiesRight) , .init(UIColor.activitiesLeft)]),
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            )).shadow(radius: 3)
-                                        )
-                                        .foregroundColor(.black).padding(.top, 20)
-                                       .toast(isPresented: $presentingToast) {
-                                       ToastView {
-                                           VStack {
-                                                     Text("Your Friends")
-                                                       .padding(.bottom, 20)
-                                                       .multilineTextAlignment(.center)
-                                                      
-                                                           Text("joe")
-                                                           Text("Jeff")
-                                                           Text("Mark")
-                                                           
-                                                           
-                                                       
-                                                     Button {
-                                                       presentingToast = false
-                                                     } label: {
-                                                       Text("Back")
-                                                         .bold()
-                                                         .foregroundColor(.white)
-                                                         .padding(.horizontal)
-                                                         .padding(.vertical, 12.0)
-                                                         .background(Color.accentColor)
-                                                         .cornerRadius(8.0)
-                                                     }
-                                           }.frame(width: 250.0, height: 250.0)
-                                        }
-                                    }
-                               }
-                           }
-                           .padding(.horizontal).frame(maxHeight: 700)
-                           .navigationBarTitle("Activities",  displayMode: .inline)
-                           
-                           .navigationBarHidden(false)
-                       }
-                    }
+    @ObservedObject var viewModel = ContactsDiscVM()
+    
+    init(){
+        Theme.navigationBarColors(background: .transitionPage, titleColor: .black)
+        UITableView.appearance().backgroundColor = UIColor(Color.clear)
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.transitionPage]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
+    }
+    
+    @State private var searchText = ""
+    @AppStorage("user_id") var userId: String = ""
+    
+    
+    var searchResults: [String: [String]] {
+        let userList = viewModel.users
+        var paramMap = [String: [String]]()
+        for prof in userList {
+            for param in prof.parameters! {
+                if paramMap[param] != nil {
+                    paramMap[param]!.append(prof.firstName!)
+                } else {
+                    paramMap[param] = [prof.firstName!]
                 }
             }
-       }
-   }
+        }
+        if searchText.isEmpty {
+            return paramMap
+        } else {
+            return paramMap.filter { $0.key.contains(searchText) }
+        }
+    }
+    
+    var body: some View {
+        
+        
+        
+        ZStack {
+            Color.white.ignoresSafeArea()
+            if #available(iOS 15.0, *) {
+                NavigationView {
+                    List {
+                        ForEach(searchResults.keys.sorted(), id: \.self) { key in
+                            NavigationLink(destination: DetailsViewDiscover(profiles: searchResults[key]!)) {
+                                HStack{
+                                    EmojiCircleView().padding(.vertical, 7)
+                                    Text(key)
+                                        .font(Font.custom("CircularStd-Book", size: 20))
+                                }                          
+                            }
+                        }.background(
+                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .foregroundColor(.init(UIColor.white))
+                                .shadow(radius: 3)
+                        )
+                        .listRowBackground(Color.white)
+                    }.listStyle(.plain).background(Color.white)
+                        .searchable(text: $searchText, placement: .automatic)
+                    //.padding()
+                        .onAppear() { // (3)
+                            self.viewModel.fetchData(userId: userId)
+                        }                        .navigationBarTitle("Contacts",  displayMode: .inline).navigationBarHidden(false)
+                }
+            } else {
+                // Fallback on earlier versions
+            }
+        }
+    }
+
+}
+
+
+struct DetailsViewDiscover: View {
+    let profiles: [String]
+    var body: some View {
+        VStack() {
+            VStack(alignment: .center, spacing: 1) {
+                ForEach(profiles, id: \.self) { profile in
+                    Text(profile).font(Font.custom("CircularStd-Book", size: 20))
+                }
+            }
+      
+        }
+    }
+}
+
+
+struct StoreRow1: View {
+    var title: String
+    var body: some View {
+        ZStack(alignment: .leading) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 4, style: .continuous)
+                        .fill(
+                            LinearGradient(
+                                gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
+                                startPoint: .leading,
+                                endPoint: .trailing
+                            )
+                        ).frame(height: 40).padding(.horizontal, 5)
+                    
+                    VStack {
+                        Text("\(title)")
+                            .font(.system(size: 20, weight: .bold))
+                            .foregroundColor(.black)
+                }
+            }
+        }
+    }
 }
 
 
 
+
+
+struct ContactsMain_Previews1: PreviewProvider {
+    static var previews: some View {
+        ContactsList()
+    }
 }

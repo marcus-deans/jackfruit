@@ -121,37 +121,14 @@ class ContactsListVM: ObservableObject {
 
 struct ContactsList: View {
     @ObservedObject var viewModel = ContactsListVM()
-    
     init(){
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.shadowColor = nil // or a custom tint color
-//        appearance.shadowImage = UIImage(named: "shadow")
-//        UINavigationBar.appearance().standardAppearance = appearance
-        
         Theme.navigationBarColors(background: .transitionPage, titleColor: .black)
-        
         UITableView.appearance().backgroundColor = UIColor(Color.clear)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .black
-        //Use this if NavigationBarTitle is with Large Font
-         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.transitionPage]
-
-         //Use this if NavigationBarTitle is with displayMode = .inline
-         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.transitionPage]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
     }
-    
-    //    private let userList: [UserModel] = [
-    //        UserModel(
-    //            firstName: "Marcus", lastName: "Deans", emailAddress: "marcusddeans@outlook.com", phoneNumber: "9196414032", location: "San Francisco", parameters: ["cloud","backend","conservative"]
-    //            ),
-    //        UserModel(firstName: "Aditya", lastName: "Bora", emailAddress: "adibora@gmail.com", phoneNumber: "1234567890", location: "Palo Alto", parameters: ["tennis","backend","packers"]
-    //            ),
-    //        UserModel(firstName: "Aryan", lastName: "Mohindra", emailAddress: "amohindra@hotmail.com", phoneNumber: "0987654321", location: "Miami", parameters: ["android","tennis","incubator"]
-    //            )
-    //    ]
-    
-    
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
     var body: some View {
@@ -159,9 +136,7 @@ struct ContactsList: View {
             Color.white.ignoresSafeArea()
             if #available(iOS 15.0, *) {
                 NavigationView {
-                    
                     List {
-                        
                         ForEach(searchResults) {
                             userItem in
                             NavigationLink(destination: DetailsView(userItem: userItem)) {
@@ -179,35 +154,19 @@ struct ContactsList: View {
                             RoundedRectangle(cornerRadius: 5, style: .continuous)
                                 .foregroundColor(.init(UIColor.white))
                                 .shadow(radius: 3)
-                                
                         )
-                        
                         .listRowBackground(Color.white)
                     }.listStyle(.plain).background(Color.white)
-//                        .toolbar { // <2>
-//                                    ToolbarItem(placement: .principal) { // <3>
-//                                        VStack {
-//                                            Text("Contacts").font(Font.custom("CircularStd-Black",
-//                                                                              size: 25))
-//                                            .searchable(text: $searchText, placement: .automatic)
-//
-//                                        }
-//                                    }
-//                                }
                         .searchable(text: $searchText, placement: .automatic)
                     //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
                         }                        .navigationBarTitle("Contacts",  displayMode: .inline).navigationBarHidden(false)
-                   
-                    
                 }
-                
             } else {
                 // Fallback on earlier versions
             }
         }
-        
     }
     var searchResults: [UserModel] {
         let userList = viewModel.users
@@ -221,10 +180,8 @@ struct ContactsList: View {
 
 
 struct DetailsView: View {
-    
     let userItem: UserModel
     var body: some View {
-        
         VStack() {
             VStack(alignment: .center, spacing: 1) {
                 //might cause a bug depending on the name size
@@ -236,17 +193,13 @@ struct DetailsView: View {
                         .font(Font.custom("PTSans-Bold", size: 24))
                     + Text(userItem.lastName!)
                         .font(Font.custom("PTSans-Bold", size: 24))
-                        
                 }.padding(.bottom, 5)
-                
                 HStack{
                     Text(userItem.phoneNumber!)
                         .font(Font.custom("PTSans-Bold", size: 16))
                         .fontWeight(.black).bold()
                 }
-                
-                    HStack{
-                                              
+                    HStack {
                         Text(userItem.emailAddress!)
                             .font(Font.custom("PTSans-Bold", size: 15))
                             .fontWeight(.black).bold()
@@ -266,19 +219,13 @@ struct DetailsView: View {
                     Text("Interests")
                         .font(Font.custom("PTSans-Bold", size: 20))
                         .fontWeight(.black).bold()
-                
-                
             }
-            
             WrappingHStack {
                 ForEach(userItem.parameters!, id : \.self) { child in
                     StoreRow(title: child)
                 }
             }
-            
-            
         }
-        //
         .padding()
         .navigationBarTitle(Text(userItem.firstName!), displayMode: .inline)
     }

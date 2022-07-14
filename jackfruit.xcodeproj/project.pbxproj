@@ -45,6 +45,10 @@
 		253A74C52877F4A00005D7E1 /* PTSansProBlk.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */; };
 		696D0ACC287B98E1008F4C34 /* ContactsDiscover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */; };
 		696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 696D0ACE287B9A27008F4C34 /* ToastUI */; };
+		696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0AD0287D15C0008F4C34 /* ActivityModel.swift */; };
+		6993F01228802067001BFE0E /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01128802067001BFE0E /* Collections */; };
+		6993F01428802067001BFE0E /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01328802067001BFE0E /* DequeModule */; };
+		6993F01628802067001BFE0E /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01528802067001BFE0E /* OrderedCollections */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +107,7 @@
 		253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Bold.ttf"; sourceTree = "<group>"; };
 		253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansProBlk.OTF; sourceTree = "<group>"; };
 		696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDiscover.swift; sourceTree = "<group>"; };
+		696D0AD0287D15C0008F4C34 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +115,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6993F01228802067001BFE0E /* Collections in Frameworks */,
 				253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */,
 				253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */,
+				6993F01428802067001BFE0E /* DequeModule in Frameworks */,
 				253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */,
 				696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */,
+				6993F01628802067001BFE0E /* OrderedCollections in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -170,6 +178,7 @@
 				253A74562877E1940005D7E1 /* Assets.xcassets */,
 				253A74582877E1940005D7E1 /* Preview Content */,
 				253A74AC2877E5820005D7E1 /* UserModel.swift */,
+				696D0AD0287D15C0008F4C34 /* ActivityModel.swift */,
 			);
 			path = jackfruit;
 			sourceTree = "<group>";
@@ -273,6 +282,9 @@
 				253A74832877E2540005D7E1 /* FirebaseStorage */,
 				253A74B32877ED660005D7E1 /* WrappingHStack */,
 				696D0ACE287B9A27008F4C34 /* ToastUI */,
+				6993F01128802067001BFE0E /* Collections */,
+				6993F01328802067001BFE0E /* DequeModule */,
+				6993F01528802067001BFE0E /* OrderedCollections */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -350,6 +362,7 @@
 				253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */,
+				6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -408,6 +421,7 @@
 				253A749B2877E3D80005D7E1 /* Screen8ParametersView.swift in Sources */,
 				253A74A22877E4D00005D7E1 /* ContactsAdd.swift in Sources */,
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
+				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
 				253A749D2877E4170005D7E1 /* Screen9CompletionView.swift in Sources */,
 				253A74A72877E52B0005D7E1 /* Theme.swift in Sources */,
@@ -775,6 +789,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -802,6 +824,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */;
 			productName = ToastUI;
+		};
+		6993F01128802067001BFE0E /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		6993F01328802067001BFE0E /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		6993F01528802067001BFE0E /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
