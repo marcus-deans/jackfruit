@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import iPhoneNumberField
 
 final class Screen4NumberVM: ObservableObject, Completeable {
     @Published var phoneNumber = ""
@@ -64,12 +65,51 @@ struct Screen4NumberView: View {
                         .padding(.bottom, 40)
           
                         
-                    TextField("Phone Number", text: $vm.phoneNumber, onEditingChanged: { edit in
-                                    self.editing = edit
-                        }).padding(.bottom, 200)
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
-                        .textContentType(.telephoneNumber)
-                        .keyboardType(.namePhonePad)
+                    iPhoneNumberField("(000) 000-0000", text: $vm.phoneNumber, isEditing: $editing)
+                        .clearsOnEditingBegan(true)
+                        .clearButtonMode(.whileEditing)
+                        .maximumDigits(10)
+                        .foregroundColor(Color.black)
+                        .onClear{_ in editing.toggle()}
+                        .font(UIFont(size: 22, design: .monospaced))
+                        .prefixHidden(true)
+                        .flagHidden(false)
+                        .accentColor(Color.white)
+//                        .padding()
+                        .cornerRadius(20)
+                        .shadow(color: editing ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4)
+                        .background(Color.white)
+                        .padding()
+//                        .padding(.bottom, 200)
+//                        .background(RoundedRectangle(cornerRadius: 9, style: .continuous)
+//                            .foregroundColor(.white)
+//                            .shadow(color: editing ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y:5)
+//                        )
+//                        .border(Color.white)
+                    
+//                    struct MyTextFieldStyle: TextFieldStyle {
+//                    @Binding var focused: Bool
+//                    func _body(configuration: TextField<Self._Label>) -> some View {
+//                        configuration
+//
+//                            .border(Color.white)
+//                        .padding(10)
+//                        .background(
+//                            RoundedRectangle(cornerRadius: 9, style: .continuous)
+//                                .foregroundColor(.white)
+//                                .shadow(color: focused ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y: 5)
+//                        )
+//                    }
+//                }
+                    
+                    
+//                        .textContentType(.telephoneNumber)
+//                    TextField("Phone Number", text: $vm.phoneNumber, onEditingChanged: { edit in
+//                                    self.editing = edit
+//                        }).padding(.bottom, 200)
+//                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
+//                        .textContentType(.telephoneNumber)
+//                        .keyboardType(.namePhonePad)
                     
                 }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     .fixedSize(horizontal: false, vertical: true)
