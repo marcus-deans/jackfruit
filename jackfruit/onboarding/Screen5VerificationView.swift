@@ -10,6 +10,8 @@ import Combine
 
 final class Screen5VerificationVM: ObservableObject, Completeable {
     @Published var verificationCode = ""
+    
+    let characterLimit: Int = 6
     var verificationID = ""
     
     let didComplete = PassthroughSubject<Screen5VerificationVM, Never>()
@@ -46,7 +48,8 @@ struct Screen5VerificationView: View {
     @State var progressValue: Float = 0.4
     @State private var keyboardHeight: CGFloat = 0
     @AppStorage("user_id") var userId: String = ""
-
+    @FocusState private var focusedField: Field?
+    
     var body: some View {
         ZStack {
             Color.init(UIColor.transitionPage)
@@ -72,7 +75,13 @@ struct Screen5VerificationView: View {
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.oneTimeCode)
                     //TODO: fix the keyboard
-                        .keyboardType(.namePhonePad)
+                        .keyboardType(.numberPad)
+                        .onChange(of: self.vm.verificationCode, perform: {value in
+                            if value.count > 6 {
+                                self.vm.verificationCode = String(value.prefix(6))
+                            }
+                        })
+                        .focused($focusedField, equals: .verificationCode)
                     
                 }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     .fixedSize(horizontal: false, vertical: true)
@@ -91,8 +100,12 @@ struct Screen5VerificationView: View {
                 .disabled(!vm.isValid)
                 .buttonStyle(BlueButtonStyle())
             }
-            .onTapGesture {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+            .toolbar {
+                ToolbarItem(placement: .keyboard){
+                    Button("Done"){
+                        focusedField = nil
+                    }
+                }
             }
         }.ignoresSafeArea(.keyboard)
     }
