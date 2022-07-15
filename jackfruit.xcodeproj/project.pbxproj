@@ -50,9 +50,8 @@
 		696D0ACC287B98E1008F4C34 /* ContactsDiscover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */; };
 		696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 696D0ACE287B9A27008F4C34 /* ToastUI */; };
 		696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0AD0287D15C0008F4C34 /* ActivityModel.swift */; };
-		6993F01228802067001BFE0E /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01128802067001BFE0E /* Collections */; };
-		6993F01428802067001BFE0E /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01328802067001BFE0E /* DequeModule */; };
-		6993F01628802067001BFE0E /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01528802067001BFE0E /* OrderedCollections */; };
+		6993F02028817959001BFE0E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01F28817959001BFE0E /* ToastUI */; };
+		6993F02328817987001BFE0E /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F02228817987001BFE0E /* WrappingHStack */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,13 +121,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6993F01228802067001BFE0E /* Collections in Frameworks */,
 				253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */,
+				6993F02328817987001BFE0E /* WrappingHStack in Frameworks */,
+				6993F02028817959001BFE0E /* ToastUI in Frameworks */,
 				253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */,
-				6993F01428802067001BFE0E /* DequeModule in Frameworks */,
 				253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */,
 				696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */,
-				6993F01628802067001BFE0E /* OrderedCollections in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
 				251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */,
 			);
@@ -293,10 +291,9 @@
 				253A74832877E2540005D7E1 /* FirebaseStorage */,
 				253A74B32877ED660005D7E1 /* WrappingHStack */,
 				696D0ACE287B9A27008F4C34 /* ToastUI */,
-				6993F01128802067001BFE0E /* Collections */,
-				6993F01328802067001BFE0E /* DequeModule */,
-				6993F01528802067001BFE0E /* OrderedCollections */,
 				251F853C287FD6AA000F64C4 /* iPhoneNumberField */,
+				6993F01F28817959001BFE0E /* ToastUI */,
+				6993F02228817987001BFE0E /* WrappingHStack */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -376,6 +373,9 @@
 				696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */,
 				6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */,
 				251F853B287FD6AA000F64C4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				6993F0172881792B001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */,
+				6993F01E28817959001BFE0E /* XCRemoteSwiftPackageReference "ToastUI" */,
+				6993F02128817987001BFE0E /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -823,6 +823,30 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		6993F0172881792B001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		6993F01E28817959001BFE0E /* XCRemoteSwiftPackageReference "ToastUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/quanshousio/ToastUI.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		6993F02128817987001BFE0E /* XCRemoteSwiftPackageReference "WrappingHStack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dkk/WrappingHStack";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -856,20 +880,15 @@
 			package = 696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */;
 			productName = ToastUI;
 		};
-		6993F01128802067001BFE0E /* Collections */ = {
+		6993F01F28817959001BFE0E /* ToastUI */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = Collections;
+			package = 6993F01E28817959001BFE0E /* XCRemoteSwiftPackageReference "ToastUI" */;
+			productName = ToastUI;
 		};
-		6993F01328802067001BFE0E /* DequeModule */ = {
+		6993F02228817987001BFE0E /* WrappingHStack */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = DequeModule;
-		};
-		6993F01528802067001BFE0E /* OrderedCollections */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 6993F01028802067001BFE0E /* XCRemoteSwiftPackageReference "swift-collections" */;
-			productName = OrderedCollections;
+			package = 6993F02128817987001BFE0E /* XCRemoteSwiftPackageReference "WrappingHStack" */;
+			productName = WrappingHStack;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
