@@ -24,6 +24,7 @@ final class Screen2FirstNameVM: ObservableObject, Completeable {
         self.firstName = firstName ?? ""
     }
     
+    
     func didTapNext() {
         guard isValid else {
             return
@@ -104,7 +105,6 @@ struct Screen2FirstNameView: View {
     @State private var editing = false
     @State var progressValue: Float = 0.16
     @State private var keyboardHeight: CGFloat = 0
-    
     
     var body: some View {
         ZStack {
