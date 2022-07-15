@@ -45,11 +45,15 @@ struct FlowView: View {
                                             Flow(next: $vm.navigateTo8) {
                                                 Screen8ParametersView(vm: vm.makeScreen8ParametersView())
                                                     .transition(transition)
-                                                Flow(next: $vm.navigateTo9){
-                                                    Screen9CompletionView(vm: vm.makeScreen9CompletionView())
+                                                Flow(next: $vm.navigateTo9) {
+                                                    Screen9PhotoView(vm: vm.makeScreen9PhotoView())
                                                         .transition(transition)
-                                                    Flow(next: $vm.navigateToHome){
-                                                        EmptyView()
+                                                    Flow(next: $vm.navigateTo10){
+                                                        Screen10CompletionView(vm: vm.makeScreen10CompletionView())
+                                                            .transition(transition)
+                                                        Flow(next: $vm.navigateToHome){
+                                                            EmptyView()
+                                                        }
                                                     }
                                                 }
                                             }

@@ -53,3 +53,7 @@ extension UIColor {
     static let greenStatusBar = UIColor(rgb: 0x4D643C)
     
 }
+
+enum Field: Int, CaseIterable {
+    case firstName, lastName, phoneNumber, verificationCode, emailAddress, location, parameters
+}

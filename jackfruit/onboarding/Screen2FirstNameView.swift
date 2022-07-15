@@ -24,6 +24,7 @@ final class Screen2FirstNameVM: ObservableObject, Completeable {
         self.firstName = firstName ?? ""
     }
     
+    
     func didTapNext() {
         guard isValid else {
             return
@@ -72,6 +73,7 @@ struct MyTextFieldStyle: TextFieldStyle {
         .background(
             RoundedRectangle(cornerRadius: 9, style: .continuous)
                 .foregroundColor(.white)
+                .background(Color.white)
                 .shadow(color: focused ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y: 5)
         )
     }
@@ -103,7 +105,6 @@ struct Screen2FirstNameView: View {
     @State private var editing = false
     @State var progressValue: Float = 0.16
     @State private var keyboardHeight: CGFloat = 0
-    
     
     var body: some View {
         ZStack {

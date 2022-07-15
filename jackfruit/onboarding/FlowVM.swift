@@ -10,6 +10,8 @@ import Combine
 import Firebase
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
+import os
 
 protocol Completeable {
     var didComplete: PassthroughSubject<Self, Never> { get }
@@ -24,8 +26,13 @@ class FlowVM: ObservableObject {
     private var model: UserModel
     var subscription = Set<AnyCancellable>()
     var verificationID = ""
-   let db = Firestore.firestore()
-
+    let db = Firestore.firestore()
+    let storage = Storage.storage()
+    
+    let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: String(describing: FlowVM.self)
+    )
     
     @Published var navigateTo1: Bool = true
     @Published var navigateTo2: Bool = false
@@ -36,6 +43,7 @@ class FlowVM: ObservableObject {
     @Published var navigateTo7: Bool = false
     @Published var navigateTo8: Bool = false
     @Published var navigateTo9: Bool = false
+    @Published var navigateTo10: Bool = false
     @Published var navigateToHome: Bool = false
     @Published var navigateToFinalFrom3: Bool = false
     @Published var navigateToFinalFrom4: Bool = false
@@ -55,7 +63,7 @@ class FlowVM: ObservableObject {
     func makeScreen2StandardView() -> Screen2FirstNameVM {
         let vm = Screen2FirstNameVM(
             firstName: model.firstName
-            )
+        )
         vm.didComplete
             .sink(receiveValue: didComplete2)
             .store(in: &subscription)
@@ -123,10 +131,20 @@ class FlowVM: ObservableObject {
         return vm
     }
     
-    func makeScreen9CompletionView() -> Screen9CompletionVM {
-        let vm = Screen9CompletionVM(name: model.firstName)
+    func makeScreen9PhotoView() -> Screen9PhotoVM {
+        let vm = Screen9PhotoVM(
+            phoneNumber: model.phoneNumber ?? "5555555555"
+        )
         vm.didComplete
             .sink(receiveValue: didComplete9)
+            .store(in: &subscription)
+        return vm
+    }
+    
+    func makeScreen10CompletionView() -> Screen10CompletionVM {
+        let vm = Screen10CompletionVM(name: model.firstName)
+        vm.didComplete
+            .sink(receiveValue: didComplete10)
             .store(in: &subscription)
         return vm
     }
@@ -154,32 +172,32 @@ class FlowVM: ObservableObject {
         model.phoneNumber = vm.phoneNumber
         // Additional logic inc. updating model
         PhoneAuthProvider.provider()
-            .verifyPhoneNumber(vm.phoneNumber, uiDelegate: nil) { verificationID, error in
-              if let error = error {
-                print(error.localizedDescription)
-                return
-              }
-              // Sign in using the verificationID and the code sent to the user
-              // ...
+            .verifyPhoneNumber("+1\(vm.phoneNumber)", uiDelegate: nil) { verificationID, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                // Sign in using the verificationID and the code sent to the user
+                // ...
                 self.verificationID = verificationID!
-          }
+            }
         navigateTo5 = true
     }
     
     func didComplete5(vm: Screen5VerificationVM){
-//        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
-//        Auth.auth().signIn(with: credential) { (authResult, error) in
-//          if let error = error {
-//            let authError = error as NSError
-//            print(authError.description)
-//            return
-//          }
-//
-//          // User has signed in successfully and currentUser object is valid
-//          let currentUserInstance = Auth.auth().currentUser
-//            self.navigateTo6 = true
-//        }
-        self.navigateTo6 = true
+        print("Verification Code is \(vm.verificationCode)")
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: self.verificationID, verificationCode: vm.verificationCode)
+        Auth.auth().signIn(with: credential) { (authResult, error) in
+            if let error = error {
+                let authError = error as NSError
+                print(authError.description)
+                return
+            }
+            
+            // User has signed in successfully and currentUser object is valid
+            let currentUserInstance = Auth.auth().currentUser
+            self.navigateTo6 = true
+        }
     }
     
     func didComplete6(vm: Screen6EmailVM) {
@@ -197,13 +215,59 @@ class FlowVM: ObservableObject {
         navigateTo9 = true
     }
     
-    func didComplete9(vm: Screen9CompletionVM) {
+    func didComplete9(vm: Screen9PhotoVM) {
+        let image = vm.profilePhoto!
+        let phoneNumber = model.phoneNumber
+        Task {
+            await doAsyncStuff(image: image, phoneNumber: phoneNumber!)
+        }
+        navigateTo10 = true
+    }
+    
+    func doAsyncStuff(image: UIImage, phoneNumber: String) async {
+        await addProfileToStorage(image: image, phoneNumber: phoneNumber){ profilePhoto in
+            self.model.photoURL = profilePhoto
+            self.updateUserModel()
+        }
+    }
+    
+    func addProfileToStorage(image: UIImage, phoneNumber: String, completion: @escaping (String) -> Void) async {
+        guard let imageData = image.jpegData(compressionQuality: 0.05) else {
+            logger.log("Error in getting profile image data")
+            return
+        }
+        let storageRef = storage.reference()
+        let storageUserRef = storageRef.child("users").child("\(phoneNumber).jpg")
+        var photoURL:String = ""
+        storageUserRef.putData(imageData, metadata: nil){ (metadata, error) in
+            guard metadata != nil else {
+                print(error?.localizedDescription ?? "No image data")
+                return
+            }
+            
+            storageUserRef.downloadURL{ (url, error) in
+                guard let downloadURL = url else {
+                    print(error?.localizedDescription ?? "Could not obtain URL")
+                    return
+                }
+                photoURL = downloadURL.absoluteString
+                completion(photoURL)
+            }
+        }
+        
+    }
+    
+    
+    func didComplete10(vm: Screen10CompletionVM) {
+        navigateTo2 = false
+    }
+    
+    func updateUserModel() {
         do {
             let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
             print(error)
         }
-        navigateTo2 = false
     }
 }
