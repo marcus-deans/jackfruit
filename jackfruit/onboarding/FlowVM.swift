@@ -219,7 +219,6 @@ class FlowVM: ObservableObject {
         let image = vm.profilePhoto!
         let phoneNumber = model.phoneNumber
         Task {
-            print("calling async stuff")
             await doAsyncStuff(image: image, phoneNumber: phoneNumber!)
         }
         navigateTo10 = true

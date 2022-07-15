@@ -10,6 +10,7 @@
 		251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */; };
 		251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8537287BF840000F64C4 /* ImagePicker.swift */; };
 		251F853A287BFD04000F64C4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8539287BFD04000F64C4 /* Log.swift */; };
+		251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 251F853C287FD6AA000F64C4 /* iPhoneNumberField */; };
 		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
 		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
 		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
@@ -121,6 +122,7 @@
 				253A74822877E2540005D7E1 /* FirebaseFirestore in Frameworks */,
 				696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
+				251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +284,7 @@
 				253A74832877E2540005D7E1 /* FirebaseStorage */,
 				253A74B32877ED660005D7E1 /* WrappingHStack */,
 				696D0ACE287B9A27008F4C34 /* ToastUI */,
+				251F853C287FD6AA000F64C4 /* iPhoneNumberField */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -359,6 +362,7 @@
 				253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */,
+				251F853B287FD6AA000F64C4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -763,6 +767,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		251F853B287FD6AA000F64C4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
 		253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -790,6 +802,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		251F853C287FD6AA000F64C4 /* iPhoneNumberField */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251F853B287FD6AA000F64C4 /* XCRemoteSwiftPackageReference "iPhoneNumberField" */;
+			productName = iPhoneNumberField;
+		};
 		253A747F2877E2540005D7E1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
