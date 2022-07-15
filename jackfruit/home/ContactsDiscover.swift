@@ -150,7 +150,7 @@ struct ContactsDiscover: View {
                                     EmojiCircleView().padding(.vertical, 7)
                                     Text(key)
                                         .font(Font.custom("CircularStd-Book", size: 20))
-                                }                          
+                                }
                             }
                         }.background(
                             RoundedRectangle(cornerRadius: 5, style: .continuous)
