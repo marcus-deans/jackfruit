@@ -27,7 +27,7 @@ struct TabItemView: View {
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 36, height: 36)
                 .animation(.default)
-                
+            
             
             //Spacer().frame(height: 19)
             
@@ -54,21 +54,28 @@ struct TabBottomView: View {
     var body: some View {
         VStack{
             Text("")
-             
-        
-        HStack {
-            Spacer()
             
-            ForEach(tabbarItems.indices) { index in
-                let item = tabbarItems[index]
-                Button {
-                    self.selectedIndex = index
-                } label: {
-                    let isSelected = selectedIndex == index
-                    TabItemView(data: item, isSelected: isSelected)
-                }
+            
+            HStack {
                 Spacer()
+                
+                ForEach(tabbarItems.indices) { index in
+                    let item = tabbarItems[index]
+                    Button {
+                        self.selectedIndex = index
+                    } label: {
+                        let isSelected = selectedIndex == index
+                        TabItemView(data: item, isSelected: isSelected)
+                    }
+                    Spacer()
+                }
             }
+            .frame(width: width, height: height)
+            .background(Color.init(UIColor.middleColor))
+            
+            .cornerRadius(25)
+            
+            //.shadow(radius: 5, x: 5, y: 10)
         }
         .frame(width: width, height: height)
         
@@ -99,18 +106,18 @@ struct CustomTabView<Content: View>: View {
                 Spacer()
                 TabBottomView(tabbarItems: tabs, selectedIndex: $selectedIndex)
             }
-             
+            
         }.foregroundColor(.black)
     }
 }
 
- 
+
 
 enum TabType: Int, CaseIterable {
     case home = 0
     case myFile
     case profile
-
+    
     
     var tabItem: TabItemData {
         switch self {
@@ -153,7 +160,11 @@ enum TabType: Int, CaseIterable {
 //}
 //
 struct MainTabView: View {
-    @State var tabIndex:Int = 0
+    
+    @State var selectedIndex: Int = 0
+    @AppStorage("is_onboarded") var isOnboarded: Bool = false
+    //    @Binding var userModel: UserModel
+    
     var body: some View {
         
         TabView(selection: $tabIndex) {

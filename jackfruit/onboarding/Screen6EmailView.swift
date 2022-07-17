@@ -58,21 +58,21 @@ struct Screen6EmailView: View {
             
             GeometryReader { _ in
                 VStack(alignment: .leading) {
-                 
+                    
                     ProgressBar(value: $progressValue).frame(height: 10)
-                        
+                    
                     Text("What's your email?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
-                        
+                    
                     Text("When you share your contact this will automatically be shared!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
-          
-                        
+                    
+                    
                     TextField("Email", text: $vm.emailAddress, onEditingChanged: { edit in
-                                    self.editing = edit
-                        }).padding(.bottom, 200)
+                        self.editing = edit
+                    }).padding(.bottom, 200)
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
@@ -84,7 +84,7 @@ struct Screen6EmailView: View {
             }
             VStack (alignment: .trailing) {
                 Spacer()
-                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
+                    .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text(">") })
@@ -101,7 +101,7 @@ struct Screen6EmailView: View {
 
 
 struct Screen6EmailView_Previews : PreviewProvider {
- static var previews: some View {
-     Screen6EmailView(vm: Screen6EmailVM(email: "marcusddeans@outlook.com"))
+    static var previews: some View {
+        Screen6EmailView(vm: Screen6EmailVM(email: "marcusddeans@outlook.com"))
     }
 }

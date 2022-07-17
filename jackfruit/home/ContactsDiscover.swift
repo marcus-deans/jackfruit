@@ -170,7 +170,7 @@ struct ContactsDiscover: View {
             }
         }
     }
-
+    
 }
 
 
@@ -183,7 +183,7 @@ struct DetailsViewDiscover: View {
                     Text(profile).font(Font.custom("CircularStd-Book", size: 20))
                 }
             }
-      
+            
         }
     }
 }
@@ -193,20 +193,20 @@ struct StoreRow1: View {
     var title: String
     var body: some View {
         ZStack(alignment: .leading) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        ).frame(height: 40).padding(.horizontal, 5)
-                    
-                    VStack {
-                        Text("\(title)")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.black)
+            ZStack {
+                RoundedRectangle(cornerRadius: 4, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    ).frame(height: 40).padding(.horizontal, 5)
+                
+                VStack {
+                    Text("\(title)")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.black)
                 }
             }
         }

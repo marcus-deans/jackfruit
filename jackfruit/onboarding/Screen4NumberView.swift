@@ -83,7 +83,7 @@ struct Screen4NumberView: View {
     @State private var keyboardHeight: CGFloat = 0
     @AppStorage("user_id") var userId: String = ""
     @FocusState private var focusedField: Field?
-
+    
     let digitLimit: Int = 10
     
     var body: some View {

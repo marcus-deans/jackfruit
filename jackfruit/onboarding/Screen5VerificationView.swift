@@ -24,7 +24,7 @@ final class Screen5VerificationVM: ObservableObject, Completeable {
     
     init(verificationID: String?) {
         self.verificationID = verificationID ?? ""
-//        self.phoneNumber = phoneNumber ?? ""
+        //        self.phoneNumber = phoneNumber ?? ""
     }
     
     
@@ -57,21 +57,21 @@ struct Screen5VerificationView: View {
             
             GeometryReader { _ in
                 VStack(alignment: .leading) {
-                 
+                    
                     ProgressBar(value: $progressValue).frame(height: 10)
-                        
+                    
                     Text("Enter your verification code")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
-                        
+                    
                     Text("This lets us confirm who you are")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
-          
-                        
+                    
+                    
                     TextField("Verification Code", text: $vm.verificationCode, onEditingChanged: { edit in
-                                    self.editing = edit
-                        }).padding(.bottom, 200)
+                        self.editing = edit
+                    }).padding(.bottom, 200)
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.oneTimeCode)
                     //TODO: fix the keyboard
@@ -89,7 +89,7 @@ struct Screen5VerificationView: View {
             }
             VStack (alignment: .trailing) {
                 Spacer()
-                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
+                    .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text(">") })

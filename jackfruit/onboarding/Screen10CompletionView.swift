@@ -34,7 +34,7 @@ struct Screen10CompletionView: View {
             VStack(alignment: .center) {
                 Text("Welcome to the app, \(vm.name)")  .font(Font.custom("PTSans-Bold", size: 34))
                     .fontWeight(.black).bold()
-        
+                
                 Button(action: {
                     withAnimation(.spring()){
                         self.vm.didTapNext()

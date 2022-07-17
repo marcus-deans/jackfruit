@@ -12,7 +12,7 @@ import os
 final class Screen9PhotoVM: ObservableObject, Completeable {
     @Published var profilePhoto:UIImage?
     var phoneNumber = ""
-
+    
     
     let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
@@ -107,7 +107,7 @@ struct Screen9PhotoView: View {
                 Spacer()
                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
-//                    self.vm.addToStorage(image: image!)
+                    //                    self.vm.addToStorage(image: image!)
                     self.vm.didTapNext(image:image!)
                 }, label: { Text(">") })
                 
@@ -121,8 +121,8 @@ struct Screen9PhotoView: View {
         }
         .sheet(isPresented: $pickerSelected){
             ImagePicker(image: $image, showPicker: $pickerSelected)
-        .ignoresSafeArea(.keyboard)
-
+                .ignoresSafeArea(.keyboard)
+            
         }
     }
 }

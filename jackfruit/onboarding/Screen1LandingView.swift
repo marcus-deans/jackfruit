@@ -11,7 +11,7 @@ import Combine
 final class Screen1LandingVM: ObservableObject, Completeable {
     
     let didComplete = PassthroughSubject<Screen1LandingVM, Never>()
-
+    
     init() {
     }
     
@@ -26,7 +26,7 @@ final class Screen1LandingVM: ObservableObject, Completeable {
 
 struct Screen1LandingView: View {
     @StateObject var vm: Screen1LandingVM
-
+    
     var body: some View {
         ZStack {
             //.background(Color.init(UIColor.afterStartPageTransition))
@@ -44,7 +44,7 @@ struct Screen1LandingView: View {
                     .fontWeight(.black).bold()
                 
                 Button(action: {
-                   self.vm.didTapNext()
+                    self.vm.didTapNext()
                 }, label: { Text("Next") }).buttonStyle(RoundedRectangleButtonStyle())
             }
             .padding()
@@ -53,8 +53,8 @@ struct Screen1LandingView: View {
 }
 
 struct Screen1LandingView_Previews : PreviewProvider {
- static var previews: some View {
-     Screen1LandingView(vm: Screen1LandingVM())
+    static var previews: some View {
+        Screen1LandingView(vm: Screen1LandingVM())
     }
 }
 

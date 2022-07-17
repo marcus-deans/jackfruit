@@ -223,26 +223,26 @@ struct DetailsView: View {
                         .font(Font.custom("PTSans-Bold", size: 16))
                         .fontWeight(.black).bold()
                 }
-                    HStack {
-                        Text(userItem.emailAddress!)
+                HStack {
+                    Text(userItem.emailAddress!)
+                        .font(Font.custom("PTSans-Bold", size: 15))
+                        .fontWeight(.black).bold()
+                        .underlineTextField()
+                    
+                    HStack{
+                        Text("Currently In ")
+                            .font(Font.custom("PTSans-Bold", size: 20))
+                            .fontWeight(.black).bold()
+                        
+                        Text(userItem.location!)
                             .font(Font.custom("PTSans-Bold", size: 15))
                             .fontWeight(.black).bold()
                             .underlineTextField()
-                    
-                        HStack{
-                            Text("Currently In ")
-                                .font(Font.custom("PTSans-Bold", size: 20))
-                                .fontWeight(.black).bold()
-                            
-                            Text(userItem.location!)
-                                .font(Font.custom("PTSans-Bold", size: 15))
-                                .fontWeight(.black).bold()
-                                .underlineTextField()
-                        }
                     }
-                    Text("Interests")
-                        .font(Font.custom("PTSans-Bold", size: 20))
-                        .fontWeight(.black).bold()
+                }
+                Text("Interests")
+                    .font(Font.custom("PTSans-Bold", size: 20))
+                    .fontWeight(.black).bold()
             }
             WrappingHStack {
                 ForEach(userItem.parameters!, id : \.self) { child in
@@ -260,29 +260,29 @@ struct DetailsView: View {
 struct StoreRow: View {
     
     var title: String
-
+    
     
     var body: some View {
         ZStack(alignment: .leading) {
             
-       
-                ZStack {
-                    RoundedRectangle(cornerRadius: 4, style: .continuous)
-                        .fill(
-                            LinearGradient(
-                                gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        ).frame(height: 40).padding(.horizontal, 5)
-                    
-                    VStack {
-                        Text("\(title)")
-                            .font(.system(size: 20, weight: .bold))
-                            .foregroundColor(.black)
-                    }
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 4, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    ).frame(height: 40).padding(.horizontal, 5)
+                
+                VStack {
+                    Text("\(title)")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.black)
                 }
-
+            }
+            
         }
     }
 }

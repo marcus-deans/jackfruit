@@ -52,21 +52,21 @@ struct Screen3LastNameView: View {
             
             GeometryReader { _ in
                 VStack(alignment: .leading) {
-                 
+                    
                     ProgressBar(value: $progressValue).frame(height: 10)
-                        
+                    
                     Text("What's your last name?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
-                        
+                    
                     Text("You won't be able to change this later!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
-          
-                        
-                        TextField("Last Name", text: $vm.lastName, onEditingChanged: { edit in
-                                    self.editing = edit
-                        }).padding(.bottom, 200)
+                    
+                    
+                    TextField("Last Name", text: $vm.lastName, onEditingChanged: { edit in
+                        self.editing = edit
+                    }).padding(.bottom, 200)
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.familyName)
                         .textInputAutocapitalization(.words)
@@ -77,7 +77,7 @@ struct Screen3LastNameView: View {
             }
             VStack (alignment: .trailing) {
                 Spacer()
-                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
+                    .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text(">") })
@@ -93,7 +93,7 @@ struct Screen3LastNameView: View {
 }
 
 struct Screen3LastNameView_Previews : PreviewProvider {
- static var previews: some View {
-     Screen3LastNameView(vm: Screen3LastNameVM(lastName: "Deans"))
+    static var previews: some View {
+        Screen3LastNameView(vm: Screen3LastNameVM(lastName: "Deans"))
     }
 }
