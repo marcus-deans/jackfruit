@@ -155,6 +155,7 @@ enum TabType: Int, CaseIterable {
 struct MainTabView: View {
     @State var tabIndex:Int = 0
     var body: some View {
+        
         TabView(selection: $tabIndex) {
             ContactsList().tabItem {
                 Image(systemName: "person.crop.circle.fill")

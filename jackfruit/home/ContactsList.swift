@@ -174,7 +174,17 @@ struct ContactsList: View {
                     //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
+                            
+                              
+                          
+                                
+                            
+                            
+                            
                         }                        .navigationBarTitle("Contacts").navigationBarHidden(false)
+                    
+                    
+                    
                 }
             } else {
                 // Fallback on earlier versions

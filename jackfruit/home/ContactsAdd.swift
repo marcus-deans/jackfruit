@@ -200,8 +200,8 @@ struct ContactsAdd: View {
                                         width: 100,
                                         height: 80
                                     ).background(
-                                        RoundedRectangle(cornerRadius: 12, style: .continuous)
-                                            .foregroundColor(.init(UIColor.white))
+                                        RoundedRectangle(cornerRadius: 1, style: .continuous)
+                                            .foregroundColor(.init(UIColor.clear))
                                             .shadow(radius: 1)
                                     )
                                     .foregroundColor(Color.init(UIColor.black))
