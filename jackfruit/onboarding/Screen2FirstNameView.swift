@@ -19,7 +19,7 @@ final class Screen2FirstNameVM: ObservableObject, Completeable {
     }
     
     let didComplete = PassthroughSubject<Screen2FirstNameVM, Never>()
-
+    
     init(firstName: String?) {
         self.firstName = firstName ?? ""
     }
@@ -34,21 +34,21 @@ final class Screen2FirstNameVM: ObservableObject, Completeable {
 }
 
 struct RoundedRectangleButtonStyle: ButtonStyle {
-  func makeBody(configuration: Configuration) -> some View {
-    Button(action: {}, label: {
-      HStack(alignment: .center) {
-          
-        configuration.label.foregroundColor(.white)
-              .font(Font.custom("PTSans-Bold", size: 20))
-        
-      }
-    })
-    // 👇🏻 makes all taps go to the original button
-    .allowsHitTesting(false)
-    .padding()
-    .background(Color.black).cornerRadius(8)
-    .scaleEffect(configuration.isPressed ? 0.95 : 1)
-  }
+    func makeBody(configuration: Configuration) -> some View {
+        Button(action: {}, label: {
+            HStack(alignment: .center) {
+                
+                configuration.label.foregroundColor(.white)
+                    .font(Font.custom("PTSans-Bold", size: 20))
+                
+            }
+        })
+        // 👇🏻 makes all taps go to the original button
+        .allowsHitTesting(false)
+        .padding()
+        .background(Color.black).cornerRadius(8)
+        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
 }
 
 struct BlueButtonStyle: ButtonStyle {
@@ -67,22 +67,22 @@ struct MyTextFieldStyle: TextFieldStyle {
     @Binding var focused: Bool
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-           
+        
             .border(Color.white)
-        .padding(10)
-        .background(
-            RoundedRectangle(cornerRadius: 9, style: .continuous)
-                .foregroundColor(.white)
-                .background(Color.white)
-                .shadow(color: focused ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y: 5)
-        )
+            .padding(10)
+            .background(
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .foregroundColor(.white)
+                    .background(Color.white)
+                    .shadow(color: focused ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y: 5)
+            )
     }
 }
 
 
 struct ProgressBar: View {
     @Binding var value: Float
-        
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -113,21 +113,21 @@ struct Screen2FirstNameView: View {
             
             GeometryReader { _ in
                 VStack(alignment: .leading) {
-                 
+                    
                     ProgressBar(value: $progressValue).frame(height: 10)
-                        
+                    
                     Text("What's your first name?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
-                        
+                    
                     Text("You won't be able to change this later!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
-          
-                        
-                        TextField("First Name", text: $vm.firstName, onEditingChanged: { edit in
-                                    self.editing = edit
-                        }).padding(.bottom, 200)
+                    
+                    
+                    TextField("First Name", text: $vm.firstName, onEditingChanged: { edit in
+                        self.editing = edit
+                    }).padding(.bottom, 200)
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.givenName)
                         .textInputAutocapitalization(.words)
@@ -138,7 +138,7 @@ struct Screen2FirstNameView: View {
             }
             VStack (alignment: .trailing) {
                 Spacer()
-                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
+                    .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text(">") })
@@ -170,8 +170,8 @@ extension View {
 
 
 struct Screen2FirstNameView_Previews : PreviewProvider {
- static var previews: some View {
-     Screen2FirstNameView(vm: Screen2FirstNameVM(
-        firstName: "Aditya"))
+    static var previews: some View {
+        Screen2FirstNameView(vm: Screen2FirstNameVM(
+            firstName: "Aditya"))
     }
 }

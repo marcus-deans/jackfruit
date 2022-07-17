@@ -52,21 +52,21 @@ struct Screen7LocationView: View {
             
             GeometryReader { _ in
                 VStack(alignment: .leading) {
-                 
+                    
                     ProgressBar(value: $progressValue).frame(height: 10)
-                        
+                    
                     Text("What's your location?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
-                        
+                    
                     Text("You won't be able to change this later!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
-          
-                        
+                    
+                    
                     TextField("Location", text: $vm.location, onEditingChanged: { edit in
-                                    self.editing = edit
-                        }).padding(.bottom, 200)
+                        self.editing = edit
+                    }).padding(.bottom, 200)
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.addressCity)
                         .textInputAutocapitalization(.words)
@@ -77,7 +77,7 @@ struct Screen7LocationView: View {
             }
             VStack (alignment: .trailing) {
                 Spacer()
-                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
+                    .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text(">") })
