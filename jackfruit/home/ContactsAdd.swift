@@ -149,13 +149,13 @@ struct ContactsAdd: View {
                             .foregroundColor(.white)
                     }
                     .padding()
-//                    Picker("Choose a relationship", selection: $selectedRelation) {
-//                        ForEach(relation, id: \.self) {
-//                            Text($0)
-//                        }
-//                    }
-//                    .pickerStyle(.wheel)
-//                    .frame(height: 110)
+                    //                    Picker("Choose a relationship", selection: $selectedRelation) {
+                    //                        ForEach(relation, id: \.self) {
+                    //                            Text($0)
+                    //                        }
+                    //                    }
+                    //                    .pickerStyle(.wheel)
+                    //                    .frame(height: 110)
                     
                     
                     HStack {
