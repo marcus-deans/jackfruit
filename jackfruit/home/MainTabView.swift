@@ -20,10 +20,12 @@ struct TabItemView: View {
     
     var body: some View {
         VStack {
+            Spacer()
+            Spacer()
             Image(isSelected ? data.selectedImage : data.image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 32, height: 32)
+                .frame(width: 36, height: 36)
                 .animation(.default)
                 
             
@@ -32,13 +34,11 @@ struct TabItemView: View {
             Image(systemName: data.selectedImage)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .frame(width: 32, height: 32)
+                .frame(width: 36, height: 36)
                 .animation(.default)
             Spacer()
             Spacer()
-            Spacer()
-            Spacer()
-            Spacer()
+            
     
         }
     }
@@ -71,12 +71,12 @@ struct TabBottomView: View {
             }
         }
         .frame(width: width, height: height)
-        .background(Color.init(UIColor.middleColor))
         
-        .cornerRadius(25)
+        
+        .cornerRadius(19)
         
         //.shadow(radius: 5, x: 5, y: 10)
-    }
+        }
     }
 }
 
@@ -126,28 +126,55 @@ enum TabType: Int, CaseIterable {
 
 //systemName: "sparkle.magnifyingglass"
 
+//struct MainTabView: View {
+//
+//    @State var selectedIndex: Int = 0
+//    @AppStorage("is_onboarded") var isOnboarded: Bool = false
+////    @Binding var userModel: UserModel
+//
+//    var body: some View {
+//        CustomTabView(tabs: TabType.allCases.map({ $0.tabItem }), selectedIndex: $selectedIndex) { index in
+//            let type = TabType(rawValue: index) ?? .home
+//            getTabView(type: type)
+//        }.background(Color.init(UIColor.middleColor))
+//    }
+//
+//    @ViewBuilder
+//    func getTabView(type: TabType) -> some View {
+//        switch type {
+//        case .home:
+//            ContactsList()
+//        case .myFile:
+//            ContactsAdd()
+//        case .profile:
+//            ContactsDiscover()
+//        }
+//    }
+//}
+//
 struct MainTabView: View {
-    
-    @State var selectedIndex: Int = 0
-    @AppStorage("is_onboarded") var isOnboarded: Bool = false
-//    @Binding var userModel: UserModel
-    
+    @State var tabIndex:Int = 0
     var body: some View {
-        CustomTabView(tabs: TabType.allCases.map({ $0.tabItem }), selectedIndex: $selectedIndex) { index in
-            let type = TabType(rawValue: index) ?? .home
-            getTabView(type: type)
-        }
-    }
-    
-    @ViewBuilder
-    func getTabView(type: TabType) -> some View {
-        switch type {
-        case .home:
-            ContactsList()
-        case .myFile:
-            ContactsAdd()
-        case .profile:
-            ContactsDiscover()
+        TabView(selection: $tabIndex) {
+            ContactsList().tabItem {
+                Image(systemName: "person.crop.circle.fill")
+                Text("Contacts").font(Font.custom("CircularStd-Black",
+                                                  size: 10))
+                }.tag(0)
+            ContactsAdd().tabItem {
+                Image(systemName: "plus.circle")
+                Text("Add Contact").font(Font.custom("CircularStd-Black",
+                                                         size: 10))
+                }.tag(1)
+            ContactsDiscover().tabItem {
+                Image(systemName: "list.bullet.rectangle.fill")
+                Text("Search").font(Font.custom("CircularStd-Black",
+                                                size: 10))
+                }.tag(2)
+        }.accentColor(Color.init(UIColor.transitionPage))
+        
+        .onAppear() {
+            UITabBar.appearance().barTintColor = .white
         }
     }
 }

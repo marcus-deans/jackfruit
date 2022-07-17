@@ -10,16 +10,18 @@ import FirebaseFirestore
 import WrappingHStack
 
 class Theme {
-    static func navigationBarColors(background : UIColor?,
+    static func navigationBarColors(background : UIColor,
                                     titleColor : UIColor? = nil, tintColor : UIColor? = nil ){
         
         let navigationAppearance = UINavigationBarAppearance()
         navigationAppearance.configureWithOpaqueBackground()
-        navigationAppearance.backgroundColor =  .clear
+        navigationAppearance.backgroundColor =  .white
         navigationAppearance.titleTextAttributes = [.foregroundColor: titleColor ?? .black]
-        navigationAppearance.largeTitleTextAttributes = [.foregroundColor: titleColor ?? .black, .font : UIFont(name: "CircularStd-Black", size: 35)!]
+        navigationAppearance.largeTitleTextAttributes = [
+            .foregroundColor: UIColor.black,
+            .font : UIFont(name:"CircularStd-Black", size: 30)!]
         
-        navigationAppearance.backgroundImage = UIImage(named: "Gradient2")
+        //navigationAppearance.backgroundImage = UIImage(named: "Gradient4")
         
         UINavigationBar.appearance().standardAppearance = navigationAppearance
         UINavigationBar.appearance().compactAppearance = navigationAppearance
@@ -133,7 +135,7 @@ struct ContactsList: View {
     @AppStorage("user_id") var userId: String = ""
     var body: some View {
         ZStack {
-            Color.white.ignoresSafeArea()
+            //Color.init(UIColor.middleColor)
             if #available(iOS 15.0, *) {
                 NavigationView {
                     List {
@@ -141,27 +143,38 @@ struct ContactsList: View {
                             userItem in
                             NavigationLink(destination: DetailsView(userItem: userItem)) {
                                 HStack{
-                                    EmojiCircleView().padding(.vertical, 7)
-                                    Text(userItem.firstName!)
-                                        .font(Font.custom("CircularStd-Book", size: 20))
-                                    + Text(" ")
-                                    + Text(userItem.lastName!)
-                                        .font(Font.custom("CircularStd-Book",
-                                                          size: 20))
-                                }
+                                    EmojiCircleView().padding(.vertical, 10)
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text(userItem.firstName!)
+                                                .font(Font.custom("CircularStd-Black", size: 20))
+                                            + Text(" ")
+                                            + Text(userItem.lastName!)
+                                                .font(Font.custom("CircularStd-Black",
+                                                                  size: 20))
+                                        }
+                                        
+                                        Text(userItem.phoneNumber!)
+                                            .font(Font.custom("CircularStd-Black",
+                                                              size: 15)).foregroundColor(Color.init(UIColor.smalltextColor))
+                                        
+                                    }
+                                }.foregroundColor(Color.init(UIColor.black))
                             }.listRowSeparator(.hidden).padding(.trailing, 20)
                         }.background(
-                            RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                .foregroundColor(.init(UIColor.white))
-                                .shadow(radius: 3)
-                        )
-                        .listRowBackground(Color.white)
-                    }.listStyle(.plain).background(Color.white)
-                        .searchable(text: $searchText, placement: .automatic)
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .foregroundColor(.init(UIColor.cardColor))
+                                .shadow(radius: 1)
+                        ).padding(.top, 1)
+                        .listRowBackground(Color.init(UIColor.middleColor))
+                    }.padding(.top, 5)
+                        .listStyle(.plain).background(Color.init(UIColor.middleColor))
+                        .searchable(text: $searchText, placement: .automatic).background(Color.white).font(Font.custom("CircularStd-Black",
+                                                                                               size: 18))
                     //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
-                        }                        .navigationBarTitle("Contacts",  displayMode: .inline).navigationBarHidden(false)
+                        }                        .navigationBarTitle("Contacts").navigationBarHidden(false)
                 }
             } else {
                 // Fallback on earlier versions
@@ -182,10 +195,11 @@ struct ContactsList: View {
 struct DetailsView: View {
     let userItem: UserModel
     var body: some View {
+        
         VStack() {
             VStack(alignment: .center, spacing: 1) {
                 //might cause a bug depending on the name size
-                LargerProfileView().padding(.bottom, 40)
+                LargerProfileView().padding(.bottom, 40).padding(.trailing, 30)
                 HStack{
                     Text(userItem.firstName!)
                         .font(Font.custom("PTSans-Bold", size: 24))
@@ -193,7 +207,7 @@ struct DetailsView: View {
                         .font(Font.custom("PTSans-Bold", size: 24))
                     + Text(userItem.lastName!)
                         .font(Font.custom("PTSans-Bold", size: 24))
-                }.padding(.bottom, 5)
+                }.padding(.bottom, 3).padding(.leading, 20)
                 HStack{
                     Text(userItem.phoneNumber!)
                         .font(Font.custom("PTSans-Bold", size: 16))
@@ -268,14 +282,19 @@ struct EmojiCircleView: View {
     var body: some View {
         ZStack {
             Text("")
-                .shadow(radius: 2)
+                .shadow(radius: 4)
                 .font(.largeTitle)
-                .frame(width: 65, height: 35)
+                .frame(width: 85, height: 55)
                 .overlay(
-                    Circle()
-                        .stroke(Color.black, lineWidth: 3)
+                    Image("Profilephoto").resizable()
+                        .clipShape(Circle())
                         
+                       
+                        //.shadow(radius: 10)
+                        //.overlay(Circle())//.stroke(Color.init(UIColor.transitionPage), lineWidth: 3))
+
                 )
+            
         }
     }
 }

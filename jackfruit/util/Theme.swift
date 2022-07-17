@@ -39,7 +39,14 @@ extension UIColor {
     
     static let transitionPage = UIColor(rgb: 0xff5400)
     
-    static let middleColor = UIColor(rgb: 0xFF9B00)
+    static let middleColor = UIColor(rgb: 0xf0f2f7)
+    
+    static let textColor = UIColor(rgb: 0x4d5764)
+    static let smalltextColor = UIColor(rgb: 0xcbcdd3)
+    
+    
+    static let cardColor = UIColor(rgb: 0xfefefe)
+    
  
     static let redGradient = UIColor(rgb : 0xff7900)
     

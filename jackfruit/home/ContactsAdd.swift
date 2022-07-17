@@ -80,7 +80,7 @@ struct CheckBoxView1: View {
     @Binding var trimVal : CGFloat
     @Binding var width : CGFloat
     @Binding var removeText : Bool
-    var t1 = "Add User"
+    var t1 = "Add Number"
     var animatableData: CGFloat {
         get{trimVal}
         set{trimVal = newValue }
@@ -93,20 +93,20 @@ struct CheckBoxView1: View {
                 .frame(width: 40, height: 55)
                 .foregroundColor(self.checked1 ? Color.green : Color.gray)
                 .overlay(
-                    Capsule()
-                        .fill(self.checked1 ? Color.green : Color.init(UIColor.activitiesLeft).opacity(0.5))
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(self.checked1 ? Color.green : Color.init(UIColor.transitionPage).opacity(0.5))
                         .opacity(self.checked1 ? 0 : 1)
                         .frame(width: 200, height: 55)
-                        .foregroundColor(Color.white)
+                        .foregroundColor(Color.init(UIColor.textColor))
                 )
             if checked1 {
                 Image(systemName: "checkmark")
-                    .foregroundColor(Color.white).opacity(Double(trimVal))
+                    .foregroundColor(Color.black).opacity(Double(trimVal))
             }
             if !removeText {
                 Text(""+t1)
-                    .foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18))
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("CircularStd-Black", size: 18))
+                    .foregroundColor(Color.init(UIColor.textColor))
             }
         }
     }
@@ -137,8 +137,8 @@ struct ContactsAdd: View {
     @State var checked = false
     var body: some View {
         ZStack{
-            //Color.init(UIColor.transitionPage).ignoresSafeArea()
-            RadialGradient(gradient: Gradient(colors: [.init(UIColor.transitionPage), .orange]), center: .center, startRadius: 2, endRadius: 650).ignoresSafeArea()
+            Color.init(UIColor.middleColor)
+            
             VStack {
                 VStack(alignment: .center, spacing: -1, content: {
                     HStack{
@@ -146,7 +146,7 @@ struct ContactsAdd: View {
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .font(Font.custom("CircularStd-Black", size: 50))
                             .padding()
-                            .foregroundColor(.white)
+                            .foregroundColor(.black)
                     }
                     .padding()
 //                    Picker("Choose a relationship", selection: $selectedRelation) {
@@ -161,26 +161,27 @@ struct ContactsAdd: View {
                     HStack {
                         Button(action: {
                             self.isSelected.toggle()
-                        }, label: {Text("Friend")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.activitiesLeft).opacity(0.5)).cornerRadius(20).foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(self.isSelected ? Color.init(UIColor.green) : Color.init(UIColor.activitiesLeft))
+                        }, label: {Text("Friend")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.transitionPage).opacity(0.5)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear)).opacity(0.5)
                         ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.isSelected1.toggle()
-                        }, label: {Text("Work")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected1 ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.activitiesLeft).opacity(0.5)).cornerRadius(20).foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(self.isSelected1 ? Color.init(UIColor.green) : Color.init(UIColor.activitiesLeft))
+                        }, label: {Text("Work")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected1 ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.transitionPage).opacity(0.5)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear)).opacity(0.5)
                         ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.isSelected2.toggle()
-                        }, label: {Text("Group")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.activitiesLeft).opacity(0.5)).cornerRadius(20).foregroundColor(.white).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(self.isSelected2 ? Color.init(UIColor.green) : Color.init(UIColor.activitiesLeft))
+                        }, label: {Text("Group")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.transitionPage).opacity(0.5)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear)).opacity(0.5)
                         ).padding(.bottom, 17).padding(.horizontal, 4)
-                        
-                        
                         
                     }
                     
@@ -193,15 +194,18 @@ struct ContactsAdd: View {
                             Button(action: {
                                 self.didTap(button: item)
                             }, label: {
-                                Text(item.rawValue)
-                                    .font(Font.custom("CircularStd-Black", size: 35))
+                                    Text(item.rawValue)
+                                        .font(Font.custom("CircularStd-Black", size: 50))
                                     .frame(
-                                        width: self.buttonWidth(item: item),
-                                        height: self.buttonHeight()
+                                        width: 100,
+                                        height: 80
+                                    ).background(
+                                        RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                            .foregroundColor(.init(UIColor.white))
+                                            .shadow(radius: 1)
                                     )
-                                    .background(Color.clear)
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal, 30)
+                                    .foregroundColor(Color.init(UIColor.black))
+                                    .padding(.horizontal, 1)
                             })
                         }
                     }
