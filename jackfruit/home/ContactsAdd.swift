@@ -184,7 +184,7 @@ struct ContactsAdd: View {
                         ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                     }
-                    
+                      
                     Spacer()
                         .frame(height: 20)
                 })
@@ -201,7 +201,7 @@ struct ContactsAdd: View {
                                         height: 80
                                     ).background(
                                         RoundedRectangle(cornerRadius: 1, style: .continuous)
-                                            .foregroundColor(.init(UIColor.clear))
+                                            .foregroundColor(.init(UIColor.clear ))
                                             .shadow(radius: 1)
                                     )
                                     .foregroundColor(Color.init(UIColor.black))
