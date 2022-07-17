@@ -84,7 +84,7 @@ struct TabBottomView: View {
         
         //.shadow(radius: 5, x: 5, y: 10)
         }
-    }
+    
 }
 
 struct CustomTabView<Content: View>: View {
@@ -167,7 +167,7 @@ struct MainTabView: View {
     
     var body: some View {
         
-        TabView(selection: $tabIndex) {
+        TabView(selection: $selectedIndex) {
             ContactsList().tabItem {
                 Image(systemName: "person.crop.circle.fill")
                 Text("Contacts").font(Font.custom("CircularStd-Black",
