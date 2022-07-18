@@ -210,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				251F854728854570000F64C4 /* contacts-add */,
-				D0214022288537DA00EEE825 /* profileUI */,
 				251F854128852189000F64C4 /* contacts-list */,
 				251F854028852182000F64C4 /* models */,
 				253A74B12877E7710005D7E1 /* jackfruit.entitlements */,
@@ -304,13 +303,6 @@
 				253A74BD2877F4750005D7E1 /* CircularStd-Book.otf */,
 			);
 			path = fonts;
-			sourceTree = "<group>";
-		};
-		D0214022288537DA00EEE825 /* profileUI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = profileUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
