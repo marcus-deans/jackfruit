@@ -27,12 +27,21 @@ struct ContactsAddView: View {
     let addGroupContactAction: (String) -> Void
     let addFriendContactAction: (String) -> Void
     
-    @State var value = ""
+    
+    @State var enteredNumber = ""
     @AppStorage("user_id") var userId: String = ""
     @State var friendSelected : Bool = false
     @State var workSelected : Bool = false
     @State var groupSelected : Bool = false
     @State var addSelected = false
+    
+    enum relationType {
+        case friend
+        case work
+        case group
+        case none
+    }
+    @State var selectedRelation: relationType = .none
     
     let buttons: [[NumberButton]] = [
         [.one, .two, .three],
@@ -42,7 +51,7 @@ struct ContactsAddView: View {
     ]
     @State var trimVal : CGFloat = 0
     @State var width : CGFloat = 70
-    @State var removeText = false
+    @State var hideTextLabel = false
     var body: some View {
         ZStack{
             Color.init(UIColor.middleColor)
@@ -50,7 +59,7 @@ struct ContactsAddView: View {
             VStack {
                 VStack(alignment: .center, spacing: -1, content: {
                     HStack{
-                        Text(value)
+                        Text(enteredNumber)
                             .frame(minWidth: 0, maxWidth: .infinity)
                             .font(Font.custom("CircularStd-Black", size: 50))
                             .padding()
@@ -61,6 +70,7 @@ struct ContactsAddView: View {
                     HStack {
                         Button(action: {
                             self.friendSelected.toggle()
+                            self.selectedRelation = .friend
                             self.workSelected = false
                             self.groupSelected = false
                         }, label: {Text("Friend")})
@@ -75,6 +85,7 @@ struct ContactsAddView: View {
                         
                         Button(action: {
                             self.workSelected.toggle()
+                            self.selectedRelation = .work
                             self.friendSelected = false
                             self.groupSelected = false
                         }, label: {Text("Work")})
@@ -89,6 +100,7 @@ struct ContactsAddView: View {
                         
                         Button(action: {
                             self.groupSelected.toggle()
+                            self.selectedRelation = .group
                             self.friendSelected = false
                             self.workSelected = false
                         }, label: {Text("Group")})
@@ -139,38 +151,39 @@ struct ContactsAddView: View {
                     }
                 })
                 {
-                    AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, removeText:$removeText )
+                    AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, hideTextLabel: $hideTextLabel )
                         .onTapGesture {
-                            if !self.addSelected {
-                                self.removeText.toggle()
-                                withAnimation{
-                                    self.width = 70
-                                }
-                                withAnimation(Animation.easeIn(duration: 0.7)) {
-                                    self.trimVal = 1
-                                    self.addSelected.toggle()
-                                    print("narrow State")
-                                }
-                            } else {
-                                withAnimation{
-                                    self.trimVal = 0
-                                    self.width = 200
-                                    self.addSelected.toggle()
-                                    self.removeText.toggle()
-                                    print("Width state")
-                                }
+                            guard selectedRelation != .none else {
+                                self.addSelected.toggle()
+                                return
                             }
-                            if friendSelected{
-                                addFriendContactAction(value)
+                            guard enteredNumber.count == 10 else {
+                                self.addSelected.toggle()
+                                return
                             }
-                             else if workSelected{
-                                addWorkContactAction(value)
+                            self.hideTextLabel.toggle()
+                            withAnimation(Animation.easeIn(duration: 0.7)){
+                                self.width = 70
+                                self.trimVal = 1
+                                print("Trimmed button")
                             }
-                            else if groupSelected{
-                                addGroupContactAction(value)
+                            withAnimation(Animation.spring().delay(4)) {
+                                self.trimVal = 0
+                                self.width = 200
+                                self.addSelected.toggle()
+                                self.hideTextLabel.toggle()
+                                print("Reset button")
                             }
-                            else {
-                                print("None selected")
+                            
+                            switch selectedRelation{
+                            case .friend:
+                                addFriendContactAction(enteredNumber)
+                            case .work:
+                                addWorkContactAction(enteredNumber)
+                            case .group:
+                                addGroupContactAction(enteredNumber)
+                            case .none:
+                                print("Error")
                             }
                         }
                 }
@@ -180,17 +193,17 @@ struct ContactsAddView: View {
     func didTap(button: NumberButton) {
         switch button {
         case .delete:
-            value = "111"
+            enteredNumber.removeLast()
             break
         case .clear: // clear funciton
-            value = ""
+            enteredNumber = ""
             break
         default:
             let number = button.rawValue
-            if value == "0" {
-                value = number
+            if enteredNumber == "" {
+                enteredNumber = number
             } else {
-                value = "\(value)\(number)"
+                enteredNumber = "\(enteredNumber)\(number)"
             }
         }
     }
@@ -209,7 +222,7 @@ struct AddRelationButtonView: View {
     @Binding var isChecked : Bool
     @Binding var trimVal : CGFloat
     @Binding var width : CGFloat
-    @Binding var removeText : Bool
+    @Binding var hideTextLabel : Bool
     var animatableData: CGFloat {
         get{trimVal}
         set{trimVal = newValue }
@@ -232,7 +245,7 @@ struct AddRelationButtonView: View {
                 Image(systemName: "checkmark")
                     .foregroundColor(Color.black).opacity(Double(trimVal))
             }
-            if !removeText {
+            if !hideTextLabel {
                 Text("Add Number")
                     .foregroundColor(Color.init(UIColor.white))
                     .font(Font.custom("CircularStd-Black", size: 18))
@@ -244,14 +257,14 @@ struct AddRelationButtonView: View {
 struct ContactsAddView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsAddView(
-            addWorkContactAction: { value in
-                print(value)
+            addWorkContactAction: { enteredNumber in
+                print(enteredNumber)
             },
-            addGroupContactAction: { value in
-                print(value)
+            addGroupContactAction: { enteredNumber in
+                print(enteredNumber)
             },
-            addFriendContactAction: { value in
-                print(value)
+            addFriendContactAction: { enteredNumber in
+                print(enteredNumber)
             }
         )
     }

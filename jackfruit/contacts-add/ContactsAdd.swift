@@ -178,7 +178,7 @@ struct ContactsAdd: View {
                     }
                 })
                 {
-                    AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, removeText:$removeText )
+                    AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, hideTextLabel:$removeText )
                         .onTapGesture {
                             if !self.addSelected {
                                 self.removeText.toggle()
