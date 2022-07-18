@@ -119,19 +119,6 @@ class ContactsListVM: ObservableObject {
     }
 }
 
-struct ProfileModal: View {
-    @Environment(\.dismiss) var dismiss
-
-    var body: some View {
-        Button("Press to dismiss") {
-            dismiss()
-        }
-        .font(.title)
-        .padding()
-        .background(.black)
-    }
-}
-
 struct ContactsList: View {
     @ObservedObject var viewModel = ContactsListVM()
     init(){
@@ -154,7 +141,7 @@ struct ContactsList: View {
                     showProfileModal.toggle()
                 }
                 .sheet(isPresented: $showProfileModal) {
-                    ProfileModal()
+//                    ProfileModal()
                 }
                 NavigationView {
                     List {
@@ -179,7 +166,6 @@ struct ContactsList: View {
                         .listRowBackground(Color.white)
                     }.listStyle(.plain).background(Color.white)
                         .searchable(text: $searchText, placement: .automatic)
-                    //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
                         }
