@@ -119,6 +119,19 @@ class ContactsListVM: ObservableObject {
     }
 }
 
+struct ProfileModal: View {
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        Button("Press to dismiss") {
+            dismiss()
+        }
+        .font(.title)
+        .padding()
+        .background(.black)
+    }
+}
+
 struct ContactsList: View {
     @ObservedObject var viewModel = ContactsListVM()
     init(){
@@ -131,10 +144,18 @@ struct ContactsList: View {
     }
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
+    @State private var showProfileModal = false
+    
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
             if #available(iOS 15.0, *) {
+                Button("Profile") {
+                    showProfileModal.toggle()
+                }
+                .sheet(isPresented: $showProfileModal) {
+                    ProfileModal()
+                }
                 NavigationView {
                     List {
                         ForEach(searchResults) {
@@ -161,7 +182,8 @@ struct ContactsList: View {
                     //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
-                        }                        .navigationBarTitle("Contacts",  displayMode: .inline).navigationBarHidden(false)
+                        }
+                        .navigationBarTitle("Contacts",  displayMode: .inline).navigationBarHidden(false)
                 }
             } else {
                 // Fallback on earlier versions
@@ -290,7 +312,7 @@ struct LargerProfileView: View {
 }
 
 
-struct ContactsMain_Previews: PreviewProvider {
+struct ContactsList_Previews: PreviewProvider {
     static var previews: some View {
         ContactsList()
     }

@@ -76,7 +76,7 @@ struct Screen6EmailView: View {
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.emailAddress)
                         .keyboardType(.emailAddress)
-                        .textInputAutocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                     
                 }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     .fixedSize(horizontal: false, vertical: true)
