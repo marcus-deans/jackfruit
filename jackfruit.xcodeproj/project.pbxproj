@@ -187,6 +187,13 @@
 			path = "contacts-add";
 			sourceTree = "<group>";
 		};
+		251F85502885E484000F64C4 /* shared-views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "shared-views";
+			sourceTree = "<group>";
+		};
 		253A74462877E1920005D7E1 = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +218,7 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
+				251F85502885E484000F64C4 /* shared-views */,
 				251F854728854570000F64C4 /* contacts-add */,
 				251F854128852189000F64C4 /* contacts-list */,
 				251F854028852182000F64C4 /* models */,

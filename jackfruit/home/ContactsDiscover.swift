@@ -213,7 +213,22 @@ struct StoreRow1: View {
     }
 }
 
-
+struct EmojiCircleView: View {
+    var body: some View {
+        ZStack {
+            Text("")
+                .shadow(radius: 4)
+                .font(.largeTitle)
+                .frame(width: 85, height: 55)
+                .overlay(
+                    Image("Profilephoto").resizable()
+                        .clipShape(Circle())
+                    
+                )
+            
+        }
+    }
+}
 
 
 
