@@ -13,6 +13,7 @@
 		251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 251F853C287FD6AA000F64C4 /* iPhoneNumberField */; };
 		251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8542288521EE000F64C4 /* ProfileModal.swift */; };
 		251F854528852205000F64C4 /* ProfileModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F854428852205000F64C4 /* ProfileModalView.swift */; };
+		251F8549288545C6000F64C4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8548288545C6000F64C4 /* ProfileView.swift */; };
 		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
 		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
 		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
@@ -80,6 +81,7 @@
 		251F8539287BFD04000F64C4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		251F8542288521EE000F64C4 /* ProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModal.swift; sourceTree = "<group>"; };
 		251F854428852205000F64C4 /* ProfileModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalView.swift; sourceTree = "<group>"; };
+		251F8548288545C6000F64C4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		253A744F2877E1920005D7E1 /* jackfruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jackfruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253A74522877E1920005D7E1 /* jackfruitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitApp.swift; sourceTree = "<group>"; };
 		253A74562877E1940005D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -170,8 +172,17 @@
 				253A74A32877E4E40005D7E1 /* ContactsList.swift */,
 				251F8542288521EE000F64C4 /* ProfileModal.swift */,
 				251F854428852205000F64C4 /* ProfileModalView.swift */,
+				251F8548288545C6000F64C4 /* ProfileView.swift */,
 			);
 			path = "contacts-list";
+			sourceTree = "<group>";
+		};
+		251F854728854570000F64C4 /* contacts-add */ = {
+			isa = PBXGroup;
+			children = (
+				253A74A12877E4D00005D7E1 /* ContactsAdd.swift */,
+			);
+			path = "contacts-add";
 			sourceTree = "<group>";
 		};
 		253A74462877E1920005D7E1 = {
@@ -198,7 +209,7 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
-				D0214022288537DA00EEE825 /* profileUI */,
+				251F854728854570000F64C4 /* contacts-add */,
 				251F854128852189000F64C4 /* contacts-list */,
 				251F854028852182000F64C4 /* models */,
 				253A74B12877E7710005D7E1 /* jackfruit.entitlements */,
@@ -264,7 +275,6 @@
 			isa = PBXGroup;
 			children = (
 				253A749F2877E4AF0005D7E1 /* MainTabView.swift */,
-				253A74A12877E4D00005D7E1 /* ContactsAdd.swift */,
 				696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */,
 				69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */,
 			);
@@ -293,14 +303,6 @@
 				253A74BD2877F4750005D7E1 /* CircularStd-Book.otf */,
 			);
 			path = fonts;
-			sourceTree = "<group>";
-		};
-		D0214022288537DA00EEE825 /* profileUI */ = {
-			isa = PBXGroup;
-			children = (
-				D0214023288537FD00EEE825 /* ProfileView.swift */,
-			);
-			path = profileUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -471,9 +473,9 @@
 				253A74A22877E4D00005D7E1 /* ContactsAdd.swift in Sources */,
 				251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */,
 				251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */,
+				251F8549288545C6000F64C4 /* ProfileView.swift in Sources */,
 				251F854528852205000F64C4 /* ProfileModalView.swift in Sources */,
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
-				D0214024288537FD00EEE825 /* ProfileView.swift in Sources */,
 				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
 				251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */,
