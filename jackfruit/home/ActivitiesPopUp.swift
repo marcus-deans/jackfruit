@@ -167,9 +167,14 @@ struct ActivitiesPopUp: View {
                                    
                                    }
                                }
-                           }.padding(.horizontal, 33)
+                           }.padding(.horizontal, 33).padding(.top, 20)
                            .frame(maxHeight: 700)
-                       }.padding(.top, 20).navigationBarTitle("Discover").navigationBarHidden(false)}
+                       }.background(Color.init(UIColor.middleColor))
+                           
+                           .navigationBarTitle("Discover")
+                           .navigationBarHidden(false)
+                       
+                   }.foregroundColor(Color.init(UIColor.middleColor))
                 }
             }.onAppear() { // (3)
                 self.viewModel1.fetchData(userId: userId)
