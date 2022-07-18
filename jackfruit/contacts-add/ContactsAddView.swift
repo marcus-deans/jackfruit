@@ -17,7 +17,7 @@ struct ContactsAddView: View {
         case work
         case group
     }
-    var selectedRelation: relationTypes = .work
+    @State var selectedRelation: relationTypes = .work
     
     @State var value = "0"
     @AppStorage("user_id") var userId: String = ""
@@ -25,7 +25,7 @@ struct ContactsAddView: View {
     @State var workSelected : Bool = false
     @State var groupSelected : Bool = false
     @State var addSelected = false
-
+    
     let buttons: [[CalcButton]] = [
         [.one, .two, .three],
         [.four, .five, .six],
@@ -53,39 +53,46 @@ struct ContactsAddView: View {
                     HStack {
                         Button(action: {
                             self.friendSelected.toggle()
+                            self.workSelected = false
+                            self.groupSelected = false
+                            self.selectedRelation = .friend
                         }, label: {Text("Friend")})
                         .frame(height: 40, alignment: .center)
                         .padding(.horizontal, 15)
                         .background(self.friendSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
-                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                            )
-                            .padding(.bottom, 17).padding(.horizontal, 4)
+                        .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                        )
+                        .padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.workSelected.toggle()
+                            self.friendSelected = false
+                            self.groupSelected = false
                         }, label: {Text("Work")})
                         .frame(height: 40, alignment: .center)
                         .padding(.horizontal, 15)
                         .background(self.workSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
-                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                            )
-                            .padding(.bottom, 17).padding(.horizontal, 4)
+                        .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                        )
+                        .padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.groupSelected.toggle()
+                            self.friendSelected = false
+                            self.workSelected = false
                         }, label: {Text("Group")})
                         .frame(height: 40, alignment: .center)
                         .padding(.horizontal, 15)
                         .background(self.groupSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
-                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                            )
-                            .padding(.bottom, 17).padding(.horizontal, 4)
+                        .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                        )
+                        .padding(.bottom, 17).padding(.horizontal, 4)
                         
                     }
                     
@@ -135,6 +142,7 @@ struct ContactsAddView: View {
                                 withAnimation(Animation.easeIn(duration: 0.7)) {
                                     self.trimVal = 1
                                     self.addSelected.toggle()
+                                    print("narrow State")
                                 }
                             } else {
                                 withAnimation{
@@ -142,6 +150,7 @@ struct ContactsAddView: View {
                                     self.width = 200
                                     self.addSelected.toggle()
                                     self.removeText.toggle()
+                                    print("Width state")
                                 }
                             }
                             switch selectedRelation{
@@ -151,7 +160,6 @@ struct ContactsAddView: View {
                                 addWorkContactAction(value)
                             case .group:
                                 addGroupContactAction(value)
-                            default: break
                             }
                         }
                 }
@@ -213,8 +221,8 @@ struct AddRelationButtonView: View {
             }
             if !removeText {
                 Text(""+t1)
-                    .foregroundColor(Color.init(UIColor.white)).font(Font.custom("CircularStd-Black", size: 18))
                     .foregroundColor(Color.init(UIColor.white))
+                    .font(Font.custom("CircularStd-Black", size: 18))
             }
         }
     }
