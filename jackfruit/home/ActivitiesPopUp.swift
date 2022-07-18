@@ -198,7 +198,7 @@ struct DetailsViewDiscover1: View {
                 NavigationView {
                     List {
                         ForEach(profiles) { userItem in
-                            NavigationLink(destination: DetailsView(userItem: userItem).navigationBarHidden(true)) {
+                            NavigationLink(destination: ContactRowView(userItem: userItem).navigationBarHidden(true)) {
                                 HStack{
                                     EmojiCircleView().padding(.vertical, 10)
                                     VStack(alignment: .leading) {
