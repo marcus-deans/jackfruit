@@ -257,14 +257,14 @@ struct ContactsAdd: View {
     func didTap(button: CalcButton) {
         switch button {
         case .star: // clear funciton
-            self.value = "0"
+            value = "0"
             break
         default:
             let number = button.rawValue
-            if self.value == "0" {
+            if value == "0" {
                 value = number
             } else {
-                self.value = "\(self.value)\(number)"
+                value = "\(value)\(number)"
             }
         }
     }

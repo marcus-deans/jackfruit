@@ -187,14 +187,34 @@ struct ContactsList: View {
                             .listRowBackground(Color.init(UIColor.middleColor))
                     }.padding(.top, 5)
                         .listStyle(.plain).background(Color.init(UIColor.middleColor))
-                        .searchable(text: $searchText, placement: .automatic).background(Color.white).font(Font.custom("CircularStd-Black",
-                                                                                                                       size: 18))
+                        
                     //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
                             
                             
-                        }                        .navigationBarTitle("Contacts").navigationBarHidden(false)
+                        }.navigationBarTitle("Contacts")
+                        .toolbar {
+                            ToolbarItem() {
+                                VStack {
+                                Spacer()
+                                Button("") {
+                                    showProfileModal.toggle()
+                                        
+                                }.background(
+                                    Image(systemName: "gearshape.fill").frame(width: 80.0, height: 80.0)
+                                
+                                ).sheet(isPresented: $showProfileModal) {
+                                        //ProfileModal()
+                                }}
+                                
+                                    
+                               .searchable(text: $searchText, placement: .toolbar).background(Color.white).font(Font.custom("CircularStd-Black",
+                                                                                                                                size: 18))
+                                
+                            }
+                        }
+                        .navigationBarHidden(false)
                 }
             } else {
                 // Fallback on earlier versions
