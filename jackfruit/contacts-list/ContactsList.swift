@@ -236,36 +236,6 @@ struct ContactsList: View {
     }
 }
 
-
-struct StoreRow: View {
-    
-    var title: String
-    var body: some View {
-        ZStack(alignment: .leading) {
-            
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 4, style: .continuous)
-                    .fill(
-                        LinearGradient(
-                            gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    ).frame(height: 40).padding(.horizontal, 5)
-                
-                VStack {
-                    Text("\(title)")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundColor(.black)
-                }
-            }
-            
-        }
-    }
-}
-
-
 struct ContactsList_Previews: PreviewProvider {
     static var previews: some View {
         ContactsList()

@@ -80,7 +80,7 @@ struct ContactRowView: View {
             }
             WrappingHStack {
                 ForEach(userItem.parameters!, id : \.self) { child in
-                    StoreRow(title: child)
+                    SingleParameterView(title: child)
                 }
             }
         }
@@ -88,6 +88,33 @@ struct ContactRowView: View {
         .navigationBarTitle(Text(userItem.firstName!), displayMode: .inline)
     }
     
+}
+
+
+struct SingleParameterView: View {
+    var title: String
+    var body: some View {
+        ZStack(alignment: .leading) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 4, style: .continuous)
+                    .fill(
+                        LinearGradient(
+                            gradient: Gradient(colors: [.init(UIColor.transitionPage) , .init(UIColor.redGradient)]),
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .frame(height: 40)
+                    .padding(.horizontal, 5)
+                
+                VStack {
+                    Text("\(title)")
+                        .font(.system(size: 20, weight: .bold))
+                        .foregroundColor(.black)
+                }
+            }
+        }
+    }
 }
 
 
