@@ -113,15 +113,15 @@ struct ActivitiesPopUp: View {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
     }
     
-    var searchResults: [String: [String]] {
+    var searchResults: [String: [UserModel]] {
         let userList = viewModel1.users
-        var paramMap = [String: [String]]()
+        var paramMap = [String: [UserModel]]()
         for prof in userList {
             for param in prof.parameters! {
                 if paramMap[param] != nil {
-                    paramMap[param]!.append(prof.firstName!)
+                    paramMap[param]!.append(prof)
                 } else {
-                    paramMap[param] = [prof.firstName!]
+                    paramMap[param] = [prof]
                 }
             }
         }
@@ -131,7 +131,15 @@ struct ActivitiesPopUp: View {
             return paramMap.filter { $0.key.contains(searchText) }
         }
     }
-
+    
+    func getNumberOfFriends(activity : [UserModel]) -> Int {
+        var count = 0
+        for friend in activity {
+            count += 1
+        }
+        return count
+    }
+    
    var body: some View {
        ZStack{
            Color.init(UIColor.middleColor)         
@@ -144,11 +152,11 @@ struct ActivitiesPopUp: View {
                            LazyVGrid(columns: columns, spacing: 10) {
                                ForEach(searchResults.keys.sorted(), id: \.self) { item in
                                    NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!)) {
-                                     
+                                       let count = getNumberOfFriends(activity: searchResults[item]!)
                                        VStack {
                                            Text(item)
                                                .font(Font.custom("CircularStd-Black", size: 20))
-                                           Text("9 friends")
+                                           Text("\(count) friends")
                                                .font(Font.custom("CircularStd-Black", size: 15))
                                        }
                                        .frame(width: screenWidth-240, height: 100)
@@ -171,18 +179,57 @@ struct ActivitiesPopUp: View {
 }
 
 struct DetailsViewDiscover1: View {
-    let profiles: [String]
+    let profiles: [UserModel]
     var body: some View {
-        VStack() {
-            VStack(alignment: .center, spacing: 1) {
-                ForEach(profiles, id: \.self) { profile in
-                    Text(profile).font(Font.custom("CircularStd-Book", size: 20))
+        ZStack {
+            //Color.init(UIColor.middleColor)
+            if #available(iOS 15.0, *) {
+//                Button("Profile") {
+//                    showProfileModal.toggle()
+//                }
+//                .sheet(isPresented: $showProfileModal) {
+//                    //                    ProfileModal()
+//                }
+                NavigationView {
+                    List {
+                        ForEach(profiles) { userItem in
+                            NavigationLink(destination: DetailsView(userItem: userItem).navigationBarHidden(true)) {
+                                HStack{
+                                    EmojiCircleView().padding(.vertical, 10)
+                                    VStack(alignment: .leading) {
+                                        HStack {
+                                            Text(userItem.firstName!)
+                                                .font(Font.custom("CircularStd-Black", size: 20))
+                                            + Text(" ")
+                                            + Text(userItem.lastName!)
+                                                .font(Font.custom("CircularStd-Black",
+                                                                  size: 20))
+                                        }
+                                        
+                                        Text(userItem.phoneNumber!)
+                                            .font(Font.custom("CircularStd-Black",
+                                                              size: 15)).foregroundColor(Color.init(UIColor.smalltextColor))
+                                        
+                                    }
+                                }.foregroundColor(Color.init(UIColor.black))
+                            }.listRowSeparator(.hidden).padding(.trailing, 20)
+                        }.background(
+                            RoundedRectangle(cornerRadius: 12, style: .continuous)
+                                .foregroundColor(.init(UIColor.cardColor))
+                                .shadow(radius: 1)
+                        ).padding(.top, 1)
+                            .listRowBackground(Color.init(UIColor.middleColor))
+                    }.padding(.top, 5)
+                        .listStyle(.plain).background(Color.init(UIColor.middleColor))
+                        .navigationBarHidden(true)
                 }
+            } else {
+                // Fallback on earlier versions
             }
-            
         }
     }
 }
+
 
 
 //
