@@ -22,6 +22,15 @@ struct UserModel : Codable, Identifiable, Hashable{
 //    var professionalParameters: ProfessionalParameters?
 //    var personalParameters: PersonalParameters?
     
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(phoneNumber)
+    }
+    
+    static func == (lhs: UserModel, rhs: UserModel) -> Bool {
+        return lhs.phoneNumber == rhs.phoneNumber
+    }
+    
+    
     init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", photoURL: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = []) {
         self.id = id ?? UUID()
         self.firstName = firstName ?? ""

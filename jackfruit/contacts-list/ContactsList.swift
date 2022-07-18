@@ -70,7 +70,7 @@ class ContactsListVM: ObservableObject {
                         let parameters = data["parameters"] as? [String] ?? []
                         
                         //                        self.users.append
-                        self.users.insert(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
             
@@ -98,7 +98,7 @@ class ContactsListVM: ObservableObject {
                         let parameters = data["parameters"] as? [String] ?? []
                         
                         //                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
-                        self.users.insert(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
         }
