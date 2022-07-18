@@ -1,77 +1,24 @@
 //
-//  ContactsAdd.swift
+//  ContactsAddView.swift
 //  jackfruit
 //
-//  Created by Marcus Deans on 2022-07-07.
+//  Created by Marcus Deans on 2022-07-18.
 //
 
 import SwiftUI
-import FirebaseFirestore
 
-enum CalcButton: String {
-    case one = "1"
-    case two = "2"
-    case three = "3"
-    case four = "4"
-    case five = "5"
-    case six = "6"
-    case seven = "7"
-    case eight = "8"
-    case nine = "9"
-    case zero = "0"
-    case clear = "⌫"
-    case hash = "#"
-}
-
-class ContactsAddVM: ObservableObject {
-    let db = Firestore.firestore()
+struct ContactsAddView: View {
+    let addWorkContactAction: (String) -> Void
+    let addGroupContactAction: (String) -> Void
+    let addFriendContactAction: (String) -> Void
     
-    func addPersonalRelationship(userId: String, personalContact: String){
-        let currentUserRef = db.collection("users").document(userId)
-        currentUserRef.updateData([
-            "personal_contacts": FieldValue.arrayUnion([personalContact])
-            
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
+    enum relationTypes {
+        case friend
+        case work
+        case group
     }
+    var selectedRelation: relationTypes = .work
     
-    func addProfessionalRelationship(userId: String, professionalContact: String){
-        let currentUserRef = db.collection("users").document(userId)
-        currentUserRef.updateData([
-            "professional_contacts": FieldValue.arrayUnion([professionalContact])
-            
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-    
-    func addGroup(userId: String, groupId: String){
-        // Update one field, creating the document if it does not exist.
-        db.collection("groups").document(groupId).setData([ "members": FieldValue.arrayUnion([userId]) ], merge: true)
-        { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
-        }
-    }
-}
-
-struct ContactsAdd: View {
-    @ObservedObject var viewModel = ContactsAddVM()
-
-    var relation = ["Personal ❤️", "Professional 💼", "Group 🏘"]
-    @State private var selectedRelation = "Professional 💼"
     @State var value = "0"
     @AppStorage("user_id") var userId: String = ""
     @State var friendSelected : Bool = false
@@ -198,12 +145,12 @@ struct ContactsAdd: View {
                                 }
                             }
                             switch selectedRelation{
-                            case relation[0]:
-                                viewModel.addPersonalRelationship(userId: userId, personalContact: value)
-                            case relation[1]:
-                                viewModel.addProfessionalRelationship(userId: userId, professionalContact: value)
-                            case relation[2]:
-                                viewModel.addGroup(userId: userId, groupId: value)
+                            case .friend:
+                                addFriendContactAction(value)
+                            case .work:
+                                addWorkContactAction(value)
+                            case .group:
+                                addGroupContactAction(value)
                             default: break
                             }
                         }
@@ -234,12 +181,57 @@ struct ContactsAdd: View {
     func buttonHeight() -> CGFloat {
         return (UIScreen.main.bounds.width - (7*20)) / 4
     }
-    
-    
-    
-    struct ContactsAdd_Previews: PreviewProvider {
-        static var previews: some View {
-            ContactsAdd()
+}
+
+struct AddRelationButtonView: View {
+    @Binding var isChecked : Bool
+    @Binding var trimVal : CGFloat
+    @Binding var width : CGFloat
+    @Binding var removeText : Bool
+    var t1 = "Add Number"
+    var animatableData: CGFloat {
+        get{trimVal}
+        set{trimVal = newValue }
+    }
+    var body: some View {
+        ZStack{
+            Capsule()
+                .trim(from: 0, to: trimVal)
+                .stroke(style: StrokeStyle(lineWidth: 2))
+                .frame(width: 40, height: 55)
+                .foregroundColor(self.isChecked ? Color.green : Color.gray)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .fill(self.isChecked ? Color.green : Color.init(UIColor.transitionPage))
+                        .opacity(self.isChecked ? 0 : 1)
+                        .frame(width: 200, height: 55)
+                        .foregroundColor(Color.init(UIColor.white))
+                )
+            if isChecked {
+                Image(systemName: "checkmark")
+                    .foregroundColor(Color.black).opacity(Double(trimVal))
+            }
+            if !removeText {
+                Text(""+t1)
+                    .foregroundColor(Color.init(UIColor.white)).font(Font.custom("CircularStd-Black", size: 18))
+                    .foregroundColor(Color.init(UIColor.white))
+            }
         }
+    }
+}
+
+struct ContactsAddView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContactsAddView(
+            addWorkContactAction: { value in
+                print(value)
+            },
+            addGroupContactAction: { value in
+                print(value)
+            },
+            addFriendContactAction: { value in
+                print(value)
+            }
+        )
     }
 }
