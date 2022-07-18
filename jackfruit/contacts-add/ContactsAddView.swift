@@ -143,28 +143,32 @@ struct ContactsAddView: View {
                 Spacer()
                     .frame(height: 20)
                 Button(action: {
-                    if !self.addSelected{
-                        withAnimation(Animation.easeIn(duration: 0.8)) {
-                            self.trimVal = 1
-                            self.addSelected.toggle()
-                        }
-                    }
+//                    if !self.addSelected{
+//                        withAnimation(Animation.easeIn(duration: 0.8)) {
+//                            self.trimVal = 1
+//                            self.addSelected.toggle()
+//                        }
+//                    }
                 })
                 {
                     AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, hideTextLabel: $hideTextLabel )
                         .onTapGesture {
                             guard selectedRelation != .none else {
-                                self.addSelected.toggle()
+//                                self.addSelected.toggle()
+                                print("No relation selected")
                                 return
                             }
                             guard enteredNumber.count == 10 else {
-                                self.addSelected.toggle()
+//                                self.addSelected.toggle()
+                                print("Entered number is invalid")
                                 return
                             }
                             self.hideTextLabel.toggle()
-                            withAnimation(Animation.easeIn(duration: 0.7)){
+                            withAnimation(Animation.easeIn(duration: 0.5)){
                                 self.width = 70
                                 self.trimVal = 1
+                                self.addSelected.toggle()
+                                self.hideTextLabel.toggle()
                                 print("Trimmed button")
                             }
                             withAnimation(Animation.spring().delay(4)) {
@@ -172,6 +176,7 @@ struct ContactsAddView: View {
                                 self.width = 200
                                 self.addSelected.toggle()
                                 self.hideTextLabel.toggle()
+                                self.enteredNumber = ""
                                 print("Reset button")
                             }
                             
@@ -207,7 +212,7 @@ struct ContactsAddView: View {
             }
         }
     }
-    func buttonWidth(item: CalcButton) -> CGFloat {
+    func buttonWidth(item: NumberButton) -> CGFloat {
         if item == .zero {
             return ((UIScreen.main.bounds.width - (7*20)) / 4)
         }
