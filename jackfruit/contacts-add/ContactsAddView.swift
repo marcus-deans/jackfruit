@@ -7,30 +7,38 @@
 
 import SwiftUI
 
+enum NumberButton: String {
+    case one = "1"
+    case two = "2"
+    case three = "3"
+    case four = "4"
+    case five = "5"
+    case six = "6"
+    case seven = "7"
+    case eight = "8"
+    case nine = "9"
+    case zero = "0"
+    case delete = "⌫"
+    case clear = "C"
+}
+
 struct ContactsAddView: View {
     let addWorkContactAction: (String) -> Void
     let addGroupContactAction: (String) -> Void
     let addFriendContactAction: (String) -> Void
     
-    enum relationTypes {
-        case friend
-        case work
-        case group
-    }
-    @State var selectedRelation: relationTypes = .work
-    
-    @State var value = "0"
+    @State var value = ""
     @AppStorage("user_id") var userId: String = ""
     @State var friendSelected : Bool = false
     @State var workSelected : Bool = false
     @State var groupSelected : Bool = false
     @State var addSelected = false
     
-    let buttons: [[CalcButton]] = [
+    let buttons: [[NumberButton]] = [
         [.one, .two, .three],
         [.four, .five, .six],
         [.seven, .eight, .nine],
-        [.hash, .zero, .clear],
+        [.clear, .zero, .delete],
     ]
     @State var trimVal : CGFloat = 0
     @State var width : CGFloat = 70
@@ -55,7 +63,6 @@ struct ContactsAddView: View {
                             self.friendSelected.toggle()
                             self.workSelected = false
                             self.groupSelected = false
-                            self.selectedRelation = .friend
                         }, label: {Text("Friend")})
                         .frame(height: 40, alignment: .center)
                         .padding(.horizontal, 15)
@@ -153,23 +160,30 @@ struct ContactsAddView: View {
                                     print("Width state")
                                 }
                             }
-                            switch selectedRelation{
-                            case .friend:
+                            if friendSelected{
                                 addFriendContactAction(value)
-                            case .work:
+                            }
+                             else if workSelected{
                                 addWorkContactAction(value)
-                            case .group:
+                            }
+                            else if groupSelected{
                                 addGroupContactAction(value)
+                            }
+                            else {
+                                print("None selected")
                             }
                         }
                 }
             }
         }
     }
-    func didTap(button: CalcButton) {
+    func didTap(button: NumberButton) {
         switch button {
+        case .delete:
+            value = "111"
+            break
         case .clear: // clear funciton
-            value = "0"
+            value = ""
             break
         default:
             let number = button.rawValue
@@ -196,7 +210,6 @@ struct AddRelationButtonView: View {
     @Binding var trimVal : CGFloat
     @Binding var width : CGFloat
     @Binding var removeText : Bool
-    var t1 = "Add Number"
     var animatableData: CGFloat {
         get{trimVal}
         set{trimVal = newValue }
@@ -220,7 +233,7 @@ struct AddRelationButtonView: View {
                     .foregroundColor(Color.black).opacity(Double(trimVal))
             }
             if !removeText {
-                Text(""+t1)
+                Text("Add Number")
                     .foregroundColor(Color.init(UIColor.white))
                     .font(Font.custom("CircularStd-Black", size: 18))
             }
