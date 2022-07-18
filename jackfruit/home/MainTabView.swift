@@ -178,9 +178,9 @@ struct MainTabView: View {
                 Text("Add Contact").font(Font.custom("CircularStd-Black",
                                                          size: 10))
                 }.tag(1)
-            ContactsDiscover().tabItem {
+            ActivitiesPopUp().tabItem {
                 Image(systemName: "list.bullet.rectangle.fill")
-                Text("Search").font(Font.custom("CircularStd-Black",
+                Text("Discover").font(Font.custom("CircularStd-Black",
                                                 size: 10))
                 }.tag(2)
         }.accentColor(Color.init(UIColor.transitionPage))

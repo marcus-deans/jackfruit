@@ -94,10 +94,10 @@ struct CheckBoxView1: View {
                 .foregroundColor(self.checked1 ? Color.green : Color.gray)
                 .overlay(
                     RoundedRectangle(cornerRadius: 12, style: .continuous)
-                        .fill(self.checked1 ? Color.green : Color.init(UIColor.transitionPage).opacity(0.5))
+                        .fill(self.checked1 ? Color.green : Color.init(UIColor.transitionPage))
                         .opacity(self.checked1 ? 0 : 1)
                         .frame(width: 200, height: 55)
-                        .foregroundColor(Color.init(UIColor.textColor))
+                        .foregroundColor(Color.init(UIColor.white))
                 )
             if checked1 {
                 Image(systemName: "checkmark")
@@ -105,8 +105,8 @@ struct CheckBoxView1: View {
             }
             if !removeText {
                 Text(""+t1)
-                    .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("CircularStd-Black", size: 18))
-                    .foregroundColor(Color.init(UIColor.textColor))
+                    .foregroundColor(Color.init(UIColor.white)).font(Font.custom("CircularStd-Black", size: 18))
+                    .foregroundColor(Color.init(UIColor.white))
             }
         }
     }
@@ -161,26 +161,26 @@ struct ContactsAdd: View {
                     HStack {
                         Button(action: {
                             self.isSelected.toggle()
-                        }, label: {Text("Friend")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.transitionPage).opacity(0.5)).cornerRadius(12)
-                            .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                        }, label: {Text("Friend")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear)).opacity(0.5)
+                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
                         ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.isSelected1.toggle()
-                        }, label: {Text("Work")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected1 ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.transitionPage).opacity(0.5)).cornerRadius(12)
-                            .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                        }, label: {Text("Work")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected1 ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear)).opacity(0.5)
+                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
                         ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.isSelected2.toggle()
-                        }, label: {Text("Group")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.green).opacity(0.5) : Color.init(UIColor.transitionPage).opacity(0.5)).cornerRadius(12)
-                            .foregroundColor(Color.init(UIColor.textColor)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                        }, label: {Text("Group")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear)).opacity(0.5)
+                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
                         ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                     }
