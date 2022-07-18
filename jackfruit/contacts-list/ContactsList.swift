@@ -33,12 +33,14 @@ class Theme {
 }
 
 class ContactsListVM: ObservableObject {
-    @Published var users = [UserModel]()
+    //    @Published var users = [UserModel]()
     
+    @Published var users: Set<UserModel> = Set()
     private var db = Firestore.firestore()
     
     func fetchData(userId: String) {
-        users = [UserModel]()
+        //        users = [UserModel]()
+        users = Set()
         db.collection("users").document(userId).addSnapshotListener { (documentSnapshot, error) in
             guard let data = documentSnapshot?.data() else {
                 print("No documents")
@@ -64,9 +66,11 @@ class ContactsListVM: ObservableObject {
                         let phoneNumber = data["phone_number"] as? String ?? ""
                         let emailAddress = data["last_name"] as? String ?? ""
                         let location = data["location"] as? String ?? ""
+                        let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
                         
-                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        //                        self.users.append
+                        self.users.insert(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
             
@@ -90,9 +94,11 @@ class ContactsListVM: ObservableObject {
                         let phoneNumber = data["phone_number"] as? String ?? ""
                         let emailAddress = data["last_name"] as? String ?? ""
                         let location = data["location"] as? String ?? ""
+                        let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
                         
-                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        //                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        self.users.insert(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
         }
@@ -105,7 +111,7 @@ class ContactsListVM: ObservableObject {
                 return
             }
             
-            self.users = documents.map { queryDocumentSnapshot -> UserModel in
+            self.users = Set(documents.map { queryDocumentSnapshot -> UserModel in
                 let data = queryDocumentSnapshot.data()
                 let id = data["id"] as? UUID ?? UUID()
                 let firstName = data["first_name"] as? String ?? ""
@@ -113,10 +119,12 @@ class ContactsListVM: ObservableObject {
                 let phoneNumber = data["phone_number"] as? String ?? ""
                 let emailAddress = data["last_name"] as? String ?? ""
                 let location = data["location"] as? String ?? ""
+                let photoURL = data["photo_url"] as? String ?? ""
                 let parameters = data["parameters"] as? [String] ?? []
                 
-                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters)
+                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters)
             }
+            )
         }
     }
 }
@@ -151,7 +159,9 @@ struct ContactsList: View {
                             userItem in
                             NavigationLink(destination: DetailsView(userItem: userItem)) {
                                 HStack{
-                                    EmojiCircleView().padding(.vertical, 10)
+                                    //                                    EmojiCircleView()
+                                    ProfilePhotoView(profileURL: userItem.photoURL!)
+                                        .padding(.vertical, 10)
                                     VStack(alignment: .leading) {
                                         HStack {
                                             Text(userItem.firstName!)
@@ -192,7 +202,7 @@ struct ContactsList: View {
         }
     }
     var searchResults: [UserModel] {
-        let userList = viewModel.users
+        let userList = Array(viewModel.users)
         if searchText.isEmpty {
             return userList
         } else {
@@ -286,6 +296,44 @@ struct StoreRow: View {
         }
     }
 }
+
+struct ProfilePhotoView: View {
+    let profileURL: String
+    var body: some View {
+        ZStack {
+            let _ = print("Fetching URL from \(profileURL)")
+            Text("")
+                .shadow(radius: 4)
+                .font(.largeTitle)
+                .frame(width: 85, height: 55)
+                .overlay(
+                    //                    AsyncImage(url: URL(string: profileURL))
+                    ////                        .resizable()
+                    //                        .clipShape(Circle())
+                    AsyncImage(url: URL(string: profileURL)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                        case .success(let image):
+                            image.resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(maxWidth: 85, maxHeight: 55)
+                                .clipShape(Circle())
+                        case .failure:
+                            Image(systemName: "photo")
+                        @unknown default:
+                            // Since the AsyncImagePhase enum isn't frozen,
+                            // we need to add this currently unused fallback
+                            // to handle any new cases that might be added
+                            // in the future:
+                            EmptyView()
+                        }
+                    }
+                )
+        }
+    }
+}
+
 
 
 struct EmojiCircleView: View {
