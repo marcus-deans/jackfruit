@@ -52,6 +52,7 @@
 		696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0AD0287D15C0008F4C34 /* ActivityModel.swift */; };
 		6993F02028817959001BFE0E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01F28817959001BFE0E /* ToastUI */; };
 		6993F02328817987001BFE0E /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F02228817987001BFE0E /* WrappingHStack */; };
+		69F8259C2884DBA40050F3B9 /* ActivitiesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansProBlk.OTF; sourceTree = "<group>"; };
 		696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDiscover.swift; sourceTree = "<group>"; };
 		696D0AD0287D15C0008F4C34 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesPopUp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -241,6 +243,7 @@
 				253A74A12877E4D00005D7E1 /* ContactsAdd.swift */,
 				253A74A32877E4E40005D7E1 /* ContactsList.swift */,
 				696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */,
+				69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */,
 			);
 			path = home;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				253A74872877E2960005D7E1 /* Flow.swift in Sources */,
 				251F853A287BFD04000F64C4 /* Log.swift in Sources */,
 				253A74AD2877E5820005D7E1 /* UserModel.swift in Sources */,
+				69F8259C2884DBA40050F3B9 /* ActivitiesPopUp.swift in Sources */,
 				253A74A92877E5420005D7E1 /* JSONConverter.swift in Sources */,
 				253A74A42877E4E40005D7E1 /* ContactsList.swift in Sources */,
 				253A748D2877E3250005D7E1 /* Screen1LandingView.swift in Sources */,
