@@ -163,28 +163,28 @@ struct ContactsAdd: View {
                             self.isSelected.toggle()
                         }, label: {Text("Friend")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
                             .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                        ).padding(.bottom, 17).padding(.horizontal, 4)
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                            ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.isSelected1.toggle()
                         }, label: {Text("Work")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected1 ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
                             .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                        ).padding(.bottom, 17).padding(.horizontal, 4)
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                            ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                         Button(action: {
                             self.isSelected2.toggle()
                         }, label: {Text("Group")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.isSelected2 ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
                             .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                        ).padding(.bottom, 17).padding(.horizontal, 4)
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(self.isSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                            ).padding(.bottom, 17).padding(.horizontal, 4)
                         
                     }
-                      
+                    
                     Spacer()
                         .frame(height: 20)
                 })
@@ -194,8 +194,8 @@ struct ContactsAdd: View {
                             Button(action: {
                                 self.didTap(button: item)
                             }, label: {
-                                    Text(item.rawValue)
-                                        .font(Font.custom("CircularStd-Black", size: 50))
+                                Text(item.rawValue)
+                                    .font(Font.custom("CircularStd-Black", size: 50))
                                     .frame(
                                         width: 100,
                                         height: 80
