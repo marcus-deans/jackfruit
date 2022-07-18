@@ -168,18 +168,9 @@ struct ContactsAddView: View {
                                 self.width = 70
                                 self.trimVal = 1
                                 self.addSelected.toggle()
-                                self.hideTextLabel.toggle()
+                                self.hideTextLabel = true
                                 print("Trimmed button")
                             }
-                            withAnimation(Animation.spring().delay(4)) {
-                                self.trimVal = 0
-                                self.width = 200
-                                self.addSelected.toggle()
-                                self.hideTextLabel.toggle()
-                                self.enteredNumber = ""
-                                print("Reset button")
-                            }
-                            
                             switch selectedRelation{
                             case .friend:
                                 addFriendContactAction(enteredNumber)
@@ -190,6 +181,17 @@ struct ContactsAddView: View {
                             case .none:
                                 print("Error")
                             }
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                                withAnimation(){
+                                    self.trimVal = 0
+                                    self.width = 200
+                                    self.addSelected.toggle()
+                                    self.hideTextLabel = false
+                                    self.enteredNumber = ""
+                                    print("Reset button")
+                                }
+                            }
                         }
                 }
             }
@@ -198,6 +200,9 @@ struct ContactsAddView: View {
     func didTap(button: NumberButton) {
         switch button {
         case .delete:
+            guard enteredNumber.count > 0 else {
+                break
+            }
             enteredNumber.removeLast()
             break
         case .clear: // clear funciton

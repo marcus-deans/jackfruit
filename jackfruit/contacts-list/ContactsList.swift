@@ -40,6 +40,10 @@ class ContactsListVM: ObservableObject {
     func fetchData(userId: String) {
         //        users = [UserModel]()
         users = Set()
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
         db.collection("users").document(userId).addSnapshotListener { (documentSnapshot, error) in
             guard let data = documentSnapshot?.data() else {
                 print("No documents")
