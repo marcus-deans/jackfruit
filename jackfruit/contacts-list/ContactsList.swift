@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import WrappingHStack
+import NukeUI
 
 class Theme {
     static func navigationBarColors(background : UIColor,
@@ -159,7 +160,6 @@ struct ContactsList: View {
                             userItem in
                             NavigationLink(destination: DetailsView(userItem: userItem)) {
                                 HStack{
-                                    //                                    EmojiCircleView()
                                     ProfilePhotoView(profileURL: userItem.photoURL!)
                                         .padding(.vertical, 10)
                                     VStack(alignment: .leading) {
@@ -204,7 +204,12 @@ struct ContactsList: View {
     var searchResults: [UserModel] {
         let userList = Array(viewModel.users)
         if searchText.isEmpty {
-            return userList
+            let sortedUserList = userList.sorted { (user1, user2) -> Bool in
+                let user1firstName = user1.firstName ?? ""
+                let user2firstName = user2.firstName ?? ""
+                return (user1firstName.localizedCaseInsensitiveCompare(user2firstName) == .orderedAscending)
+            }
+            return sortedUserList
         } else {
             return userList.filter { $0.firstName!.contains(searchText) }
         }
@@ -307,55 +312,22 @@ struct ProfilePhotoView: View {
                 .font(.largeTitle)
                 .frame(width: 85, height: 55)
                 .overlay(
-                    //                    AsyncImage(url: URL(string: profileURL))
-                    ////                        .resizable()
-                    //                        .clipShape(Circle())
-                    AsyncImage(url: URL(string: profileURL)) { phase in
-                        switch phase {
-                        case .empty:
-                            ProgressView()
-                        case .success(let image):
-                            image.resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(maxWidth: 85, maxHeight: 55)
-                                .clipShape(Circle())
-                        case .failure:
-                            Image(systemName: "photo")
-                        @unknown default:
-                            // Since the AsyncImagePhase enum isn't frozen,
-                            // we need to add this currently unused fallback
-                            // to handle any new cases that might be added
-                            // in the future:
-                            EmptyView()
+                    LazyImage(source: URL(string: profileURL)!){ state in
+                        if let image = state.image {
+                            image
+                        } else if state.error != nil {
+                            Image(systemName: "photo") // Indicates an error
+                        } else {
+                            ProgressView() // Acts as a placeholder
                         }
                     }
-                )
-        }
-    }
-}
-
-
-
-struct EmojiCircleView: View {
-    var body: some View {
-        ZStack {
-            Text("")
-                .shadow(radius: 4)
-                .font(.largeTitle)
-                .frame(width: 85, height: 55)
-                .overlay(
-                    Image("Profilephoto").resizable()
+                        .frame(maxWidth: 85, maxHeight: 55)
                         .clipShape(Circle())
-                    
-                    
-                    //.shadow(radius: 10)
-                    //.overlay(Circle())//.stroke(Color.init(UIColor.transitionPage), lineWidth: 3))
-                    
                 )
-            
         }
     }
 }
+
 
 struct LargerProfileView: View {
     var body: some View {
