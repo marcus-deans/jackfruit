@@ -54,6 +54,7 @@
 		696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0AD0287D15C0008F4C34 /* ActivityModel.swift */; };
 		6993F02028817959001BFE0E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01F28817959001BFE0E /* ToastUI */; };
 		6993F02328817987001BFE0E /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F02228817987001BFE0E /* WrappingHStack */; };
+		D0214024288537FD00EEE825 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0214023288537FD00EEE825 /* ProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +119,7 @@
 		253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansProBlk.OTF; sourceTree = "<group>"; };
 		696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsDiscover.swift; sourceTree = "<group>"; };
 		696D0AD0287D15C0008F4C34 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		D0214023288537FD00EEE825 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -196,6 +198,7 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
+				D0214022288537DA00EEE825 /* profileUI */,
 				251F854128852189000F64C4 /* contacts-list */,
 				251F854028852182000F64C4 /* models */,
 				253A74B12877E7710005D7E1 /* jackfruit.entitlements */,
@@ -289,6 +292,14 @@
 				253A74BD2877F4750005D7E1 /* CircularStd-Book.otf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		D0214022288537DA00EEE825 /* profileUI */ = {
+			isa = PBXGroup;
+			children = (
+				D0214023288537FD00EEE825 /* ProfileView.swift */,
+			);
+			path = profileUI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -460,6 +471,7 @@
 				251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */,
 				251F854528852205000F64C4 /* ProfileModalView.swift in Sources */,
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
+				D0214024288537FD00EEE825 /* ProfileView.swift in Sources */,
 				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
 				251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */,
