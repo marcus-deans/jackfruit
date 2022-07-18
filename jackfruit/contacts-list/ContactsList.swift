@@ -133,10 +133,18 @@ struct ContactsList: View {
     }
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
+    @State private var showProfileModal = false
+    
     var body: some View {
         ZStack {
             //Color.init(UIColor.middleColor)
             if #available(iOS 15.0, *) {
+                Button("Profile") {
+                    showProfileModal.toggle()
+                }
+                .sheet(isPresented: $showProfileModal) {
+                    //                    ProfileModal()
+                }
                 NavigationView {
                     List {
                         ForEach(searchResults) {
@@ -166,25 +174,17 @@ struct ContactsList: View {
                                 .foregroundColor(.init(UIColor.cardColor))
                                 .shadow(radius: 1)
                         ).padding(.top, 1)
-                        .listRowBackground(Color.init(UIColor.middleColor))
+                            .listRowBackground(Color.init(UIColor.middleColor))
                     }.padding(.top, 5)
                         .listStyle(.plain).background(Color.init(UIColor.middleColor))
                         .searchable(text: $searchText, placement: .automatic).background(Color.white).font(Font.custom("CircularStd-Black",
-                                                                                               size: 18))
+                                                                                                                       size: 18))
                     //.padding()
                         .onAppear() { // (3)
                             self.viewModel.fetchData(userId: userId)
                             
-                              
-                          
-                                
-                            
-                            
                             
                         }                        .navigationBarTitle("Contacts").navigationBarHidden(false)
-                    
-                    
-                    
                 }
             } else {
                 // Fallback on earlier versions
@@ -298,11 +298,11 @@ struct EmojiCircleView: View {
                 .overlay(
                     Image("Profilephoto").resizable()
                         .clipShape(Circle())
-                        
-                       
-                        //.shadow(radius: 10)
-                        //.overlay(Circle())//.stroke(Color.init(UIColor.transitionPage), lineWidth: 3))
-
+                    
+                    
+                    //.shadow(radius: 10)
+                    //.overlay(Circle())//.stroke(Color.init(UIColor.transitionPage), lineWidth: 3))
+                    
                 )
             
         }
@@ -319,7 +319,7 @@ struct LargerProfileView: View {
 }
 
 
-struct ContactsMain_Previews: PreviewProvider {
+struct ContactsList_Previews: PreviewProvider {
     static var previews: some View {
         ContactsList()
     }

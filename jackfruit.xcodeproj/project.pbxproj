@@ -11,6 +11,8 @@
 		251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8537287BF840000F64C4 /* ImagePicker.swift */; };
 		251F853A287BFD04000F64C4 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8539287BFD04000F64C4 /* Log.swift */; };
 		251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */ = {isa = PBXBuildFile; productRef = 251F853C287FD6AA000F64C4 /* iPhoneNumberField */; };
+		251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F8542288521EE000F64C4 /* ProfileModal.swift */; };
+		251F854528852205000F64C4 /* ProfileModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F854428852205000F64C4 /* ProfileModalView.swift */; };
 		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
 		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
 		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
@@ -76,6 +78,8 @@
 		251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen9PhotoView.swift; sourceTree = "<group>"; };
 		251F8537287BF840000F64C4 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		251F8539287BFD04000F64C4 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		251F8542288521EE000F64C4 /* ProfileModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModal.swift; sourceTree = "<group>"; };
+		251F854428852205000F64C4 /* ProfileModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileModalView.swift; sourceTree = "<group>"; };
 		253A744F2877E1920005D7E1 /* jackfruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jackfruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253A74522877E1920005D7E1 /* jackfruitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitApp.swift; sourceTree = "<group>"; };
 		253A74562877E1940005D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -151,6 +155,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		251F854028852182000F64C4 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				253A74AC2877E5820005D7E1 /* UserModel.swift */,
+				696D0AD0287D15C0008F4C34 /* ActivityModel.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		251F854128852189000F64C4 /* contacts-list */ = {
+			isa = PBXGroup;
+			children = (
+				253A74A32877E4E40005D7E1 /* ContactsList.swift */,
+				251F8542288521EE000F64C4 /* ProfileModal.swift */,
+				251F854428852205000F64C4 /* ProfileModalView.swift */,
+			);
+			path = "contacts-list";
+			sourceTree = "<group>";
+		};
 		253A74462877E1920005D7E1 = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +198,8 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
+				251F854128852189000F64C4 /* contacts-list */,
+				251F854028852182000F64C4 /* models */,
 				253A74B12877E7710005D7E1 /* jackfruit.entitlements */,
 				253A74B02877E6630005D7E1 /* Info.plist */,
 				253A74AE2877E6520005D7E1 /* GoogleService-Info.plist */,
@@ -185,8 +210,6 @@
 				253A74B72877F4240005D7E1 /* fonts */,
 				253A74562877E1940005D7E1 /* Assets.xcassets */,
 				253A74582877E1940005D7E1 /* Preview Content */,
-				253A74AC2877E5820005D7E1 /* UserModel.swift */,
-				696D0AD0287D15C0008F4C34 /* ActivityModel.swift */,
 			);
 			path = jackfruit;
 			sourceTree = "<group>";
@@ -241,7 +264,6 @@
 			children = (
 				253A749F2877E4AF0005D7E1 /* MainTabView.swift */,
 				253A74A12877E4D00005D7E1 /* ContactsAdd.swift */,
-				253A74A32877E4E40005D7E1 /* ContactsList.swift */,
 				696D0ACB287B98DE008F4C34 /* ContactsDiscover.swift */,
 				69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */,
 			);
@@ -440,9 +462,11 @@
 				253A74A22877E4D00005D7E1 /* ContactsAdd.swift in Sources */,
 				251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */,
 				251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */,
+				251F854528852205000F64C4 /* ProfileModalView.swift in Sources */,
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
 				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
+				251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */,
 				253A749D2877E4170005D7E1 /* Screen10CompletionView.swift in Sources */,
 				253A74A72877E52B0005D7E1 /* Theme.swift in Sources */,
 				253A748F2877E33E0005D7E1 /* Screen2FirstNameView.swift in Sources */,
