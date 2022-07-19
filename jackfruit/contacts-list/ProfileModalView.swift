@@ -102,7 +102,7 @@ struct ProfileModalView: View {
                                     ZStack{
                                         LazyVGrid(columns: columns, spacing: 5) {
                                             ForEach(data, id: \.self) { item in
-                                                Text(activityText[item] ?? item)
+                                                Text(textEmojiMap[item] ?? item)
                                                     .font(Font.custom("CircularStd-Black", size: 16))
                                                     .frame(width: screenWidth-250, height: 40)
                                                     .background(RoundedRectangle(cornerRadius: 10.0, style: .continuous).fill(Color(UIColor.transitionPage)))
@@ -133,14 +133,14 @@ struct ProfileModalView: View {
                     HStack {
                         Awesome.Brand.linkedin.image
                             .size(25)
-                        TextField("Linkedin URL", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                        TextField("Linkedin Handle (no @ sign!)", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
                             .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     }
                     
                     HStack{
                         Awesome.Brand.github.image
                             .size(25)
-                        TextField("Github URL", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                        TextField("Github Handle (no @ sign!)", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font
                             .custom("CircularStd-Book", size: 14))
                     }
@@ -152,20 +152,20 @@ struct ProfileModalView: View {
                     HStack{
                         Awesome.Brand.instagram.image
                             .size(25)
-                        TextField("Instagram URL", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                        TextField("Instagram Handle (no @ sign!)", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     }
                     
                     HStack{
                         Awesome.Brand.snapchat.image
                             .size(25)
-                    TextField("Snapchat URL", text: $userModel.snapchatURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                    TextField("Snapchat Handle (no @ sign!)", text: $userModel.snapchatURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     }
                     HStack{
                         Awesome.Brand.twitter.image
                             .size(25)
-                    TextField("Twitter URL", text: $userModel.twitterURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                    TextField("Twitter Handle (no @ sign!)", text: $userModel.twitterURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     }
                 }.padding()

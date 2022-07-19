@@ -23,32 +23,13 @@ extension View {
     }
 }
 
-//TODO: implement default profile photo (don't use Juan)
-// Implement call/text to actual number
-// Add some orange colour accent (maybe shadow) to keep theme consistent
-// Maybe make big rounded box (Bumble style) as contact photo
-// Format activities, can define a map with emojis for each and displauy them
 struct ProfileView: View {
     
     @State var show = false
     let userModel: UserModel
-    //    let firstName: String
-    //    let lastName: String
-    //    let phoneNumber: String
-    //    let emailAddress: String
-    //    let location: String
-    //    let photoURL: String
-    //    let parameters: [String]
-    
+
     init(userModel: UserModel){
         self.userModel = userModel
-        //        self.firstName = userModel.firstName ?? ""
-        //        self.lastName = userModel.lastName ?? ""
-        //        self.phoneNumber = userModel.phoneNumber ?? ""
-        //        self.emailAddress = userModel.emailAddress ?? ""
-        //        self.location = userModel.location ?? ""
-        //        self.photoURL = userModel.photoURL ?? "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg"
-        //        self.parameters = userModel.parameters ?? []
     }
     
     
@@ -159,7 +140,7 @@ struct ProfileView: View {
                                 ZStack{
                                     LazyVGrid(columns: columns, spacing: 5) {
                                         ForEach(data, id: \.self) { item in
-                                            Text(activityText[item] ?? item)
+                                            Text(textEmojiMap[item] ?? item)
                                                 .font(Font.custom("CircularStd-Black", size: 16))
                                                 .frame(width: screenWidth-250, height: 40)
                                                 .background(RoundedRectangle(cornerRadius: 10.0, style: .continuous).fill(Color(UIColor.transitionPage)))
@@ -175,40 +156,56 @@ struct ProfileView: View {
                     VStack {
                         Text("Professional").font(Font.custom("CircularStd-Black", size: 16))
                             .foregroundColor(.black)
-                        if userModel.linkedinURL != nil && userModel.linkedinURL != "" {
-                            HStack {
-                                Awesome.Brand.linkedin.image
-                                    .size(25)
-                                Text(userModel.linkedinURL!).font(Font.custom("CircularStd-Book", size: 14))
-                                    .foregroundColor(.black)
-                                
+                        if let linkedinHandle = userModel.linkedinURL{
+                            if linkedinHandle != "" {
+                                HStack {
+                                    Awesome.Brand.linkedin.image
+                                        .size(25)
+                                    Text("@[\(linkedinHandle)](https://www.linkedin.com/in/\(linkedinHandle))").font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
                             }
                         }
                         
-                        if userModel.githubURL != nil && userModel.githubURL != "" {
-                            HStack {
-                                Awesome.Brand.github.image
-                                    .size(25)
-                                Text(userModel.githubURL!).font(Font.custom("CircularStd-Book", size: 14))
-                                    .foregroundColor(.black)
-                                
+                        if let githubHandle = userModel.githubURL{
+                            if githubHandle != "" {
+                                HStack {
+                                    Awesome.Brand.github.image
+                                        .size(25)
+                                    Text("@[\(githubHandle)](https://github.com/\(githubHandle))").font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
                             }
                         }
+                        
                     }.padding()
                     
                     VStack {
                         Text("Social Networking").font(Font.custom("CircularStd-Black", size: 16))
                             .foregroundColor(.black)
                         
-                        if userModel.instagramURL != nil && userModel.instagramURL != "" {
-                            HStack {
-                                Awesome.Brand.instagram.image
-                                    .size(25)
-                                Text(userModel.instagramURL!).font(Font.custom("CircularStd-Book", size: 14))
-                                    .foregroundColor(.black)
-                                
+                        if let instagramHandle = userModel.instagramURL{
+                            if instagramHandle != "" {
+                                HStack {
+                                    Awesome.Brand.instagram.image
+                                        .size(25)
+                                    Text("@[\(instagramHandle)](https://www.instagram.com/\(instagramHandle))").font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
                             }
                         }
+                        
+                        if let snapchatHandle = userModel.snapchatURL{
+                            if snapchatHandle != "" {
+                                HStack {
+                                    Awesome.Brand.snapchat.image
+                                        .size(25)
+                                    Text("@[\(snapchatHandle)](https://www.snapchat.com/add/\(snapchatHandle))").font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                        
                         if userModel.snapchatURL != nil && userModel.snapchatURL != "" {
                             HStack {
                                 Awesome.Brand.snapchat.image
@@ -218,15 +215,18 @@ struct ProfileView: View {
                                 
                             }
                         }
-                        if userModel.twitterURL != nil && userModel.twitterURL != "" {
-                            HStack {
-                                Awesome.Brand.twitter.image
-                                    .size(25)
-                                Text(userModel.twitterURL!).font(Font.custom("CircularStd-Book", size: 14))
-                                    .foregroundColor(.black)
-                                
+                        
+                        if let twitterHandle = userModel.twitterURL{
+                            if twitterHandle != "" {
+                                HStack {
+                                    Awesome.Brand.twitter.image
+                                        .size(25)
+                                    Text("@[\(twitterHandle)](https://twitter.com/\(twitterHandle))").font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
                             }
                         }
+                        
                     }.padding()
                     
                     VStack{
@@ -246,7 +246,7 @@ struct ProfileView: View {
                                 Awesome.Solid.graduationCap.image
                                     .size(25)
                                 if userModel.universityName != nil && userModel.universityName != ""{
-                                    Text(userModel.universityName!).font(Font.custom("CircularStd-Book", size: 14))
+                                    Text(textEmojiMap[userModel.universityName!] ?? userModel.universityName!).font(Font.custom("CircularStd-Book", size: 14))
                                         .foregroundColor(.black)
                                 }
                                 if userModel.universityDegree != nil && userModel.universityDegree != "" {
@@ -277,16 +277,6 @@ struct ProfileView: View {
     }
     
     private func messagesOpener(){
-        
-        
-        
-        //            if let url = URL(string: UIApplication.openSettingsURLString) {
-        //                if UIApplication.shared.canOpenURL(url) {
-        //                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        //                }
-        //            }
-        
-        
         if UIApplication.shared.canOpenURL(URL(string:"sms:")!) {
             UIApplication.shared.open(URL(string:"sms:")!, options: [:], completionHandler: nil)
         }
@@ -305,11 +295,7 @@ func phoneOpener(){
 
 
 func sendMessage(phoneNumber: String){
-    
-    
-    
     let smsNumber = ""+phoneNumber
-    
     let sms: String = "sms:+\(phoneNumber)&body=Hi, it was great meeting you today!"
     let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
@@ -358,7 +344,10 @@ struct ProfileView_Previews: PreviewProvider {
             photoURL: "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg",
             parameters: ["pets", "traveling"],
             companyName: "Atomic",
-            snapchatURL: "snapchat.com/marcus_deans", hometown: "Windsor")
+            instagramURL: "marcus_deans",
+            snapchatURL: "snapchat.com/marcus_deans",
+            hometown: "Windsor",
+            universityName: "Duke University")
         )
     }
 }

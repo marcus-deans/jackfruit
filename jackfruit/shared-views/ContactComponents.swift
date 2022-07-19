@@ -10,11 +10,12 @@ import SwiftUI
 import WrappingHStack
 import NukeUI
 
-var activityText = ["pets":"pets 🐶",
+var textEmojiMap = ["pets":"pets 🐶",
                     "traveling":"traveling ✈️",
                     "sports":"sports 🏈",
                     "hobbies":"hobbies 📖",
-                    "creativity":"creativity 🎨"]
+                    "creativity":"creativity 🎨",
+                    "Duke University":"Duke 😈"]
 
 struct ProfilePhotoView: View {
     let profileURL: String
