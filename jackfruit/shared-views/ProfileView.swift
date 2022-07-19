@@ -54,11 +54,11 @@ struct ProfileView: View {
     
     var body: some View {
        
-        VStack{
+        VStack {
             
-                LazyImage(source: URL(string: photoURL)!){ state in
+                LazyImage(source: URL(string: photoURL)){ state in
                     if let image = state.image {
-                        image
+                        image.frame(width: 200, height: 200, alignment: .center).padding(.top, 20)
                     } else if state.error != nil {
                        
                     } else {
@@ -87,10 +87,44 @@ struct ProfileView: View {
                 
             }
             
+            HStack {
+                Button(action: {//messagesOpener()
+                    sendMessage(phoneNumber: phoneNumber)
+                }) {
+                    Image(systemName: "message")
+                        .font(.title2)
+                        .frame(width: 70, height: 30)
+                        .modifier(ButtonBG())
+                        .cornerRadius(30)
+                        .border(Color.blue, width: 2, cornerRadius: 25)
+                }
+                .padding()
+                
+                .modifier(ThemeShadow())
+                Button(action: {
+                    let phoneNumber = phoneNumber
+                    guard let number = URL(string: "tel://" + phoneNumber) else { return }
+                    if UIApplication.shared.canOpenURL(number) {
+                        UIApplication.shared.open(number)
+                    } else {
+                        print("Can't open url on this device")
+                    }
+                    
+                })  {   Image(systemName: "phone")
+                        .font(.title2)
+                        .frame(width: 70, height: 30)
+                        .modifier(ButtonBG())
+                        .cornerRadius(30)
+                        .border(Color.blue, width: 2, cornerRadius: 25)
+                    
+                }
+                .modifier(ThemeShadow())
+            }
+            
             HStack{
                 
                 HStack(spacing: 8){
-                    Image(systemName: "map").resizable().frame(width: 15, height: 20)
+                    Image(systemName: "location.circle").resizable().frame(width: 15, height: 20)
                     Text(location)
                 }.padding(8)
                     .background(Color.black.opacity(0.1))
@@ -111,39 +145,6 @@ struct ProfileView: View {
                 .background(Color.black.opacity(0.1))
                 .cornerRadius(10)
             
-            HStack{
-                Button(action: {//messagesOpener()
-                    sendMessage(phoneNumber: phoneNumber)
-                }) {
-                    Image(systemName: "message")
-                        .font(.title2)
-                        .frame(width: 110, height: 60)
-                        .modifier(ButtonBG())
-                        .cornerRadius(30)
-                        .border(Color.blue, width: 2, cornerRadius: 25)
-                }
-                .padding()
-                
-                .modifier(ThemeShadow())
-                Button(action: {
-                    var phoneNumber = phoneNumber
-                    guard let number = URL(string: "tel://" + phoneNumber) else { return }
-                    if UIApplication.shared.canOpenURL(number) {
-                        UIApplication.shared.open(number)
-                    } else {
-                        print("Can't open url on this device")
-                    }
-                    
-                })  {   Image(systemName: "phone")
-                        .font(.title2)
-                        .frame(width: 110, height: 60)
-                        .modifier(ButtonBG())
-                        .cornerRadius(30)
-                        .border(Color.blue, width: 2, cornerRadius: 25)
-                    
-                }
-                .modifier(ThemeShadow())
-            }
             
              
             VStack{
@@ -173,14 +174,14 @@ struct ProfileView: View {
                                                 .frame(width: screenWidth-250, height: 50)
                                             //.padding()
                                                 .background(Color.black)
-                                                .foregroundColor(.white)
+                                                .foregroundColor(Color.init(UIColor.middleColor))
                                                 .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
                                         }
                                     }
                                     
                                     .frame(maxHeight: 50)
-                                }
-                            }
+                                }.background(Color.init(UIColor.middleColor))
+                            }.background(Color.init(UIColor.middleColor))
                         }
                     }
                 }
@@ -189,7 +190,7 @@ struct ProfileView: View {
             
         }
         
-        }
+        }.background(Color.init(UIColor.middleColor))
     }
     
     
