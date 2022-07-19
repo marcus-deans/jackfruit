@@ -6,13 +6,20 @@ import ToastUI
 import FirebaseFirestore
 import WrappingHStack
 
+
 class ActivitiesVM: ObservableObject {
-    @Published var users = [UserModel]()
+    //    @Published var users = [UserModel]()
     
+    @Published var users: Set<UserModel> = Set()
     private var db = Firestore.firestore()
     
     func fetchData(userId: String) {
-        users = [UserModel]()
+        //        users = [UserModel]()
+        users = Set()
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
         db.collection("users").document(userId).addSnapshotListener { (documentSnapshot, error) in
             guard let data = documentSnapshot?.data() else {
                 print("No documents")
@@ -38,9 +45,11 @@ class ActivitiesVM: ObservableObject {
                         let phoneNumber = data["phone_number"] as? String ?? ""
                         let emailAddress = data["last_name"] as? String ?? ""
                         let location = data["location"] as? String ?? ""
+                        let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
                         
-                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        //                        self.users.append
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
             
@@ -64,9 +73,11 @@ class ActivitiesVM: ObservableObject {
                         let phoneNumber = data["phone_number"] as? String ?? ""
                         let emailAddress = data["last_name"] as? String ?? ""
                         let location = data["location"] as? String ?? ""
+                        let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
                         
-                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        //                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
         }
@@ -79,7 +90,7 @@ class ActivitiesVM: ObservableObject {
                 return
             }
             
-            self.users = documents.map { queryDocumentSnapshot -> UserModel in
+            self.users = Set(documents.map { queryDocumentSnapshot -> UserModel in
                 let data = queryDocumentSnapshot.data()
                 let id = data["id"] as? UUID ?? UUID()
                 let firstName = data["first_name"] as? String ?? ""
@@ -87,10 +98,12 @@ class ActivitiesVM: ObservableObject {
                 let phoneNumber = data["phone_number"] as? String ?? ""
                 let emailAddress = data["last_name"] as? String ?? ""
                 let location = data["location"] as? String ?? ""
+                let photoURL = data["photo_url"] as? String ?? ""
                 let parameters = data["parameters"] as? [String] ?? []
                 
-                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters)
+                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters)
             }
+            )
         }
     }
 }
@@ -151,7 +164,7 @@ struct ActivitiesPopUp: View {
                        ScrollView {
                            LazyVGrid(columns: columns, spacing: 10) {
                                ForEach(searchResults.keys.sorted(), id: \.self) { item in
-                                   NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!)) {
+                                   NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!, activity: item)) {
                                        let count = getNumberOfFriends(activity: searchResults[item]!)
                                        VStack {
                                            Text(item)
@@ -185,6 +198,7 @@ struct ActivitiesPopUp: View {
 
 struct DetailsViewDiscover1: View {
     let profiles: [UserModel]
+    let activity: String
     var body: some View {
         ZStack {
             //Color.init(UIColor.middleColor)
@@ -198,9 +212,10 @@ struct DetailsViewDiscover1: View {
                 NavigationView {
                     List {
                         ForEach(profiles) { userItem in
-                            NavigationLink(destination: ContactRowView(userItem: userItem).navigationBarHidden(true)) {
+                            NavigationLink(destination: ProfileView(userModel: userItem).navigationBarHidden(true)) {
                                 HStack{
-                                    EmojiCircleView().padding(.vertical, 10)
+                                    ProfilePhotoView(profileURL: userItem.photoURL!)
+                                        .padding(.vertical, 10)
                                     VStack(alignment: .leading) {
                                         HStack {
                                             Text(userItem.firstName!)
@@ -227,7 +242,7 @@ struct DetailsViewDiscover1: View {
                     }.padding(.top, 5)
                         .listStyle(.plain).background(Color.init(UIColor.middleColor))
                         .navigationBarHidden(true)
-                }
+                }.navigationBarTitle("\(activity)")
             } else {
                 // Fallback on earlier versions
             }

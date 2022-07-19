@@ -9,14 +9,19 @@ import SwiftUI
 import FirebaseFirestore
 import WrappingHStack
 
-
 class ContactsDiscVM: ObservableObject {
-    @Published var users = [UserModel]()
+    //    @Published var users = [UserModel]()
     
+    @Published var users: Set<UserModel> = Set()
     private var db = Firestore.firestore()
     
     func fetchData(userId: String) {
-        users = [UserModel]()
+        //        users = [UserModel]()
+        users = Set()
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
         db.collection("users").document(userId).addSnapshotListener { (documentSnapshot, error) in
             guard let data = documentSnapshot?.data() else {
                 print("No documents")
@@ -42,9 +47,11 @@ class ContactsDiscVM: ObservableObject {
                         let phoneNumber = data["phone_number"] as? String ?? ""
                         let emailAddress = data["last_name"] as? String ?? ""
                         let location = data["location"] as? String ?? ""
+                        let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
                         
-                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        //                        self.users.append
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
             
@@ -68,9 +75,11 @@ class ContactsDiscVM: ObservableObject {
                         let phoneNumber = data["phone_number"] as? String ?? ""
                         let emailAddress = data["last_name"] as? String ?? ""
                         let location = data["location"] as? String ?? ""
+                        let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
                         
-                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        //                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                     }
             }
         }
@@ -83,7 +92,7 @@ class ContactsDiscVM: ObservableObject {
                 return
             }
             
-            self.users = documents.map { queryDocumentSnapshot -> UserModel in
+            self.users = Set(documents.map { queryDocumentSnapshot -> UserModel in
                 let data = queryDocumentSnapshot.data()
                 let id = data["id"] as? UUID ?? UUID()
                 let firstName = data["first_name"] as? String ?? ""
@@ -91,10 +100,12 @@ class ContactsDiscVM: ObservableObject {
                 let phoneNumber = data["phone_number"] as? String ?? ""
                 let emailAddress = data["last_name"] as? String ?? ""
                 let location = data["location"] as? String ?? ""
+                let photoURL = data["photo_url"] as? String ?? ""
                 let parameters = data["parameters"] as? [String] ?? []
                 
-                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters)
+                return UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters)
             }
+            )
         }
     }
 }
@@ -122,9 +133,9 @@ struct ContactsDiscover: View {
         for prof in userList {
             for param in prof.parameters! {
                 if paramMap[param] != nil {
-                    paramMap[param]!.append(prof.firstName!)
+                    paramMap[param]!.append(prof)
                 } else {
-                    paramMap[param] = [prof.firstName!]
+                    paramMap[param] = [prof]
                 }
             }
         }

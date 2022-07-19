@@ -54,142 +54,176 @@ struct ProfileView: View {
     
     var body: some View {
        
-        VStack {
-            
-                LazyImage(source: URL(string: photoURL)){ state in
-                    if let image = state.image {
-                        image.frame(width: 200, height: 200, alignment: .center).padding(.top, 20)
-                    } else if state.error != nil {
-                       
-                    } else {
-                        ZStack{
-                    
-                        RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                       .fill(.gray)
-                                       .frame(width: 200, height: 200)
-                            
-                            Text(firstName.prefix(1)+" "+lastName.prefix(1))
-                                .font(.system(size: 60))
-                                .bold()
-                            
-                            
+        ScrollView {
+            VStack {
+                
+                    LazyImage(source: URL(string: photoURL)) { state in
+                        if let image = state.image {
+                            image
+                                .frame(width: 150, height: 150, alignment: .center)
+                                .clipShape(Circle())
+                                .background(Circle().stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
+                                //.border(Color.init(UIColor.transitionPage), width: 10)
+                                .padding(.top, 20)
+                        } else if state.error != nil {
+                           
+                        } else {
+                            ZStack{
+                        
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                           .fill(.gray)
+                                           .frame(width: 200, height: 200)
+                                
+                                Text(firstName.prefix(1)+" "+lastName.prefix(1))
+                                    .font(Font.custom("CircularStd-Book", size: 30))
+                                    .foregroundColor(.black)
+                                    .bold()
+                                
+                                
+                            }
                         }
                     }
-                }
 
-        VStack  {
-            Text("\(firstName) \(lastName)")
-                .font(.system(size: 30))
-                .fontWeight(.heavy)
-            
-            HStack{
-                Text("iOS Engineer")
+            VStack  {
+                Text("\(firstName) \(lastName)")
+                    .font(Font.custom("CircularStd-Book", size: 30))
+                    .foregroundColor(.black)
+                    .fontWeight(.heavy)
                 
-            }
-            
-            HStack {
-                Button(action: {//messagesOpener()
-                    sendMessage(phoneNumber: phoneNumber)
-                }) {
-                    Image(systemName: "message")
-                        .font(.title2)
-                        .frame(width: 70, height: 30)
-                        .modifier(ButtonBG())
-                        .cornerRadius(30)
-                        .border(Color.blue, width: 2, cornerRadius: 25)
+                HStack{
+                    Text("iOS Engineer").font(Font.custom("CircularStd-Book", size: 20))
+                        .foregroundColor(.black)
+                    
                 }
-                .padding()
                 
-                .modifier(ThemeShadow())
-                Button(action: {
-                    let phoneNumber = phoneNumber
-                    guard let number = URL(string: "tel://" + phoneNumber) else { return }
-                    if UIApplication.shared.canOpenURL(number) {
-                        UIApplication.shared.open(number)
-                    } else {
-                        print("Can't open url on this device")
+                HStack {
+                    
+                    HStack(spacing: 8){
+                        Image(systemName: "location.circle")
+                        Text(location)
+                    }//.padding(8)
+                        .font(Font.custom("CircularStd-Book", size: 20))
+                        .foregroundColor(Color.black)
+                        
+                        .cornerRadius(10)
+                        //.frame(width:20, height: 20)
+                    
+                    HStack(spacing: 8){
+                        Text("+1 " + phoneNumber).font(Font.custom("CircularStd-Book", size: 20))
+                    }//.padding(8)
+                        
+                        .foregroundColor(Color.black)
+                        .cornerRadius(10)
+                
+                }//.padding(.vertical, 15)
+                
+                HStack {
+                    Button(action: {//messagesOpener()
+                        sendMessage(phoneNumber: phoneNumber)
+                    }) {
+                        Image(systemName: "message")
+                            .font(Font.custom("CircularStd-Book", size: 30))
+                            .frame(width: 70, height: 40)
+                            .modifier(ButtonBG())
+                            .cornerRadius(30)
+                            .border(Color.black, width: 2, cornerRadius: 25)
                     }
                     
-                })  {   Image(systemName: "phone")
-                        .font(.title2)
-                        .frame(width: 70, height: 30)
-                        .modifier(ButtonBG())
-                        .cornerRadius(30)
-                        .border(Color.blue, width: 2, cornerRadius: 25)
                     
+                    .modifier(ThemeShadow())
+                    Button(action: {
+                        let phoneNumber = phoneNumber
+                        guard let number = URL(string: "tel://" + phoneNumber) else { return }
+                        if UIApplication.shared.canOpenURL(number) {
+                            UIApplication.shared.open(number)
+                        } else {
+                            print("Can't open url on this device")
+                        }
+                        
+                    })  {   Image(systemName: "phone")
+                            .font(Font.custom("CircularStd-Book", size: 30))
+                            .frame(width: 70, height: 40)
+                            .modifier(ButtonBG())
+                            .cornerRadius(30)
+                            .border(Color.black, width: 2, cornerRadius: 25)
+                        
+                    }
+                    .modifier(ThemeShadow())
                 }
-                .modifier(ThemeShadow())
-            }
-            
-            HStack{
                 
-                HStack(spacing: 8){
-                    Image(systemName: "location.circle").resizable().frame(width: 15, height: 20)
-                    Text(location)
-                }.padding(8)
-                    .background(Color.black.opacity(0.1))
-                    .cornerRadius(10)
+              
                 
-                HStack(spacing: 8){
-                    Image(systemName: "suitcase").resizable().frame(width: 20, height: 20)
-                }.padding(8)
-                    .background(Color.black.opacity(0.1))
-                    .cornerRadius(10)
                 
-            }
-            
-            
-            HStack(spacing: 8){
-                Text("+1 " + phoneNumber)
-            }.padding(8)
-                .background(Color.black.opacity(0.1))
-                .cornerRadius(10)
-            
-            
-             
-            VStack{
-                let words = parameters
-                ZStack{
-                    Color.white
-                        .edgesIgnoringSafeArea(.all)
-                    VStack{
-                        let data = words.map { " \($0)" }
-                         let screenWidth = UIScreen.main.bounds.width
-                        
-                        let columns = [
-                            GridItem(.fixed(screenWidth-200)),
-                            GridItem(.flexible()),
-                            //GridItem(.flexible())
-                        ]
-                        
-                        ZStack{
+                
+                
+                
+                 
+                VStack{
+                    Text("\(firstName)'s Interests").font(Font.custom("CircularStd-Black", size: 20))
+                        .foregroundColor(Color.black)
+                    
+                    let words = parameters
+                    ZStack{
+                        Color.white
+                            .edgesIgnoringSafeArea(.all)
+                        VStack{
+                            let data = words.map { " \($0)" }
+                             let screenWidth = UIScreen.main.bounds.width
                             
-                            ScrollView {
-                                LazyVGrid(columns: columns, spacing: 20) {
-                                    ForEach(data, id: \.self) { item in
-                                        Button {
-                                            
-                                        } label: {
-                                            Text(item)
-                                                .frame(width: screenWidth-250, height: 50)
-                                            //.padding()
-                                                .background(Color.black)
-                                                .foregroundColor(Color.init(UIColor.middleColor))
-                                                .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                            let columns = [
+                                GridItem(.fixed(screenWidth-200)),
+                                GridItem(.flexible()),
+                                //GridItem(.flexible())
+                            ]
+                            
+                            ZStack{
+                                    LazyVGrid(columns: columns, spacing: 5) {
+                                        ForEach(data, id: \.self) { item in
+                                            Button {
+
+                                            } label: {
+                                                Text(item)
+                                                    .font(Font.custom("CircularStd-Black", size: 20))
+                                                    .frame(width: screenWidth-250, height: 50)
+                                                //.padding()
+                                                    .background(Color.init(UIColor.transitionPage))
+                                                    .foregroundColor(Color.init(UIColor.white))
+                                                    .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                            }
                                         }
-                                    }
-                                    
-                                    .frame(maxHeight: 50)
-                                }.background(Color.init(UIColor.middleColor))
-                            }.background(Color.init(UIColor.middleColor))
+
+                                        .frame(maxHeight: 50)
+                                    }.background(Color.init(UIColor.middleColor))
+                                
+//                                LazyVGrid(columns: columns, spacing: 10) {
+//                                    ForEach(data, id: \.self) { item in
+//                                       // NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!)) {
+//                                           // let count = getNumberOfFriends(activity: searchResults[item]!)
+//                                            VStack {
+//                                                Text(item)
+//                                                    .font(Font.custom("CircularStd-Black", size: 20))
+//                                            }
+//                                            .frame(width: screenWidth-250, height: 50)
+//                                            //.padding()
+//                                            .background(Color.init(UIColor.transitionPage))
+//                                            .foregroundColor(.white)
+//                                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+//
+//                                       // }
+//                                    }
+//                                }.padding(.horizontal, 33).padding(.top, 20)
+//                                .frame(maxHeight: 700)
+                                
+                            }
                         }
                     }
                 }
+                
+                
             }
             
+            }
             
-        }
-        
         }.background(Color.init(UIColor.middleColor))
     }
     
