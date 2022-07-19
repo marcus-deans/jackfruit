@@ -14,6 +14,7 @@
 
 import SwiftUI
 import NukeUI
+import PhoneNumberKit
 
 extension View {
     func border(_ color: Color, width: CGFloat, cornerRadius: CGFloat) -> some View {
@@ -52,25 +53,30 @@ struct ProfileView: View {
     
     
     var body: some View {
-        VStack() {
-            ZStack{
+       
+        VStack{
+            
                 LazyImage(source: URL(string: photoURL)!){ state in
                     if let image = state.image {
                         image
                     } else if state.error != nil {
-                        Image(systemName: "photo") // Indicates an error
+                       
                     } else {
-                        ProgressView() // Acts as a placeholder
+                        ZStack{
+                    
+                        RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                       .fill(.gray)
+                                       .frame(width: 200, height: 200)
+                            
+                            Text(firstName.prefix(1)+" "+lastName.prefix(1))
+                                .font(.system(size: 60))
+                                .bold()
+                            
+                            
+                        }
                     }
                 }
-                .frame(maxWidth: 150, maxHeight: 150)
-                .cornerRadius(90)
-                .shadow(radius: 5)
-                .clipShape(Circle())
-            }
-            
-        }
-        
+
         VStack  {
             Text("\(firstName) \(lastName)")
                 .font(.system(size: 30))
@@ -107,7 +113,7 @@ struct ProfileView: View {
             
             HStack{
                 Button(action: {//messagesOpener()
-                    sendMessage()
+                    sendMessage(phoneNumber: phoneNumber)
                 }) {
                     Image(systemName: "message")
                         .font(.title2)
@@ -120,18 +126,7 @@ struct ProfileView: View {
                 
                 .modifier(ThemeShadow())
                 Button(action: {
-                    //                    let phone = "tel:"
-                    //                    var phoneNumber = "(800)555-1212"
-                    //                    let phoneNumberformatted = phone + phoneNumber
-                    //                    guard let url = URL(string: phoneNumberformatted) else { return }
-                    //                    UIApplication.shared.open(url)
-                    //                    let dialer = URL(string: "tel://5028493750")
-                    //                    if let dialerURL = dialer {
-                    //                            UIApplication.shared.open(dialerURL)
-                    //                    }
-                    
-                    
-                    var phoneNumber = "(800)555-1212"
+                    var phoneNumber = phoneNumber
                     guard let number = URL(string: "tel://" + phoneNumber) else { return }
                     if UIApplication.shared.canOpenURL(number) {
                         UIApplication.shared.open(number)
@@ -150,49 +145,50 @@ struct ProfileView: View {
                 .modifier(ThemeShadow())
             }
             
-            
-        }
-        
-        VStack{
-            
-            
-            let words = ["tennis", "cricket", "baseball", "hiking"]
-            ZStack{
-                Color.white
-                    .edgesIgnoringSafeArea(.all)
-                VStack{
-                    let data = words.map { " \($0)" }
-                    let screenWidth = UIScreen.main.bounds.width
-                    
-                    let columns = [
-                        GridItem(.fixed(screenWidth-200)),
-                        GridItem(.flexible()),
-                        //GridItem(.flexible())
-                    ]
-                    
-                    ZStack{
+             
+            VStack{
+                let words = parameters
+                ZStack{
+                    Color.white
+                        .edgesIgnoringSafeArea(.all)
+                    VStack{
+                        let data = words.map { " \($0)" }
+                         let screenWidth = UIScreen.main.bounds.width
                         
-                        ScrollView {
-                            LazyVGrid(columns: columns, spacing: 20) {
-                                ForEach(data, id: \.self) { item in
-                                    Button {
-                                        
-                                    } label: {
-                                        Text(item)
-                                            .frame(width: screenWidth-250, height: 50)
-                                        //.padding()
-                                            .background(Color.black)
-                                            .foregroundColor(.white)
-                                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                        let columns = [
+                            GridItem(.fixed(screenWidth-200)),
+                            GridItem(.flexible()),
+                            //GridItem(.flexible())
+                        ]
+                        
+                        ZStack{
+                            
+                            ScrollView {
+                                LazyVGrid(columns: columns, spacing: 20) {
+                                    ForEach(data, id: \.self) { item in
+                                        Button {
+                                            
+                                        } label: {
+                                            Text(item)
+                                                .frame(width: screenWidth-250, height: 50)
+                                            //.padding()
+                                                .background(Color.black)
+                                                .foregroundColor(.white)
+                                                .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                        }
                                     }
+                                    
+                                    .frame(maxHeight: 50)
                                 }
-                                
-                                .frame(maxHeight: 50)
                             }
                         }
                     }
                 }
             }
+            
+            
+        }
+        
         }
     }
     
@@ -215,7 +211,7 @@ struct ProfileView: View {
 }
 
 
-private func phoneOpener(){
+  func phoneOpener(){
     if let url = URL(string: UIApplication.openSettingsURLString) {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -225,98 +221,19 @@ private func phoneOpener(){
 
 
 
-private func sendMessage(){
-    let sms: String = "sms:+610429326795&body=Hi, it was great meeting you today!"
+func sendMessage(phoneNumber: String){
+    
+   
+    
+      let smsNumber = ""+phoneNumber
+    
+    let sms: String = "sms:+\(phoneNumber)&body=Hi, it was great meeting you today!"
     let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
 }
 
-struct ProfileCarouselInfo: View {
-    @State private var selectedTab = 0
-    @State var currentDate = Date()
-    let timer = Timer.publish(every: 4, on: .main, in: .common).autoconnect()
-    let info = CarouselInfo.info
-    
-    var body: some View {
-        TabView(selection: $selectedTab) {
-            ForEach(0..<info.count) { i in
-                VStack(spacing: 12) {
-                    HStack(spacing: 16) {
-                        Image(systemName: info[i].image)
-                            .font(.system(size: 20))
-                            .foregroundColor(info[i].color)
-                        Text(info[i].title)
-                            .font(.title2)
-                            .bold()
-                    }
-                    Text(info[i].info)
-                        .fontWeight(.light)
-                    Spacer()
-                }
-                .tag(i)
-            }
-        }
-        .frame(width: UIScreen.main.bounds.width, height: 100)
-        .tabViewStyle(PageTabViewStyle())
-        .onReceive(timer) { input in
-            withAnimation(.easeInOut(duration: 1)) {
-                self.selectedTab += 1
-                if selectedTab == info.count {
-                    selectedTab = 0
-                }
-            }
-        }
-    }
-}
-
-struct CarouselInfo {
-    let id: Int
-    let title: String
-    let info: String
-    let image: String
-    let color: Color
-    
-    static let info = [
-        CarouselInfo(id: 0,
-                     title: "A",
-                     info: "B",
-                     image: "flame.fill",
-                     color: .white),
-        
-        CarouselInfo(id: 1,
-                     title: "C",
-                     info: "D",
-                     image: "bolt.fill",
-                     color: .purple),
-        
-        
-        CarouselInfo(id: 2,
-                     title: "E",
-                     info: "Fs",
-                     image: "star.fill",
-                     color: .blue),
-        CarouselInfo(id: 3,
-                     title: "G",
-                     info: "H",
-                     image: "location.fill",
-                     color: .blue),
-        CarouselInfo(id: 4,
-                     title: "J",
-                     info: "K",
-                     image: "key.fill",
-                     color: .orange),
-        CarouselInfo(id: 5,
-                     title: "L",
-                     info: "M",
-                     image: "gobackward",
-                     color: .white),
-        CarouselInfo(id: 6,
-                     title: "N",
-                     info: "O",
-                     image: "heart.fill",
-                     color: Color(UIColor(red: 60/255, green: 229/255, blue: 184/255, alpha: 1)))
-    ]
-}
+ 
+ 
 
 
 struct ButtonBG: ViewModifier {
