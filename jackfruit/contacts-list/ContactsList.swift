@@ -154,7 +154,7 @@ struct ContactsList: View {
                     List {
                         ForEach(searchResults) {
                             userItem in
-                            NavigationLink(destination: ContactRowView(userItem: userItem)) {
+                            NavigationLink(destination: ProfileView(userModel: userItem)) {
                                 HStack{
                                     ProfilePhotoView(profileURL: userItem.photoURL!)
                                         .padding(.vertical, 10)

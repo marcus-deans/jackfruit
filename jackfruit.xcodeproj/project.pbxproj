@@ -178,7 +178,6 @@
 				253A74A32877E4E40005D7E1 /* ContactsList.swift */,
 				251F8542288521EE000F64C4 /* ProfileModal.swift */,
 				251F854428852205000F64C4 /* ProfileModalView.swift */,
-				251F8548288545C6000F64C4 /* ProfileView.swift */,
 			);
 			path = "contacts-list";
 			sourceTree = "<group>";
@@ -196,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				251F85512885E5D2000F64C4 /* ContactComponents.swift */,
+				251F8548288545C6000F64C4 /* ProfileView.swift */,
 			);
 			path = "shared-views";
 			sourceTree = "<group>";
