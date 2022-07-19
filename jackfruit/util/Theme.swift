@@ -83,7 +83,7 @@ struct MyTextFieldStyle: TextFieldStyle {
                 RoundedRectangle(cornerRadius: 9, style: .continuous)
                     .foregroundColor(.white)
                     //.background(Color.white)
-                    .shadow(color: focused ? Color(UIColor.black).opacity(0.2) : Color(UIColor.transitionPage).opacity(0.3), radius: 4, x: 0, y: 5)
+                    .shadow(color: focused ? Color(UIColor.black).opacity(0.2) : Color(UIColor.clear).opacity(0.3), radius: 4, x: 0, y: 5)
             )
     }
 }
