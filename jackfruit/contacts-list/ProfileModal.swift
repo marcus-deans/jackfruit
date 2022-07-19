@@ -13,18 +13,18 @@ class ProfileModalVM: ObservableObject {
     var showLoginForm: Bool
     @Published var enteredUserName: String
     
-    @Published var companyName: String
-    @Published var companyPosition: String
-    @Published var linkedinURL: String
-    @Published var instagramURL: String
-    @Published var snapchatURL: String
-    @Published var githubURL: String
-    @Published var twitterURL: String
-    @Published var hometown: String
-    @Published var birthMonth: String
-    @Published var birthNumber: String
-    @Published var universityName: String
-    @Published var universityDegree: String
+    @Published var companyName: String = ""
+    @Published var companyPosition: String = ""
+    @Published var linkedinURL: String = ""
+    @Published var instagramURL: String = ""
+    @Published var snapchatURL: String = ""
+    @Published var githubURL: String = ""
+    @Published var twitterURL: String = ""
+    @Published var hometown: String = ""
+    @Published var birthMonth: String = ""
+    @Published var birthNumber: String = ""
+    @Published var universityName: String = ""
+    @Published var universityDegree: String = ""
     
     
     @Environment(\.dismiss) var dismiss
@@ -36,6 +36,10 @@ class ProfileModalVM: ObservableObject {
     
     init(userId: String){
         let userRef = db.collection("users").document(userId)
+        self.showLoginForm = true
+        self.loggedInUser = nil
+        self.enteredUserName = ""
+        self.userModel = UserModel()
         userRef.getDocument(as: UserModel.self){ result in
             switch result {
             case .success(let model):
@@ -44,24 +48,20 @@ class ProfileModalVM: ObservableObject {
                 print("Could not obtain model, \(error.localizedDescription)")
                 self.userModel = UserModel()
             }
-        self.showLoginForm = true
-        self.loggedInUser = nil
-        self.enteredUserName = ""
+        }
     }
     
-    func updateUserEntry(model: UserModel) {
-        model.companyName = companyName
+    func updateUserEntry() {
+        userModel.companyName = companyName
         
-        let userRef = db.collection("users").document(model.phoneNumber ?? "0000000000")
+ 
         do {
-            let _ = try db.collection("users").document(model.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(model) ?? Data()) as? [String:Any] ?? ["user":"error"] )
+            let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
             print(error)
         }
-        
     }
-    
 }
 
 struct ProfileModal: View {
@@ -76,10 +76,4 @@ struct ProfileModal: View {
             loggedInUser: vm.loggedInUser)
     }
     
-}
-
-struct ProfileModal_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileModal()
-    }
 }
