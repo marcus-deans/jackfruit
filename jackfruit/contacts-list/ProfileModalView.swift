@@ -207,7 +207,7 @@ struct ProfileModalView: View {
                     }
                     
                     HStack{
-                        Awesome.Solid.columns.image
+                        Awesome.Solid.graduationCap.image
                             .size(25)
                     TextField("University Name", text: $userModel.universityName ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
@@ -225,7 +225,7 @@ struct ProfileModalView: View {
                     TextField("Birth Day", text: $userModel.birthNumber ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     }
-                }
+                }.padding()
                 
                 
                 HStack{
@@ -233,16 +233,13 @@ struct ProfileModalView: View {
                         updateButtonAction()
                     }
                     .padding()
-                    .font(.title2)
-                    .background(.green)
+                    .buttonStyle(RoundedRectangleButtonStyle())
                     
                     Button("Dismiss") {
                         dismiss()
                     }
-                    .font(.title2)
                     .padding()
-                    .background(.black)
-                }
+                    .buttonStyle(RoundedRectangleButtonStyle())                }
                 }
             }
         }
