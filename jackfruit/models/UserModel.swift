@@ -18,7 +18,19 @@ struct UserModel : Codable, Identifiable, Hashable{
     var parameters: [String]?
     var personalContacts: [String]?
     var professionalContacts: [String]?
-//    var instagram: String?
+    var companyName: String?
+    var companyPosition: String?
+    var linkedinURL: String?
+    var instagramURL: String?
+    var snapchatURL: String?
+    var githubURL: String?
+    var twitterURL: String?
+    var hometown: String?
+    var birthMonth: String?
+    var birthNumber: String?
+    var universityName: String?
+    var universityDegree: String?
+    
 //    var professionalParameters: ProfessionalParameters?
 //    var personalParameters: PersonalParameters?
     
@@ -31,7 +43,7 @@ struct UserModel : Codable, Identifiable, Hashable{
     }
     
     
-    init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", photoURL: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = []) {
+    init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", photoURL: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = [], companyName: String? = "", companyPosition: String? = "", linkdinURL: String? = "", instagramURL: String? = "", snapchatURL: String? = "", githubURL: String? = "", twitterURL: String? = "", hometown: String? = "", birthMonth: String? = "", birthNumber: String? = "", universityName: String? = "", universityDegree: String? = "") {
         self.id = id ?? UUID()
         self.firstName = firstName ?? ""
         self.lastName = lastName ?? ""
@@ -42,6 +54,18 @@ struct UserModel : Codable, Identifiable, Hashable{
         self.parameters = parameters ?? []
         self.personalContacts = personalContacts
         self.professionalContacts = professionalContacts
+        self.companyName = companyName
+        self.companyPosition = companyPosition
+        self.linkedinURL = linkedinURL
+        self.instagramURL = instagramURL
+        self.snapchatURL = snapchatURL
+        self.githubURL = githubURL
+        self.twitterURL = twitterURL
+        self.hometown = hometown
+        self.birthMonth = birthMonth
+        self.birthNumber = birthNumber
+        self.universityName = universityName
+        self.universityDegree = universityDegree
     }
     
     enum CodingKeys: String, CodingKey {
@@ -55,7 +79,18 @@ struct UserModel : Codable, Identifiable, Hashable{
         case parameters
         case personalContacts = "personal_contacts"
         case professionalContacts = "professional_contacts"
-//        case instagram = "instagram_url"
+        case companyName = "company_name"
+        case companyPosition = "company_position"
+        case linkedinURL = "linkedin_url"
+        case instagramURL = "instagram_url"
+        case snapchatURL = "snapchat_url"
+        case githubURL = "github_url"
+        case twitterURL = "twitter_url"
+        case hometown
+        case birthMonth = "birth_month"
+        case birthNumber = "birth_number"
+        case universityName = "university_name"
+        case universityDegree = "university_degree"
 //        case professionalParameters = "professional_parameters"
 //        case personalParameters = "personal_parameters"
     }
@@ -142,6 +177,18 @@ struct UserModel : Codable, Identifiable, Hashable{
         self.parameters = try values.decode([String].self,forKey: .parameters)
         self.personalContacts = try values.decode([String].self, forKey: .personalContacts)
         self.professionalContacts = try values.decode([String].self, forKey: .professionalContacts)
+        self.companyName = try values.decode(String.self, forKey: .companyName)
+        self.companyPosition = try values.decode(String.self, forKey: .companyPosition)
+        self.linkedinURL = try values.decode(String.self, forKey: .linkedinURL)
+        self.instagramURL = try values.decode(String.self, forKey: .instagramURL)
+        self.snapchatURL = try values.decode(String.self, forKey: .snapchatURL)
+        self.githubURL = try values.decode(String.self, forKey: .githubURL)
+        self.twitterURL = try values.decode(String.self, forKey: .twitterURL)
+        self.hometown = try values.decode(String.self, forKey: .hometown)
+        self.birthMonth = try values.decode(String.self, forKey: .birthMonth)
+        self.birthNumber = try values.decode(String.self, forKey: .birthNumber)
+        self.universityName = try values.decode(String.self, forKey: .universityName)
+        self.universityDegree = try values.decode(String.self, forKey: .universityDegree)
 //        self.instagram = try values.decode(String.self, forKey: .instagram)
 //        self.professionalParameters = try values.decode(ProfessionalParameters.self, forKey: .professionalParameters)
 //        self.personalParameters = try values.decode(PersonalParameters.self, forKey: .personalParameters)
@@ -183,6 +230,18 @@ extension UserModel: RawRepresentable {
         try container.encode(parameters, forKey: .parameters)
         try container.encode(personalContacts, forKey: .personalContacts)
         try container.encode(professionalContacts, forKey: .professionalContacts)
+        try container.encode(companyName, forKey: .companyName)
+        try container.encode(companyPosition, forKey: .companyPosition)
+        try container.encode(linkedinURL, forKey: .linkedinURL)
+        try container.encode(instagramURL, forKey: .instagramURL)
+        try container.encode(snapchatURL, forKey: .snapchatURL)
+        try container.encode(githubURL, forKey: .githubURL)
+        try container.encode(twitterURL, forKey: .twitterURL)
+        try container.encode(hometown, forKey: .hometown)
+        try container.encode(birthMonth, forKey: .birthMonth)
+        try container.encode(birthNumber, forKey: .birthNumber)
+        try container.encode(universityName, forKey: .universityName)
+        try container.encode(universityDegree , forKey: .universityDegree)
 //        try container.encode(instagram, forKey: .instagram)
 //        try container.encode(professionalParameters, forKey: .professionalParameters)
 //        try container.encode(personalParameters, forKey: .personalParameters)
