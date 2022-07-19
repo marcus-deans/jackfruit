@@ -39,19 +39,19 @@ class ProfileModalVM: ObservableObject {
     
     var loggedInUser: String?
     let db = Firestore.firestore()
-
+    
     
     init(userId: String){
         let userRef = db.collection("users").document(userId)
-
+        
         self.userModel = UserModel()
-//        userRef.getDocument(){ (document, error) in
-//            let result = Result {
-//                try document.flatMap {
-//                    try $0.data(as: UserModel.self)
-//                }
-//            }
-//        }
+        //        userRef.getDocument(){ (document, error) in
+        //            let result = Result {
+        //                try document.flatMap {
+        //                    try $0.data(as: UserModel.self)
+        //                }
+        //            }
+        //        }
         userRef.getDocument(as: UserModel.self){ result in
             switch result {
             case .success(let model):
@@ -87,19 +87,6 @@ class ProfileModalVM: ObservableObject {
     }
     
     func updateUserEntry() {
-//        userModel.companyName = companyName
-//        userModel.companyPosition = companyPosition
-//        userModel.linkedinURL = linkedinURL
-//        userModel.instagramURL = instagramURL
-//        userModel.snapchatURL = snapchatURL
-//        userModel.githubURL = githubURL
-//        userModel.twitterURL = twitterURL
-//        userModel.hometown = hometown
-//        userModel.birthMonth = birthMonth
-//        userModel.birthNumber = birthNumber
-//        userModel.universityName = universityName
-//        userModel.universityDegree = universityDegree
- 
         do {
             let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
@@ -114,26 +101,7 @@ struct ProfileModal: View {
     @AppStorage("user_id") var userId: String = ""
     @StateObject var vm: ProfileModalVM
     
-//    init(){
-//        vm.getCurrentValues()
-//    }
-    
     var body: some View {
         ProfileModalView(updateButtonAction: vm.updateUserEntry, userModel: $vm.userModel)
-//        ProfileModalView(
-//            updateButtonAction: vm.updateUserEntry,
-//            onBuildAction: vm.getCurrentValues,
-//            companyName: $vm.companyName,
-//            companyPosition: $vm.companyPosition,
-//            linkedinURL: $vm.linkedinURL,
-//            instagramURL: $vm.instagramURL,
-//            snapchatURL: $vm.snapchatURL,
-//            githubURL: $vm.githubURL,
-//            twitterURL: $vm.twitterURL,
-//            hometown: $vm.hometown,
-//            birthMonth: $vm.birthMonth,
-//            birthNumber: $vm.birthNumber,
-//            universityName: $vm.universityName,
-//            universityDegree: $vm.universityDegree)
     }
 }

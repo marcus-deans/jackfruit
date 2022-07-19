@@ -232,7 +232,7 @@ class FlowVM: ObservableObject {
     }
     
     func addProfileToStorage(image: UIImage, phoneNumber: String, completion: @escaping (String) -> Void) async {
-        guard let imageData = image.jpegData(compressionQuality: 0.05) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.15) else {
             logger.log("Error in getting profile image data")
             return
         }

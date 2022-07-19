@@ -120,17 +120,11 @@ struct ProfileModalView: View {
                                     ZStack{
                                         LazyVGrid(columns: columns, spacing: 5) {
                                             ForEach(data, id: \.self) { item in
-                                                Button {
-                                                    
-                                                } label: {
-                                                    Text(activityText[item] ?? item)
-                                                        .font(Font.custom("CircularStd-Black", size: 16))
-                                                        .frame(width: screenWidth-250, height: 40)
-                                                    //.padding()
-                                                        .background(Color.init(UIColor.transitionPage))
-                                                        .foregroundColor(Color.init(UIColor.white))
-                                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                                }
+                                                Text(activityText[item] ?? item)
+                                                    .font(Font.custom("CircularStd-Black", size: 16))
+                                                    .frame(width: screenWidth-250, height: 40)
+                                                    .background(RoundedRectangle(cornerRadius: 10.0, style: .continuous).fill(Color(UIColor.transitionPage)))
+                                                    .foregroundColor(Color.white)
                                             }
                                             
                                             .frame(maxHeight: 50)

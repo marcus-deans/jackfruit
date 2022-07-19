@@ -199,12 +199,11 @@ struct ContactsList: View {
                                     Spacer()
                                     Button("") {
                                         showProfileModal.toggle()
-                                        
                                     }.background(
                                         Image(systemName: "gearshape.fill").frame(width: 80.0, height: 80.0)
                                         
                                     ).sheet(isPresented: $showProfileModal) {
-//                                        ProfileModal()
+                                        ProfileModal(vm: ProfileModalVM(userId: userId))
                                     }}
                                 .searchable(text: $searchText, placement: .toolbar)
                                 .background(Color.white)
