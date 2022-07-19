@@ -12,7 +12,6 @@
 // grid like
 
 
-
 import SwiftUI
 import NukeUI
 
@@ -23,7 +22,11 @@ extension View {
 }
 
 
-
+//TODO: implement default profile photo (don't use Juan)
+// Implement call/text to actual number
+// Add some orange colour accent (maybe shadow) to keep theme consistent
+// Maybe make big rounded box (Bumble style) as contact photo
+// Format activities, can define a map with emojis for each and displauy them
 struct ProfileView: View {
     
     @State var show = false
@@ -347,7 +350,13 @@ struct RoundedRectangleAroundText: ViewModifier {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(userModel: UserModel(
-            firstName: "Marcus", lastName: "Deans", emailAddress: "marcusddeans@outlook.com", phoneNumber: "9196414032", location: "San Francisco", photoURL: "https://firebasestorage.googleapis.com:443/v0/b/jackfruit-c9dab.appspot.com/o/users%2F5555555555.jpg?alt=media&token=a9925d3e-df7a-4959-b21d-160abf8763c5", parameters: ["pets", "traveling"])
+            firstName: "Marcus",
+            lastName: "Deans",
+            emailAddress: "marcusddeans@outlook.com",
+            phoneNumber: "9196414032",
+            location: "San Francisco",
+            photoURL: "https://firebasestorage.googleapis.com:443/v0/b/jackfruit-c9dab.appspot.com/o/users%2F5555555555.jpg?alt=media&token=a9925d3e-df7a-4959-b21d-160abf8763c5",
+            parameters: ["pets", "traveling"])
                        )
     }
 }
