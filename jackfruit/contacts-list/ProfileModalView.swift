@@ -14,6 +14,19 @@ struct ProfileModalView: View {
     @Binding var enteredUserName: String
     @Environment(\.dismiss) var dismiss
     
+    @Binding var companyName: String
+    @Binding var companyPosition: String
+    @Binding var linkedinURL: String
+    @Binding var instagramURL: String
+    @Binding var snapchatURL: String
+    @Binding var githubURL: String
+    @Binding var twitterURL: String
+    @Binding var hometown: String
+    @Binding var birthMonth: String
+    @Binding var birthNumber: String
+    @Binding var universityName: String
+    @Binding var universityDegree: String
+    
     let loggedInUser: String?
     
     var body: some View {
@@ -41,13 +54,19 @@ struct ProfileModalView_Previews: PreviewProvider {
         ProfileModalView(
             showLoginForm: true,
             enteredUserName: .constant(""),
+            companyName: .constant(""),
+            companyPosition: .constant(""),
+            linkedinURL: .constant(""),
+            instagramURL: .constant(""),
+            snapchatURL: .constant(""),
+            githubURL: .constant(""),
+            twitterURL: .constant(""),
+            hometown: .constant(""),
+            birthMonth: .constant(""),
+            birthNumber: .constant(""),
+            universityName: .constant(""),
+            universityDegree: .constant(""),
             loggedInUser: nil
-        )
-        
-        ProfileModalView(
-            showLoginForm: false,
-            enteredUserName: .constant(""),
-            loggedInUser: "Mike Mousey"
         )
     }
 }

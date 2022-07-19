@@ -73,6 +73,18 @@ struct ProfileModal: View {
         ProfileModalView(
             showLoginForm: vm.showLoginForm,
             enteredUserName: $vm.enteredUserName,
+            companyName: $vm.companyName,
+            companyPosition: $vm.companyPosition,
+            linkedinURL: $vm.linkedinURL,
+            instagramURL: $vm.instagramURL,
+            snapchatURL: $vm.snapchatURL,
+            githubURL: $vm.githubURL,
+            twitterURL: $vm.twitterURL,
+            hometown: $vm.hometown,
+            birthMonth: $vm.birthMonth,
+            birthNumber: $vm.birthNumber,
+            universityName: $vm.universityName,
+            universityDegree: $vm.universityDegree,
             loggedInUser: vm.loggedInUser)
     }
     
