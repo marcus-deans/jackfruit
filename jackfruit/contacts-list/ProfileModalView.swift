@@ -9,24 +9,6 @@ import SwiftUI
 import NukeUI
 import Awesome
 
-struct TextOverlay: View{
-    let firstName: String
-    let lastName: String
-    let companyName: String
-    let companyPosition: String
-    var body: some View {
-        VStack {
-            Text("\(firstName) \(lastName)")
-                .font(Font.custom("CircularStd-Book", size: 28))
-                .foregroundColor(.white)
-                .fontWeight(.heavy)
-            
-            Text("\(companyPosition) at \(companyName)").font(Font.custom("CircularStd-Book", size: 18))
-                .foregroundColor(.white)
-        }.padding()
-    }
-}
-
 struct ProfileModalView: View {
     let updateButtonAction: () -> Void
     //    let onBuildAction: () -> Void
@@ -133,11 +115,9 @@ struct ProfileModalView: View {
                                 }
                             }
                         }
-                        
-                        
                     }
                 VStack {
-                    Text("Professional").font(Font.custom("CircularStd-Book", size: 16))
+                    Text("Professional").font(Font.custom("CircularStd-Black", size: 16))
                         .foregroundColor(.black)
                     HStack {
                         Awesome.Solid.building.image
@@ -167,7 +147,7 @@ struct ProfileModalView: View {
                 }.padding()
                 
                 VStack {
-                    Text("Social Networking").font(Font.custom("CircularStd-Book", size: 16))
+                    Text("Social Networking").font(Font.custom("CircularStd-Black", size: 16))
                         .foregroundColor(.black)
                     HStack{
                         Awesome.Brand.instagram.image
@@ -191,7 +171,7 @@ struct ProfileModalView: View {
                 }.padding()
                 
                 VStack{
-                    Text("Personal").font(Font.custom("CircularStd-Book", size: 16))
+                    Text("Personal").font(Font.custom("CircularStd-Black", size: 16))
                         .foregroundColor(.black)
                     HStack{
                         Awesome.Solid.home.image

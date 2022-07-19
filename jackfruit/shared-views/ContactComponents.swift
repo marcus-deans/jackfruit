@@ -133,6 +133,24 @@ struct LargerProfileView: View {
     }
 }
 
+struct TextOverlay: View{
+    let firstName: String
+    let lastName: String
+    let companyName: String
+    let companyPosition: String
+    var body: some View {
+        VStack {
+            Text("\(firstName) \(lastName)")
+                .font(Font.custom("CircularStd-Book", size: 28))
+                .foregroundColor(.white)
+                .fontWeight(.heavy)
+            
+            Text("\(companyPosition) at \(companyName)").font(Font.custom("CircularStd-Book", size: 18))
+                .foregroundColor(.white)
+        }.padding()
+    }
+}
+
 struct ContactComponents_Previews: PreviewProvider {
     static var previews: some View {
         ContactRowView(userItem: UserModel(
