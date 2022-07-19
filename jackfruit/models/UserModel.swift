@@ -43,7 +43,7 @@ struct UserModel : Codable, Identifiable, Hashable{
     }
     
     
-    init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", photoURL: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = [], companyName: String? = "", companyPosition: String? = "", linkdinURL: String? = "", instagramURL: String? = "", snapchatURL: String? = "", githubURL: String? = "", twitterURL: String? = "", hometown: String? = "", birthMonth: String? = "", birthNumber: String? = "", universityName: String? = "", universityDegree: String? = "") {
+    init(id: UUID? = UUID(), firstName: String? = "", lastName: String? = "", emailAddress: String? = "", phoneNumber: String? = "", location: String? = "", photoURL: String? = "", parameters: [String]? = [], personalContacts: [String]? = [], professionalContacts: [String]? = [], companyName: String? = "", companyPosition: String? = "", linkedinURL: String? = "", instagramURL: String? = "", snapchatURL: String? = "", githubURL: String? = "", twitterURL: String? = "", hometown: String? = "", birthMonth: String? = "", birthNumber: String? = "", universityName: String? = "", universityDegree: String? = "") {
         self.id = id ?? UUID()
         self.firstName = firstName ?? ""
         self.lastName = lastName ?? ""
