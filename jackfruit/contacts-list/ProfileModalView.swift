@@ -7,6 +7,7 @@
 
 import SwiftUI
 import NukeUI
+import Awesome
 
 struct TextOverlay: View{
     let firstName: String
@@ -145,6 +146,8 @@ struct ProfileModalView: View {
                     Text("Professional").font(Font.custom("CircularStd-Book", size: 16))
                         .foregroundColor(.black)
                     HStack {
+                        Awesome.Solid.building.image
+                            .size(25)
                         TextField("Company Name", text: $userModel.companyName ?? "", onEditingChanged: {edit in self.editing = edit })
                             .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                             .textContentType(.organizationName)
@@ -153,44 +156,75 @@ struct ProfileModalView: View {
                             .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                             .textContentType(.jobTitle)
                     }
-                    TextField("Linkedin URL", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    HStack {
+                        Awesome.Brand.linkedin.image
+                            .size(25)
+                        TextField("Linkedin URL", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
                     
-                    TextField("Github URL", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                    HStack{
+                        Awesome.Brand.github.image
+                            .size(25)
+                        TextField("Github URL", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font
                             .custom("CircularStd-Book", size: 14))
+                    }
                 }.padding()
                 
                 VStack {
                     Text("Social Networking").font(Font.custom("CircularStd-Book", size: 16))
                         .foregroundColor(.black)
-                    TextField("Instagram URL", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                    HStack{
+                        Awesome.Brand.instagram.image
+                            .size(25)
+                        TextField("Instagram URL", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
                     
+                    HStack{
+                        Awesome.Brand.snapchat.image
+                            .size(25)
                     TextField("Snapchat URL", text: $userModel.snapchatURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
+                    HStack{
+                        Awesome.Brand.twitter.image
+                            .size(25)
                     TextField("Twitter URL", text: $userModel.twitterURL ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    
+                    }
                 }.padding()
                 
                 VStack{
                     Text("Personal").font(Font.custom("CircularStd-Book", size: 16))
                         .foregroundColor(.black)
-                    TextField("Hometown", text: $userModel.hometown ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    HStack{
+                        Awesome.Solid.home.image
+                            .size(25)
+                        TextField("Hometown", text: $userModel.hometown ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
                     
+                    HStack{
+                        Awesome.Solid.columns.image
+                            .size(25)
                     TextField("University Name", text: $userModel.universityName ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     
                     TextField("University Degree", text: $userModel.universityDegree ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
                     
+                    HStack{
+                        Awesome.Regular.birthdayCake.image
+                            .size(25)
                     TextField("Birth Month", text: $userModel.birthMonth ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                     
                     TextField("Birth Day", text: $userModel.birthNumber ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
                 }
                 
                 

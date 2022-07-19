@@ -18,6 +18,7 @@
 		251F85522885E5D2000F64C4 /* ContactComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F85512885E5D2000F64C4 /* ContactComponents.swift */; };
 		251F85542885EA4D000F64C4 /* ContactsAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F85532885EA4C000F64C4 /* ContactsAddView.swift */; };
 		251F855728866881000F64C4 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 251F855628866881000F64C4 /* FirebaseFirestoreSwift-Beta */; };
+		251F855D288742E4000F64C4 /* Awesome in Frameworks */ = {isa = PBXBuildFile; productRef = 251F855C288742E4000F64C4 /* Awesome */; };
 		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
 		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
 		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
@@ -134,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */,
+				251F855D288742E4000F64C4 /* Awesome in Frameworks */,
 				6993F02328817987001BFE0E /* WrappingHStack in Frameworks */,
 				6993F02028817959001BFE0E /* ToastUI in Frameworks */,
 				253A74802877E2540005D7E1 /* FirebaseAuth in Frameworks */,
@@ -355,6 +357,7 @@
 				6993F02228817987001BFE0E /* WrappingHStack */,
 				251F854E2885DF66000F64C4 /* NukeUI */,
 				251F855628866881000F64C4 /* FirebaseFirestoreSwift-Beta */,
+				251F855C288742E4000F64C4 /* Awesome */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -438,6 +441,7 @@
 				6993F01E28817959001BFE0E /* XCRemoteSwiftPackageReference "ToastUI" */,
 				6993F02128817987001BFE0E /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				251F854D2885DF66000F64C4 /* XCRemoteSwiftPackageReference "NukeUI" */,
+				251F855B288742E3000F64C4 /* XCRemoteSwiftPackageReference "Awesome" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -868,6 +872,14 @@
 				minimumVersion = 0.8.3;
 			};
 		};
+		251F855B288742E3000F64C4 /* XCRemoteSwiftPackageReference "Awesome" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/LiveUI/Awesome";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -941,6 +953,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		251F855C288742E4000F64C4 /* Awesome */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 251F855B288742E3000F64C4 /* XCRemoteSwiftPackageReference "Awesome" */;
+			productName = Awesome;
 		};
 		253A747F2877E2540005D7E1 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
