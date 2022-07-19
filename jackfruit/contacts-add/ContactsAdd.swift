@@ -78,6 +78,34 @@ class ContactsAddVM: ObservableObject {
             }
         }
     }
+    
+    func fetchContactOverview(contactNumber: String) -> UserModel{
+        db.collection("users").document(contactNumber)
+                .addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        return
+                    }
+                    guard let data = document.data() else {
+                        print("Document data was empty.")
+                        return
+                    }
+                    let id = data["id"] as? UUID ?? UUID()
+                    let firstName = data["first_name"] as? String ?? ""
+                    let lastName = data["last_name"] as? String ?? ""
+                    
+                    return UserModel(id: id, firstName: firstName, lastName: lastName)
+                }
+        }
+//        db.collection("users").document(professionalContact).getDocument { (snapshot, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//            } else if let snapshot = snapshot {
+//                let contact: [UserModel] = snapshot.document.compactMap {
+//                    return try? $0.data(as: UserModel.self)
+//                }
+//            }
+//        }
 }
 
 struct ContactsAdd: View {
@@ -90,6 +118,7 @@ struct ContactsAdd: View {
             addWorkContactAction: { enteredNumber in
                 print("Executing professional with number \(enteredNumber)")
                 viewModel.addProfessionalRelationship(userId: storedUserId, professionalContact: enteredNumber)
+                return viewModel.fetchContactOverview(contactNumber: enteredNumber)
             },
             addGroupContactAction: { enteredNumber in
                 print("Executing group with number \(enteredNumber)")
@@ -98,6 +127,7 @@ struct ContactsAdd: View {
             addFriendContactAction: { enteredNumber in
                 print("Executing personal with number \(enteredNumber)")
                 viewModel.addPersonalRelationship(userId: storedUserId, personalContact: enteredNumber)
+                return viewModel.fetchContactOverview(contactNumber: enteredNumber)
             }
         )
     }

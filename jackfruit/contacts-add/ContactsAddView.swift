@@ -23,9 +23,9 @@ enum NumberButton: String {
 }
 
 struct ContactsAddView: View {
-    let addWorkContactAction: (String) -> Void
+    let addWorkContactAction: (String) -> UserModel
     let addGroupContactAction: (String) -> Void
-    let addFriendContactAction: (String) -> Void
+    let addFriendContactAction: (String) -> UserModel
     
     
     @State var enteredNumber = ""
@@ -52,6 +52,9 @@ struct ContactsAddView: View {
     @State var trimVal : CGFloat = 0
     @State var width : CGFloat = 70
     @State var hideTextLabel = false
+    @State var contactAddedAlert = false
+    var contactOverview: UserModel?
+    
     var body: some View {
         ZStack{
             Color.init(UIColor.middleColor)
@@ -173,9 +176,11 @@ struct ContactsAddView: View {
                             }
                             switch selectedRelation{
                             case .friend:
-                                addFriendContactAction(enteredNumber)
+                                self.contactOverview = addFriendContactAction(enteredNumber)
+                                contactAddedAlert = true
                             case .work:
-                                addWorkContactAction(enteredNumber)
+                                self.contactOverview = addWorkContactAction(enteredNumber)
+                                contactAddedAlert = true
                             case .group:
                                 addGroupContactAction(enteredNumber)
                             case .none:
@@ -192,6 +197,9 @@ struct ContactsAddView: View {
                                     print("Reset button")
                                 }
                             }
+                        }
+                        .alert("\(contactOverview?.firstName ?? "") \(contactOverview?.lastName ?? "") Added", isPresented: $contactAddedAlert){
+                            Button("OK", role: .cancel){}
                         }
                 }
             }

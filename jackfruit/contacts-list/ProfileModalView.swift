@@ -15,20 +15,6 @@ struct ProfileModalView: View {
     @Environment(\.dismiss) var dismiss
     
     @State var editing = false
-    
-    //    @Binding var companyName: String
-    //    @Binding var companyPosition: String
-    //    @Binding var linkedinURL: String
-    //    @Binding var instagramURL: String
-    //    @Binding var snapchatURL: String
-    //    @Binding var githubURL: String
-    //    @Binding var twitterURL: String
-    //    @Binding var hometown: String
-    //    @Binding var birthMonth: String
-    //    @Binding var birthNumber: String
-    //    @Binding var universityName: String
-    //    @Binding var universityDegree: String
-    
     @Binding var userModel: UserModel
     
     var body: some View {
