@@ -71,9 +71,24 @@ class ContactsListVM: ObservableObject {
                         let location = data["location"] as? String ?? ""
                         let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
-                        
+                        let companyName = data["company_name"] as? String ?? ""
+                        let companyPosition = data["company_position"] as? String ?? ""
+                        let linkedinURL = data["linkedin_url"] as? String ?? ""
+                        let instagramURL = data["instagram_url"] as? String ?? ""
+                        let snapchatURL = data["snapchat_url"] as? String ?? ""
+                        let githubURL = data["github_url"] as? String ?? ""
+                        let twitterURL = data["twitter_url"] as? String ?? ""
+                        let hometown = data["hometown"] as? String ?? ""
+                        let birthMonth = data["birth_month"] as? String ?? ""
+                        let birthNumber = data["birth_number"] as? String ?? ""
+                        let universityName = data["university_name"] as? String ?? ""
+                        let universityDegree = data["university_degree"] as? String ?? ""
                         //                        self.users.append
-                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        // MARK: working with onboarded only
+//                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        
+                        
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters, companyName: companyName, companyPosition: companyPosition, linkedinURL: linkedinURL, instagramURL: instagramURL, snapchatURL: snapchatURL, githubURL: githubURL, twitterURL: twitterURL, hometown: hometown, birthMonth: birthMonth, birthNumber: birthNumber, universityName: universityName, universityDegree: universityDegree))
                     }
             }
             
@@ -99,9 +114,18 @@ class ContactsListVM: ObservableObject {
                         let location = data["location"] as? String ?? ""
                         let photoURL = data["photo_url"] as? String ?? ""
                         let parameters = data["parameters"] as? [String] ?? []
+                        let companyName = data["company_name"] as? String ?? ""
+                        let companyPosition = data["company_position"] as? String ?? ""
+                        let linkedinURL = data["linkedin_url"] as? String ?? ""
+                        let githubURL = data["github_url"] as? String ?? ""
+                        let hometown = data["hometown"] as? String ?? ""
+                        let universityName = data["university_name"] as? String ?? ""
+                        let universityDegree = data["university_degree"] as? String ?? ""
                         
                         //                        self.users.append(UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, parameters: parameters))
-                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        // MARK: working with onboarded characteristics only
+                        // self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters, companyName: companyName, companyPosition: companyPosition, linkedinURL: linkedinURL, githubURL: githubURL, hometown: hometown, universityName: universityName, universityDegree: universityDegree))
                     }
             }
         }
