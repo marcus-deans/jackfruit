@@ -9,24 +9,6 @@ import SwiftUI
 import NukeUI
 import Awesome
 
-struct TextOverlay: View{
-    let firstName: String
-    let lastName: String
-    let companyName: String
-    let companyPosition: String
-    var body: some View {
-        VStack {
-            Text("\(firstName) \(lastName)")
-                .font(Font.custom("CircularStd-Book", size: 28))
-                .foregroundColor(.white)
-                .fontWeight(.heavy)
-            
-            Text("\(companyPosition) at \(companyName)").font(Font.custom("CircularStd-Book", size: 18))
-                .foregroundColor(.white)
-        }.padding()
-    }
-}
-
 struct ProfileModalView: View {
     let updateButtonAction: () -> Void
     //    let onBuildAction: () -> Void
@@ -120,17 +102,11 @@ struct ProfileModalView: View {
                                     ZStack{
                                         LazyVGrid(columns: columns, spacing: 5) {
                                             ForEach(data, id: \.self) { item in
-                                                Button {
-                                                    
-                                                } label: {
-                                                    Text(activityText[item] ?? item)
-                                                        .font(Font.custom("CircularStd-Black", size: 16))
-                                                        .frame(width: screenWidth-250, height: 40)
-                                                    //.padding()
-                                                        .background(Color.init(UIColor.transitionPage))
-                                                        .foregroundColor(Color.init(UIColor.white))
-                                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                                }
+                                                Text(activityText[item] ?? item)
+                                                    .font(Font.custom("CircularStd-Black", size: 16))
+                                                    .frame(width: screenWidth-250, height: 40)
+                                                    .background(RoundedRectangle(cornerRadius: 10.0, style: .continuous).fill(Color(UIColor.transitionPage)))
+                                                    .foregroundColor(Color.white)
                                             }
                                             
                                             .frame(maxHeight: 50)
@@ -139,11 +115,9 @@ struct ProfileModalView: View {
                                 }
                             }
                         }
-                        
-                        
                     }
                 VStack {
-                    Text("Professional").font(Font.custom("CircularStd-Book", size: 16))
+                    Text("Professional").font(Font.custom("CircularStd-Black", size: 16))
                         .foregroundColor(.black)
                     HStack {
                         Awesome.Solid.building.image
@@ -173,7 +147,7 @@ struct ProfileModalView: View {
                 }.padding()
                 
                 VStack {
-                    Text("Social Networking").font(Font.custom("CircularStd-Book", size: 16))
+                    Text("Social Networking").font(Font.custom("CircularStd-Black", size: 16))
                         .foregroundColor(.black)
                     HStack{
                         Awesome.Brand.instagram.image
@@ -197,7 +171,7 @@ struct ProfileModalView: View {
                 }.padding()
                 
                 VStack{
-                    Text("Personal").font(Font.custom("CircularStd-Book", size: 16))
+                    Text("Personal").font(Font.custom("CircularStd-Black", size: 16))
                         .foregroundColor(.black)
                     HStack{
                         Awesome.Solid.home.image

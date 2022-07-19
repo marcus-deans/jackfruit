@@ -15,13 +15,13 @@
 import SwiftUI
 import NukeUI
 import PhoneNumberKit
+import Awesome
 
 extension View {
     func border(_ color: Color, width: CGFloat, cornerRadius: CGFloat) -> some View {
         overlay(RoundedRectangle(cornerRadius: cornerRadius).stroke(color, lineWidth: width))
     }
 }
-
 
 //TODO: implement default profile photo (don't use Juan)
 // Implement call/text to actual number
@@ -32,84 +32,106 @@ struct ProfileView: View {
     
     @State var show = false
     let userModel: UserModel
-    let firstName: String
-    let lastName: String
-    let phoneNumber: String
-    let emailAddress: String
-    let location: String
-    let photoURL: String
-    let parameters: [String]
+    //    let firstName: String
+    //    let lastName: String
+    //    let phoneNumber: String
+    //    let emailAddress: String
+    //    let location: String
+    //    let photoURL: String
+    //    let parameters: [String]
     
     init(userModel: UserModel){
         self.userModel = userModel
-        self.firstName = userModel.firstName ?? ""
-        self.lastName = userModel.lastName ?? ""
-        self.phoneNumber = userModel.phoneNumber ?? ""
-        self.emailAddress = userModel.emailAddress ?? ""
-        self.location = userModel.location ?? ""
-        self.photoURL = userModel.photoURL ?? "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg"
-        self.parameters = userModel.parameters ?? []
+        //        self.firstName = userModel.firstName ?? ""
+        //        self.lastName = userModel.lastName ?? ""
+        //        self.phoneNumber = userModel.phoneNumber ?? ""
+        //        self.emailAddress = userModel.emailAddress ?? ""
+        //        self.location = userModel.location ?? ""
+        //        self.photoURL = userModel.photoURL ?? "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg"
+        //        self.parameters = userModel.parameters ?? []
     }
     
     
     var body: some View {
-        
-        ScrollView {
+        VStack{
             VStack {
-                
+                let photoURL = userModel.photoURL ?? ""
                 LazyImage(source: URL(string: photoURL)) { state in
                     if let image = state.image {
                         image
-                            .frame(width: 150, height: 150, alignment: .center)
-                            .clipShape(Circle())
-                            .background(Circle().stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
-                        //.border(Color.init(UIColor.transitionPage), width: 10)
+                            .frame(width: 300, height: 300, alignment: .center)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
                             .padding(.top, 20)
                     } else if state.error != nil {
                         
                     } else {
                         ZStack{
-                            
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                .fill(.gray)
-                                .frame(width: 150   , height: 150)
+                                .fill(Color(UIColor.transitionPage))
+                                .frame(width: 300, height: 300)
                             
-                            Text(firstName.prefix(1)+" "+lastName.prefix(1))
+                            Text(userModel.firstName!.prefix(1)+" "+userModel.lastName!.prefix(1))
                                 .font(Font.custom("CircularStd-Book", size: 30))
                                 .foregroundColor(.black)
                                 .bold()
-                            
-                            
                         }
                     }
                 }
-                
-                VStack  {
-                    Text("\(firstName) \(lastName)")
+                .overlay(TextOverlay(firstName: userModel.firstName!, lastName: userModel.lastName!, companyName: userModel.companyName ?? "", companyPosition: userModel.companyPosition ?? ""), alignment: .bottomTrailing)
+                .padding(.vertical, 20)
+            }
+            
+            HStack {
+                Button(action: {//messagesOpener()
+                    sendMessage(phoneNumber: userModel.phoneNumber!)
+                }) {
+                    Image(systemName: "message")
                         .font(Font.custom("CircularStd-Book", size: 30))
-                        .foregroundColor(.black)
-                        .fontWeight(.heavy)
-                    
-                    HStack{
-                        Text("iOS Engineer").font(Font.custom("CircularStd-Book", size: 20))
-                            .foregroundColor(.black)
-                        
+                        .frame(width: 70, height: 40)
+                        .modifier(ButtonBG())
+                        .cornerRadius(30)
+                        .border(Color.black, width: 2, cornerRadius: 25)
+                }
+                
+                
+                .modifier(ThemeShadow())
+                Button(action: {
+                    let phoneNumber = userModel.phoneNumber!
+                    guard let number = URL(string: "tel://" + phoneNumber) else { return }
+                    if UIApplication.shared.canOpenURL(number) {
+                        UIApplication.shared.open(number)
+                    } else {
+                        print("Can't open url on this device")
                     }
                     
+                })  {   Image(systemName: "phone")
+                        .font(Font.custom("CircularStd-Book", size: 30))
+                        .frame(width: 70, height: 40)
+                        .modifier(ButtonBG())
+                        .cornerRadius(30)
+                        .border(Color.black, width: 2, cornerRadius: 25)
+                    
+                }
+                .modifier(ThemeShadow())
+            }
+            
+            ScrollView {
+                VStack  {
                     HStack {
-                        
-                        HStack(spacing: 8){
+                        HStack(spacing: 5){
                             Image(systemName: "location.circle")
-                            Text(location)
-                        }//.padding(8)
+                            Text(userModel.location!)
+                        }
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .foregroundColor(Color.black)
-                        
                         .cornerRadius(10)
+                        .padding(.horizontal, 10)
                         //.frame(width:20, height: 20)
                         
-                        HStack(spacing: 8){
-                            Text("+1 " + phoneNumber).font(Font.custom("CircularStd-Book", size: 20))
+                        HStack(spacing: 5){
+                            Image(systemName: "phone")
+                            Text("+1 " + userModel.phoneNumber!).font(Font.custom("CircularStd-Book", size: 20))
                         }//.padding(8)
                         
                         .foregroundColor(Color.black)
@@ -117,52 +139,11 @@ struct ProfileView: View {
                         
                     }//.padding(.vertical, 15)
                     
-                    HStack {
-                        Button(action: {//messagesOpener()
-                            sendMessage(phoneNumber: phoneNumber)
-                        }) {
-                            Image(systemName: "message")
-                                .font(Font.custom("CircularStd-Book", size: 30))
-                                .frame(width: 70, height: 40)
-                                .modifier(ButtonBG())
-                                .cornerRadius(30)
-                                .border(Color.black, width: 2, cornerRadius: 25)
-                        }
-                        
-                        
-                        .modifier(ThemeShadow())
-                        Button(action: {
-                            let phoneNumber = phoneNumber
-                            guard let number = URL(string: "tel://" + phoneNumber) else { return }
-                            if UIApplication.shared.canOpenURL(number) {
-                                UIApplication.shared.open(number)
-                            } else {
-                                print("Can't open url on this device")
-                            }
-                            
-                        })  {   Image(systemName: "phone")
-                                .font(Font.custom("CircularStd-Book", size: 30))
-                                .frame(width: 70, height: 40)
-                                .modifier(ButtonBG())
-                                .cornerRadius(30)
-                                .border(Color.black, width: 2, cornerRadius: 25)
-                            
-                        }
-                        .modifier(ThemeShadow())
-                    }
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
                     VStack{
-                        Text("\(firstName)'s Interests").font(Font.custom("CircularStd-Black", size: 20))
+                        Text("\(userModel.firstName ?? "Contact")'s Interests").font(Font.custom("CircularStd-Black", size: 20))
                             .foregroundColor(Color.black)
                         
-                        let words = parameters
+                        let words = userModel.parameters!
                         ZStack{
                             Color.white
                                 .edgesIgnoringSafeArea(.all)
@@ -173,60 +154,127 @@ struct ProfileView: View {
                                 let columns = [
                                     GridItem(.fixed(screenWidth-200)),
                                     GridItem(.flexible()),
-                                    //GridItem(.flexible())
                                 ]
                                 
                                 ZStack{
                                     LazyVGrid(columns: columns, spacing: 5) {
                                         ForEach(data, id: \.self) { item in
-                                            Button {
-                                                
-                                            } label: {
-                                                Text(item)
-                                                    .font(Font.custom("CircularStd-Black", size: 20))
-                                                    .frame(width: screenWidth-250, height: 50)
-                                                //.padding()
-                                                    .background(Color.init(UIColor.transitionPage))
-                                                    .foregroundColor(Color.init(UIColor.white))
-                                                    .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                            }
+                                            Text(activityText[item] ?? item)
+                                                .font(Font.custom("CircularStd-Black", size: 16))
+                                                .frame(width: screenWidth-250, height: 40)
+                                                .background(RoundedRectangle(cornerRadius: 10.0, style: .continuous).fill(Color(UIColor.transitionPage)))
+                                                .foregroundColor(Color.white)
                                         }
                                         
                                         .frame(maxHeight: 50)
                                     }.background(Color.init(UIColor.middleColor))
-                                    
-                                    //                                LazyVGrid(columns: columns, spacing: 10) {
-                                    //                                    ForEach(data, id: \.self) { item in
-                                    //                                       // NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!)) {
-                                    //                                           // let count = getNumberOfFriends(activity: searchResults[item]!)
-                                    //                                            VStack {
-                                    //                                                Text(item)
-                                    //                                                    .font(Font.custom("CircularStd-Black", size: 20))
-                                    //                                            }
-                                    //                                            .frame(width: screenWidth-250, height: 50)
-                                    //                                            //.padding()
-                                    //                                            .background(Color.init(UIColor.transitionPage))
-                                    //                                            .foregroundColor(.white)
-                                    //                                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                    //
-                                    //                                       // }
-                                    //                                    }
-                                    //                                }.padding(.horizontal, 33).padding(.top, 20)
-                                    //                                .frame(maxHeight: 700)
-                                    
                                 }
                             }
                         }
                     }
+                    VStack {
+                        Text("Professional").font(Font.custom("CircularStd-Black", size: 16))
+                            .foregroundColor(.black)
+                        if userModel.linkedinURL != nil && userModel.linkedinURL != "" {
+                            HStack {
+                                Awesome.Brand.linkedin.image
+                                    .size(25)
+                                Text(userModel.linkedinURL!).font(Font.custom("CircularStd-Book", size: 14))
+                                    .foregroundColor(.black)
+                                
+                            }
+                        }
+                        
+                        if userModel.githubURL != nil && userModel.githubURL != "" {
+                            HStack {
+                                Awesome.Brand.github.image
+                                    .size(25)
+                                Text(userModel.githubURL!).font(Font.custom("CircularStd-Book", size: 14))
+                                    .foregroundColor(.black)
+                                
+                            }
+                        }
+                    }.padding()
                     
+                    VStack {
+                        Text("Social Networking").font(Font.custom("CircularStd-Black", size: 16))
+                            .foregroundColor(.black)
+                        
+                        if userModel.instagramURL != nil && userModel.instagramURL != "" {
+                            HStack {
+                                Awesome.Brand.instagram.image
+                                    .size(25)
+                                Text(userModel.instagramURL!).font(Font.custom("CircularStd-Book", size: 14))
+                                    .foregroundColor(.black)
+                                
+                            }
+                        }
+                        if userModel.snapchatURL != nil && userModel.snapchatURL != "" {
+                            HStack {
+                                Awesome.Brand.snapchat.image
+                                    .size(25)
+                                Text(userModel.snapchatURL!).font(Font.custom("CircularStd-Book", size: 14))
+                                    .foregroundColor(.black)
+                                
+                            }
+                        }
+                        if userModel.twitterURL != nil && userModel.twitterURL != "" {
+                            HStack {
+                                Awesome.Brand.twitter.image
+                                    .size(25)
+                                Text(userModel.twitterURL!).font(Font.custom("CircularStd-Book", size: 14))
+                                    .foregroundColor(.black)
+                                
+                            }
+                        }
+                    }.padding()
                     
+                    VStack{
+                        Text("Personal").font(Font.custom("CircularStd-Black", size: 16))
+                            .foregroundColor(.black)
+                        if userModel.hometown != nil && userModel.hometown != "" {
+                            HStack {
+                                Awesome.Solid.home.image
+                                    .size(25)
+                                Text(userModel.hometown!).font(Font.custom("CircularStd-Book", size: 14))
+                                    .foregroundColor(.black)
+                                
+                            }
+                        }
+                        if (userModel.universityName != nil && userModel.universityName != "") || (userModel.universityDegree != nil && userModel.universityDegree != "") {
+                            HStack {
+                                Awesome.Solid.graduationCap.image
+                                    .size(25)
+                                if userModel.universityName != nil && userModel.universityName != ""{
+                                    Text(userModel.universityName!).font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
+                                if userModel.universityDegree != nil && userModel.universityDegree != "" {
+                                    Text(userModel.universityDegree!).font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                        if (userModel.birthMonth != nil && userModel.birthMonth != "") || (userModel.birthNumber != nil && userModel.birthNumber != "") {
+                            HStack {
+                                Awesome.Solid.graduationCap.image
+                                    .size(25)
+                                if userModel.birthMonth != nil && userModel.birthMonth != ""{
+                                    Text(userModel.birthMonth!).font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
+                                if userModel.birthNumber != nil && userModel.birthNumber != "" {
+                                    Text(userModel.birthNumber!).font(Font.custom("CircularStd-Book", size: 14))
+                                        .foregroundColor(.black)
+                                }
+                            }
+                        }
+                    }.padding()
                 }
                 
             }
-            
-        }.background(Color.init(UIColor.middleColor))
+        }
     }
-    
     
     private func messagesOpener(){
         
@@ -307,8 +355,10 @@ struct ProfileView_Previews: PreviewProvider {
             emailAddress: "marcusddeans@outlook.com",
             phoneNumber: "9196414032",
             location: "San Francisco",
-            photoURL: "https://firebasestorage.googleapis.com:443/v0/b/jackfruit-c9dab.appspot.com/o/users%2F5555555555.jpg?alt=media&token=a9925d3e-df7a-4959-b21d-160abf8763c5",
-            parameters: ["pets", "traveling"])
+            photoURL: "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg",
+            parameters: ["pets", "traveling"],
+            companyName: "Atomic",
+            snapchatURL: "snapchat.com/marcus_deans", hometown: "Windsor")
         )
     }
 }
