@@ -77,9 +77,5 @@ struct ProfileModal: View {
     }
     
 }
-
-struct ProfileModal_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileModal()
-    }
 }
+

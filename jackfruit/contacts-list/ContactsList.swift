@@ -204,7 +204,7 @@ struct ContactsList: View {
                                         Image(systemName: "gearshape.fill").frame(width: 80.0, height: 80.0)
                                         
                                     ).sheet(isPresented: $showProfileModal) {
-                                        ProfileModal()
+                                       // ProfileModal()
                                     }}
                                 .searchable(text: $searchText, placement: .toolbar)
                                 .background(Color.white)
