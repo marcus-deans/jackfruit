@@ -14,6 +14,8 @@ struct FlowView: View {
     @AppStorage("is_onboarded") var isOnboarded: Bool = false
     // Note the generation of view models here is only done once
     // as long as the view models are referenced as @StateObject and not @ObservedObject
+    
+    
      
     let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing),
         removal: .move(edge: .leading))

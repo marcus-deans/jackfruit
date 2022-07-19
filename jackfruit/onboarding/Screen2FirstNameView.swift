@@ -40,6 +40,8 @@ struct Screen2FirstNameView: View {
     @State var progressValue: Float = 0.16
     @State private var keyboardHeight: CGFloat = 0
     
+    
+    
     var body: some View {
         ZStack {
             Color.init(UIColor.transitionPage)

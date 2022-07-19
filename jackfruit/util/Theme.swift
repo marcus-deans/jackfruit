@@ -82,8 +82,8 @@ struct MyTextFieldStyle: TextFieldStyle {
             .background(
                 RoundedRectangle(cornerRadius: 9, style: .continuous)
                     .foregroundColor(.white)
-                    .background(Color.white)
-                    .shadow(color: focused ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y: 5)
+                    //.background(Color.white)
+                    .shadow(color: focused ? Color(UIColor.black).opacity(0.2) : Color(UIColor.clear).opacity(0.3), radius: 4, x: 0, y: 5)
             )
     }
 }
@@ -94,14 +94,14 @@ struct RoundedRectangleButtonStyle: ButtonStyle {
             HStack(alignment: .center) {
                 
                 configuration.label.foregroundColor(.white)
-                    .font(Font.custom("PTSans-Bold", size: 20))
+                    .font(Font.custom("CircularStd-Book", size: 20))
                 
             }
         })
         // 👇🏻 makes all taps go to the original button
         .allowsHitTesting(false)
         .padding()
-        .background(Color(UIColor.transitionPage)).cornerRadius(8)
+        .background(Color.black).cornerRadius(18)
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }

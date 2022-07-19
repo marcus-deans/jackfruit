@@ -30,23 +30,25 @@ struct Screen1LandingView: View {
     var body: some View {
         ZStack {
             //.background(Color.init(UIColor.afterStartPageTransition))
-            Color.init(UIColor.transitionPage).ignoresSafeArea()
+            Color.init(UIColor.white).ignoresSafeArea()
             
             VStack(alignment: .center) {
+                
+                
+                Text("Welcome to Contact")
+                    .font(Font.custom("CircularStd-Black", size: 34))
+                    .fontWeight(.black).bold()
+                
                 Image("logo")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 150.0, height: 150.0)
-                    .padding()
-                
-                Text("Welcome to Contact")
-                    .font(Font.custom("PTSans-Regular", size: 34))
-                    .fontWeight(.black).bold()
+                    .padding(.bottom, 90)
                 
                 Button(action: {
                     self.vm.didTapNext()
-                }, label: { Text("Next") }).buttonStyle(RoundedRectangleButtonStyle())
-            }
+                }, label: { Text("Create Contact") }).buttonStyle(RoundedRectangleButtonStyle())
+            }.navigationBarHidden(true)
             .padding()
         }
     }
