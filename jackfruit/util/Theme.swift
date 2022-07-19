@@ -101,7 +101,7 @@ struct RoundedRectangleButtonStyle: ButtonStyle {
         // 👇🏻 makes all taps go to the original button
         .allowsHitTesting(false)
         .padding()
-        .background(Color.black).cornerRadius(8)
+        .background(Color(UIColor.transitionPage)).cornerRadius(8)
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
