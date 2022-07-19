@@ -217,7 +217,7 @@ struct ProfileModalView: View {
                     }
                     
                     HStack{
-                        Awesome.Regular.birthdayCake.image
+                        Awesome.Solid.birthdayCake.image
                             .size(25)
                     TextField("Birth Month", text: $userModel.birthMonth ?? "", onEditingChanged: {edit in self.editing = edit })
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
