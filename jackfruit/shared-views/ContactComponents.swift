@@ -20,7 +20,7 @@ struct ProfilePhotoView: View {
                 .font(.largeTitle)
                 .frame(width: 85, height: 55)
                 .overlay(
-                    LazyImage(source: URL(string: profileURL)!){ state in
+                    LazyImage(source: URL(string: profileURL)){ state in
                         if let image = state.image {
                             image
                         } else if state.error != nil {

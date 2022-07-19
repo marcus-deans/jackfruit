@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import ToastUI
 
 class ContactsAddVM: ObservableObject {
     let db = Firestore.firestore()
