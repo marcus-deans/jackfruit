@@ -139,14 +139,23 @@ struct TextOverlay: View{
     let companyName: String
     let companyPosition: String
     var body: some View {
-        VStack {
+        VStack (alignment: .trailing){
             Text("\(firstName) \(lastName)")
                 .font(Font.custom("CircularStd-Book", size: 28))
                 .foregroundColor(.white)
                 .fontWeight(.heavy)
             
-            Text("\(companyPosition) at \(companyName)").font(Font.custom("CircularStd-Book", size: 18))
-                .foregroundColor(.white)
+            if(companyName == "" && companyPosition != ""){
+                Text("\(companyPosition)").font(Font.custom("CircularStd-Book", size:20))
+                    .foregroundColor(.white)
+            } else if
+                (companyName != "" && companyPosition == ""){
+                Text("Works at \(companyName)").font(Font.custom("CircularStd-Book", size:20))
+                    .foregroundColor(.white)
+            } else {
+                Text("\(companyPosition) at \(companyName)").font(Font.custom("CircularStd-Book", size: 20))
+                    .foregroundColor(.white)
+            }
         }.padding()
     }
 }
@@ -156,5 +165,12 @@ struct ContactComponents_Previews: PreviewProvider {
         ContactRowView(userItem: UserModel(
             firstName: "Marcus", lastName: "Deans", emailAddress: "marcusddeans@outlook.com", phoneNumber: "9196414032", location: "San Francisco", photoURL: "https://firebasestorage.googleapis.com:443/v0/b/jackfruit-c9dab.appspot.com/o/users%2F5555555555.jpg?alt=media&token=a9925d3e-df7a-4959-b21d-160abf8763c5", parameters: ["pets", "traveling"])
                        )
+        
+        ZStack{
+            Color(.black).edgesIgnoringSafeArea(.all)
+//            TextOverlay(firstName: "Marcus", lastName: "Deans", companyName: "Atomic", companyPosition: "Software Engineer")
+//            TextOverlay(firstName: "Marcus", lastName: "Deans", companyName: "", companyPosition: "Software Engineer")
+            TextOverlay(firstName: "Marcus", lastName: "Deans", companyName: "Atomic", companyPosition: "")
+        }
     }
 }

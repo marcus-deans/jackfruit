@@ -79,6 +79,7 @@ struct ProfileView: View {
                     }
                 }
                 .overlay(TextOverlay(firstName: userModel.firstName!, lastName: userModel.lastName!, companyName: userModel.companyName ?? "", companyPosition: userModel.companyPosition ?? ""), alignment: .bottomTrailing)
+                .padding(.vertical, 20)
             }
             
             HStack {
