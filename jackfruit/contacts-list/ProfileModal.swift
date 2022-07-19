@@ -10,8 +10,14 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class ProfileModalVM: ObservableObject {
-    var showLoginForm: Bool
-    @Published var enteredUserName: String
+    
+    var firstName: String = ""
+    var lastName: String = ""
+    var phoneNumber: String = ""
+    var emailAddress: String = ""
+    var location: String = ""
+    var photoURL: String = ""
+    var parameters: [String] = []
     
     @Published var companyName: String = ""
     @Published var companyPosition: String = ""
@@ -29,17 +35,23 @@ class ProfileModalVM: ObservableObject {
     
     @Environment(\.dismiss) var dismiss
     
-    private var userModel: UserModel
+    @Published var userModel: UserModel
+    
     var loggedInUser: String?
     let db = Firestore.firestore()
 
     
     init(userId: String){
         let userRef = db.collection("users").document(userId)
-        self.showLoginForm = true
-        self.loggedInUser = nil
-        self.enteredUserName = ""
+
         self.userModel = UserModel()
+//        userRef.getDocument(){ (document, error) in
+//            let result = Result {
+//                try document.flatMap {
+//                    try $0.data(as: UserModel.self)
+//                }
+//            }
+//        }
         userRef.getDocument(as: UserModel.self){ result in
             switch result {
             case .success(let model):
@@ -51,19 +63,42 @@ class ProfileModalVM: ObservableObject {
         }
     }
     
+    func getCurrentValues(){
+        firstName = userModel.firstName ?? ""
+        lastName = userModel.lastName ?? ""
+        phoneNumber = userModel.phoneNumber ?? ""
+        emailAddress = userModel.emailAddress ?? ""
+        location = userModel.location ?? ""
+        photoURL = userModel.photoURL ?? ""
+        parameters = userModel.parameters ?? []
+        
+        companyName = userModel.companyName ?? ""
+        companyPosition = userModel.companyPosition ?? ""
+        linkedinURL = userModel.linkedinURL ?? ""
+        instagramURL = userModel.instagramURL ?? ""
+        snapchatURL = userModel.snapchatURL ?? ""
+        githubURL = userModel.githubURL ?? ""
+        twitterURL = userModel.twitterURL ?? ""
+        hometown = userModel.hometown ?? ""
+        birthMonth = userModel.birthMonth ?? ""
+        birthNumber = userModel.birthNumber ?? ""
+        universityName = userModel.universityName ?? ""
+        universityDegree = userModel.universityDegree ?? ""
+    }
+    
     func updateUserEntry() {
-        userModel.companyName = companyName
-        userModel.companyPosition = companyPosition
-        userModel.linkedinURL = linkedinURL
-        userModel.instagramURL = instagramURL
-        userModel.snapchatURL = snapchatURL
-        userModel.githubURL = githubURL
-        userModel.twitterURL = twitterURL
-        userModel.hometown = hometown
-        userModel.birthMonth = birthMonth
-        userModel.birthNumber = birthNumber
-        userModel.universityName = universityName
-        userModel.universityDegree = universityDegree
+//        userModel.companyName = companyName
+//        userModel.companyPosition = companyPosition
+//        userModel.linkedinURL = linkedinURL
+//        userModel.instagramURL = instagramURL
+//        userModel.snapchatURL = snapchatURL
+//        userModel.githubURL = githubURL
+//        userModel.twitterURL = twitterURL
+//        userModel.hometown = hometown
+//        userModel.birthMonth = birthMonth
+//        userModel.birthNumber = birthNumber
+//        userModel.universityName = universityName
+//        userModel.universityDegree = universityDegree
  
         do {
             let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
@@ -79,22 +114,26 @@ struct ProfileModal: View {
     @AppStorage("user_id") var userId: String = ""
     @StateObject var vm: ProfileModalVM
     
-    var body: some View {
-        ProfileModalView(
-            updateButtonAction: vm.updateUserEntry,
-            companyName: $vm.companyName,
-            companyPosition: $vm.companyPosition,
-            linkedinURL: $vm.linkedinURL,
-            instagramURL: $vm.instagramURL,
-            snapchatURL: $vm.snapchatURL,
-            githubURL: $vm.githubURL,
-            twitterURL: $vm.twitterURL,
-            hometown: $vm.hometown,
-            birthMonth: $vm.birthMonth,
-            birthNumber: $vm.birthNumber,
-            universityName: $vm.universityName,
-            universityDegree: $vm.universityDegree,
-            loggedInUser: vm.loggedInUser)
-    }
+//    init(){
+//        vm.getCurrentValues()
+//    }
     
+    var body: some View {
+        ProfileModalView(updateButtonAction: vm.updateUserEntry, userModel: $vm.userModel)
+//        ProfileModalView(
+//            updateButtonAction: vm.updateUserEntry,
+//            onBuildAction: vm.getCurrentValues,
+//            companyName: $vm.companyName,
+//            companyPosition: $vm.companyPosition,
+//            linkedinURL: $vm.linkedinURL,
+//            instagramURL: $vm.instagramURL,
+//            snapchatURL: $vm.snapchatURL,
+//            githubURL: $vm.githubURL,
+//            twitterURL: $vm.twitterURL,
+//            hometown: $vm.hometown,
+//            birthMonth: $vm.birthMonth,
+//            birthNumber: $vm.birthNumber,
+//            universityName: $vm.universityName,
+//            universityDegree: $vm.universityDegree)
+    }
 }

@@ -6,113 +6,253 @@
 //
 
 import SwiftUI
+import NukeUI
 
+struct TextOverlay: View{
+    let firstName: String
+    let lastName: String
+    let companyName: String
+    let companyPosition: String
+    var body: some View {
+        ZStack {
+            Text("\(firstName) \(lastName)")
+                .font(Font.custom("CircularStd-Book", size: 28))
+                .foregroundColor(.black)
+                .fontWeight(.heavy)
+            
+            HStack{
+                Text("\(companyName)").font(Font.custom("CircularStd-Book", size: 18))
+                    .foregroundColor(.black)
+                Text("\(companyPosition)").font(Font.custom("CircularStd-Book", size: 18))
+                    .foregroundColor(.black)
+            }
+        }
+    }
+}
 
 struct ProfileModalView: View {
     let updateButtonAction: () -> Void
+    //    let onBuildAction: () -> Void
     @Environment(\.dismiss) var dismiss
     
     @State var editing = false
     
-    @Binding var companyName: String
-    @Binding var companyPosition: String
-    @Binding var linkedinURL: String
-    @Binding var instagramURL: String
-    @Binding var snapchatURL: String
-    @Binding var githubURL: String
-    @Binding var twitterURL: String
-    @Binding var hometown: String
-    @Binding var birthMonth: String
-    @Binding var birthNumber: String
-    @Binding var universityName: String
-    @Binding var universityDegree: String
+    //    @Binding var companyName: String
+    //    @Binding var companyPosition: String
+    //    @Binding var linkedinURL: String
+    //    @Binding var instagramURL: String
+    //    @Binding var snapchatURL: String
+    //    @Binding var githubURL: String
+    //    @Binding var twitterURL: String
+    //    @Binding var hometown: String
+    //    @Binding var birthMonth: String
+    //    @Binding var birthNumber: String
+    //    @Binding var universityName: String
+    //    @Binding var universityDegree: String
     
-    let loggedInUser: String?
+    @Binding var userModel: UserModel
     
     var body: some View {
-        ScrollView {
-            HStack {
-                TextField("Company Name", text: $companyName, onEditingChanged: {edit in self.editing = edit })
-                    .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    .textContentType(.organizationName)
-                
-                TextField("Company Position", text: $companyPosition, onEditingChanged: {edit in self.editing = edit })
-                    .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    .textContentType(.jobTitle)
+        VStack{
+            ScrollView {
+                VStack {
+                    let photoURL = userModel.photoURL ?? ""
+                    LazyImage(source: URL(string: photoURL)) { state in
+                        if let image = state.image {
+                            image
+                                .frame(width: 300, height: 300, alignment: .center)
+                                .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                                .background(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
+                                .padding(.top, 20)
+                        } else if state.error != nil {
+                            
+                        } else {
+                            ZStack{
+                                
+                                RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                    .fill(.gray)
+                                    .frame(width: 300, height: 300)
+                                
+                                Text(userModel.firstName!.prefix(1)+" "+userModel.lastName!.prefix(1))
+                                    .font(Font.custom("CircularStd-Book", size: 30))
+                                    .foregroundColor(.black)
+                                    .bold()
+
+                            }
+                        }
+                    }
+                    .overlay(TextOverlay(firstName: userModel.firstName!, lastName: userModel.lastName!, companyName: userModel.companyName ?? "", companyPosition: userModel.companyPosition ?? ""), alignment: .bottomTrailing)
+                    
+                    VStack  {
+                        HStack {
+                            
+                            HStack(spacing: 8){
+                                Image(systemName: "location.circle")
+                                Text(userModel.location!)
+                            }//.padding(8)
+                            .font(Font.custom("CircularStd-Book", size: 20))
+                            .foregroundColor(Color.black)
+                            
+                            .cornerRadius(10)
+                            //.frame(width:20, height: 20)
+                            
+                            HStack(spacing: 8){
+                                Text("+1 " + userModel.phoneNumber!).font(Font.custom("CircularStd-Book", size: 20))
+                            }//.padding(8)
+                            
+                            .foregroundColor(Color.black)
+                            .cornerRadius(10)
+                             
+                        }//.padding(.vertical, 15)
+                        
+                        VStack{
+                            Text("Your Interests").font(Font.custom("CircularStd-Black", size: 20))
+                                .foregroundColor(Color.black)
+                            
+                            let words = userModel.parameters!
+                            ZStack{
+                                Color.white
+                                    .edgesIgnoringSafeArea(.all)
+                                VStack{
+                                    let data = words.map { " \($0)" }
+                                    let screenWidth = UIScreen.main.bounds.width
+                                    
+                                    let columns = [
+                                        GridItem(.fixed(screenWidth-200)),
+                                        GridItem(.flexible()),
+                                    ]
+                                    
+                                    ZStack{
+                                        LazyVGrid(columns: columns, spacing: 5) {
+                                            ForEach(data, id: \.self) { item in
+                                                Button {
+                                                    
+                                                } label: {
+                                                    Text(item)
+                                                        .font(Font.custom("CircularStd-Black", size: 16))
+                                                        .frame(width: screenWidth-250, height: 40)
+                                                    //.padding()
+                                                        .background(Color.init(UIColor.transitionPage))
+                                                        .foregroundColor(Color.init(UIColor.white))
+                                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                                }
+                                            }
+                                            
+                                            .frame(maxHeight: 50)
+                                        }.background(Color.init(UIColor.middleColor))
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                    }
+                    
+                }
+                ScrollView {
+                    VStack {
+                        Text("Professional").font(Font.custom("CircularStd-Book", size: 16))
+                            .foregroundColor(.black)
+                        HStack {
+                            TextField("Company Name", text: $userModel.companyName ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                                .textContentType(.organizationName)
+                            
+                            TextField("Company Position", text: $userModel.companyPosition ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                                .textContentType(.jobTitle)
+                        }
+                        TextField("Linkedin URL", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                        TextField("Github URL", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font
+                                .custom("CircularStd-Book", size: 14))
+                    }.padding()
+                    
+                    VStack {
+                        Text("Social Networking").font(Font.custom("CircularStd-Book", size: 16))
+                            .foregroundColor(.black)
+                        TextField("Instagram URL", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                        TextField("Snapchat URL", text: $userModel.snapchatURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        TextField("Twitter URL", text: $userModel.twitterURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                    }.padding()
+                    
+                    VStack{
+                        Text("Personal").font(Font.custom("CircularStd-Book", size: 16))
+                            .foregroundColor(.black)
+                        TextField("Hometown", text: $userModel.hometown ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                        TextField("University Name", text: $userModel.universityName ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                        TextField("University Degree", text: $userModel.universityDegree ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                        TextField("Birth Month", text: $userModel.birthMonth ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        
+                        TextField("Birth Day", text: $userModel.birthNumber ?? "", onEditingChanged: {edit in self.editing = edit })
+                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                    }
+                    
+                    
+                    HStack{
+                        Button("Update Profile"){
+                            updateButtonAction()
+                        }
+                        .padding()
+                        .font(.title2)
+                        .background(.green)
+                        
+                        Button("Dismiss") {
+                            dismiss()
+                        }
+                        .font(.title2)
+                        .padding()
+                        .background(.black)
+                    }
+                }.background(Color.init(UIColor.middleColor))
             }
-            
-            TextField("Linkedin URL", text: $linkedinURL, onEditingChanged: {edit in self.editing = edit })
-                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            
-            TextField("Instagram URL", text: $instagramURL, onEditingChanged: {edit in self.editing = edit })
-                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            
-            TextField("Snapchat URL", text: $snapchatURL, onEditingChanged: {edit in self.editing = edit })
-                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            
-            TextField("Github URL", text: $githubURL, onEditingChanged: {edit in self.editing = edit })
-                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font
-                    .custom("CircularStd-Book", size: 14))
-            
-            TextField("Twitter URL", text: $twitterURL, onEditingChanged: {edit in self.editing = edit })
-                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            
-            TextField("Hometown", text: $hometown, onEditingChanged: {edit in self.editing = edit })
-                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            
-            HStack{
-                
-                TextField("University Name", text: $universityName, onEditingChanged: {edit in self.editing = edit })
-                    .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                
-                TextField("University Degree", text: $universityDegree, onEditingChanged: {edit in self.editing = edit })
-                    .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            }
-            HStack {
-                TextField("Birth Month", text: $birthMonth, onEditingChanged: {edit in self.editing = edit })
-                    .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                
-                TextField("Birth Day", text: $birthNumber, onEditingChanged: {edit in self.editing = edit })
-                    .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-            }
-            
-            HStack{
-            Button("Update Profile"){
-                updateButtonAction()
-            }
-            .padding()
-            .font(.title2)
-            .background(.green)
-            
-            Button("Dismiss") {
-                dismiss()
-            }
-            .font(.title2)
-            .padding()
-            .background(.black)
-            }
-        }.background(Color.init(UIColor.middleColor))
+        }
+        
     }
     
-}
-
-struct ProfileModalView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileModalView(
-            updateButtonAction: {},
-            companyName: .constant(""),
-            companyPosition: .constant(""),
-            linkedinURL: .constant(""),
-            instagramURL: .constant(""),
-            snapchatURL: .constant(""),
-            githubURL: .constant(""),
-            twitterURL: .constant(""),
-            hometown: .constant(""),
-            birthMonth: .constant(""),
-            birthNumber: .constant(""),
-            universityName: .constant(""),
-            universityDegree: .constant(""),
-            loggedInUser: nil
-        )
+    struct ProfileModalView_Previews: PreviewProvider {
+        static var previews: some View {
+            ProfileModalView(
+                updateButtonAction:{},
+                userModel: .constant(UserModel(
+                    firstName: "Marcus",
+                    lastName: "Deans",
+                    emailAddress: "marcusddeans@outlook.com",
+                    phoneNumber: "9196414032",
+                    location: "San Francisco",
+                    photoURL: "https://firebasestorage.googleapis.com:443/v0/b/jackfruit-c9dab.appspot.com/o/users%2F5555555555.jpg?alt=media&token=a9925d3e-df7a-4959-b21d-160abf8763c5",
+                    parameters: ["pets", "traveling"],
+                    companyName: "Atomic",
+                    companyPosition: "Summer Intern"))
+                //            updateButtonAction: {},
+                //            companyName: .constant(""),
+                //            companyPosition: .constant(""),
+                //            linkedinURL: .constant(""),
+                //            instagramURL: .constant(""),
+                //            snapchatURL: .constant(""),
+                //            githubURL: .constant(""),
+                //            twitterURL: .constant(""),
+                //            hometown: .constant(""),
+                //            birthMonth: .constant(""),
+                //            birthNumber: .constant(""),
+                //            universityName: .constant(""),
+                //            universityDegree: .constant(""),
+                //            loggedInUser: nil
+            )
+        }
     }
 }

@@ -39,7 +39,7 @@ struct ProfileView: View {
     let location: String
     let photoURL: String
     let parameters: [String]
-
+    
     init(userModel: UserModel){
         self.userModel = userModel
         self.firstName = userModel.firstName ?? ""
@@ -53,134 +53,134 @@ struct ProfileView: View {
     
     
     var body: some View {
-       
+        
         ScrollView {
             VStack {
                 
-                    LazyImage(source: URL(string: photoURL)) { state in
-                        if let image = state.image {
-                            image
-                                .frame(width: 150, height: 150, alignment: .center)
-                                .clipShape(Circle())
-                                .background(Circle().stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
-                                //.border(Color.init(UIColor.transitionPage), width: 10)
-                                .padding(.top, 20)
-                        } else if state.error != nil {
-                           
-                        } else {
-                            ZStack{
+                LazyImage(source: URL(string: photoURL)) { state in
+                    if let image = state.image {
+                        image
+                            .frame(width: 150, height: 150, alignment: .center)
+                            .clipShape(Circle())
+                            .background(Circle().stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
+                        //.border(Color.init(UIColor.transitionPage), width: 10)
+                            .padding(.top, 20)
+                    } else if state.error != nil {
                         
+                    } else {
+                        ZStack{
+                            
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                           .fill(.gray)
-                                           .frame(width: 200, height: 200)
-                                
-                                Text(firstName.prefix(1)+" "+lastName.prefix(1))
-                                    .font(Font.custom("CircularStd-Book", size: 30))
-                                    .foregroundColor(.black)
-                                    .bold()
-                                
-                                
-                            }
+                                .fill(.gray)
+                                .frame(width: 150   , height: 150)
+                            
+                            Text(firstName.prefix(1)+" "+lastName.prefix(1))
+                                .font(Font.custom("CircularStd-Book", size: 30))
+                                .foregroundColor(.black)
+                                .bold()
+                            
+                            
                         }
                     }
-
-            VStack  {
-                Text("\(firstName) \(lastName)")
-                    .font(Font.custom("CircularStd-Book", size: 30))
-                    .foregroundColor(.black)
-                    .fontWeight(.heavy)
-                
-                HStack{
-                    Text("iOS Engineer").font(Font.custom("CircularStd-Book", size: 20))
-                        .foregroundColor(.black)
-                    
                 }
                 
-                HStack {
+                VStack  {
+                    Text("\(firstName) \(lastName)")
+                        .font(Font.custom("CircularStd-Book", size: 30))
+                        .foregroundColor(.black)
+                        .fontWeight(.heavy)
                     
-                    HStack(spacing: 8){
-                        Image(systemName: "location.circle")
-                        Text(location)
-                    }//.padding(8)
+                    HStack{
+                        Text("iOS Engineer").font(Font.custom("CircularStd-Book", size: 20))
+                            .foregroundColor(.black)
+                        
+                    }
+                    
+                    HStack {
+                        
+                        HStack(spacing: 8){
+                            Image(systemName: "location.circle")
+                            Text(location)
+                        }//.padding(8)
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .foregroundColor(Color.black)
                         
                         .cornerRadius(10)
                         //.frame(width:20, height: 20)
-                    
-                    HStack(spacing: 8){
-                        Text("+1 " + phoneNumber).font(Font.custom("CircularStd-Book", size: 20))
-                    }//.padding(8)
+                        
+                        HStack(spacing: 8){
+                            Text("+1 " + phoneNumber).font(Font.custom("CircularStd-Book", size: 20))
+                        }//.padding(8)
                         
                         .foregroundColor(Color.black)
                         .cornerRadius(10)
-                
-                }//.padding(.vertical, 15)
-                
-                HStack {
-                    Button(action: {//messagesOpener()
-                        sendMessage(phoneNumber: phoneNumber)
-                    }) {
-                        Image(systemName: "message")
-                            .font(Font.custom("CircularStd-Book", size: 30))
-                            .frame(width: 70, height: 40)
-                            .modifier(ButtonBG())
-                            .cornerRadius(30)
-                            .border(Color.black, width: 2, cornerRadius: 25)
-                    }
+                        
+                    }//.padding(.vertical, 15)
                     
-                    
-                    .modifier(ThemeShadow())
-                    Button(action: {
-                        let phoneNumber = phoneNumber
-                        guard let number = URL(string: "tel://" + phoneNumber) else { return }
-                        if UIApplication.shared.canOpenURL(number) {
-                            UIApplication.shared.open(number)
-                        } else {
-                            print("Can't open url on this device")
+                    HStack {
+                        Button(action: {//messagesOpener()
+                            sendMessage(phoneNumber: phoneNumber)
+                        }) {
+                            Image(systemName: "message")
+                                .font(Font.custom("CircularStd-Book", size: 30))
+                                .frame(width: 70, height: 40)
+                                .modifier(ButtonBG())
+                                .cornerRadius(30)
+                                .border(Color.black, width: 2, cornerRadius: 25)
                         }
                         
-                    })  {   Image(systemName: "phone")
-                            .font(Font.custom("CircularStd-Book", size: 30))
-                            .frame(width: 70, height: 40)
-                            .modifier(ButtonBG())
-                            .cornerRadius(30)
-                            .border(Color.black, width: 2, cornerRadius: 25)
                         
+                        .modifier(ThemeShadow())
+                        Button(action: {
+                            let phoneNumber = phoneNumber
+                            guard let number = URL(string: "tel://" + phoneNumber) else { return }
+                            if UIApplication.shared.canOpenURL(number) {
+                                UIApplication.shared.open(number)
+                            } else {
+                                print("Can't open url on this device")
+                            }
+                            
+                        })  {   Image(systemName: "phone")
+                                .font(Font.custom("CircularStd-Book", size: 30))
+                                .frame(width: 70, height: 40)
+                                .modifier(ButtonBG())
+                                .cornerRadius(30)
+                                .border(Color.black, width: 2, cornerRadius: 25)
+                            
+                        }
+                        .modifier(ThemeShadow())
                     }
-                    .modifier(ThemeShadow())
-                }
-                
-              
-                
-                
-                
-                
-                
-                 
-                VStack{
-                    Text("\(firstName)'s Interests").font(Font.custom("CircularStd-Black", size: 20))
-                        .foregroundColor(Color.black)
                     
-                    let words = parameters
-                    ZStack{
-                        Color.white
-                            .edgesIgnoringSafeArea(.all)
-                        VStack{
-                            let data = words.map { " \($0)" }
-                             let screenWidth = UIScreen.main.bounds.width
-                            
-                            let columns = [
-                                GridItem(.fixed(screenWidth-200)),
-                                GridItem(.flexible()),
-                                //GridItem(.flexible())
-                            ]
-                            
-                            ZStack{
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    VStack{
+                        Text("\(firstName)'s Interests").font(Font.custom("CircularStd-Black", size: 20))
+                            .foregroundColor(Color.black)
+                        
+                        let words = parameters
+                        ZStack{
+                            Color.white
+                                .edgesIgnoringSafeArea(.all)
+                            VStack{
+                                let data = words.map { " \($0)" }
+                                let screenWidth = UIScreen.main.bounds.width
+                                
+                                let columns = [
+                                    GridItem(.fixed(screenWidth-200)),
+                                    GridItem(.flexible()),
+                                    //GridItem(.flexible())
+                                ]
+                                
+                                ZStack{
                                     LazyVGrid(columns: columns, spacing: 5) {
                                         ForEach(data, id: \.self) { item in
                                             Button {
-
+                                                
                                             } label: {
                                                 Text(item)
                                                     .font(Font.custom("CircularStd-Black", size: 20))
@@ -191,37 +191,37 @@ struct ProfileView: View {
                                                     .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
                                             }
                                         }
-
+                                        
                                         .frame(maxHeight: 50)
                                     }.background(Color.init(UIColor.middleColor))
-                                
-//                                LazyVGrid(columns: columns, spacing: 10) {
-//                                    ForEach(data, id: \.self) { item in
-//                                       // NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!)) {
-//                                           // let count = getNumberOfFriends(activity: searchResults[item]!)
-//                                            VStack {
-//                                                Text(item)
-//                                                    .font(Font.custom("CircularStd-Black", size: 20))
-//                                            }
-//                                            .frame(width: screenWidth-250, height: 50)
-//                                            //.padding()
-//                                            .background(Color.init(UIColor.transitionPage))
-//                                            .foregroundColor(.white)
-//                                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-//
-//                                       // }
-//                                    }
-//                                }.padding(.horizontal, 33).padding(.top, 20)
-//                                .frame(maxHeight: 700)
-                                
+                                    
+                                    //                                LazyVGrid(columns: columns, spacing: 10) {
+                                    //                                    ForEach(data, id: \.self) { item in
+                                    //                                       // NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!)) {
+                                    //                                           // let count = getNumberOfFriends(activity: searchResults[item]!)
+                                    //                                            VStack {
+                                    //                                                Text(item)
+                                    //                                                    .font(Font.custom("CircularStd-Black", size: 20))
+                                    //                                            }
+                                    //                                            .frame(width: screenWidth-250, height: 50)
+                                    //                                            //.padding()
+                                    //                                            .background(Color.init(UIColor.transitionPage))
+                                    //                                            .foregroundColor(.white)
+                                    //                                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                    //
+                                    //                                       // }
+                                    //                                    }
+                                    //                                }.padding(.horizontal, 33).padding(.top, 20)
+                                    //                                .frame(maxHeight: 700)
+                                    
+                                }
                             }
                         }
                     }
+                    
+                    
                 }
                 
-                
-            }
-            
             }
             
         }.background(Color.init(UIColor.middleColor))
@@ -246,7 +246,7 @@ struct ProfileView: View {
 }
 
 
-  func phoneOpener(){
+func phoneOpener(){
     if let url = URL(string: UIApplication.openSettingsURLString) {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -258,17 +258,17 @@ struct ProfileView: View {
 
 func sendMessage(phoneNumber: String){
     
-   
     
-      let smsNumber = ""+phoneNumber
+    
+    let smsNumber = ""+phoneNumber
     
     let sms: String = "sms:+\(phoneNumber)&body=Hi, it was great meeting you today!"
     let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
 }
 
- 
- 
+
+
 
 
 struct ButtonBG: ViewModifier {
@@ -309,6 +309,6 @@ struct ProfileView_Previews: PreviewProvider {
             location: "San Francisco",
             photoURL: "https://firebasestorage.googleapis.com:443/v0/b/jackfruit-c9dab.appspot.com/o/users%2F5555555555.jpg?alt=media&token=a9925d3e-df7a-4959-b21d-160abf8763c5",
             parameters: ["pets", "traveling"])
-                       )
+        )
     }
 }
