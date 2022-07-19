@@ -53,7 +53,17 @@ class ProfileModalVM: ObservableObject {
     
     func updateUserEntry() {
         userModel.companyName = companyName
-        
+        userModel.companyPosition = companyPosition
+        userModel.linkedinURL = linkedinURL
+        userModel.instagramURL = instagramURL
+        userModel.snapchatURL = snapchatURL
+        userModel.githubURL = githubURL
+        userModel.twitterURL = twitterURL
+        userModel.hometown = hometown
+        userModel.birthMonth = birthMonth
+        userModel.birthNumber = birthNumber
+        userModel.universityName = universityName
+        userModel.universityDegree = universityDegree
  
         do {
             let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
@@ -71,8 +81,7 @@ struct ProfileModal: View {
     
     var body: some View {
         ProfileModalView(
-            showLoginForm: vm.showLoginForm,
-            enteredUserName: $vm.enteredUserName,
+            updateButtonAction: vm.updateUserEntry,
             companyName: $vm.companyName,
             companyPosition: $vm.companyPosition,
             linkedinURL: $vm.linkedinURL,
