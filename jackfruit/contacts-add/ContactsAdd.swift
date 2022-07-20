@@ -11,7 +11,7 @@ import ToastUI
 
 class ContactsAddVM: ObservableObject {
     let db = Firestore.firestore()
-    
+    @Published var contactModel: UserModel = UserModel()
     func addPersonalRelationship(userId: String, personalContact: String){
         guard userId != "" else {
             print("User ID is empty")
@@ -79,26 +79,12 @@ class ContactsAddVM: ObservableObject {
         }
     }
     
-    func fetchContactOverview(contactNumber: String) -> UserModel{
-        var userModel: UserModel = UserModel()
-        db.collection("users").document(contactNumber)
-                .addSnapshotListener { documentSnapshot, error in
-                    guard let document = documentSnapshot else {
-                        print("Error fetching document: \(error!)")
-                        return
-                    }
-                    guard let data = document.data() else {
-                        print("Document data was empty.")
-                        return
-                    }
-                    let id = data["id"] as? UUID ?? UUID()
-                    let firstName = data["first_name"] as? String ?? ""
-                    let lastName = data["last_name"] as? String ?? ""
-                    
-                    userModel = UserModel(id: id, firstName: firstName, lastName: lastName)
-                }
-        return userModel
+    func fetchContactOverview(contactNumber: String){
+        self.contactModel = UserModel()
+        Task {
+            await doAsyncStuff(contactNumber: contactNumber)
         }
+    }
 //        db.collection("users").document(professionalContact).getDocument { (snapshot, error) in
 //            if let error = error {
 //                print(error.localizedDescription)
@@ -108,6 +94,34 @@ class ContactsAddVM: ObservableObject {
 //                }
 //            }
 //        }
+        
+    func doAsyncStuff(contactNumber: String) async{
+        await doAsyncGetUser(contactNumber: contactNumber, completion: { contactModel in
+            self.contactModel = contactModel
+        })
+    }
+    
+    func doAsyncGetUser(contactNumber: String, completion: @escaping (UserModel) -> Void) async {
+        print("Getting user now")
+        await db.collection("users").document(contactNumber)
+            .addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                let id = data["id"] as? UUID ?? UUID()
+                let firstName = data["first_name"] as? String ?? ""
+                let lastName = data["last_name"] as? String ?? ""
+                
+                let contactModel = UserModel(id: id, firstName: firstName, lastName: lastName)
+                print(contactModel)
+                completion(contactModel)
+            }
+    }
 }
 
 struct ContactsAdd: View {
@@ -119,8 +133,10 @@ struct ContactsAdd: View {
         ContactsAddView(
             addWorkContactAction: { enteredNumber in
                 print("Executing professional with number \(enteredNumber)")
-                viewModel.addProfessionalRelationship(userId: storedUserId, professionalContact: enteredNumber)
-                return viewModel.fetchContactOverview(contactNumber: enteredNumber)
+                Task {
+                    viewModel.addProfessionalRelationship(userId: storedUserId, professionalContact: enteredNumber)
+                    viewModel.fetchContactOverview(contactNumber: enteredNumber)
+                }
             },
             addGroupContactAction: { enteredNumber in
                 print("Executing group with number \(enteredNumber)")
@@ -128,9 +144,12 @@ struct ContactsAdd: View {
             },
             addFriendContactAction: { enteredNumber in
                 print("Executing personal with number \(enteredNumber)")
-                viewModel.addPersonalRelationship(userId: storedUserId, personalContact: enteredNumber)
-                return viewModel.fetchContactOverview(contactNumber: enteredNumber)
-            }
+                Task {
+                    viewModel.addPersonalRelationship(userId: storedUserId, personalContact: enteredNumber)
+                    viewModel.fetchContactOverview(contactNumber: enteredNumber)
+                }
+            },
+            contactModel: $viewModel.contactModel
         )
     }
     

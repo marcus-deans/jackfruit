@@ -23,9 +23,9 @@ enum NumberButton: String {
 }
 
 struct ContactsAddView: View {
-    let addWorkContactAction: (String) -> UserModel
+    let addWorkContactAction: (String) -> Void
     let addGroupContactAction: (String) -> Void
-    let addFriendContactAction: (String) -> UserModel
+    let addFriendContactAction: (String) -> Void
     
     
     @State var enteredNumber = ""
@@ -34,6 +34,7 @@ struct ContactsAddView: View {
     @State var workSelected : Bool = false
     @State var groupSelected : Bool = false
     @State var addSelected = false
+    @Binding var contactModel: UserModel
     
     enum relationType {
         case friend
@@ -53,7 +54,6 @@ struct ContactsAddView: View {
     @State var width : CGFloat = 70
     @State var hideTextLabel = false
     @State var contactAddedAlert = false
-    @State var contactOverview: UserModel?
 
     var body: some View {
         ZStack{
@@ -161,7 +161,7 @@ struct ContactsAddView: View {
                                 print("No relation selected")
                                 return
                             }
-                            guard enteredNumber.count == 10 else {
+                            guard enteredNumber.count <= 10 else {
 //                                self.addSelected.toggle()
                                 print("Entered number is invalid")
                                 return
@@ -176,11 +176,14 @@ struct ContactsAddView: View {
                             }
                             switch selectedRelation{
                             case .friend:
-                                self.contactOverview = addFriendContactAction(enteredNumber)
+                                addFriendContactAction(enteredNumber)
+                                print("Printing contact model")
+                                print(contactModel.firstName ?? "No first name")
+                                print(contactModel.lastName ?? "No first name")
                                 friendSelected = false
                                 contactAddedAlert = true
                             case .work:
-                                self.contactOverview = addWorkContactAction(enteredNumber)
+                                addWorkContactAction(enteredNumber)
                                 workSelected = false
                                 contactAddedAlert = true
                             case .group:
@@ -202,7 +205,7 @@ struct ContactsAddView: View {
                                 }
                             }
                         }
-                        .alert("\(self.contactOverview?.firstName ?? "") \(self.contactOverview?.lastName ?? "") Added", isPresented: $contactAddedAlert){
+                        .alert("\(self.contactModel.firstName ?? "") \(self.contactModel.lastName ?? "") Added", isPresented: $contactAddedAlert){
                             Button("OK", role: .cancel){}
                         }
                 }
@@ -280,14 +283,16 @@ struct ContactsAddView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsAddView(
             addWorkContactAction: { enteredNumber in
-               return UserModel()
+//               return UserModel()
+                print(enteredNumber)
             },
             addGroupContactAction: { enteredNumber in
                 print(enteredNumber)
             },
             addFriendContactAction: { enteredNumber in
-                return UserModel()
-            }
+//                return UserModel()
+                print(enteredNumber)
+            }, contactModel: .constant(UserModel())
         )
     }
 }
