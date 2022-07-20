@@ -15,20 +15,6 @@ struct ProfileModalView: View {
     @Environment(\.dismiss) var dismiss
     
     @State var editing = false
-    
-    //    @Binding var companyName: String
-    //    @Binding var companyPosition: String
-    //    @Binding var linkedinURL: String
-    //    @Binding var instagramURL: String
-    //    @Binding var snapchatURL: String
-    //    @Binding var githubURL: String
-    //    @Binding var twitterURL: String
-    //    @Binding var hometown: String
-    //    @Binding var birthMonth: String
-    //    @Binding var birthNumber: String
-    //    @Binding var universityName: String
-    //    @Binding var universityDegree: String
-    
     @Binding var userModel: UserModel
     
     var body: some View {
@@ -59,7 +45,7 @@ struct ProfileModalView: View {
                 }
                 .overlay(TextOverlay(firstName: userModel.firstName!, lastName: userModel.lastName!, companyName: userModel.companyName ?? "", companyPosition: userModel.companyPosition ?? ""), alignment: .bottomTrailing)
                 
-            ScrollView {
+                ScrollView {
                     VStack  {
                         HStack {
                             HStack(spacing: 5){
@@ -79,8 +65,8 @@ struct ProfileModalView: View {
                             
                             .foregroundColor(Color.black)
                             .cornerRadius(10)
-                             
-                        }.padding(.vertical, 15)
+                            
+                        }//.padding(.vertical, 15)
                         
                         VStack{
                             Text("Your Interests").font(Font.custom("CircularStd-Black", size: 20))
@@ -116,106 +102,108 @@ struct ProfileModalView: View {
                             }
                         }
                     }
-                VStack {
-                    Text("Professional").font(Font.custom("CircularStd-Black", size: 16))
-                        .foregroundColor(.black)
-                    HStack {
-                        Awesome.Solid.building.image
-                            .size(25)
-                        TextField("Company Name", text: $userModel.companyName ?? "", onEditingChanged: {edit in self.editing = edit })
-                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                            .textContentType(.organizationName)
+                    VStack {
+                        Text("Professional").font(Font.custom("CircularStd-Black", size: 16))
+                            .foregroundColor(.black)
+                        HStack {
+                            Awesome.Solid.building.image
+                                .size(25)
+                            TextField("Company Name", text: $userModel.companyName ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                                .textContentType(.organizationName)
+                            
+                            TextField("Company Position", text: $userModel.companyPosition ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                                .textContentType(.jobTitle)
+                        }
+                        HStack {
+                            Awesome.Brand.linkedin.image
+                                .size(25)
+                            TextField("Linkedin Handle (no @ sign!)", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
                         
-                        TextField("Company Position", text: $userModel.companyPosition ?? "", onEditingChanged: {edit in self.editing = edit })
-                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                            .textContentType(.jobTitle)
-                    }.padding(.horizontal, 3)
-                    HStack {
-                        Awesome.Brand.linkedin.image
-                            .size(25)
-                        TextField("Linkedin Handle (no @ sign!)", text: $userModel.linkedinURL ?? "", onEditingChanged: {edit in self.editing = edit })
-                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
+                        HStack{
+                            Awesome.Brand.github.image
+                                .size(25)
+                            TextField("Github Handle (no @ sign!)", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font
+                                    .custom("CircularStd-Book", size: 14))
+                        }
+                    }.padding()
+                    
+                    VStack {
+                        Text("Social Networking").font(Font.custom("CircularStd-Black", size: 16))
+                            .foregroundColor(.black)
+                        HStack{
+                            Awesome.Brand.instagram.image
+                                .size(25)
+                            TextField("Instagram Handle (no @ sign!)", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
+                        
+                        HStack{
+                            Awesome.Brand.snapchat.image
+                                .size(25)
+                            TextField("Snapchat Handle (no @ sign!)", text: $userModel.snapchatURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
+                        HStack{
+                            Awesome.Brand.twitter.image
+                                .size(25)
+                            TextField("Twitter Handle (no @ sign!)", text: $userModel.twitterURL ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
+                    }.padding()
+                    
+                    VStack{
+                        Text("Personal").font(Font.custom("CircularStd-Black", size: 16))
+                            .foregroundColor(.black)
+                        HStack{
+                            Awesome.Solid.home.image
+                                .size(25)
+                            TextField("Hometown", text: $userModel.hometown ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
+                        
+                        HStack{
+                            Awesome.Solid.graduationCap.image
+                                .size(25)
+                            TextField("University Name", text: $userModel.universityName ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                            
+                            TextField("University Degree", text: $userModel.universityDegree ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
+                        
+                        HStack{
+                            Awesome.Solid.birthdayCake.image
+                                .size(25)
+                            TextField("Birth Month", text: $userModel.birthMonth ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                            
+                            TextField("Birth Day", text: $userModel.birthNumber ?? "", onEditingChanged: {edit in self.editing = edit })
+                                .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
+                        }
+                    }.padding()
+                    
                     
                     HStack{
-                        Awesome.Brand.github.image
-                            .size(25)
-                        TextField("Github Handle (no @ sign!)", text: $userModel.githubURL ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font
-                            .custom("CircularStd-Book", size: 14))
+                        Button("Update Profile"){
+                            updateButtonAction()
+                            dismiss()
+                        }
+                        .padding()
+                        .buttonStyle(RoundedRectangleButtonStyle())
+                        
+                        Button("Cancel") {
+                            dismiss()
+                        }
+                        .padding()
+                        .buttonStyle(RoundedRectangleButtonStyle())
                     }
-                }.padding()
-                
-                VStack {
-                    Text("Social Networking").font(Font.custom("CircularStd-Black", size: 16))
-                        .foregroundColor(.black)
-                    HStack{
-                        Awesome.Brand.instagram.image
-                            .size(25)
-                        TextField("Instagram Handle (no @ sign!)", text: $userModel.instagramURL ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
-                    
-                    HStack{
-                        Awesome.Brand.snapchat.image
-                            .size(25)
-                    TextField("Snapchat Handle (no @ sign!)", text: $userModel.snapchatURL ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
-                    HStack{
-                        Awesome.Brand.twitter.image
-                            .size(25)
-                    TextField("Twitter Handle (no @ sign!)", text: $userModel.twitterURL ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
-                }.padding()
-                
-                VStack{
-                    Text("Personal").font(Font.custom("CircularStd-Black", size: 16))
-                        .foregroundColor(.black)
-                    HStack{
-                        Awesome.Solid.home.image
-                            .size(25)
-                        TextField("Hometown", text: $userModel.hometown ?? "", onEditingChanged: {edit in self.editing = edit })
-                            .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
-                    
-                    HStack{
-                        Awesome.Solid.graduationCap.image
-                            .size(25)
-                    TextField("University Name", text: $userModel.universityName ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    
-                    TextField("University Degree", text: $userModel.universityDegree ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
-                    
-                    HStack{
-                        Awesome.Solid.birthdayCake.image
-                            .size(25)
-                    TextField("Birth Month", text: $userModel.birthMonth ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    
-                    TextField("Birth Day", text: $userModel.birthNumber ?? "", onEditingChanged: {edit in self.editing = edit })
-                        .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                    }
-                }.padding()
-                
-                
-                HStack{
-                    Button("Update Profile"){
-                        updateButtonAction()
-                    }
-                    .padding()
-                    .buttonStyle(RoundedRectangleButtonStyle())
-                    
-                    Button("Dismiss") {
-                        dismiss()
-                    }
-                    .padding()
-                    .buttonStyle(RoundedRectangleButtonStyle())                }
                 }
-            }
+            }.padding()
         }
         
     }

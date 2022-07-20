@@ -25,7 +25,7 @@ struct ProfilePhotoView: View {
             Text("")
                 .shadow(radius: 4)
                 .font(.largeTitle)
-                .frame(width: 85, height: 55)
+                .frame(width: 85, height: 75)
                 .overlay(
                     LazyImage(source: URL(string: profileURL)){ state in
                         if let image = state.image {
@@ -36,9 +36,12 @@ struct ProfilePhotoView: View {
                             ProgressView() // Acts as a placeholder
                         }
                     }
-                        .frame(maxWidth: 85, maxHeight: 55)
+                        //.frame(maxWidth: 200, maxHeight: 150)
+                        
+                        .aspectRatio(contentMode: .fit)
                         .clipShape(Circle())
                 )
+    
         }
     }
 }
@@ -153,7 +156,7 @@ struct TextOverlay: View{
                 (companyName != "" && companyPosition == ""){
                 Text("Works at \(companyName)").font(Font.custom("CircularStd-Book", size:20))
                     .foregroundColor(.white)
-            } else {
+            } else if (companyName != "" && companyPosition != ""){
                 Text("\(companyPosition) at \(companyName)").font(Font.custom("CircularStd-Book", size: 20))
                     .foregroundColor(.white)
             }

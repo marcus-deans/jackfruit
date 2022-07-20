@@ -34,6 +34,7 @@ struct ContactsAddView: View {
     @State var workSelected : Bool = false
     @State var groupSelected : Bool = false
     @State var addSelected = false
+    @Binding var contactModel: UserModel
     
     enum relationType {
         case friend
@@ -52,6 +53,8 @@ struct ContactsAddView: View {
     @State var trimVal : CGFloat = 0
     @State var width : CGFloat = 70
     @State var hideTextLabel = false
+    @State var contactAddedAlert = false
+
     var body: some View {
         ZStack{
             Color.init(UIColor.middleColor)
@@ -158,7 +161,7 @@ struct ContactsAddView: View {
                                 print("No relation selected")
                                 return
                             }
-                            guard enteredNumber.count == 10 else {
+                            guard enteredNumber.count <= 10 else {
 //                                self.addSelected.toggle()
                                 print("Entered number is invalid")
                                 return
@@ -174,13 +177,22 @@ struct ContactsAddView: View {
                             switch selectedRelation{
                             case .friend:
                                 addFriendContactAction(enteredNumber)
+                                print("Printing contact model")
+                                print(contactModel.firstName ?? "No first name")
+                                print(contactModel.lastName ?? "No first name")
+                                friendSelected = false
+                                contactAddedAlert = true
                             case .work:
                                 addWorkContactAction(enteredNumber)
+                                workSelected = false
+                                contactAddedAlert = true
                             case .group:
+                                groupSelected = false
                                 addGroupContactAction(enteredNumber)
                             case .none:
                                 print("Error")
                             }
+                            selectedRelation = .none
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                                 withAnimation(){
@@ -192,6 +204,9 @@ struct ContactsAddView: View {
                                     print("Reset button")
                                 }
                             }
+                        }
+                        .alert("\(self.contactModel.firstName ?? "") \(self.contactModel.lastName ?? "") Added", isPresented: $contactAddedAlert){
+                            Button("OK", role: .cancel){}
                         }
                 }
             }
@@ -268,14 +283,16 @@ struct ContactsAddView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsAddView(
             addWorkContactAction: { enteredNumber in
+//               return UserModel()
                 print(enteredNumber)
             },
             addGroupContactAction: { enteredNumber in
                 print(enteredNumber)
             },
             addFriendContactAction: { enteredNumber in
+//                return UserModel()
                 print(enteredNumber)
-            }
+            }, contactModel: .constant(UserModel())
         )
     }
 }
