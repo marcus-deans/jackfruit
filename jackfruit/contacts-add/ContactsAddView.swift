@@ -201,6 +201,9 @@ struct ContactsAddView: View {
                                     self.addSelected.toggle()
                                     self.hideTextLabel = false
                                     self.enteredNumber = ""
+                                    self.friendSelected = false
+                                    self.workSelected = false
+                                    self.groupSelected = false
                                     print("Reset button")
                                 }
                             }
