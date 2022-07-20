@@ -45,16 +45,16 @@ struct Screen9PhotoPure: View {
                             pickerSelected.toggle()
                         }, label: {
                             Text("Pick Image")
-//                                .foregroundColor(.white)
-//                                .padding(.vertical, 10)
-//                                .padding(.horizontal, 35)
-//                                .background(Color.blue)
-//                                .clipShape(Capsule())
+                            //                                .foregroundColor(.white)
+                            //                                .padding(.vertical, 10)
+                            //                                .padding(.horizontal, 35)
+                            //                                .background(Color.blue)
+                            //                                .clipShape(Capsule())
                         })
                         .buttonStyle(RoundedRectangleButtonStyle())
                         .padding()
                     }
-  
+                    
                 }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     .fixedSize(horizontal: false, vertical: true)
                     .background(Color.init(UIColor.transitionPage))

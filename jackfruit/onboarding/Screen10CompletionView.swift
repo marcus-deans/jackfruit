@@ -26,28 +26,7 @@ final class Screen10CompletionVM: ObservableObject, Completeable {
 
 struct Screen10CompletionView: View {
     @StateObject var vm: Screen10CompletionVM
-    @AppStorage("is_onboarded") var isOnboarded: Bool = false
-    
     var body: some View {
-        ZStack {
-            Color.init(UIColor.transitionPage).ignoresSafeArea()
-            VStack(alignment: .center) {
-                Text("Welcome to the app, \(vm.name)")  .font(Font.custom("PTSans-Bold", size: 34))
-                    .fontWeight(.black).bold()
-                
-                Button(action: {
-                    withAnimation(.spring()){
-                        self.vm.didTapNext()
-                        isOnboarded=true
-                    }
-                }, label: { Text("Next") }).buttonStyle(RoundedRectangleButtonStyle())
-            }.padding()
-        }
-    }
-}
-
-struct Screen10CompletionView_Previews: PreviewProvider {
-    static var previews: some View {
-        Screen10CompletionView(vm: Screen10CompletionVM(name: "Marcus Deans"))
+        Screen10CompletionPure(firstName: vm.name, didTapNextAction: vm.didTapNext)
     }
 }

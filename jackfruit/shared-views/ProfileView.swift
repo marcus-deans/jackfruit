@@ -219,16 +219,6 @@ struct ProfileView: View {
                             }
                         }
                         
-                        if userModel.snapchatURL != nil && userModel.snapchatURL != "" {
-                            HStack {
-                                Awesome.Brand.snapchat.image
-                                    .size(25)
-                                Text(userModel.snapchatURL!).font(Font.custom("CircularStd-Book", size: 14))
-                                    .foregroundColor(.black)
-                                
-                            }
-                        }
-                        
                         if let twitterHandle = userModel.twitterURL{
                             if twitterHandle != "" {
                                 HStack {
@@ -270,7 +260,7 @@ struct ProfileView: View {
                         }
                         if (userModel.birthMonth != nil && userModel.birthMonth != "") || (userModel.birthNumber != nil && userModel.birthNumber != "") {
                             HStack {
-                                Awesome.Solid.graduationCap.image
+                                Awesome.Solid.birthdayCake.image
                                     .size(25)
                                 if userModel.birthMonth != nil && userModel.birthMonth != ""{
                                     Text(userModel.birthMonth!).font(Font.custom("CircularStd-Book", size: 14))

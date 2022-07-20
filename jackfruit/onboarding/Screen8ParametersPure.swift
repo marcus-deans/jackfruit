@@ -9,7 +9,7 @@ import SwiftUI
 import WrappingHStack
 
 struct Screen8ParametersPure: View {
-//    @StateObject var vm: Screen8ParametersVM
+    //    @StateObject var vm: Screen8ParametersVM
     
     let sportsToggledAction: () -> Void
     let hobbiesToggledAction: () -> Void
