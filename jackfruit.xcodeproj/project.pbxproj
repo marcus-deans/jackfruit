@@ -66,13 +66,14 @@
 		25A197EF2887FC850008A50E /* Screen10CompletionPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197EE2887FC850008A50E /* Screen10CompletionPure.swift */; };
 		25A197F128887F600008A50E /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197F028887F600008A50E /* FirebaseAppCheck */; };
 		25A197F3288882110008A50E /* FirebaseInAppMessagingSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197F2288882110008A50E /* FirebaseInAppMessagingSwift-Beta */; };
-		25A197F5288882AC0008A50E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A197F4288882AC0008A50E /* AdSupport.framework */; };
 		25A197F7288882DD0008A50E /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197F6288882DD0008A50E /* FirebaseAnalytics */; };
 		25A197F9288882E50008A50E /* FirebaseAnalyticsSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197F8288882E50008A50E /* FirebaseAnalyticsSwift-Beta */; };
 		25A197FB288885100008A50E /* FirebaseInAppMessaging-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197FA288885100008A50E /* FirebaseInAppMessaging-Beta */; };
 		25A197FD28888B0B0008A50E /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197FC28888B0B0008A50E /* FirebasePerformance */; };
 		25A197FF28888CDF0008A50E /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 25A197FE28888CDF0008A50E /* FirebaseRemoteConfig */; };
 		25A1980128888CE30008A50E /* FirebaseRemoteConfigSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 25A1980028888CE30008A50E /* FirebaseRemoteConfigSwift-Beta */; };
+		25A19802288891020008A50E /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 25A197F4288882AC0008A50E /* AdSupport.framework */; };
+		25A19806288891BD0008A50E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 25A19805288891BD0008A50E /* FirebaseCrashlytics */; };
 		696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 696D0ACE287B9A27008F4C34 /* ToastUI */; };
 		696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0AD0287D15C0008F4C34 /* ActivityModel.swift */; };
 		6993F02028817959001BFE0E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01F28817959001BFE0E /* ToastUI */; };
@@ -163,7 +164,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				253A74B42877ED660005D7E1 /* WrappingHStack in Frameworks */,
+				25A19802288891020008A50E /* AdSupport.framework in Frameworks */,
 				251F855D288742E4000F64C4 /* Awesome in Frameworks */,
+				25A19806288891BD0008A50E /* FirebaseCrashlytics in Frameworks */,
 				25A197FD28888B0B0008A50E /* FirebasePerformance in Frameworks */,
 				6993F02328817987001BFE0E /* WrappingHStack in Frameworks */,
 				6993F02028817959001BFE0E /* ToastUI in Frameworks */,
@@ -181,7 +184,6 @@
 				251F855728866881000F64C4 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
 				251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */,
-				25A197F5288882AC0008A50E /* AdSupport.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,6 +389,7 @@
 				253A744B2877E1920005D7E1 /* Sources */,
 				253A744C2877E1920005D7E1 /* Frameworks */,
 				253A744D2877E1920005D7E1 /* Resources */,
+				25A19807288891FC0008A50E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -413,6 +416,7 @@
 				25A197FC28888B0B0008A50E /* FirebasePerformance */,
 				25A197FE28888CDF0008A50E /* FirebaseRemoteConfig */,
 				25A1980028888CE30008A50E /* FirebaseRemoteConfigSwift-Beta */,
+				25A19805288891BD0008A50E /* FirebaseCrashlytics */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -542,6 +546,28 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25A19807288891FC0008A50E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		253A744B2877E1920005D7E1 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -655,7 +681,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1082,6 +1108,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseRemoteConfigSwift-Beta";
+		};
+		25A19805288891BD0008A50E /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 253A747E2877E2540005D7E1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		696D0ACE287B9A27008F4C34 /* ToastUI */ = {
 			isa = XCSwiftPackageProductDependency;
