@@ -111,14 +111,10 @@ struct ProfileModalView: View {
                             TextField("Company Name", text: $userModel.companyName ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                                 .textContentType(.organizationName)
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
                             
                             TextField("Company Position", text: $userModel.companyPosition ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                                 .textContentType(.jobTitle)
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
                         }
                         HStack {
                             Awesome.Brand.linkedin.image
@@ -178,8 +174,6 @@ struct ProfileModalView: View {
                                 .size(25)
                             TextField("Hometown", text: $userModel.hometown ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
                         }
                         
                         HStack{
@@ -187,12 +181,10 @@ struct ProfileModalView: View {
                                 .size(25)
                             TextField("University Name", text: $userModel.universityName ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
+              
                             TextField("University Degree", text: $userModel.universityDegree ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                                 .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
                         }
                         
                         HStack{
@@ -200,13 +192,9 @@ struct ProfileModalView: View {
                                 .size(25)
                             TextField("Birth Month", text: $userModel.birthMonth ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
                             
                             TextField("Birth Day", text: $userModel.birthNumber ?? "", onEditingChanged: {edit in self.editing = edit })
                                 .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
-                                .disableAutocorrection(true)
-                                .textInputAutocapitalization(.never)
                         }
                     }.padding()
                     
@@ -218,12 +206,6 @@ struct ProfileModalView: View {
                         }
                         .padding()
                         .buttonStyle(RoundedRectangleButtonStyle())
-                        
-//                        Button("Cancel") {
-//                            dismiss()
-//                        }
-//                        .padding()
-//                        .buttonStyle(RoundedRectangleButtonStyle())
                     }
                 }
             }.background(Color.init(UIColor.middleColor)).padding()
