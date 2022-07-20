@@ -33,18 +33,20 @@ class ProfileModalVM: ObservableObject {
     @Published var universityDegree: String = ""
     
     
-    @Environment(\.dismiss) var dismiss
+//    @Environment(\.dismiss) var dismiss
     
     @Published var userModel: UserModel
     
-    var loggedInUser: String?
     let db = Firestore.firestore()
     
     
     init(userId: String){
-        let userRef = db.collection("users").document(userId)
-        
+//        let userRef = db.collection("users").document(userId)
         self.userModel = UserModel()
+        Task {
+            await doAsyncStuff(userId: userId)
+        }
+//        self.userModel = UserModel()
         //        userRef.getDocument(){ (document, error) in
         //            let result = Result {
         //                try document.flatMap {
@@ -52,13 +54,31 @@ class ProfileModalVM: ObservableObject {
         //                }
         //            }
         //        }
-        userRef.getDocument(as: UserModel.self){ result in
+//        userRef.getDocument(as: UserModel.self){ result in
+//            switch result {
+//            case .success(let model):
+//                self.userModel = model
+//            case .failure(let error):
+//                print("Could not obtain model, \(error.localizedDescription)")
+//                self.userModel = UserModel()
+//            }
+//        }
+    }
+    
+    func doAsyncStuff(userId: String) async{
+        await getUserModel(userId: userId, completion: { userModel in
+            self.userModel = userModel
+        })
+    }
+    
+    func getUserModel(userId: String, completion: @escaping (UserModel) -> Void) async {
+        await db.collection("users").document(userId).getDocument(as: UserModel.self){
+            result in
             switch result {
             case .success(let model):
-                self.userModel = model
+                completion(model)
             case .failure(let error):
-                print("Could not obtain model, \(error.localizedDescription)")
-                self.userModel = UserModel()
+                print("Could not obtain model, \(error)")
             }
         }
     }
@@ -86,7 +106,7 @@ class ProfileModalVM: ObservableObject {
         universityDegree = userModel.universityDegree ?? ""
     }
     
-    func updateUserEntry() {
+    func updateUserEntry(){
         do {
             let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }

@@ -80,6 +80,7 @@ class ContactsAddVM: ObservableObject {
     }
     
     func fetchContactOverview(contactNumber: String) -> UserModel{
+        var userModel: UserModel = UserModel()
         db.collection("users").document(contactNumber)
                 .addSnapshotListener { documentSnapshot, error in
                     guard let document = documentSnapshot else {
@@ -94,8 +95,9 @@ class ContactsAddVM: ObservableObject {
                     let firstName = data["first_name"] as? String ?? ""
                     let lastName = data["last_name"] as? String ?? ""
                     
-                    return UserModel(id: id, firstName: firstName, lastName: lastName)
+                    userModel = UserModel(id: id, firstName: firstName, lastName: lastName)
                 }
+        return userModel
         }
 //        db.collection("users").document(professionalContact).getDocument { (snapshot, error) in
 //            if let error = error {

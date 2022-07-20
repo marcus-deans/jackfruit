@@ -53,8 +53,8 @@ struct ContactsAddView: View {
     @State var width : CGFloat = 70
     @State var hideTextLabel = false
     @State var contactAddedAlert = false
-    var contactOverview: UserModel?
-    
+    @State var contactOverview: UserModel?
+
     var body: some View {
         ZStack{
             Color.init(UIColor.middleColor)
@@ -177,15 +177,19 @@ struct ContactsAddView: View {
                             switch selectedRelation{
                             case .friend:
                                 self.contactOverview = addFriendContactAction(enteredNumber)
+                                friendSelected = false
                                 contactAddedAlert = true
                             case .work:
                                 self.contactOverview = addWorkContactAction(enteredNumber)
+                                workSelected = false
                                 contactAddedAlert = true
                             case .group:
+                                groupSelected = false
                                 addGroupContactAction(enteredNumber)
                             case .none:
                                 print("Error")
                             }
+                            selectedRelation = .none
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                                 withAnimation(){
@@ -198,7 +202,7 @@ struct ContactsAddView: View {
                                 }
                             }
                         }
-                        .alert("\(contactOverview?.firstName ?? "") \(contactOverview?.lastName ?? "") Added", isPresented: $contactAddedAlert){
+                        .alert("\(self.contactOverview?.firstName ?? "") \(self.contactOverview?.lastName ?? "") Added", isPresented: $contactAddedAlert){
                             Button("OK", role: .cancel){}
                         }
                 }
@@ -276,13 +280,13 @@ struct ContactsAddView_Previews: PreviewProvider {
     static var previews: some View {
         ContactsAddView(
             addWorkContactAction: { enteredNumber in
-                print(enteredNumber)
+               return UserModel()
             },
             addGroupContactAction: { enteredNumber in
                 print(enteredNumber)
             },
             addFriendContactAction: { enteredNumber in
-                print(enteredNumber)
+                return UserModel()
             }
         )
     }
