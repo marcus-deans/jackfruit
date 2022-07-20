@@ -164,6 +164,7 @@ struct MainTabView: View {
     @State var selectedIndex: Int = 0
     @AppStorage("is_onboarded") var isOnboarded: Bool = false
     //    @Binding var userModel: UserModel
+    @AppStorage("user_id") var userId: String = ""
     
     var body: some View {
         
@@ -183,6 +184,12 @@ struct MainTabView: View {
                 Text("Discover").font(Font.custom("CircularStd-Black",
                                                 size: 10))
                 }.tag(2)
+            ProfileModal(vm: ProfileModalVM(userId: userId)).tabItem {
+                Image(systemName: "gear")
+                Text("Profile").font(Font.custom("CircularStd-Black",
+                                                size: 10))
+                            
+            }.tag(3)
         }.accentColor(Color.init(UIColor.transitionPage))
         
         .onAppear() {

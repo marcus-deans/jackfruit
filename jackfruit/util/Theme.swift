@@ -101,7 +101,7 @@ struct RoundedRectangleButtonStyle: ButtonStyle {
             }
         })
         // 👇🏻 makes all taps go to the original button
-        .frame(width:300)
+        //.frame(width:300) May need to change this back for onboarding
         .allowsHitTesting(false)
         .padding()
         .background(Color.white).cornerRadius(30)

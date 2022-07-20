@@ -80,7 +80,7 @@ struct ProfileModalView: View {
                             .foregroundColor(Color.black)
                             .cornerRadius(10)
                              
-                        }//.padding(.vertical, 15)
+                        }.padding(.vertical, 15)
                         
                         VStack{
                             Text("Your Interests").font(Font.custom("CircularStd-Black", size: 20))
@@ -129,7 +129,7 @@ struct ProfileModalView: View {
                         TextField("Company Position", text: $userModel.companyPosition ?? "", onEditingChanged: {edit in self.editing = edit })
                             .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 14))
                             .textContentType(.jobTitle)
-                    }
+                    }.padding(.horizontal, 3)
                     HStack {
                         Awesome.Brand.linkedin.image
                             .size(25)

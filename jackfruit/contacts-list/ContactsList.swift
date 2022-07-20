@@ -137,7 +137,6 @@ class ContactsListVM: ObservableObject {
                 print("No documents")
                 return
             }
-            
             self.users = Set(documents.map { queryDocumentSnapshot -> UserModel in
                 let data = queryDocumentSnapshot.data()
                 let id = data["id"] as? UUID ?? UUID()
@@ -169,10 +168,9 @@ struct ContactsList: View {
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
     @State private var showProfileModal = false
-    
+    let screenWidth = UIScreen.main.bounds.width
     var body: some View {
         ZStack {
-            //Color.init(UIColor.middleColor)
             if #available(iOS 15.0, *) {
                 NavigationView {
                     List {
@@ -218,22 +216,16 @@ struct ContactsList: View {
                         
                     }.navigationBarTitle("Contacts")
                         .toolbar {
-                            ToolbarItem() {
+                            ToolbarItem(placement: .navigationBarTrailing) {
                                 VStack {
-                                    Spacer()
-                                    Button("") {
-                                        showProfileModal.toggle()
-                                    }.background(
-                                        Image(systemName: "gearshape.fill").frame(width: 80.0, height: 80.0)
-                                        
-                                    ).sheet(isPresented: $showProfileModal) {
-                                        ProfileModal(vm: ProfileModalVM(userId: userId))
-                                    }}
-                                .searchable(text: $searchText, placement: .toolbar)
+                                    Spacer().searchable(text: $searchText, placement: .toolbar)
+                                    }
+                                
                                 .background(Color.white)
                                 .font(Font.custom("CircularStd-Black", size: 18))
                                 
                             }
+                           
                         }
                         .navigationBarHidden(false)
                 }
