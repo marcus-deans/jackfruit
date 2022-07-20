@@ -29,14 +29,8 @@ struct Screen1LandingView: View {
     
     var body: some View {
         ZStack {
-            //.background(Color.init(UIColor.afterStartPageTransition))
-           
             LinearGradient(gradient: Gradient(colors: [Color.init(UIColor.topGradient), Color.init(UIColor.transitionPage)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
-            //Color.init(UIColor.white).ignoresSafeArea()
-            
             VStack(alignment: .center) {
-                
-                
                 Text("Contact")
                     .font(Font.custom("CircularStd-Black", size: 50))
                     .foregroundColor(.white)
@@ -51,9 +45,7 @@ struct Screen1LandingView: View {
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text("Create Account") }).buttonStyle(RoundedRectangleButtonStyle())
-            }.navigationBarHidden(true)
-            
-            
+            }.navigationBarHidden(true)                        
         }
     }
 }

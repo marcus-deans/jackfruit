@@ -187,6 +187,7 @@ struct MainTabView: View {
         
         .onAppear() {
             UITabBar.appearance().barTintColor = .white
+            UITabBar.appearance().backgroundColor = UIColor.white
         }
     }
 }
