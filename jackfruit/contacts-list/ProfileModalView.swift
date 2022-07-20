@@ -18,7 +18,7 @@ struct ProfileModalView: View {
     @Binding var userModel: UserModel
     
     var body: some View {
-        VStack{
+        ScrollView {
             VStack {
                 let photoURL = userModel.photoURL ?? ""
                 LazyImage(source: URL(string: photoURL)) { state in
@@ -66,7 +66,7 @@ struct ProfileModalView: View {
                             .foregroundColor(Color.black)
                             .cornerRadius(10)
                             
-                        }//.padding(.vertical, 15)
+                        }.padding(.vertical, 15)
                         
                         VStack{
                             Text("Your Interests").font(Font.custom("CircularStd-Black", size: 20))
@@ -203,8 +203,8 @@ struct ProfileModalView: View {
                         .buttonStyle(RoundedRectangleButtonStyle())
                     }
                 }
-            }.padding()
-        }
+            }.background(Color.init(UIColor.middleColor)).padding()
+        }.background(Color.init(UIColor.middleColor))
         
     }
     

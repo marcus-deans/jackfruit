@@ -34,8 +34,8 @@ struct ProfileView: View {
     
     
     var body: some View {
+      
         ScrollView {
-        VStack{
             VStack {
                 let photoURL = userModel.photoURL ?? ""
                 LazyImage(source: URL(string: photoURL)) { state in
@@ -72,7 +72,7 @@ struct ProfileView: View {
                 }
                 .overlay(TextOverlay(firstName: userModel.firstName!, lastName: userModel.lastName!, companyName: userModel.companyName ?? "", companyPosition: userModel.companyPosition ?? ""), alignment: .bottomTrailing)
                 .padding(.vertical, 20)
-            }
+         
             
             HStack {
                 Button(action: {//messagesOpener()
@@ -284,10 +284,10 @@ struct ProfileView: View {
                         }
                     }.padding()
                 }
-                
+            }
             }
         }
-        }.background(Color.init(UIColor.middleColor))
+        .background(Color.init(UIColor.middleColor))
     }
     
     private func messagesOpener(){
