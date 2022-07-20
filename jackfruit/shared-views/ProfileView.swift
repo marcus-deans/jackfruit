@@ -83,6 +83,7 @@ struct ProfileView: View {
                         .frame(width: 70, height: 40)
                         .modifier(ButtonBG())
                         .cornerRadius(30)
+                        .foregroundColor(Color.init(UIColor.transitionPage))
                         .border(Color.black, width: 2, cornerRadius: 25)
                 }
                 
@@ -101,6 +102,7 @@ struct ProfileView: View {
                         .font(Font.custom("CircularStd-Book", size: 30))
                         .frame(width: 70, height: 40)
                         .modifier(ButtonBG())
+                        .foregroundColor(Color.init(UIColor.transitionPage))
                         .cornerRadius(30)
                         .border(Color.black, width: 2, cornerRadius: 25)
                     
