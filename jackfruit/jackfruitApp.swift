@@ -58,7 +58,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 
         FirebaseApp.configure()
-        
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         return true
         
     }
