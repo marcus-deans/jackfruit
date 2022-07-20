@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import Firebase
+import FirebaseAnalytics
 
 final class Screen10CompletionVM: ObservableObject, Completeable {
     let name: String
@@ -16,6 +17,9 @@ final class Screen10CompletionVM: ObservableObject, Completeable {
     
     init(name: String?) {
         self.name = name ?? ""
+        Analytics.logEvent(AnalyticsEventTutorialComplete, parameters: [
+          AnalyticsParameterItemName: "end",
+        ])
     }
     
     func didTapNext() {

@@ -7,12 +7,16 @@
 
 import SwiftUI
 import Combine
+import FirebaseAnalytics
 
 final class Screen1LandingVM: ObservableObject, Completeable {
     
     let didComplete = PassthroughSubject<Screen1LandingVM, Never>()
     
     init() {
+        Analytics.logEvent(AnalyticsEventTutorialBegin, parameters: [
+          AnalyticsParameterItemName: "begin",
+        ])
     }
     
     func didTapNext() {
