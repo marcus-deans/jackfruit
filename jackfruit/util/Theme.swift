@@ -39,6 +39,9 @@ extension UIColor {
     
     static let transitionPage = UIColor(rgb: 0xff5400)
     
+    static let topGradient = UIColor(rgb: 0xFFA800)
+
+    
     static let middleColor = UIColor(rgb: 0xf0f2f7)
     
     static let textColor = UIColor(rgb: 0x4d5764)
@@ -92,15 +95,16 @@ struct RoundedRectangleButtonStyle: ButtonStyle {
         Button(action: {}, label: {
             HStack(alignment: .center) {
                 
-                configuration.label.foregroundColor(.white)
+                configuration.label.foregroundColor(.black)
                     .font(Font.custom("CircularStd-Book", size: 20))
                 
             }
         })
         // 👇🏻 makes all taps go to the original button
+        .frame(width:300)
         .allowsHitTesting(false)
         .padding()
-        .background(Color.black).cornerRadius(18)
+        .background(Color.white).cornerRadius(30)
         .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
