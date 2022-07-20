@@ -171,10 +171,10 @@ struct ContactsList: View {
     @State private var showProfileModal = false
     let screenWidth = UIScreen.main.bounds.width
     var body: some View {
-        VStack {
-            Button("Crash") {
-              fatalError("Crash was triggered")
-            }
+        ZStack {
+//            Button("Crash") {
+//              fatalError("Crash was triggered")
+//            }
             NavigationView {
                 List {
                     ForEach(searchResults) {
