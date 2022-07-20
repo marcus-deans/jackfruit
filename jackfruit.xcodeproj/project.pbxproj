@@ -58,6 +58,12 @@
 		25A197DF2887F56F0008A50E /* Screen8ParametersPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197DE2887F56F0008A50E /* Screen8ParametersPure.swift */; };
 		25A197E12887F9060008A50E /* Screen9PhotoPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E02887F9060008A50E /* Screen9PhotoPure.swift */; };
 		25A197E32887FA680008A50E /* Screen7LocationPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E22887FA680008A50E /* Screen7LocationPure.swift */; };
+		25A197E52887FC430008A50E /* Screen6EmailPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E42887FC430008A50E /* Screen6EmailPure.swift */; };
+		25A197E72887FC4C0008A50E /* Screen5VerificationPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E62887FC4C0008A50E /* Screen5VerificationPure.swift */; };
+		25A197E92887FC5B0008A50E /* Screen4NumberPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E82887FC5B0008A50E /* Screen4NumberPure.swift */; };
+		25A197EB2887FC6D0008A50E /* Screen3LastNamePure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197EA2887FC6D0008A50E /* Screen3LastNamePure.swift */; };
+		25A197ED2887FC7B0008A50E /* Screen2FirstNamePure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197EC2887FC7B0008A50E /* Screen2FirstNamePure.swift */; };
+		25A197EF2887FC850008A50E /* Screen10CompletionPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197EE2887FC850008A50E /* Screen10CompletionPure.swift */; };
 		696D0ACF287B9A27008F4C34 /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 696D0ACE287B9A27008F4C34 /* ToastUI */; };
 		696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696D0AD0287D15C0008F4C34 /* ActivityModel.swift */; };
 		6993F02028817959001BFE0E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01F28817959001BFE0E /* ToastUI */; };
@@ -131,6 +137,12 @@
 		25A197DE2887F56F0008A50E /* Screen8ParametersPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen8ParametersPure.swift; sourceTree = "<group>"; };
 		25A197E02887F9060008A50E /* Screen9PhotoPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen9PhotoPure.swift; sourceTree = "<group>"; };
 		25A197E22887FA680008A50E /* Screen7LocationPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen7LocationPure.swift; sourceTree = "<group>"; };
+		25A197E42887FC430008A50E /* Screen6EmailPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen6EmailPure.swift; sourceTree = "<group>"; };
+		25A197E62887FC4C0008A50E /* Screen5VerificationPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen5VerificationPure.swift; sourceTree = "<group>"; };
+		25A197E82887FC5B0008A50E /* Screen4NumberPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen4NumberPure.swift; sourceTree = "<group>"; };
+		25A197EA2887FC6D0008A50E /* Screen3LastNamePure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen3LastNamePure.swift; sourceTree = "<group>"; };
+		25A197EC2887FC7B0008A50E /* Screen2FirstNamePure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen2FirstNamePure.swift; sourceTree = "<group>"; };
+		25A197EE2887FC850008A50E /* Screen10CompletionPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen10CompletionPure.swift; sourceTree = "<group>"; };
 		696D0AD0287D15C0008F4C34 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesPopUp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -290,10 +302,15 @@
 				253A74882877E2B70005D7E1 /* FlowVM.swift */,
 				253A748A2877E3030005D7E1 /* FlowView.swift */,
 				253A748C2877E3250005D7E1 /* Screen1LandingView.swift */,
+				25A197EC2887FC7B0008A50E /* Screen2FirstNamePure.swift */,
 				253A748E2877E33E0005D7E1 /* Screen2FirstNameView.swift */,
+				25A197EA2887FC6D0008A50E /* Screen3LastNamePure.swift */,
 				253A74902877E35D0005D7E1 /* Screen3LastNameView.swift */,
+				25A197E82887FC5B0008A50E /* Screen4NumberPure.swift */,
 				253A74922877E36E0005D7E1 /* Screen4NumberView.swift */,
+				25A197E62887FC4C0008A50E /* Screen5VerificationPure.swift */,
 				253A74942877E38C0005D7E1 /* Screen5VerificationView.swift */,
+				25A197E42887FC430008A50E /* Screen6EmailPure.swift */,
 				253A74962877E39D0005D7E1 /* Screen6EmailView.swift */,
 				25A197E22887FA680008A50E /* Screen7LocationPure.swift */,
 				253A74982877E3C60005D7E1 /* Screen7LocationView.swift */,
@@ -301,6 +318,7 @@
 				253A749A2877E3D80005D7E1 /* Screen8ParametersView.swift */,
 				25A197E02887F9060008A50E /* Screen9PhotoPure.swift */,
 				251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */,
+				25A197EE2887FC850008A50E /* Screen10CompletionPure.swift */,
 				253A749C2877E4170005D7E1 /* Screen10CompletionView.swift */,
 			);
 			path = onboarding;
@@ -511,14 +529,17 @@
 				253A748D2877E3250005D7E1 /* Screen1LandingView.swift in Sources */,
 				253A749B2877E3D80005D7E1 /* Screen8ParametersView.swift in Sources */,
 				253A74A22877E4D00005D7E1 /* ContactsAdd.swift in Sources */,
+				25A197EF2887FC850008A50E /* Screen10CompletionPure.swift in Sources */,
 				251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */,
 				251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */,
 				251F8549288545C6000F64C4 /* ProfileView.swift in Sources */,
+				25A197E52887FC430008A50E /* Screen6EmailPure.swift in Sources */,
 				251F85522885E5D2000F64C4 /* ContactComponents.swift in Sources */,
 				251F854528852205000F64C4 /* ProfileModalView.swift in Sources */,
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
 				25A197E32887FA680008A50E /* Screen7LocationPure.swift in Sources */,
 				25A197E12887F9060008A50E /* Screen9PhotoPure.swift in Sources */,
+				25A197E92887FC5B0008A50E /* Screen4NumberPure.swift in Sources */,
 				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
 				251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */,
@@ -528,8 +549,11 @@
 				253A748F2877E33E0005D7E1 /* Screen2FirstNameView.swift in Sources */,
 				253A74892877E2B70005D7E1 /* FlowVM.swift in Sources */,
 				253A74952877E38C0005D7E1 /* Screen5VerificationView.swift in Sources */,
+				25A197EB2887FC6D0008A50E /* Screen3LastNamePure.swift in Sources */,
 				253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */,
 				253A74AB2877E5670005D7E1 /* Extensions.swift in Sources */,
+				25A197ED2887FC7B0008A50E /* Screen2FirstNamePure.swift in Sources */,
+				25A197E72887FC4C0008A50E /* Screen5VerificationPure.swift in Sources */,
 				253A74972877E39D0005D7E1 /* Screen6EmailView.swift in Sources */,
 				253A74912877E35D0005D7E1 /* Screen3LastNameView.swift in Sources */,
 				253A74992877E3C60005D7E1 /* Screen7LocationView.swift in Sources */,
