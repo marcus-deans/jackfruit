@@ -46,6 +46,16 @@ struct ProfileView: View {
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
                             .padding(.top, 20)
                     } else if state.error != nil {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 25, style: .continuous)
+                                .fill(Color(UIColor.transitionPage))
+                                .frame(width: 300, height: 300)
+                            
+                            Text(userModel.firstName!.prefix(1)+" "+userModel.lastName!.prefix(1))
+                                .font(Font.custom("CircularStd-Book", size: 30))
+                                .foregroundColor(.black)
+                                .bold()
+                        }
                         
                     } else {
                         ZStack{
