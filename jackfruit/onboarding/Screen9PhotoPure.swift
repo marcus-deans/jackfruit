@@ -27,10 +27,12 @@ struct Screen9PhotoPure: View {
                     
                     Text("Add profile photo?")
                         .font(Font.custom("CircularStd-Black", size: 40))
+                        .foregroundColor(.white)
                         .padding(.bottom, 20)
                     
                     Text("Share yourself with others!")
                         .font(Font.custom("CircularStd-Book", size: 20))
+                        .foregroundColor(.white)
                         .padding(.bottom, 40)
                     
                     

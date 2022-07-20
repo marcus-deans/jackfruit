@@ -25,13 +25,15 @@ struct Screen7LocationPure: View {
                     
                     ProgressBar(value: $progressValue).frame(height: 10)
                     
-                    Text("What's your location?")
+                    Text("Where do you live?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
+                        .foregroundColor(.white)
                     
-                    Text("You won't be able to change this later!")
+                    Text("This information can be used by your contacts if they ever come to your city!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
+                        .foregroundColor(.white)
                     
                     
                     TextField("Location", text: $location, onEditingChanged: { edit in

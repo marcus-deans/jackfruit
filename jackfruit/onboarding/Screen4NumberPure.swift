@@ -34,10 +34,12 @@ struct Screen4NumberPure: View {
                     Text("What's your phone number?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
+                        .foregroundColor(.white)
                     
                     Text("We'll use this to link to your contacts")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
+                        .foregroundColor(.white)
                     
                     
                     //                    iPhoneNumberField("(000) 000-0000", text: $vm.phoneNumber, isEditing: $editing)

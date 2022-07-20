@@ -16,7 +16,8 @@ struct Screen10CompletionPure: View {
         ZStack {
             Color.init(UIColor.transitionPage).ignoresSafeArea()
             VStack(alignment: .center) {
-                Text("Welcome to the app, \(firstName)")  .font(Font.custom("PTSans-Bold", size: 34))
+                Text("Welcome to the app, \(firstName)")  .font(Font.custom("CircularStd-Black", size: 34))
+                    .foregroundColor(.white)
                     .fontWeight(.black).bold()
                 
                 Button(action: {

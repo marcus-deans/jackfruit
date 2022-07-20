@@ -29,10 +29,12 @@ struct Screen3LastNamePure: View {
                     Text("What's your last name?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
+                        .foregroundColor(.white)
                     
                     Text("You won't be able to change this later!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
+                        .foregroundColor(.white)
                     
                     
                     TextField("Last Name", text: $lastName, onEditingChanged: { edit in

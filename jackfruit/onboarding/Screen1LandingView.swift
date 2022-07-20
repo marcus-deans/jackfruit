@@ -44,7 +44,7 @@ struct Screen1LandingView: View {
                 
                 Button(action: {
                     self.vm.didTapNext()
-                }, label: { Text("Create Account") }).buttonStyle(RoundedRectangleButtonStyle())
+                }, label: { Text("Create Account").frame(width:300) }).buttonStyle(RoundedRectangleButtonStyle())
             }.navigationBarHidden(true)                        
         }
     }

@@ -39,17 +39,22 @@ struct Screen8ParametersPure: View {
                         
                         ProgressBar(value: $progressValue).frame(height: 10)
                         
-                        Text("What are some things that describe who you are?")
+                        Text("What things best define you?")
                             .font(Font.custom("CircularStd-Black", size: 40))
                             .padding(.bottom, 20)
+                            .foregroundColor(.white)
                         
                         Text("When you share your contact this information will be shared too!")
                             .font(Font.custom("CircularStd-Book", size: 20))
+                            .foregroundColor(.white)
                         
                     }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                         .fixedSize(horizontal: false, vertical: true)
                         .background(Color.init(UIColor.transitionPage))
                 }
+                
+//                Text("Exercise and Recreation").font(Font.custom("CircularStd-Black", size: 20)).underline(true, color: Color.init(UIColor.yellow))
+//                    .foregroundColor(.white)
                 
                 WrappingHStack {
                     Button(action: {sportsToggledAction()

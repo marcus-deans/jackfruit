@@ -32,10 +32,12 @@ struct Screen5VerificationPure: View {
                     Text("Enter your verification code")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
+                        .foregroundColor(.white)
                     
                     Text("This lets us confirm who you are")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
+                        .foregroundColor(.white)
                     
                     
                     TextField("Verification Code", text: $verificationCode, onEditingChanged: { edit in

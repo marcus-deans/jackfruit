@@ -28,12 +28,16 @@ struct Screen2FirstNamePure: View {
                     ProgressBar(value: $progressValue).frame(height: 10)
                     
                     Text("What's your first name?")
+                        .foregroundColor(.white)
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
+                        
                     
                     Text("You won't be able to change this later!")
                         .font(Font.custom("CircularStd-Book", size: 20))
+                        .foregroundColor(.white)
                         .padding(.bottom, 40)
+                        
                     
                     
                     TextField("First Name", text: $firstName, onEditingChanged: { edit in

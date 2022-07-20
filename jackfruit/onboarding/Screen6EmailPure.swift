@@ -29,10 +29,12 @@ struct Screen6EmailPure: View {
                     Text("What's your email?")
                         .font(Font.custom("CircularStd-Black", size: 40))
                         .padding(.bottom, 20)
+                        .foregroundColor(.white)
                     
                     Text("When you share your contact this will automatically be shared!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
+                        .foregroundColor(.white)
                     
                     
                     TextField("Email", text: $emailAddress, onEditingChanged: { edit in
