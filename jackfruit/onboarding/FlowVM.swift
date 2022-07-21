@@ -58,6 +58,9 @@ class FlowVM: ObservableObject {
         vm.didComplete
             .sink(receiveValue: didComplete1)
             .store(in: &subscription)
+        vm.didLogin
+            .sink(receiveValue: didLogin1)
+            .store(in: &subscription)
         return vm
     }
     
@@ -148,6 +151,16 @@ class FlowVM: ObservableObject {
             .sink(receiveValue: didComplete10)
             .store(in: &subscription)
         return vm
+    }
+    
+    func didLogin1(vm: Screen1LandingVM){
+        let email = "demo@justmet.xyz"
+        let password = "demoP@ss"
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+          guard let strongSelf = self else { return }
+          // ...
+        }
+        navigateTo2 = false
     }
     
     

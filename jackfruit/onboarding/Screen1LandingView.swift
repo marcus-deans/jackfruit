@@ -12,6 +12,8 @@ import FirebaseAnalytics
 final class Screen1LandingVM: ObservableObject, Completeable {
     
     let didComplete = PassthroughSubject<Screen1LandingVM, Never>()
+    let didLogin = PassthroughSubject<Screen1LandingVM, Never>()
+
     
     init() {
         Analytics.logEvent(AnalyticsEventTutorialBegin, parameters: [
@@ -23,6 +25,10 @@ final class Screen1LandingVM: ObservableObject, Completeable {
         //do some network calls etc
         didComplete.send(self)
     }
+    
+    func didTapLogin(){
+        didLogin.send(self)
+    }
 }
 
 
@@ -30,7 +36,9 @@ final class Screen1LandingVM: ObservableObject, Completeable {
 
 struct Screen1LandingView: View {
     @StateObject var vm: Screen1LandingVM
-    
+    @AppStorage("is_onboarded") var isOnboarded: Bool = false
+    @AppStorage("user_id") var userId: String = ""
+
     var body: some View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.init(UIColor.topGradient), Color.init(UIColor.transitionPage)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
@@ -49,6 +57,12 @@ struct Screen1LandingView: View {
                 Button(action: {
                     self.vm.didTapNext()
                 }, label: { Text("Create Account").frame(width:300) }).buttonStyle(RoundedRectangleButtonStyle())
+                
+                Button(action: {
+                    self.vm.didTapLogin()
+                    userId = "0000000000"
+                    isOnboarded=true
+                }, label: { Text("Login").frame(width:300) }).buttonStyle(RoundedRectangleButtonStyle())
             }.navigationBarHidden(true)                        
         }
     }
