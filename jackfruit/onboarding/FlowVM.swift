@@ -178,9 +178,14 @@ class FlowVM: ObservableObject {
     func didCompleteLogin(vm: LoginVM){
         let email = vm.email
         let password = vm.password
+        let demoId = "0000000000"
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
           // ...
+            @AppStorage("is_onboarded") var isOnboarded: Bool = false
+            @AppStorage("user_id") var userId: String = ""
+            userId = demoId
+            isOnboarded = true
         }
     }
     

@@ -35,10 +35,17 @@ final class LoginVM: ObservableObject, Completeable {
 }
 
 struct LoginView: View {
-    @AppStorage("is_onboarded") var isOnboarded: Bool = false
-    @AppStorage("user_id") var userId: String = ""
+//    @AppStorage("is_onboarded") var isOnboarded: Bool = false
+//    @AppStorage("user_id") var userId: String = ""
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        LoginViewPure(
+            
+        )
+        .onAppear() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [AnalyticsParameterScreenName: "\(LoginView.self)",
+                                       AnalyticsParameterScreenClass: "\(LoginVM.self)"])
+      }
     }
 }
 
