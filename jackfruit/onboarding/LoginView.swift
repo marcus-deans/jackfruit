@@ -41,7 +41,9 @@ struct LoginView: View {
 
     var body: some View {
         LoginViewPure(
-            
+            didTapNextAction: vm.didTapNext,
+            email: $vm.email,
+            password: $vm.password
         )
         .onAppear() {
         Analytics.logEvent(AnalyticsEventScreenView,

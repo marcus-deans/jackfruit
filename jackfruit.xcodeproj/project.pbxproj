@@ -330,6 +330,7 @@
 				253A74882877E2B70005D7E1 /* FlowVM.swift */,
 				253A748A2877E3030005D7E1 /* FlowView.swift */,
 				25277A9D288A0709003935E0 /* LoginView.swift */,
+				69F8259F288A06E40050F3B9 /* LoginViewPure.swift */,
 				253A748C2877E3250005D7E1 /* Screen1LandingView.swift */,
 				25A197EC2887FC7B0008A50E /* Screen2FirstNamePure.swift */,
 				253A748E2877E33E0005D7E1 /* Screen2FirstNameView.swift */,
@@ -349,7 +350,6 @@
 				251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */,
 				25A197EE2887FC850008A50E /* Screen10CompletionPure.swift */,
 				253A749C2877E4170005D7E1 /* Screen10CompletionView.swift */,
-				69F8259F288A06E40050F3B9 /* LoginViewPure.swift */,
 			);
 			path = onboarding;
 			sourceTree = "<group>";
