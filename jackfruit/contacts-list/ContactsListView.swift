@@ -74,6 +74,24 @@ struct ContactsListView: View {
                                         .font(Font.custom("CircularStd-Black", size: 15))
                                         .foregroundColor(Color.init(UIColor.smalltextColor))
                                     
+                                    HStack{
+                                        if let companyPosition = userItem.companyPosition{
+                                            if companyPosition != "" {
+                                                Text("\(companyPosition) |")
+                                                    .font(Font.custom("CircularStd-Black", size: 15))
+                                                    .foregroundColor(Color.init(UIColor.smalltextColor))
+                                            }
+                                        }
+                                        
+                                        if let companyName = userItem.companyName{
+                                            if companyName != "" {
+                                                Text(companyName)
+                                                    .font(Font.custom("CircularStd-Black", size: 15))
+                                                    .foregroundColor(Color.init(UIColor.smalltextColor))
+                                            }
+                                        }
+                                        
+                                    }
                                 }
                             }
                             .foregroundColor(Color.init(UIColor.black))
@@ -92,7 +110,7 @@ struct ContactsListView: View {
                 
                 //.padding()
                 .onAppear() { // (3)
-//                    self.viewModel.fetchData(userId: userId)
+                    //                    self.viewModel.fetchData(userId: userId)
                     fetchDataAction(userId)
                 }.navigationBarTitle("Contacts")
                     .toolbar {

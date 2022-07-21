@@ -109,7 +109,7 @@ class ActivitiesVM: ObservableObject {
 }
 
 struct ActivitiesPopUp: View {
-
+    
     @ObservedObject var viewModel1 = ActivitiesVM()
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
@@ -153,47 +153,47 @@ struct ActivitiesPopUp: View {
         return count
     }
     
-   var body: some View {
-       ZStack{
-           Color.init(UIColor.middleColor)         
-           VStack{
-               let screenWidth = UIScreen.main.bounds.width
-               let columns = [GridItem(.flexible()), GridItem(.flexible())]
-               ZStack{
-                   NavigationView {
-                       ScrollView {
-                           LazyVGrid(columns: columns, spacing: 10) {
-                               ForEach(searchResults.keys.sorted(), id: \.self) { item in
-                                   NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!, activity: item)) {
-                                       let count = getNumberOfFriends(activity: searchResults[item]!)
-                                       VStack {
-                                           Text(item)
-                                               .font(Font.custom("CircularStd-Black", size: 20))
-                                           Text("\(count) friends")
-                                               .font(Font.custom("CircularStd-Black", size: 15))
-                                       }
-                                       .frame(width: screenWidth-240, height: 100)
-                                       //.padding()
-                                       .background(Color.init(UIColor.transitionPage))
-                                       .foregroundColor(.white)
-                                       .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                   
-                                   }
-                               }
-                           }.padding(.horizontal, 33).padding(.top, 20)
-                           .frame(maxHeight: 700)
-                       }.background(Color.init(UIColor.middleColor))
-                           
-                           .navigationBarTitle("Discover")
-                           .navigationBarHidden(false)
-                       
-                   }.foregroundColor(Color.init(UIColor.middleColor))
+    var body: some View {
+        ZStack{
+            Color.init(UIColor.middleColor)
+            VStack{
+                let screenWidth = UIScreen.main.bounds.width
+                let columns = [GridItem(.flexible()), GridItem(.flexible())]
+                ZStack{
+                    NavigationView {
+                        ScrollView {
+                            LazyVGrid(columns: columns, spacing: 10) {
+                                ForEach(searchResults.keys.sorted(), id: \.self) { item in
+                                    NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!, activity: item)) {
+                                        let count = getNumberOfFriends(activity: searchResults[item]!)
+                                        VStack {
+                                            Text(item)
+                                                .font(Font.custom("CircularStd-Black", size: 20))
+                                            Text("\(count) friends")
+                                                .font(Font.custom("CircularStd-Black", size: 15))
+                                        }
+                                        .frame(width: screenWidth-240, height: 100)
+                                        //.padding()
+                                        .background(Color.init(UIColor.transitionPage))
+                                        .foregroundColor(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                        
+                                    }
+                                }
+                            }.padding(.horizontal, 33).padding(.top, 20)
+                                .frame(maxHeight: 700)
+                        }.background(Color.init(UIColor.middleColor))
+                        
+                            .navigationBarTitle("Discover")
+                            .navigationBarHidden(false)
+                        
+                    }.foregroundColor(Color.init(UIColor.middleColor))
                 }
             }.onAppear() { // (3)
                 self.viewModel1.fetchData(userId: userId)
             }
-       }
-   }
+        }
+    }
 }
 
 struct DetailsViewDiscover1: View {
@@ -203,12 +203,12 @@ struct DetailsViewDiscover1: View {
         ZStack {
             //Color.init(UIColor.middleColor)
             if #available(iOS 15.0, *) {
-//                Button("Profile") {
-//                    showProfileModal.toggle()
-//                }
-//                .sheet(isPresented: $showProfileModal) {
-//                    //                    ProfileModal()
-//                }
+                //                Button("Profile") {
+                //                    showProfileModal.toggle()
+                //                }
+                //                .sheet(isPresented: $showProfileModal) {
+                //                    //                    ProfileModal()
+                //                }
                 NavigationView {
                     List {
                         ForEach(profiles) { userItem in
@@ -229,6 +229,26 @@ struct DetailsViewDiscover1: View {
                                         Text(userItem.phoneNumber!)
                                             .font(Font.custom("CircularStd-Black",
                                                               size: 15)).foregroundColor(Color.init(UIColor.smalltextColor))
+                                        
+                                        
+                                        HStack{
+                                            if let companyPosition = userItem.companyPosition{
+                                                if companyPosition != "" {
+                                                    Text("\(companyPosition) |")
+                                                        .font(Font.custom("CircularStd-Black", size: 15))
+                                                        .foregroundColor(Color.init(UIColor.smalltextColor))
+                                                }
+                                            }
+                                            
+                                            if let companyName = userItem.companyName{
+                                                if companyName != "" {
+                                                    Text(companyName)
+                                                        .font(Font.custom("CircularStd-Black", size: 15))
+                                                        .foregroundColor(Color.init(UIColor.smalltextColor))
+                                                }
+                                            }
+                                            
+                                        }
                                         
                                     }
                                 }.foregroundColor(Color.init(UIColor.black))
