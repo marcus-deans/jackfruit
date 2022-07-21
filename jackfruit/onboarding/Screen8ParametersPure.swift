@@ -205,7 +205,7 @@ struct ActivityButton: View{
         .background(isSelected ? Color.init(UIColor.topGradient) : Color.init(UIColor.white))
         .cornerRadius(20)
         .foregroundColor(.black)
-        .font(Font.custom("PTSans-Bold", size: 18))
+        .font(Font.custom("CircularStd-Bold", size: 18))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
                 .stroke(isSelected ? Color.init(UIColor.topGradient) : Color.white)
