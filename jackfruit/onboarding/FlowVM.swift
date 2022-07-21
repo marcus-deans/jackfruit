@@ -192,7 +192,9 @@ class FlowVM: ObservableObject {
             // User has signed in successfully and currentUser object is valid
             let currentUserInstance = Auth.auth().currentUser
             print("User has signed in successfully wiht id: \(userId)")
+            print("Signed in user's email is: \(currentUserInstance?.email)")
             isOnboarded = true
+            return
         }
     }
     

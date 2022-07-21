@@ -167,7 +167,7 @@ struct MainTabView: View {
     @AppStorage("user_id") var userId: String = ""
     
     var body: some View {
-        
+        let _ = print("Opened main view with userID: \(userId)")
         TabView(selection: $selectedIndex) {
             ContactsList().tabItem {
                 Image(systemName: "person.crop.circle.fill")

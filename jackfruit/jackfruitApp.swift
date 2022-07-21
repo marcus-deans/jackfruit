@@ -9,6 +9,7 @@
 import SwiftUI
 import Firebase
 import FirebaseAppCheck
+import FirebaseAuth
 
 let transition: AnyTransition = .asymmetric(insertion: .move(edge: .bottom),
     removal: .move(edge: .top))
@@ -22,7 +23,7 @@ struct jackfruitApp: App {
 
     var body: some Scene {
         WindowGroup {
-            if isOnboarded{
+            if isOnboarded && Auth.auth().currentUser != nil {
                 MainTabView()
                     .transition(transition)
                 
