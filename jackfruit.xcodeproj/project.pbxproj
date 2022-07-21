@@ -19,6 +19,7 @@
 		251F85542885EA4D000F64C4 /* ContactsAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 251F85532885EA4C000F64C4 /* ContactsAddView.swift */; };
 		251F855728866881000F64C4 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = 251F855628866881000F64C4 /* FirebaseFirestoreSwift-Beta */; };
 		251F855D288742E4000F64C4 /* Awesome in Frameworks */ = {isa = PBXBuildFile; productRef = 251F855C288742E4000F64C4 /* Awesome */; };
+		25277A9E288A0709003935E0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25277A9D288A0709003935E0 /* LoginView.swift */; };
 		253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 253A74522877E1920005D7E1 /* jackfruitApp.swift */; };
 		253A74572877E1940005D7E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74562877E1940005D7E1 /* Assets.xcassets */; };
 		253A745A2877E1940005D7E1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 253A74592877E1940005D7E1 /* Preview Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		251F8548288545C6000F64C4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		251F85512885E5D2000F64C4 /* ContactComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponents.swift; sourceTree = "<group>"; };
 		251F85532885EA4C000F64C4 /* ContactsAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAddView.swift; sourceTree = "<group>"; };
+		25277A9D288A0709003935E0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		253A744F2877E1920005D7E1 /* jackfruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jackfruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253A74522877E1920005D7E1 /* jackfruitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitApp.swift; sourceTree = "<group>"; };
 		253A74562877E1940005D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				253A74862877E2960005D7E1 /* Flow.swift */,
 				253A74882877E2B70005D7E1 /* FlowVM.swift */,
 				253A748A2877E3030005D7E1 /* FlowView.swift */,
+				25277A9D288A0709003935E0 /* LoginView.swift */,
 				253A748C2877E3250005D7E1 /* Screen1LandingView.swift */,
 				25A197EC2887FC7B0008A50E /* Screen2FirstNamePure.swift */,
 				253A748E2877E33E0005D7E1 /* Screen2FirstNameView.swift */,
@@ -623,6 +626,7 @@
 				253A74972877E39D0005D7E1 /* Screen6EmailView.swift in Sources */,
 				253A74912877E35D0005D7E1 /* Screen3LastNameView.swift in Sources */,
 				253A74992877E3C60005D7E1 /* Screen7LocationView.swift in Sources */,
+				25277A9E288A0709003935E0 /* LoginView.swift in Sources */,
 				253A74A02877E4AF0005D7E1 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

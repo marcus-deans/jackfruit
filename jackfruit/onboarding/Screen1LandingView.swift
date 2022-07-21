@@ -36,8 +36,6 @@ final class Screen1LandingVM: ObservableObject, Completeable {
 
 struct Screen1LandingView: View {
     @StateObject var vm: Screen1LandingVM
-    @AppStorage("is_onboarded") var isOnboarded: Bool = false
-    @AppStorage("user_id") var userId: String = ""
 
     var body: some View {
         ZStack {
@@ -60,9 +58,7 @@ struct Screen1LandingView: View {
                 
                 Button(action: {
                     self.vm.didTapLogin()
-                    userId = "0000000000"
-                    isOnboarded=true
-                }, label: { Text("Login").frame(width:300) }).buttonStyle(RoundedRectangleButtonStyle())
+                }, label: { Text("Demo Login").frame(width:300) }).buttonStyle(RoundedRectangleButtonStyle())
             }.navigationBarHidden(true)                        
         }
     }

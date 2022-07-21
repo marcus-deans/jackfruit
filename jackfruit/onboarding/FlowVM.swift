@@ -47,10 +47,22 @@ class FlowVM: ObservableObject {
     @Published var navigateToHome: Bool = false
     @Published var navigateToFinalFrom3: Bool = false
     @Published var navigateToFinalFrom4: Bool = false
+    @Published var navigateToLogin: Bool = false
     
     init() {
         self.model = UserModel()
         UINavigationBar.appearance().tintColor = .black
+    }
+    
+    func makeLoginView() -> LoginVM {
+        let vm = LoginVM(
+            email: "",
+            password: ""
+        )
+        vm.didComplete
+            .sink(receiveValue: didCompleteLogin)
+            .store(in: &subscription)
+        return vm
     }
     
     func makeScreen1LandingView() -> Screen1LandingVM {
@@ -59,7 +71,7 @@ class FlowVM: ObservableObject {
             .sink(receiveValue: didComplete1)
             .store(in: &subscription)
         vm.didLogin
-            .sink(receiveValue: didLogin1)
+            .sink(receiveValue: didSelectLogin)
             .store(in: &subscription)
         return vm
     }
@@ -153,20 +165,23 @@ class FlowVM: ObservableObject {
         return vm
     }
     
-    func didLogin1(vm: Screen1LandingVM){
-        let email = "demo@justmet.xyz"
-        let password = "demoP@ss"
-        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
-          guard let strongSelf = self else { return }
-          // ...
-        }
+    func didSelectLogin(vm: Screen1LandingVM){
+        navigateToLogin = true
         navigateTo2 = false
     }
-    
     
     func didComplete1(vm: Screen1LandingVM) {
         // Additional logic inc. updating model
         navigateTo2 = true
+    }
+    
+    func didCompleteLogin(vm: LoginVM){
+        let email = vm.email
+        let password = vm.password
+        Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
+          guard let strongSelf = self else { return }
+          // ...
+        }
     }
     
     func didComplete2(vm: Screen2FirstNameVM) {
