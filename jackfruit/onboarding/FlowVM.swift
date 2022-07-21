@@ -176,14 +176,22 @@ class FlowVM: ObservableObject {
     }
     
     func didCompleteLogin(vm: LoginVM){
+        @AppStorage("is_onboarded") var isOnboarded: Bool = false
+        @AppStorage("user_id") var userId: String = ""
         let email = vm.email
         let password = vm.password
         let demoId = "0000000000"
         Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in
           guard let strongSelf = self else { return }
           // ...
-            @AppStorage("is_onboarded") var isOnboarded: Bool = false
-            @AppStorage("user_id") var userId: String = ""
+            if let error = error {
+                let authError = error as NSError
+                print(authError.description)
+                return
+            }
+            
+            // User has signed in successfully and currentUser object is valid
+            let currentUserInstance = Auth.auth().currentUser
             userId = demoId
             isOnboarded = true
         }
