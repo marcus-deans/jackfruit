@@ -38,6 +38,8 @@ class ProfileModalVM: ObservableObject {
             result in
             switch result {
             case .success(let model):
+                print("Got user model. Values are: ")
+                print(model)
                 completion(model)
             case .failure(let error):
                 print("Could not obtain model, \(error)")
@@ -47,6 +49,8 @@ class ProfileModalVM: ObservableObject {
     
     func updateUserEntry(){
         do {
+            print("Uploading user model. Values are: ")
+            print(userModel)
             let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
