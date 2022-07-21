@@ -15,6 +15,9 @@ struct FlowView: View {
     // Note the generation of view models here is only done once
     // as long as the view models are referenced as @StateObject and not @ObservedObject
     
+        
+    
+    
     
      
     let transition: AnyTransition = .asymmetric(insertion: .move(edge: .trailing),
@@ -70,6 +73,7 @@ struct FlowView: View {
             }
         }
         .navigationViewStyle(.stack)
+        
         .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }

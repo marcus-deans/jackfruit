@@ -12,7 +12,7 @@ struct Screen8ParametersPure: View {
     let didTapNextAction: () -> Void
 
     
-    @State var progressValue: Float = 1.0
+    @State var progressValue: Float = 0.875
     @State private var editing = false
     
     @State var sportsActivities: [String] = Sports
@@ -202,13 +202,13 @@ struct ActivityButton: View{
 //        .padding(.horizontal, 15)
         .frame(height: 35, alignment: .center)
         .padding(.horizontal, 15)
-        .background(isSelected ? Color.init(UIColor.topGradient) : Color.init(UIColor.white))
+        .background(isSelected ? Color.init(UIColor.yellow) : Color.init(UIColor.white))
         .cornerRadius(20)
         .foregroundColor(.black)
-        .font(Font.custom("CircularStd-Bold", size: 18))
+        .font(Font.custom("CircularStd-Black", size: 18))
         .overlay(
             RoundedRectangle(cornerRadius: 20)
-                .stroke(isSelected ? Color.init(UIColor.topGradient) : Color.white)
+                .stroke(isSelected ? Color.init(UIColor.yellow) : Color.white)
         )
         .padding(.bottom, 10)
         .padding(.horizontal, 4)

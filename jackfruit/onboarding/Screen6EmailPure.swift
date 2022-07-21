@@ -12,7 +12,7 @@ struct Screen6EmailPure: View {
     @Binding var emailAddress:String
     
     @State private var editing = false
-    @State var progressValue: Float = 0.64
+    @State var progressValue: Float = 0.625
     @State private var keyboardHeight: CGFloat = 0
     
     var body: some View {
