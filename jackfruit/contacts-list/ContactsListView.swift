@@ -95,6 +95,7 @@ struct ContactsListView: View {
                                 }
                             }
                             .foregroundColor(Color.init(UIColor.black))
+
                         }
                         .listRowSeparator(.hidden).padding(.trailing, 20)
                     }

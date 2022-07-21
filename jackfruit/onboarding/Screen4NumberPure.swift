@@ -40,29 +40,6 @@ struct Screen4NumberPure: View {
                         .padding(.bottom, 40)
                         .foregroundColor(.white)
                     
-                    
-                    //                    iPhoneNumberField("(000) 000-0000", text: $vm.phoneNumber, isEditing: $editing)
-                    //                        .clearsOnEditingBegan(true)
-                    //                        .clearButtonMode(.whileEditing)
-                    //                        .maximumDigits(10)
-                    //                        .foregroundColor(Color.black)
-                    //                        .onClear{_ in editing.toggle()}
-                    //                        .font(UIFont(size: 22, design: .monospaced))
-                    //                        .prefixHidden(true)
-                    //                        .flagHidden(false)
-                    //                        .accentColor(Color.white)
-                    ////                        .padding()
-                    //                        .cornerRadius(20)
-                    //                        .shadow(color: editing ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4)
-                    //                        .background(Color.white)
-                    //                        .padding()
-                    //                        .padding(.bottom, 200)
-                    //                        .background(RoundedRectangle(cornerRadius: 9, style: .continuous)
-                    //                            .foregroundColor(.white)
-                    //                            .shadow(color: editing ? Color(UIColor.greenShaddow) : Color(UIColor.greenBackground), radius: 4, x: 0, y:5)
-                    //                        )
-                    //                        .border(Color.white)
-                    
                     TextField("Phone Number", text: $phoneNumber, onEditingChanged: {edit in self.editing=edit})
                         .onChange(of: self.phoneNumber, perform: {value in
                             if value.count > digitLimit {

@@ -25,7 +25,6 @@ extension View {
 }
 
 struct ProfileView: View {
-    
     @State var show = false
     let userModel: UserModel
     
