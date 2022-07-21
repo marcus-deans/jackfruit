@@ -28,8 +28,6 @@ struct ProfileModalView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
                             .background(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.transitionPage), lineWidth: 10))
                             .padding(.top, 20)
-                    } else if state.error != nil {
-                        
                     } else {
                         ZStack{
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
