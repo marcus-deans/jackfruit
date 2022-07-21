@@ -30,7 +30,7 @@ struct Screen9PhotoPure: View {
                         .foregroundColor(.white)
                         .padding(.bottom, 20)
                     
-                    Text("Share yourself with others!")
+                    Text("Photos help your contacts remeber you!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .foregroundColor(.white)
                         .padding(.bottom, 40)
@@ -39,8 +39,9 @@ struct Screen9PhotoPure: View {
                     if let selectedImage = image {
                         Image(uiImage: selectedImage)
                             .resizable()
-                            .frame(width: 250, height: 250)
-                            .cornerRadius(20)
+                            .frame(width: 200, height: 200, alignment: .center)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.yellow), lineWidth: 10))
                     }
                     else {
                         Button(action: {
