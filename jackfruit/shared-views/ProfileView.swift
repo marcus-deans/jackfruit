@@ -131,7 +131,7 @@ struct ProfileView: View {
                             .foregroundColor(Color.black)
                             .cornerRadius(10)
                             
-                        }//.padding(.vertical, 15)
+                        }.padding(.vertical, 10)
                         
                         VStack{
                             Text("\(userModel.firstName ?? "Contact")'s Interests").font(Font.custom("CircularStd-Black", size: 20))
