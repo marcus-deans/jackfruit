@@ -16,6 +16,7 @@ import SwiftUI
 import NukeUI
 import PhoneNumberKit
 import Awesome
+import FirebaseAnalytics
 
 extension View {
     func border(_ color: Color, width: CGFloat, cornerRadius: CGFloat) -> some View {
@@ -284,6 +285,11 @@ struct ProfileView: View {
                     }
                 }
             }
+            
+        }
+        .onAppear() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [AnalyticsParameterScreenName: "\(ProfileView.self)"])
         }
         .background(Color.init(UIColor.middleColor))
     }

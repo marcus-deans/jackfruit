@@ -65,7 +65,7 @@ struct ProfileModal: View {
             .onAppear() {
             Analytics.logEvent(AnalyticsEventScreenView,
                                parameters: [AnalyticsParameterScreenName: "\(ProfileModal.self)",
-                                            AnalyticsParameterScreenClass: "\(ProfileModal.self)"])
+                                            AnalyticsParameterScreenClass: "\(ProfileModalVM.self)"])
           }
     }
 }

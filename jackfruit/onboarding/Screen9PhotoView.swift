@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import os
+import FirebaseAnalytics
 
 final class Screen9PhotoVM: ObservableObject, Completeable {
     @Published var profilePhoto:UIImage?
@@ -47,5 +48,10 @@ struct Screen9PhotoView: View {
         Screen9PhotoPure { userImage in
             vm.didTapNext(image: userImage)
         }
+        .onAppear() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [AnalyticsParameterScreenName: "\(Screen9PhotoView.self)",
+                                       AnalyticsParameterScreenClass: "\(Screen9PhotoVM.self)"])
+      }
     }
 }

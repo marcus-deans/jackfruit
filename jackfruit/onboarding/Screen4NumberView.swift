@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import iPhoneNumberField
+import FirebaseAnalytics
 
 final class Screen4NumberVM: ObservableObject, Completeable {
     @Published var phoneNumber = ""
@@ -81,5 +82,10 @@ struct Screen4NumberView: View {
     
     var body: some View{
         Screen4NumberPure(didTapNextAction: vm.didTapNext, phoneNumber: $vm.phoneNumber)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen4NumberView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen4NumberVM.self)"])
+          }
     }
 }

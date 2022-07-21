@@ -14,6 +14,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseAnalytics
 
 final class Screen6EmailVM: ObservableObject, Completeable {
     @Published var emailAddress = ""
@@ -50,6 +51,11 @@ struct Screen6EmailView: View {
     
     var body: some View {
         Screen6EmailPure(didTapNextAction: vm.didTapNext, emailAddress: $vm.emailAddress)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen6EmailView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen6EmailVM.self)"])
+          }
     }
 }
 

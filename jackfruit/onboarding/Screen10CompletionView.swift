@@ -32,5 +32,11 @@ struct Screen10CompletionView: View {
     @StateObject var vm: Screen10CompletionVM
     var body: some View {
         Screen10CompletionPure(firstName: vm.name, didTapNextAction: vm.didTapNext)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen10CompletionView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen10CompletionVM.self)"])
+          }
     }
+        
 }
