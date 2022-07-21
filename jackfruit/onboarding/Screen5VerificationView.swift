@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseAnalytics
 
 final class Screen5VerificationVM: ObservableObject, Completeable {
     @Published var verificationCode = ""
@@ -47,6 +48,11 @@ struct Screen5VerificationView: View {
     
     var body: some View{
         Screen5VerificationPure(didTapNextAction: vm.didTapNext, verificationCode: $vm.verificationCode)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen5VerificationView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen5VerificationVM.self)"])
+          }
     }
 }
 

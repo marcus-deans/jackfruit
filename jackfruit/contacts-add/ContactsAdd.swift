@@ -155,7 +155,7 @@ struct ContactsAdd: View {
         .onAppear() {
         Analytics.logEvent(AnalyticsEventScreenView,
                            parameters: [AnalyticsParameterScreenName: "\(ContactsAdd.self)",
-                                        AnalyticsParameterScreenClass: "\(ContactsAdd.self)"])
+                                        AnalyticsParameterScreenClass: "\(ContactsAddVM.self)"])
       }
     }
         

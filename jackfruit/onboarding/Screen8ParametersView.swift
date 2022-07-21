@@ -9,6 +9,7 @@
 import WrappingHStack
 import SwiftUI
 import Combine
+import FirebaseAnalytics
 
 final class Screen8ParametersVM: ObservableObject, Completeable {
     @Published var parameters: [String]?
@@ -58,5 +59,10 @@ struct Screen8ParametersView: View {
 struct Screen8ParametersView_Previews: PreviewProvider {
     static var previews: some View {
         Screen8ParametersView(vm: Screen8ParametersVM(parameters: ["traveling", "pets"]))
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen8ParametersView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen8ParametersVM.self)"])
+          }
     }
 }

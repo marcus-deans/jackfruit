@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseAnalytics
 
 final class Screen3LastNameVM: ObservableObject {
     @Published var lastName = ""
@@ -43,5 +44,10 @@ struct Screen3LastNameView: View {
     
     var body: some View{
         Screen3LastNamePure(didTapNextAction: vm.didTapNext, lastName: $vm.lastName)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen3LastNameView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen3LastNameVM.self)"])
+          }
     }
 }

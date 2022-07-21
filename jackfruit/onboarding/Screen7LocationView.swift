@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import FirebaseAnalytics
 
 final class Screen7LocationVM: ObservableObject, Completeable {
     @Published var location = ""
@@ -43,6 +44,11 @@ struct Screen7LocationView: View {
     @StateObject var vm: Screen7LocationVM
     var body: some View {
         Screen7LocationPure(didTapNextAction: vm.didTapNext, location: $vm.location)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(Screen7LocationView.self)",
+                                           AnalyticsParameterScreenClass: "\(Screen7LocationVM.self)"])
+          }
     }
 }
 

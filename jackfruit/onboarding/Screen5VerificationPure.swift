@@ -17,7 +17,6 @@ struct Screen5VerificationPure: View {
     @FocusState private var focusedField: Field?
     
     @Binding var verificationCode:String
-    @State var isValid:Bool
     
     var body: some View {
         ZStack {
