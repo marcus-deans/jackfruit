@@ -50,6 +50,7 @@ class FlowVM: ObservableObject {
     
     init() {
         self.model = UserModel()
+        UINavigationBar.appearance().tintColor = .black
     }
     
     func makeScreen1LandingView() -> Screen1LandingVM {

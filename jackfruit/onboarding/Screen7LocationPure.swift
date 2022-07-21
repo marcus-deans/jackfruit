@@ -11,7 +11,7 @@ struct Screen7LocationPure: View {
     let didTapNextAction: () -> Void
     
     @State private var editing = false
-    @State var progressValue: Float = 0.80
+    @State var progressValue: Float = 0.75
     @State private var keyboardHeight: CGFloat = 0
     @Binding var location:String
     var body: some View {

@@ -12,7 +12,7 @@ struct Screen8ParametersPure: View {
     let didTapNextAction: () -> Void
 
     
-    @State var progressValue: Float = 1.0
+    @State var progressValue: Float = 0.875
     @State private var editing = false
     
     @State var sportsActivities: [String] = Sports

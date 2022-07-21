@@ -39,9 +39,9 @@ struct Screen9PhotoPure: View {
                     if let selectedImage = image {
                         Image(uiImage: selectedImage)
                             .resizable()
-                            .frame(width: 200, height: 200, alignment: .center)
+                            .frame(width: 220, height: 220, alignment: .center)
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
-                            .background(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.yellow), lineWidth: 10))
+                            .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.yellow), lineWidth: 10))
                     }
                     else {
                         Button(action: {
