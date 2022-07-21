@@ -47,11 +47,6 @@ struct Screen9PhotoPure: View {
                             pickerSelected.toggle()
                         }, label: {
                             Text("Pick Image")
-                            //                                .foregroundColor(.white)
-                            //                                .padding(.vertical, 10)
-                            //                                .padding(.horizontal, 35)
-                            //                                .background(Color.blue)
-                            //                                .clipShape(Capsule())
                         })
                         .buttonStyle(RoundedRectangleButtonStyle())
                         .padding()
