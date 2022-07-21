@@ -42,3 +42,9 @@ struct Screen8ParametersView: View {
             }
     }
 }
+
+struct Screen8ParametersView_Previews: PreviewProvider {
+    static var previews: some View {
+        Screen8ParametersView(vm: Screen8ParametersVM(parameters: ["traveling", "pets"]))
+    }
+}

@@ -27,6 +27,9 @@ struct Screen8ParametersPure: View {
     @State var learningActivities: [String] = Learning
     
     @Binding var selectedActivities: [String]
+    
+    let activityLimit = 8
+    
     let elements = ["Cat 🐱", "Dog 🐶", "Sun 🌞", "Moon 🌕", "Tree 🌳"]
     
     var body: some View {
@@ -60,7 +63,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -71,7 +74,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -82,7 +85,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -93,7 +96,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -104,7 +107,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -119,7 +122,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -130,7 +133,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -141,7 +144,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -152,7 +155,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -162,7 +165,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else {
+                            } else if (self.selectedActivities.count <= activityLimit){
                                 self.selectedActivities.append(activity)
                             }
                         }
