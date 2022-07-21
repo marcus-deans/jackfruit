@@ -25,7 +25,7 @@ var Art = ["Sketching", "Dance", "Painting", "Writing", "Poetry", "Woodworking",
 
 var Outdoors = ["Hiking","Gardening", "Fishing", "Camping", "Winter Sports", "Climbing", "Backpacking", "Sight Seeing"]
 
-var Entertainment = ["Marvel", "DC", "Sci-Fi", "Horror", "Sitcoms", "Documentaries", "Romance", "Mystery", "Bolywood", "Anime", "MLB", "NBA", "F1", "Nascar", "NFL", "ATP/WTA", "PGA", "Soccer", "NHL", "Netflix Binger", "YouTube", "Twitch", "ESports", "TikTok", "Twitter", "Reddit"]
+var Entertainment = ["Marvel", "DC", "Sci-Fi", "Horror", "Sitcoms", "Documentaries", "Romance", "Mystery", "Bollywood", "Anime", "MLB", "NBA", "F1", "NASCAR", "NFL", "ATP/WTA", "PGA", "Soccer", "NHL", "Netflix Binger", "YouTube", "Twitch", "ESports", "TikTok", "Twitter", "Reddit"]
 
 var Music = ["Piano", "Brass Instrument", "Singing/Songwriting", "Guitar", "Violin/Viola", "Country", "Rap/Hip-Hop", "Classical", "Pop", "EDM", "Movie Soundtracks", "Metal", "Rock", "90s", "80s", "70s", "Latin", "K-Pop", "Indie"]
 
