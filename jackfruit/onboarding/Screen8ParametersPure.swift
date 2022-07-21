@@ -34,6 +34,9 @@ struct Screen8ParametersPure: View {
     @State var musicActivities: [String] = Music
     @State var foodActivities: [String] = Food
     @State var funActivities: [String] = Fun
+    @State var profInterests: [String] = ProfessionalInterests
+    @State var miscInterests: [String] = Misc
+    @State var learningActivities: [String] = Learning
     
     @State var selectedActivities: [String] = []
     let elements = ["Cat 🐱", "Dog 🐶", "Sun 🌞", "Moon 🌕", "Tree 🌳"]
@@ -50,7 +53,7 @@ struct Screen8ParametersPure: View {
                         
                         ProgressBar(value: $progressValue).frame(height: 10)
                         
-                        Text("What things best define you?")
+                        Text("What 8 things best define you?")
                             .font(Font.custom("CircularStd-Black", size: 40))
                             .padding(.bottom, 20)
                             .foregroundColor(.white)
@@ -134,10 +137,53 @@ struct Screen8ParametersPure: View {
                                 self.selectedActivities.append(activity)
                             }
                         }
-                    }.padding(.horizontal, 40)
+                    }
+                    
+                    Text("Fun").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(funActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
+                    
+                    Text("Professional Interests").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(profInterests, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
+                    
+                    Text("Miscellaneous").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(miscInterests, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
+                    Text("Learning").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(learningActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
                     
                     
-                }
+                }.padding(.horizontal, 40)
                 
                 VStack (alignment: .trailing) {
                     

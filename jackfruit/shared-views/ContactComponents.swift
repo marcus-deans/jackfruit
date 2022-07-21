@@ -19,7 +19,7 @@ var textEmojiMap = ["pets":"pets 🐶",
 
 var ProfessionalInterests = ["Computer Science", "Robotics", "Biotech", "Politics/Government", "Healthcare", "Education", "Math", "Law", "Medicine", "Finance", "Humanities", "Activism"]
 
-var Sports = ["Pickup Sports(Anything)","Soccer","Football", "Tennis", "Hockey", "Skiing", "Baseball", "Basketball", "Pickleball/Paddle Tennis", "Table Tennis", "Badminton", "Running", "Swimming", "Weightlifting", "Climbing", "Bowling", "Surfing", "Snowboarding", "Cycling", "Yoga", "Boxing"]
+var Sports = ["Pickup Sports","Soccer","Football", "Tennis", "Hockey", "Skiing", "Baseball", "Basketball", "Pickleball", "Table Tennis", "Badminton", "Running", "Swimming", "Weightlifting", "Climbing", "Bowling", "Surfing", "Snowboarding", "Cycling", "Yoga", "Boxing"]
 
 var Art = ["Sketching", "Dance", "Painting", "Writing", "Poetry", "Woodworking", "Sculpter", "Photography", "Fashion"]
 
