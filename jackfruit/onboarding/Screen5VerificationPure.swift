@@ -82,7 +82,7 @@ struct Screen5VerificationPure: View {
 
 struct Screen5VerificationPure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen5VerificationPure(didTapNextAction: {}, verificationCode: .constant("123"), isValid: true)
+        Screen5VerificationPure(didTapNextAction: {}, verificationCode: .constant("123"))
     }
 }
 
