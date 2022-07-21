@@ -81,6 +81,7 @@
 		6993F02028817959001BFE0E /* ToastUI in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F01F28817959001BFE0E /* ToastUI */; };
 		6993F02328817987001BFE0E /* WrappingHStack in Frameworks */ = {isa = PBXBuildFile; productRef = 6993F02228817987001BFE0E /* WrappingHStack */; };
 		69F8259C2884DBA40050F3B9 /* ActivitiesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */; };
+		69F825A0288A06E50050F3B9 /* LoginViewPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69F8259F288A06E40050F3B9 /* LoginViewPure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -160,6 +161,7 @@
 		25A197F4288882AC0008A50E /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		696D0AD0287D15C0008F4C34 /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		69F8259B2884DBA40050F3B9 /* ActivitiesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesPopUp.swift; sourceTree = "<group>"; };
+		69F8259F288A06E40050F3B9 /* LoginViewPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewPure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,6 +349,7 @@
 				251F8535287B4FE7000F64C4 /* Screen9PhotoView.swift */,
 				25A197EE2887FC850008A50E /* Screen10CompletionPure.swift */,
 				253A749C2877E4170005D7E1 /* Screen10CompletionView.swift */,
+				69F8259F288A06E40050F3B9 /* LoginViewPure.swift */,
 			);
 			path = onboarding;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				253A74932877E36E0005D7E1 /* Screen4NumberView.swift in Sources */,
 				25A197E32887FA680008A50E /* Screen7LocationPure.swift in Sources */,
 				25A197E12887F9060008A50E /* Screen9PhotoPure.swift in Sources */,
+				69F825A0288A06E50050F3B9 /* LoginViewPure.swift in Sources */,
 				25A197E92887FC5B0008A50E /* Screen4NumberPure.swift in Sources */,
 				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
@@ -808,7 +812,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -842,7 +846,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
