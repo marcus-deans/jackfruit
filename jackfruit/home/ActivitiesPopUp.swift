@@ -184,7 +184,7 @@ struct ActivitiesPopUp: View {
                                             
                                         }
                                     }
-                                }.padding(.horizontal, 33).padding(.top, 20)
+                                }.padding(.horizontal, 33).padding(.vertical, 20)
                                    // .frame(maxHeight: 700)
                             }.background(Color.init(UIColor.middleColor))
                         
