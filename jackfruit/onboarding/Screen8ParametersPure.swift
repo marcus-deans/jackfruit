@@ -27,6 +27,10 @@ struct Screen8ParametersPure: View {
     @State var progressValue: Float = 1.0
     @State private var editing = false
     
+    @State var sportsActivities: [String] = activitiesSports
+    @State var selectedActivities: [String] = []
+    let elements = ["Cat 🐱", "Dog 🐶", "Sun 🌞", "Moon 🌕", "Tree 🌳"]
+    
     var body: some View {
         
         ZStack {
@@ -50,6 +54,20 @@ struct Screen8ParametersPure: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .background(Color.init(UIColor.transitionPage))
                 }
+            
+                ScrollView{
+                //MARK: the HStack WE are using is https://github.com/dkk/WrappingHStack
+                WrappingHStack(sportsActivities, id: \.self){ activity in
+                    ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                        if self.selectedActivities.contains(activity){
+                            self.selectedActivities.removeAll(where: {$0 == activity})
+                        } else {
+                            self.selectedActivities.append(activity)
+                        }
+                    }
+                }
+//                .padding(.horizontal, 30)
+
                 
                 WrappingHStack {
                     Button(action: {sportsToggledAction()
@@ -90,6 +108,7 @@ struct Screen8ParametersPure: View {
                         RoundedRectangle(cornerRadius: 20)
                             .stroke(self.petsIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
                     ).padding(.bottom, 100).padding(.horizontal, 4)
+                }
                     
                 }.padding(.horizontal, 40)
                 
@@ -106,6 +125,32 @@ struct Screen8ParametersPure: View {
                 }
             }
         }
+    }
+}
+
+struct ActivityButton: View{
+    var title: String
+    var isSelected: Bool
+    var action: () -> Void
+    
+    var body: some View {
+        Button(action: {action()
+        }, label: {Text(title)})
+//        .frame(width: 50, height: 40)
+//        .padding(.horizontal, 15)
+        .frame(height: 40, alignment: .center)
+        .padding(.horizontal, 15)
+        .background(isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white))
+        .cornerRadius(20)
+        .foregroundColor(.black)
+        .font(Font.custom("PTSans-Bold", size: 18))
+        .overlay(
+            RoundedRectangle(cornerRadius: 20)
+                .stroke(isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
+        )
+        .padding(.bottom, 10)
+        .padding(.horizontal, 4)
+//        .padding(.bottom, 100).padding(.horizontal, 4)
     }
 }
 

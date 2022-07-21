@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAnalytics
 
 class Theme {
     static func navigationBarColors(background : UIColor,
@@ -85,7 +86,7 @@ class ContactsListVM: ObservableObject {
                         let universityDegree = data["university_degree"] as? String ?? ""
                         //                        self.users.append
                         // MARK: working with onboarded only
-//                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
+                        //                        self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters))
                         
                         
                         self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters, companyName: companyName, companyPosition: companyPosition, linkedinURL: linkedinURL, instagramURL: instagramURL, snapchatURL: snapchatURL, githubURL: githubURL, twitterURL: twitterURL, hometown: hometown, birthMonth: birthMonth, birthNumber: birthNumber, universityName: universityName, universityDegree: universityDegree))
@@ -171,66 +172,68 @@ struct ContactsList: View {
     let screenWidth = UIScreen.main.bounds.width
     var body: some View {
         ZStack {
-            if #available(iOS 15.0, *) {
-                NavigationView {
-                    List {
-                        ForEach(searchResults) {
-                            userItem in
-                            NavigationLink(destination: ProfileView(userModel: userItem)) {
-                                HStack{
-                                    ProfilePhotoView(profileURL: userItem.photoURL!)
-                                        .padding(.vertical, 10)
-                                    VStack(alignment: .leading) {
-                                        HStack {
-                                            Text(userItem.firstName!)
-                                                .font(Font.custom("CircularStd-Black", size: 20))
-                                            + Text(" ")
-                                            + Text(userItem.lastName!)
-                                                .font(Font.custom("CircularStd-Black", size: 20))
-                                        }
-                                        
-                                        Text(userItem.phoneNumber!)
-                                            .font(Font.custom("CircularStd-Black", size: 15))
-                                            .foregroundColor(Color.init(UIColor.smalltextColor))
-                                        
+//            Button("Crash") {
+//              fatalError("Crash was triggered")
+//            }
+            NavigationView {
+                List {
+                    ForEach(searchResults) {
+                        userItem in
+                        NavigationLink(destination: ProfileView(userModel: userItem)) {
+                            HStack{
+                                ProfilePhotoView(profileURL: userItem.photoURL!)
+                                    .padding(.vertical, 10)
+                                VStack(alignment: .leading) {
+                                    HStack {
+                                        Text(userItem.firstName!)
+                                            .font(Font.custom("CircularStd-Black", size: 20))
+                                        + Text(" ")
+                                        + Text(userItem.lastName!)
+                                            .font(Font.custom("CircularStd-Black", size: 20))
                                     }
+                                    
+                                    Text(userItem.phoneNumber!)
+                                        .font(Font.custom("CircularStd-Black", size: 15))
+                                        .foregroundColor(Color.init(UIColor.smalltextColor))
+                                    
                                 }
-                                .foregroundColor(Color.init(UIColor.black))
                             }
-                            .listRowSeparator(.hidden).padding(.trailing, 20)
+                            .foregroundColor(Color.init(UIColor.black))
                         }
-                        .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
-                            .foregroundColor(.init(UIColor.cardColor))
-                            .shadow(radius: 1)
-                        )
-                        .padding(.top, 1)
-                        .listRowBackground(Color.init(UIColor.middleColor))
+                        .listRowSeparator(.hidden).padding(.trailing, 20)
                     }
-                    .padding(.top, 5)
-                    .listStyle(.plain).background(Color.init(UIColor.middleColor))
-                    
-                    //.padding()
-                    .onAppear() { // (3)
-                        self.viewModel.fetchData(userId: userId)
-                        
-                        
-                    }.navigationBarTitle("Contacts")
-                        .toolbar {
-                            ToolbarItem(placement: .navigationBarTrailing) {
-                                VStack {
-                                    Spacer().searchable(text: $searchText, placement: .toolbar)
-                                    }
-                                
-                                .background(Color.white)
-                                .font(Font.custom("CircularStd-Black", size: 18))
-                                
-                            }
-                           
-                        }
-                        .navigationBarHidden(false)
+                    .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .foregroundColor(.init(UIColor.cardColor))
+                        .shadow(radius: 1)
+                    )
+                    .padding(.top, 1)
+                    .listRowBackground(Color.init(UIColor.middleColor))
                 }
-            } else {
-                // Fallback on earlier versions
+                .padding(.top, 5)
+                .listStyle(.plain).background(Color.init(UIColor.middleColor))
+                
+                //.padding()
+                .onAppear() { // (3)
+                    self.viewModel.fetchData(userId: userId)
+                    Analytics.logEvent(AnalyticsEventScreenView,
+                                       parameters: [AnalyticsParameterScreenName: "\(ContactsList.self)",
+                                                   AnalyticsParameterScreenClass: "\(ContactsList.self)"])
+                    
+                    
+                }.navigationBarTitle("Contacts")
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            VStack {
+                                Spacer().searchable(text: $searchText, placement: .toolbar)
+                            }
+                            
+                            .background(Color.white)
+                            .font(Font.custom("CircularStd-Black", size: 18))
+                            
+                        }
+                        
+                    }
+                    .navigationBarHidden(false)
             }
         }
     }

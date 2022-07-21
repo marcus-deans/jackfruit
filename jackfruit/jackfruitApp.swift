@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseAppCheck
 
 let transition: AnyTransition = .asymmetric(insertion: .move(edge: .bottom),
     removal: .move(edge: .top))
@@ -33,12 +34,31 @@ struct jackfruitApp: App {
     }
 }
 
+class JackfruitAppCheckProviderFactory: NSObject, AppCheckProviderFactory {
+  func createProvider(with app: FirebaseApp) -> AppCheckProvider? {
+    return AppAttestProvider(app: app)
+  }
+}
+
 class AppDelegate: NSObject, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        //MARK: Firebase App Check
+        let providerFactory = JackfruitAppCheckProviderFactory()
+        AppCheck.setAppCheckProviderFactory(providerFactory)
         
+        //MARK: Firebase Cloud Messaging
+//        UNUserNotificationCenter.current().delegate = self
+//        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+//        UNUserNotificationCenter.current().requestAuthorization(
+//          options: authOptions,
+//          completionHandler: { _, _ in }
+//        )
+//        application.registerForRemoteNotifications()
+
+
         FirebaseApp.configure()
-        
+        FirebaseConfiguration.shared.setLoggerLevel(.min)
         return true
         
     }
