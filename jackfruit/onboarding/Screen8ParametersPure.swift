@@ -63,7 +63,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -74,7 +74,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -85,7 +85,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -96,7 +96,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -107,7 +107,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -122,7 +122,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -133,7 +133,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -144,7 +144,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -155,7 +155,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit) {
+                            } else if (self.selectedActivities.count < activityLimit) {
                                 self.selectedActivities.append(activity)
                             }
                         }
@@ -165,7 +165,7 @@ struct Screen8ParametersPure: View {
                         ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
                             if self.selectedActivities.contains(activity){
                                 self.selectedActivities.removeAll(where: {$0 == activity})
-                            } else if (self.selectedActivities.count <= activityLimit){
+                            } else if (self.selectedActivities.count < activityLimit){
                                 self.selectedActivities.append(activity)
                             }
                         }
