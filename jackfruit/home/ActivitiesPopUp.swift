@@ -154,45 +154,49 @@ struct ActivitiesPopUp: View {
     }
     
     var body: some View {
-        ZStack{
-            Color.init(UIColor.middleColor)
-            VStack{
-                let screenWidth = UIScreen.main.bounds.width
-                let columns = [GridItem(.flexible()), GridItem(.flexible())]
+        
+            //Color.init(UIColor.middleColor)
+            
+             
                 ZStack{
+                    
+                    let screenWidth = UIScreen.main.bounds.width
+                    let columns = [GridItem(.flexible()), GridItem(.flexible())]
+                    
                     NavigationView {
                         ScrollView {
-                            LazyVGrid(columns: columns, spacing: 10) {
-                                ForEach(searchResults.keys.sorted(), id: \.self) { item in
-                                    NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!, activity: item)) {
-                                        let count = getNumberOfFriends(activity: searchResults[item]!)
-                                        VStack {
-                                            Text(item)
-                                                .font(Font.custom("CircularStd-Black", size: 20))
-                                            Text("\(count) friends")
-                                                .font(Font.custom("CircularStd-Black", size: 15))
+                            VStack{
+                                LazyVGrid(columns: columns, spacing: 10) {
+                                    ForEach(searchResults.keys.sorted(), id: \.self) { item in
+                                        NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!, activity: item)) {
+                                            let count = getNumberOfFriends(activity: searchResults[item]!)
+                                            VStack {
+                                                Text(item)
+                                                    .font(Font.custom("CircularStd-Black", size: 20))
+                                                Text("\(count) friends")
+                                                    .font(Font.custom("CircularStd-Black", size: 15))
+                                            }
+                                            .frame(width: screenWidth-240, height: 100)
+                                            //.padding()
+                                            .background(Color.init(UIColor.transitionPage))
+                                            .foregroundColor(.white)
+                                            .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                            
                                         }
-                                        .frame(width: screenWidth-240, height: 100)
-                                        //.padding()
-                                        .background(Color.init(UIColor.transitionPage))
-                                        .foregroundColor(.white)
-                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                        
                                     }
-                                }
-                            }.padding(.horizontal, 33).padding(.top, 20)
-                                .frame(maxHeight: 700)
-                        }.background(Color.init(UIColor.middleColor))
+                                }.padding(.horizontal, 33).padding(.top, 20)
+                                   // .frame(maxHeight: 700)
+                            }.background(Color.init(UIColor.middleColor))
                         
                             .navigationBarTitle("Discover")
                             .navigationBarHidden(false)
-                        
+                        }.background(Color.init(UIColor.middleColor))
                     }.foregroundColor(Color.init(UIColor.middleColor))
-                }
+                        
+                
             }.onAppear() { // (3)
                 self.viewModel1.fetchData(userId: userId)
             }
-        }
     }
 }
 
