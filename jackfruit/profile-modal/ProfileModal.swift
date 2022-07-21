@@ -50,8 +50,9 @@ class ProfileModalVM: ObservableObject {
     func updateUserEntry(){
         do {
             print("Uploading user model. Values are: ")
-            print(userModel)
-            let _ = try db.collection("users").document(userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
+            print("User is is ")
+            print(self.userModel)
+            let _ = try db.collection("users").document(self.userModel.phoneNumber ?? "0000000000").setData(JSONSerialization.jsonObject(with: JSONConverter.encode(self.userModel) ?? Data()) as? [String:Any] ?? ["user":"error"] )
         }
         catch {
             print(error)
