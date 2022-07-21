@@ -80,6 +80,6 @@ struct Screen4NumberView: View {
     @StateObject var vm: Screen4NumberVM
     
     var body: some View{
-        Screen4NumberPure(didTapNextAction: vm.didTapNext, phoneNumber: $vm.phoneNumber, isValid: vm.isValid)
+        Screen4NumberPure(didTapNextAction: vm.didTapNext, phoneNumber: $vm.phoneNumber)
     }
 }

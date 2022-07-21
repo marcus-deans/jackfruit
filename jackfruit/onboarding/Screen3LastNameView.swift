@@ -42,6 +42,6 @@ struct Screen3LastNameView: View {
     @StateObject var vm: Screen3LastNameVM
     
     var body: some View{
-        Screen3LastNamePure(didTapNextAction: vm.didTapNext, lastName: $vm.lastName, isValid: vm.isValid)
+        Screen3LastNamePure(didTapNextAction: vm.didTapNext, lastName: $vm.lastName)
     }
 }

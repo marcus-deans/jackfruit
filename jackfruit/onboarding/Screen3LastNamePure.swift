@@ -15,7 +15,6 @@ struct Screen3LastNamePure: View {
     @State private var keyboardHeight: CGFloat = 0
     
     @Binding var lastName:String
-    @State var isValid:Bool
     var body: some View {
         ZStack {
             Color.init(UIColor.transitionPage)
@@ -52,11 +51,8 @@ struct Screen3LastNamePure: View {
                 Button(action: {
                     didTapNextAction()
                 }, label: { Text(">") })
-                
-                
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-                .disabled(!isValid)
                 .buttonStyle(BlueButtonStyle())
             }
         }.ignoresSafeArea(.keyboard)
@@ -65,6 +61,6 @@ struct Screen3LastNamePure: View {
 
 struct Screen3LastNamePure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen3LastNamePure(didTapNextAction: {}, lastName: .constant("Deans"), isValid: true)
+        Screen3LastNamePure(didTapNextAction: {}, lastName: .constant("Deans"))
     }
 }

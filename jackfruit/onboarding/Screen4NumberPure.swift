@@ -17,7 +17,6 @@ struct Screen4NumberPure: View {
     @FocusState private var focusedField: Field?
     
     @Binding var phoneNumber:String
-    @State var isValid:Bool
     
     let digitLimit: Int = 10
     
@@ -89,7 +88,6 @@ struct Screen4NumberPure: View {
                 
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-                .disabled(!isValid)
                 .buttonStyle(BlueButtonStyle())
             }
             .toolbar {
@@ -105,6 +103,6 @@ struct Screen4NumberPure: View {
 
 struct Screen4NumberPure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen4NumberPure(didTapNextAction: {}, phoneNumber: .constant("9196414032"), isValid: true)
+        Screen4NumberPure(didTapNextAction: {}, phoneNumber: .constant("9196414032"))
     }
 }

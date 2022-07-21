@@ -46,7 +46,7 @@ struct Screen5VerificationView: View {
     @StateObject var vm: Screen5VerificationVM
     
     var body: some View{
-        Screen5VerificationPure(didTapNextAction: vm.didTapNext, verificationCode: $vm.verificationCode, isValid: vm.isValid)
+        Screen5VerificationPure(didTapNextAction: vm.didTapNext, verificationCode: $vm.verificationCode)
     }
 }
 

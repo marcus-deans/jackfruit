@@ -14,7 +14,6 @@ struct Screen7LocationPure: View {
     @State var progressValue: Float = 0.80
     @State private var keyboardHeight: CGFloat = 0
     @Binding var location:String
-    @State var isValid:Bool
     var body: some View {
         ZStack {
             Color.init(UIColor.transitionPage)
@@ -55,7 +54,6 @@ struct Screen7LocationPure: View {
                 
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-                .disabled(!isValid)
                 .buttonStyle(BlueButtonStyle())
             }
         }.ignoresSafeArea(.keyboard)
@@ -64,7 +62,6 @@ struct Screen7LocationPure: View {
 
 struct Screen7LocationPure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen7LocationPure(didTapNextAction: {}, location: .constant("Windsor"),
-                            isValid: true)
+        Screen7LocationPure(didTapNextAction: {}, location: .constant("Windsor"))
     }
 }
