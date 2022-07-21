@@ -16,7 +16,10 @@ struct LoginViewPure: View {
     
     @Binding var email:String
     @Binding var password:String
-    
+    @AppStorage("user_id") var userId: String = ""
+
+    let demoId = "0000000000"
+
     var body: some View {
         ZStack {
             Color.init(UIColor.transitionPage)
@@ -40,6 +43,7 @@ struct LoginViewPure: View {
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.username)
                         .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     
                     TextField("Password", text: $password, onEditingChanged: { edit in
                         self.editing = edit
@@ -47,6 +51,7 @@ struct LoginViewPure: View {
                         .textFieldStyle(MyTextFieldStyle(focused: $editing)).font(Font.custom("CircularStd-Book", size: 22))
                         .textContentType(.password)
                         .textInputAutocapitalization(.never)
+                        .disableAutocorrection(true)
                     
                 }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                     .fixedSize(horizontal: false, vertical: true)
@@ -56,6 +61,8 @@ struct LoginViewPure: View {
                 Spacer()
                     .frame(minHeight: 15, idealHeight: 52, maxHeight: .infinity)
                 Button(action: {
+                    userId = demoId
+                    print("User hit login, user ID is: \(userId)")
                     didTapNextAction()
                 }, label: { Text("Login").font(Font.custom("CircularStd-Book", size: 22)).frame(width:300) })
                 //.padding(.leading, 250)
