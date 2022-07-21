@@ -49,7 +49,7 @@ struct Screen6EmailView: View {
     @StateObject var vm: Screen6EmailVM
     
     var body: some View {
-        Screen6EmailPure(didTapNextAction: vm.didTapNext, emailAddress: $vm.emailAddress, isValid: vm.isValid)
+        Screen6EmailPure(didTapNextAction: vm.didTapNext, emailAddress: $vm.emailAddress)
     }
 }
 

@@ -68,7 +68,6 @@ struct Screen5VerificationPure: View {
                 
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-                .disabled(!isValid)
                 .buttonStyle(BlueButtonStyle())
             }
             .toolbar {
@@ -84,6 +83,6 @@ struct Screen5VerificationPure: View {
 
 struct Screen5VerificationPure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen5VerificationPure(didTapNextAction: {}, verificationCode: .constant("123"), isValid: true)
+        Screen5VerificationPure(didTapNextAction: {}, verificationCode: .constant("123"))
     }
 }

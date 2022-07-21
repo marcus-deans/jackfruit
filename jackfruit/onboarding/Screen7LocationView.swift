@@ -42,7 +42,7 @@ final class Screen7LocationVM: ObservableObject, Completeable {
 struct Screen7LocationView: View {
     @StateObject var vm: Screen7LocationVM
     var body: some View {
-        Screen7LocationPure(didTapNextAction: vm.didTapNext, location: $vm.location, isValid: vm.isValid)
+        Screen7LocationPure(didTapNextAction: vm.didTapNext, location: $vm.location)
     }
 }
 

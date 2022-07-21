@@ -14,7 +14,6 @@ struct Screen6EmailPure: View {
     @State private var editing = false
     @State var progressValue: Float = 0.64
     @State private var keyboardHeight: CGFloat = 0
-    @State var isValid:Bool
     
     var body: some View {
         ZStack {
@@ -59,7 +58,6 @@ struct Screen6EmailPure: View {
                 
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-                .disabled(!isValid)
                 .buttonStyle(BlueButtonStyle())
             }
         }.ignoresSafeArea(.keyboard)
@@ -68,6 +66,6 @@ struct Screen6EmailPure: View {
 
 struct Screen6EmailPure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen6EmailPure(didTapNextAction: {}, emailAddress: .constant("marcusddeans@outlook.com"), isValid: true)
+        Screen6EmailPure(didTapNextAction: {}, emailAddress: .constant("marcusddeans@outlook.com"))
     }
 }

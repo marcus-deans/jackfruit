@@ -15,7 +15,6 @@ struct Screen2FirstNamePure: View {
     @State private var keyboardHeight: CGFloat = 0
     
     @Binding var firstName:String
-    @State var isValid:Bool
     
     var body: some View {
         ZStack {
@@ -57,11 +56,8 @@ struct Screen2FirstNamePure: View {
                 Button(action: {
                     didTapNextAction()
                 }, label: { Text(">") })
-                
-                
                 .padding(.leading, 250)
                 .padding(.bottom, 40)
-                .disabled(!isValid)
                 .buttonStyle(BlueButtonStyle())
             }
         }.ignoresSafeArea(.keyboard)
@@ -70,6 +66,6 @@ struct Screen2FirstNamePure: View {
 
 struct Screen2FirstNamePure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen2FirstNamePure(didTapNextAction: {}, firstName: .constant("Marcus"), isValid: true)
+        Screen2FirstNamePure(didTapNextAction: {}, firstName: .constant("Marcus"))
     }
 }

@@ -15,7 +15,7 @@ final class Screen2FirstNameVM: ObservableObject, Completeable {
     
     //TODO: implement more robust field validation using Combine
     var isValid: Bool {
-        !firstName.isEmpty
+        return !firstName.isEmpty
     }
     
     let didComplete = PassthroughSubject<Screen2FirstNameVM, Never>()
@@ -38,6 +38,6 @@ struct Screen2FirstNameView: View {
     @StateObject var vm: Screen2FirstNameVM
     
     var body: some View {
-        Screen2FirstNamePure(didTapNextAction: vm.didTapNext, firstName: $vm.firstName, isValid: vm.isValid)
+        Screen2FirstNamePure(didTapNextAction: vm.didTapNext, firstName: $vm.firstName)
     }
 }
