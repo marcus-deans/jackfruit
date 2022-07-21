@@ -70,7 +70,7 @@ class FlowVM: ObservableObject {
         vm.didComplete
             .sink(receiveValue: didComplete1)
             .store(in: &subscription)
-        vm.didLogin
+        vm.didSelectLogin
             .sink(receiveValue: didSelectLogin)
             .store(in: &subscription)
         return vm

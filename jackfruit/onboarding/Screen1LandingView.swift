@@ -12,7 +12,7 @@ import FirebaseAnalytics
 final class Screen1LandingVM: ObservableObject, Completeable {
     
     let didComplete = PassthroughSubject<Screen1LandingVM, Never>()
-    let didLogin = PassthroughSubject<Screen1LandingVM, Never>()
+    let didSelectLogin = PassthroughSubject<Screen1LandingVM, Never>()
 
     
     init() {
@@ -27,7 +27,7 @@ final class Screen1LandingVM: ObservableObject, Completeable {
     }
     
     func didTapLogin(){
-        didLogin.send(self)
+        didSelectLogin.send(self)
     }
 }
 
