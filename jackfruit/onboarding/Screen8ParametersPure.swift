@@ -9,20 +9,8 @@ import SwiftUI
 import WrappingHStack
 
 struct Screen8ParametersPure: View {
-    //    @StateObject var vm: Screen8ParametersVM
-    
-    let sportsToggledAction: () -> Void
-    let hobbiesToggledAction: () -> Void
-    let creativityToggledAction: () -> Void
-    let travelingToggledAction: () -> Void
-    let petsToggledAction: () -> Void
     let didTapNextAction: () -> Void
-    
-    @State var sportsIsSelected : Bool = false
-    @State var creativityIsSelected : Bool = false
-    @State var travelingIsSelected : Bool = false
-    @State var hobbiesIsSelected : Bool = false
-    @State var petsIsSelected : Bool = false
+
     
     @State var progressValue: Float = 1.0
     @State private var editing = false
@@ -38,7 +26,7 @@ struct Screen8ParametersPure: View {
     @State var miscInterests: [String] = Misc
     @State var learningActivities: [String] = Learning
     
-    @State var selectedActivities: [String] = []
+    @Binding var selectedActivities: [String]
     let elements = ["Cat 🐱", "Dog 🐶", "Sun 🌞", "Moon 🌕", "Tree 🌳"]
     
     var body: some View {
@@ -48,7 +36,6 @@ struct Screen8ParametersPure: View {
                 .ignoresSafeArea()
             ScrollView {
                 
-                //GeometryReader { _ in
                     VStack(alignment: .leading) {
                         
                         ProgressBar(value: $progressValue).frame(height: 10)
@@ -65,7 +52,6 @@ struct Screen8ParametersPure: View {
                     }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                         .fixedSize(horizontal: false, vertical: true)
                         .background(Color.init(UIColor.transitionPage))
-               // }
             
                 VStack {
                     
@@ -223,12 +209,11 @@ struct ActivityButton: View{
         )
         .padding(.bottom, 10)
         .padding(.horizontal, 4)
-//        .padding(.bottom, 100).padding(.horizontal, 4)
     }
 }
 
 struct Screen8ParametersPure_Previews: PreviewProvider {
     static var previews: some View {
-        Screen8ParametersPure(sportsToggledAction: {}, hobbiesToggledAction: {}, creativityToggledAction: {}, travelingToggledAction: {}, petsToggledAction: {}, didTapNextAction: {})
+        Screen8ParametersPure(didTapNextAction: {}, selectedActivities: .constant([]))
     }
 }
