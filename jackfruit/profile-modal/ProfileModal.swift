@@ -27,6 +27,12 @@ class ProfileModalVM: ObservableObject {
         }
     }
     
+    func refreshUserModel(userId: String){
+        Task {
+            await doAsyncStuff(userId: userId)
+        }
+    }
+    
     func doAsyncStuff(userId: String) async{
         await getUserModel(userId: userId, completion: { userModel in
             self.userModel = userModel
@@ -68,6 +74,7 @@ struct ProfileModal: View {
     var body: some View {
         ProfileModalView(updateButtonAction: vm.updateUserEntry, userModel: $vm.userModel)
             .onAppear() {
+                vm.refreshUserModel(userId: userId)
             Analytics.logEvent(AnalyticsEventScreenView,
                                parameters: [AnalyticsParameterScreenName: "\(ProfileModal.self)",
                                             AnalyticsParameterScreenClass: "\(ProfileModalVM.self)"])
