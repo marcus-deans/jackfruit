@@ -17,7 +17,29 @@ var textEmojiMap = ["pets":"pets 🐶",
                     "creativity":"creativity 🎨",
                     "Duke University":"Duke 😈"]
 
-var activitiesSports = ["Soccer","Football","Tennis","Hockey","Skiing","Baseball","Basketball"]
+var ProfessionalInterests = ["Computer Science", "Robotics", "Biotech", "Politics/Government", "Healthcare", "Education", "Math", "Law", "Medicine", "Finance", "Humanities"]
+
+var Sports = ["Pickup Sports(Anything)","Soccer","Football", "Tennis", "Hockey", "Skiing", "Baseball", "Basketball", "Pickleball/Paddle Tennis", "Table Tennis", "Badminton", "Running", "Swimming", "Weightlifting", "Climbing", "Bowling", "Surfing", "Snowboarding", "Cycling", "Yoga", "Boxing"]
+
+var Art = ["Sketching", "Dance", "Painting", "Writing", "Poetry", "Woodworking", "Sculpter", "Photography", "Fashion"]
+
+var Outdoors = ["Hiking","Gardening", "Fishing", "Camping", "Winter Sports", "Climbing", "Backpacking", "Sight Seeing"]
+
+var Entertainment = ["Marvel", "DC", "Sci-Fi", "Horror", "Sitcoms", "Documentaries", "Romance", "Mystery", "Bolywood", "Anime", "MLB", "F1", "Nascar",
+       "NFL", "ATP/WTA", "PGA", "Soccer", "NHL", "Netflix Binger", "YouTube", "Twitch", "ESports", "TikTok", "Twitter", "Reddit"]
+
+var Music = ["Piano", "Brass Instrument", "Singing/Songwriting", "Guitar", "Violin/Viola", "Country", "Rap/Hip-Hop", "Classical", "Pop", "EDM", "Movie Soundtracks", "Metal", "Rock", "90s", "80s", "70s", "Latin", "K-Pop", "Indie"]
+
+var Food = ["Cooking", "Exploring Cuisines", "Baking"]
+
+var Learning = ["Reading", "Podcasts", "News"]
+
+var Fun = ["Clubbing", "Bars", "Concerts", "Cards/Poker", "Sports Betting", "Theatre", "Comedy", "Trivia"]
+
+var Misc = ["Traveling", "Dog Lover", "Cat Lover", "Shopping", "PC Gaming", "Console Gaming"]
+
+
+
 
 struct ProfilePhotoView: View {
     let profileURL: String

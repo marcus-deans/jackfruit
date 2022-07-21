@@ -27,7 +27,14 @@ struct Screen8ParametersPure: View {
     @State var progressValue: Float = 1.0
     @State private var editing = false
     
-    @State var sportsActivities: [String] = activitiesSports
+    @State var sportsActivities: [String] = Sports
+    @State var artsActivities: [String] = Art
+    @State var outdoorActivities: [String] = Outdoors
+    @State var entertainmentActivities: [String] = Entertainment
+    @State var musicActivities: [String] = Music
+    @State var foodActivities: [String] = Food
+    @State var funActivities: [String] = Fun
+    
     @State var selectedActivities: [String] = []
     let elements = ["Cat 🐱", "Dog 🐶", "Sun 🌞", "Moon 🌕", "Tree 🌳"]
     
@@ -36,9 +43,9 @@ struct Screen8ParametersPure: View {
         ZStack {
             Color.init(UIColor.transitionPage)
                 .ignoresSafeArea()
-            VStack {
+            ScrollView {
                 
-                GeometryReader { _ in
+                //GeometryReader { _ in
                     VStack(alignment: .leading) {
                         
                         ProgressBar(value: $progressValue).frame(height: 10)
@@ -55,67 +62,82 @@ struct Screen8ParametersPure: View {
                     }.padding(EdgeInsets(top: 0, leading: 50, bottom: 0, trailing: 50))
                         .fixedSize(horizontal: false, vertical: true)
                         .background(Color.init(UIColor.transitionPage))
-                }
+               // }
             
-                ScrollView{
-                //MARK: the HStack WE are using is https://github.com/dkk/WrappingHStack
-                WrappingHStack(sportsActivities, id: \.self){ activity in
-                    ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
-                        if self.selectedActivities.contains(activity){
-                            self.selectedActivities.removeAll(where: {$0 == activity})
-                        } else {
-                            self.selectedActivities.append(activity)
+                VStack {
+                    
+                    Text("Entertainment").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(entertainmentActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
                         }
                     }
-                }
-//                .padding(.horizontal, 30)
-
+                        
+                    Text("Outdoors").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(outdoorActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
+                        
+                    Text("Sports").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(sportsActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
                 
-//                Text("Exercise and Recreation").font(Font.custom("CircularStd-Black", size: 20)).underline(true, color: Color.init(UIColor.yellow))
-//                    .foregroundColor(.white)
-                
-                WrappingHStack {
-                    Button(action: {sportsToggledAction()
-                        self.sportsIsSelected.toggle()
-                    }, label: {Text("Sports")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.sportsIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(self.sportsIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 17).padding(.horizontal, 4)
-                    
-                    Button(action: {creativityToggledAction()
-                        self.creativityIsSelected.toggle()
-                    }, label: {Text("Creativity")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.creativityIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(self.creativityIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 17).padding(.horizontal, 4)
-                    
-                    
-                    Button(action: {travelingToggledAction()
-                        self.travelingIsSelected.toggle()
-                    }, label: {Text("Traveling")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.travelingIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(self.travelingIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 100).padding(.horizontal, 4)
-                    
-                    
-                    
-                    Button(action: {hobbiesToggledAction()
-                        self.hobbiesIsSelected.toggle()
-                    }, label: {Text("Hobbies")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.hobbiesIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(self.hobbiesIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 100).padding(.horizontal, 4)
-                    
-                    
-                    Button(action: {petsToggledAction()
-                        self.petsIsSelected.toggle()
-                    }, label: {Text("Pets")}).frame(height: 40, alignment: .center).padding(.horizontal, 15).background(self.petsIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white)).cornerRadius(20).foregroundColor(.black).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(self.petsIsSelected ? Color.init(UIColor.afterStartPageTransition) : Color.white)
-                    ).padding(.bottom, 100).padding(.horizontal, 4)
-                }
+                    Text("Music").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(musicActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
+                                            
+                    Text("Food").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(foodActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }
                     
                 }.padding(.horizontal, 40)
+                    .padding(.vertical, 20)
+                
+                VStack() {
+                    Text("Arts").font(Font.custom("CircularStd-Black", size: 30)).underline(true, color: Color.init(UIColor.yellow)).foregroundColor(.white)
+                    WrappingHStack(artsActivities, id: \.self){ activity in
+                        ActivityButton(title: activity, isSelected: self.selectedActivities.contains(activity)){
+                            if self.selectedActivities.contains(activity){
+                                self.selectedActivities.removeAll(where: {$0 == activity})
+                            } else {
+                                self.selectedActivities.append(activity)
+                            }
+                        }
+                    }.padding(.horizontal, 40)
+                    
+                    
+                }
                 
                 VStack (alignment: .trailing) {
                     
@@ -143,7 +165,7 @@ struct ActivityButton: View{
         }, label: {Text(title)})
 //        .frame(width: 50, height: 40)
 //        .padding(.horizontal, 15)
-        .frame(height: 40, alignment: .center)
+        .frame(height: 35, alignment: .center)
         .padding(.horizontal, 15)
         .background(isSelected ? Color.init(UIColor.afterStartPageTransition) : Color.init(UIColor.white))
         .cornerRadius(20)
