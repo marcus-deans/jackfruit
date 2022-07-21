@@ -63,6 +63,7 @@ struct FlowView: View {
                             }
                             Flow(next: $vm.navigateToLogin) {
                                 LoginView(vm: vm.makeLoginView())
+                                    .transition(transition)
                             }
                         }
                     }

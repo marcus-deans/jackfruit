@@ -37,6 +37,8 @@ final class LoginVM: ObservableObject, Completeable {
 struct LoginView: View {
 //    @AppStorage("is_onboarded") var isOnboarded: Bool = false
 //    @AppStorage("user_id") var userId: String = ""
+    @StateObject var vm: LoginVM
+
     var body: some View {
         LoginViewPure(
             
@@ -49,8 +51,8 @@ struct LoginView: View {
     }
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
-    }
-}
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}
