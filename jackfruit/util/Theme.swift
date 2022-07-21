@@ -109,6 +109,25 @@ struct RoundedRectangleButtonStyle: ButtonStyle {
     }
 }
 
+struct LoginButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        Button(action: {}, label: {
+            HStack(alignment: .center) {
+                
+                configuration.label.foregroundColor(.black)
+                    .font(Font.custom("CircularStd-Book", size: 20))
+                
+            }
+        })
+        // 👇🏻 makes all taps go to the original button
+        //.frame(width:300) May need to change this back for onboarding
+        .allowsHitTesting(false)
+        .padding()
+        .background(Color.yellow).cornerRadius(30)
+        .scaleEffect(configuration.isPressed ? 0.95 : 1)
+    }
+}
+
 struct BlueButtonStyle: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
