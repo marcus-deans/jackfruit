@@ -17,6 +17,8 @@ var textEmojiMap = ["pets":"pets 🐶",
                     "creativity":"creativity 🎨",
                     "Duke University":"Duke 😈"]
 
+var activitiesSports = ["Soccer","Football","Tennis","Hockey","Skiing","Baseball","Basketball"]
+
 struct ProfilePhotoView: View {
     let profileURL: String
     var body: some View {

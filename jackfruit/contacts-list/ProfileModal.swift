@@ -8,6 +8,7 @@
 import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import FirebaseAnalytics
 
 class ProfileModalVM: ObservableObject {
     
@@ -61,5 +62,10 @@ struct ProfileModal: View {
     
     var body: some View {
         ProfileModalView(updateButtonAction: vm.updateUserEntry, userModel: $vm.userModel)
+            .onAppear() {
+            Analytics.logEvent(AnalyticsEventScreenView,
+                               parameters: [AnalyticsParameterScreenName: "\(ProfileModal.self)",
+                                            AnalyticsParameterScreenClass: "\(ProfileModal.self)"])
+          }
     }
 }

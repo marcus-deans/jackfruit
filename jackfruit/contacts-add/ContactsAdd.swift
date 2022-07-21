@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseFirestore
+import FirebaseAnalytics
 import ToastUI
 
 class ContactsAddVM: ObservableObject {
@@ -151,6 +152,12 @@ struct ContactsAdd: View {
             },
             contactModel: $viewModel.contactModel
         )
+        .onAppear() {
+        Analytics.logEvent(AnalyticsEventScreenView,
+                           parameters: [AnalyticsParameterScreenName: "\(ContactsAdd.self)",
+                                        AnalyticsParameterScreenClass: "\(ContactsAdd.self)"])
+      }
     }
+        
     
 }
