@@ -41,7 +41,7 @@ struct Screen1LandingView: View {
         ZStack {
             LinearGradient(gradient: Gradient(colors: [Color.init(UIColor.topGradient), Color.init(UIColor.transitionPage)]), startPoint: .top, endPoint: .bottom).ignoresSafeArea()
             VStack(alignment: .center) {
-                Text("Contact")
+                Text("JustMet")
                     .font(Font.custom("CircularStd-Black", size: 50))
                     .foregroundColor(.white)
                     .padding(.top, 200)
