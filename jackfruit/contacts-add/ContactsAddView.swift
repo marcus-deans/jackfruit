@@ -156,14 +156,20 @@ struct ContactsAddView: View {
                 {
                     AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, hideTextLabel: $hideTextLabel )
                         .onTapGesture {
-                            guard selectedRelation != .none else {
-//                                self.addSelected.toggle()
-                                print("No relation selected")
+                            switch selectedRelation {
+                            case .friend, .work:
+                                guard enteredNumber.count == 10 else {
+                                    print("Contact number is invalid")
+                                    return
+                                }
                                 return
-                            }
-                            guard enteredNumber.count <= 10 else {
-//                                self.addSelected.toggle()
-                                print("Entered number is invalid")
+                            case .group:
+                                guard enteredNumber.count == 5 else {
+                                    print("Group number is invalid")
+                                    return
+                                }
+                            case .none:
+                                print("No relation selected")
                                 return
                             }
                             self.hideTextLabel.toggle()
