@@ -233,14 +233,7 @@ struct DetailsViewDiscover1: View {
     let activity: String
     var body: some View {
         ZStack {
-            //Color.init(UIColor.middleColor)
-            if #available(iOS 15.0, *) {
-                //                Button("Profile") {
-                //                    showProfileModal.toggle()
-                //                }
-                //                .sheet(isPresented: $showProfileModal) {
-                //                    //                    ProfileModal()
-                //                }
+            if #available(iOS 15.0, *) {        
                 NavigationView {
                     List {
                         ForEach(profiles) { userItem in

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "253A744E2877E1920005D7E1"
-               BuildableName = "jackfruit.app"
+               BuildableName = "JustMet.app"
                BlueprintName = "jackfruit"
                ReferencedContainer = "container:jackfruit.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "253A744E2877E1920005D7E1"
-            BuildableName = "jackfruit.app"
+            BuildableName = "JustMet.app"
             BlueprintName = "jackfruit"
             ReferencedContainer = "container:jackfruit.xcodeproj">
          </BuildableReference>
@@ -92,7 +92,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "253A744E2877E1920005D7E1"
-            BuildableName = "jackfruit.app"
+            BuildableName = "JustMet.app"
             BlueprintName = "jackfruit"
             ReferencedContainer = "container:jackfruit.xcodeproj">
          </BuildableReference>
