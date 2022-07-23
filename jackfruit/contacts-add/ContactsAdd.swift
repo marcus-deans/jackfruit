@@ -165,8 +165,10 @@ struct ContactsAdd: View {
             },
             addGroupContactAction: { enteredNumber in
                 print("Executing group with number \(enteredNumber)")
-                viewModel.checkGroupExists(userId: storedUserId, groupId: enteredNumber)
-                viewModel.addGroup(userId: storedUserId, groupId: enteredNumber)
+                Task {
+                    viewModel.checkGroupExists(userId: storedUserId, groupId: enteredNumber)
+                    viewModel.addGroup(userId: storedUserId, groupId: enteredNumber)
+                }
             },
             addFriendContactAction: { enteredNumber in
                 print("Executing personal with number \(enteredNumber)")
