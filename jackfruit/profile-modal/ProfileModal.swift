@@ -116,7 +116,7 @@ class ProfileModalVM: ObservableObject {
     }
     
     func updateUserPhotoURL(photoURL: String) {
-        let userRef = db.collection("cities").document(userId)
+        let userRef = db.collection("users").document(userId)
         userRef.updateData([
             "photo_url": photoURL
         ]){ err in

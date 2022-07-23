@@ -217,6 +217,7 @@ struct ProfileModalView: View {
                         Button("Update Profile"){
                             if let newImage = pickerSelectedImage {
                                 updatePhotoAction(newImage)
+                                pickerSelectedImage = nil
                             }
                             updateButtonAction()
                             dismiss()
