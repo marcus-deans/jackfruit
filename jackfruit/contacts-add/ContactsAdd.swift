@@ -13,6 +13,7 @@ import ToastUI
 class ContactsAddVM: ObservableObject {
     let db = Firestore.firestore()
     @Published var contactModel: UserModel = UserModel()
+    @Published var groupName: String = ""
     func addPersonalRelationship(userId: String, personalContact: String){
         guard userId != "" else {
             print("User ID is empty")
@@ -59,6 +60,29 @@ class ContactsAddVM: ObservableObject {
         }
     }
     
+    func checkGroupExists(userId: String, groupId: String){
+        // Update one field, creating the document if it does not exist.
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
+        guard groupId != "" else {
+            print("Group ID is empty")
+            return
+        }
+        let docRef = db.collection("groups").document(groupId)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                self.groupName = document.get("name") as? String ?? ""
+                print("Group name: \(self.groupName)")
+//                print("Document data: \(dataDescripti""on)")
+            } else {
+                print("Document does not exist")
+            }
+        }
+    }
+    
     func addGroup(userId: String, groupId: String){
         // Update one field, creating the document if it does not exist.
         guard userId != "" else {
@@ -69,7 +93,7 @@ class ContactsAddVM: ObservableObject {
             print("Group ID is empty")
             return
         }
-        print("user ID is \(userId)")
+        let docRef = db.collection("groups").document(groupId)
         db.collection("groups").document(groupId).setData([ "members": FieldValue.arrayUnion([userId]) ], merge: true)
         { err in
             if let err = err {
@@ -141,7 +165,10 @@ struct ContactsAdd: View {
             },
             addGroupContactAction: { enteredNumber in
                 print("Executing group with number \(enteredNumber)")
-                viewModel.addGroup(userId: storedUserId, groupId: enteredNumber)
+                Task {
+                    viewModel.checkGroupExists(userId: storedUserId, groupId: enteredNumber)
+                    viewModel.addGroup(userId: storedUserId, groupId: enteredNumber)
+                }
             },
             addFriendContactAction: { enteredNumber in
                 print("Executing personal with number \(enteredNumber)")
@@ -150,7 +177,8 @@ struct ContactsAdd: View {
                     viewModel.fetchContactOverview(contactNumber: enteredNumber)
                 }
             },
-            contactModel: $viewModel.contactModel
+            contactModel: $viewModel.contactModel,
+            groupName: $viewModel.groupName
         )
         .onAppear() {
         Analytics.logEvent(AnalyticsEventScreenView,
