@@ -14,7 +14,10 @@ struct ProfileModalView: View {
     //    let onBuildAction: () -> Void
     @Environment(\.dismiss) var dismiss
     
+    @State var pickerSelectedImage: UIImage? = nil
     @State var editing = false
+    @State var imagePickerSelected = false
+    @State var selectedNewImage = false
     @Binding var userModel: UserModel
     
     var body: some View {
@@ -22,7 +25,15 @@ struct ProfileModalView: View {
             VStack {
                 let photoURL = userModel.photoURL ?? ""
                 LazyImage(source: URL(string: photoURL)) { state in
-                    if let image = state.image {
+                    if let newImage = pickerSelectedImage {
+                        Image(uiImage: newImage)
+                            .resizable()
+                            .frame(width: 300, height: 300, alignment: .center)
+                            .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
+                            .overlay(RoundedRectangle(cornerRadius: 15, style: .continuous).stroke(Color.init(UIColor.yellow), lineWidth: 10))
+                            .padding(.top, 20)
+                    }
+                    else if let image = state.image {
                         image
                             .frame(width: 300, height: 300, alignment: .center)
                             .clipShape(RoundedRectangle(cornerRadius: 15, style: .continuous))
@@ -42,6 +53,10 @@ struct ProfileModalView: View {
                     }
                 }
                 .overlay(TextOverlay(firstName: userModel.firstName!, lastName: userModel.lastName!, companyName: userModel.companyName ?? "", companyPosition: userModel.companyPosition ?? ""), alignment: .bottomTrailing)
+                .onTapGesture {
+                    imagePickerSelected.toggle()
+//                    pickerSelectedImage = true
+                }
                 
                 ScrollView {
                     VStack  {
@@ -207,6 +222,11 @@ struct ProfileModalView: View {
                     }
                 }
             }.background(Color.init(UIColor.middleColor)).padding()
+            .sheet(isPresented: $imagePickerSelected){
+                ImagePicker(image: $pickerSelectedImage, showPicker: $imagePickerSelected)
+                    .ignoresSafeArea(.keyboard)
+                
+            }
         }.background(Color.init(UIColor.middleColor))
         
     }

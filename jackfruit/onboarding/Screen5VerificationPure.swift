@@ -11,7 +11,7 @@ struct Screen5VerificationPure: View {
     let didTapNextAction: () -> Void
     
     @State private var editing = false
-    @State var progressValue: Float = 0.4
+    @State var progressValue: Float = 0.6
     @State private var keyboardHeight: CGFloat = 0
     @AppStorage("user_id") var userId: String = ""
     @FocusState private var focusedField: Field?

@@ -36,15 +36,15 @@ struct FlowView: View {
                                 Flow(next: $vm.navigateTo5) {
                                     Screen5VerificationView(vm: vm.makeScreen5VerificationView())
                                         .transition(transition)
-                                    Flow(next: $vm.navigateTo6) {
-                                        Screen6EmailView(vm: vm.makeScreen6EmailView())
-                                            .transition(transition)
-                                        Flow(next: $vm.navigateTo7) {
-                                            Screen7LocationView(vm: vm.makeScreen7LocationView())
-                                                .transition(transition)
-                                            Flow(next: $vm.navigateTo8) {
-                                                Screen8ParametersView(vm: vm.makeScreen8ParametersView())
-                                                    .transition(transition)
+//                                    Flow(next: $vm.navigateTo6) {
+//                                        Screen6EmailView(vm: vm.makeScreen6EmailView())
+//                                            .transition(transition)
+//                                        Flow(next: $vm.navigateTo7) {
+//                                            Screen7LocationView(vm: vm.makeScreen7LocationView())
+//                                                .transition(transition)
+//                                            Flow(next: $vm.navigateTo8) {
+//                                                Screen8ParametersView(vm: vm.makeScreen8ParametersView())
+//                                                    .transition(transition)
                                                 Flow(next: $vm.navigateTo9) {
                                                     Screen9PhotoView(vm: vm.makeScreen9PhotoView())
                                                         .transition(transition)
@@ -56,9 +56,9 @@ struct FlowView: View {
                                                         }
                                                     }
                                                 }
-                                            }
-                                        }
-                                    }
+//                                            }
+//                                        }
+//                                    }
                                 }
                             }
                         }

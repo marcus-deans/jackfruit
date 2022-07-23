@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Screen9PhotoPure: View {
     @State var image: UIImage? = nil
-    @State var progressValue: Float = 1.0
+    @State var progressValue: Float = 0.75
     @State private var editing = false
     @State var pickerSelected = false
     
