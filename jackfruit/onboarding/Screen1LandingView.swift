@@ -66,7 +66,9 @@ struct Screen1LandingView: View {
 
 struct Screen1LandingView_Previews : PreviewProvider {
     static var previews: some View {
-        Screen1LandingView(vm: Screen1LandingVM())
+        Group {
+            Screen1LandingView(vm: Screen1LandingVM())
+        }
     }
 }
 

@@ -353,18 +353,20 @@ struct RoundedRectangleAroundText: ViewModifier {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView(userModel: UserModel(
-            firstName: "Marcus",
-            lastName: "Deans",
+            firstName: "Rachel",
+            lastName: "Davis",
             emailAddress: "marcusddeans@outlook.com",
             phoneNumber: "9196414032",
-            location: "San Francisco",
-            photoURL: "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg",
-            parameters: ["pets", "traveling"],
-            companyName: "Atomic",
-            instagramURL: "marcus_deans",
-            snapchatURL: "marcus_deans",
-            twitterURL: "DeansMarcus",
-            hometown: "Windsor",
+            location: "Miami, FL",
+//            photoURL: "https://cdn1.sph.harvard.edu/wp-content/uploads/sites/1691/2014/07/Juan.jpg",
+            photoURL: "https://www.wallisphoto.com/IMAGES/2019/Women-Headshots/woman-business-headshot2.jpg",
+            parameters: ["weightlifting", "traveling", "skiing","engineering"],
+            companyName: "JustMet",
+            companyPosition: "SWE",
+            instagramURL:"rachel_davis",
+            snapchatURL: "realrachel",
+            twitterURL: "DavisRachel",
+            hometown: "Detroit, MI",
             universityName: "Duke University",
             universityDegree: "B.S. ECE"
         )
