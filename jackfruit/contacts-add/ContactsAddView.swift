@@ -32,7 +32,7 @@ struct ContactsAddView: View {
     @AppStorage("user_id") var userId: String = ""
     @State var friendSelected : Bool = false
     @State var workSelected : Bool = false
-    @State var groupSelected : Bool = false
+    @State var groupSelected : Bool = true
     @State var addSelected = false
     @Binding var contactModel: UserModel
     
@@ -42,7 +42,7 @@ struct ContactsAddView: View {
         case group
         case none
     }
-    @State var selectedRelation: relationType = .none
+    @State var selectedRelation: relationType = .group
     
     let buttons: [[NumberButton]] = [
         [.one, .two, .three],
@@ -70,53 +70,56 @@ struct ContactsAddView: View {
                     }
                     .padding()
                     
-                    HStack {
-                        Button(action: {
-                            self.friendSelected.toggle()
-                            self.selectedRelation = .friend
-                            self.workSelected = false
-                            self.groupSelected = false
-                        }, label: {Text("Friend")})
-                        .frame(height: 40, alignment: .center)
-                        .padding(.horizontal, 15)
-                        .background(self.friendSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
-                        .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                        )
-                        .padding(.bottom, 17).padding(.horizontal, 4)
-                        
-                        Button(action: {
-                            self.workSelected.toggle()
-                            self.selectedRelation = .work
-                            self.friendSelected = false
-                            self.groupSelected = false
-                        }, label: {Text("Work")})
-                        .frame(height: 40, alignment: .center)
-                        .padding(.horizontal, 15)
-                        .background(self.workSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
-                        .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
-                        )
-                        .padding(.bottom, 17).padding(.horizontal, 4)
-                        
+                    VStack{
                         Button(action: {
                             self.groupSelected.toggle()
                             self.selectedRelation = .group
                             self.friendSelected = false
                             self.workSelected = false
                         }, label: {Text("Group")})
-                        .frame(height: 40, alignment: .center)
+                        .frame(width: 170, height: 40, alignment: .center)
                         .padding(.horizontal, 15)
                         .background(self.groupSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
                         .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
                             RoundedRectangle(cornerRadius: 12)
-                                .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                                .stroke(self.groupSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
                         )
                         .padding(.bottom, 17).padding(.horizontal, 4)
                         
+                        HStack {
+                            Button(action: {
+                                self.friendSelected.toggle()
+                                self.selectedRelation = .friend
+                                self.workSelected = false
+                                self.groupSelected = false
+                            }, label: {Text("Friend")})
+                            .frame(width: 60, height: 40, alignment: .center)
+                            .padding(.horizontal, 15)
+                            .background(self.friendSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(self.friendSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                            )
+                            .padding(.bottom, 17).padding(.horizontal, 4)
+                            
+                            Button(action: {
+                                self.workSelected.toggle()
+                                self.selectedRelation = .work
+                                self.friendSelected = false
+                                self.groupSelected = false
+                            }, label: {Text("Work")})
+                            .frame(width: 60, height: 40, alignment: .center)
+                            .padding(.horizontal, 15)
+                            .background(self.workSelected ? Color.init(UIColor.green) : Color.init(UIColor.transitionPage)).cornerRadius(12)
+                            .foregroundColor(Color.init(UIColor.white)).font(Font.custom("PTSans-Bold", size: 18)).overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(self.workSelected ? Color.init(UIColor.clear) : Color.init(UIColor.clear))
+                            )
+                            .padding(.bottom, 17).padding(.horizontal, 4)
+                            
+                        }
                     }
+                    
                     
                     Spacer()
                         .frame(height: 20)
@@ -181,18 +184,20 @@ struct ContactsAddView: View {
                                 print(contactModel.firstName ?? "No first name")
                                 print(contactModel.lastName ?? "No first name")
                                 friendSelected = false
+                                groupSelected=true
                                 contactAddedAlert = true
                             case .work:
                                 addWorkContactAction(enteredNumber)
                                 workSelected = false
+                                groupSelected = true
                                 contactAddedAlert = true
                             case .group:
-                                groupSelected = false
+//                                groupSelected = false
                                 addGroupContactAction(enteredNumber)
                             case .none:
                                 print("Error")
                             }
-                            selectedRelation = .none
+                            selectedRelation = .group
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                                 withAnimation(){
