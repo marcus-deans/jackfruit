@@ -239,7 +239,8 @@ class FlowVM: ObservableObject {
             
             // User has signed in successfully and currentUser object is valid
             let currentUserInstance = Auth.auth().currentUser
-            self.navigateTo6 = true
+//            self.navigateTo6 = true
+            self.navigateTo9 = true
         }
     }
     
