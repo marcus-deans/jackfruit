@@ -35,7 +35,7 @@ struct ContactsAddView: View {
     @State var groupSelected : Bool = true
     @State var addSelected = false
     @Binding var contactModel: UserModel
-    
+    @Binding var groupName: String
     enum relationType {
         case friend
         case work
@@ -235,7 +235,12 @@ struct ContactsAddView: View {
             let number = button.rawValue
             if enteredNumber == "" {
                 enteredNumber = number
-            } else {
+            } else if (selectedRelation == .friend || selectedRelation == .work) && enteredNumber.count >= 10{
+                enteredNumber = enteredNumber
+            } else if selectedRelation == .group && enteredNumber.count >= 5{
+                enteredNumber = enteredNumber
+            }
+            else {
                 enteredNumber = "\(enteredNumber)\(number)"
             }
         }
