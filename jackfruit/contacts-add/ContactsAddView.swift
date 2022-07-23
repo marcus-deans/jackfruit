@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Awesome
 
 enum NumberButton: String {
     case one = "1"
@@ -305,7 +306,7 @@ struct ContactsAddView_Previews: PreviewProvider {
             addFriendContactAction: { enteredNumber in
 //                return UserModel()
                 print(enteredNumber)
-            }, contactModel: .constant(UserModel())
+            }, contactModel: .constant(UserModel()), groupName: .constant("testingGroup")
         )
     }
 }
