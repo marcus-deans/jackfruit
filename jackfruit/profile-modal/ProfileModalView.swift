@@ -198,12 +198,12 @@ struct ProfileModalView: View {
                     
                     
                     HStack{
-                        Button("Update Profile"){
+                        Button("Save Changes"){
                             updateButtonAction()
                             dismiss()
                         }
                         .padding()
-                        .buttonStyle(RoundedRectangleButtonStyle())
+                        .buttonStyle(LoginButtonStyle())
                     }
                 }
             }.background(Color.init(UIColor.middleColor)).padding()
@@ -225,20 +225,6 @@ struct ProfileModalView: View {
                     parameters: ["pets", "traveling"],
                     companyName: "Atomic",
                     companyPosition: "Summer Intern"))
-                //            updateButtonAction: {},
-                //            companyName: .constant(""),
-                //            companyPosition: .constant(""),
-                //            linkedinURL: .constant(""),
-                //            instagramURL: .constant(""),
-                //            snapchatURL: .constant(""),
-                //            githubURL: .constant(""),
-                //            twitterURL: .constant(""),
-                //            hometown: .constant(""),
-                //            birthMonth: .constant(""),
-                //            birthNumber: .constant(""),
-                //            universityName: .constant(""),
-                //            universityDegree: .constant(""),
-                //            loggedInUser: nil
             )
         }
     }

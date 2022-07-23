@@ -111,7 +111,7 @@
 		251F85512885E5D2000F64C4 /* ContactComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactComponents.swift; sourceTree = "<group>"; };
 		251F85532885EA4C000F64C4 /* ContactsAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsAddView.swift; sourceTree = "<group>"; };
 		25277A9D288A0709003935E0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		253A744F2877E1920005D7E1 /* jackfruit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jackfruit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		253A744F2877E1920005D7E1 /* JustMet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JustMet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		253A74522877E1920005D7E1 /* jackfruitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jackfruitApp.swift; sourceTree = "<group>"; };
 		253A74562877E1940005D7E1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		253A74592877E1940005D7E1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -269,7 +269,7 @@
 		253A74502877E1920005D7E1 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				253A744F2877E1920005D7E1 /* jackfruit.app */,
+				253A744F2877E1920005D7E1 /* JustMet.app */,
 				253A745F2877E1940005D7E1 /* jackfruitTests.xctest */,
 				253A74692877E1940005D7E1 /* jackfruitUITests.xctest */,
 			);
@@ -436,7 +436,7 @@
 				25A19805288891BD0008A50E /* FirebaseCrashlytics */,
 			);
 			productName = jackfruit;
-			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
+			productReference = 253A744F2877E1920005D7E1 /* JustMet.app */;
 			productType = "com.apple.product-type.application";
 		};
 		253A745E2877E1940005D7E1 /* jackfruitTests */ = {
@@ -789,12 +789,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jackfruit/jackfruit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"jackfruit/Preview Content\"";
 				DEVELOPMENT_TEAM = TG99963V5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = jackfruit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "JustMet - Contacts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -806,10 +807,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JustMet;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -823,12 +824,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = jackfruit/jackfruit.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"jackfruit/Preview Content\"";
 				DEVELOPMENT_TEAM = TG99963V5J;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = jackfruit/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "JustMet - Contacts";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -840,10 +842,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.contacts.jackfruit;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = JustMet;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

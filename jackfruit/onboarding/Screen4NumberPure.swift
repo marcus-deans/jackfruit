@@ -35,7 +35,7 @@ struct Screen4NumberPure: View {
                         .padding(.bottom, 20)
                         .foregroundColor(.white)
                     
-                    Text("We'll use this to link to your contacts")
+                    Text("Please double check this before you hit enter. Also please don't add +1 or your extension!")
                         .font(Font.custom("CircularStd-Book", size: 20))
                         .padding(.bottom, 40)
                         .foregroundColor(.white)
