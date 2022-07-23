@@ -11,7 +11,7 @@ struct Screen2FirstNamePure: View {
     let didTapNextAction: () -> Void
     
     @State private var editing = false
-    @State var progressValue: Float = 0.125
+    @State var progressValue: Float = 0.15
     @State private var keyboardHeight: CGFloat = 0
     
     @Binding var firstName:String
