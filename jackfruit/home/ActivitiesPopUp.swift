@@ -29,6 +29,10 @@ class ActivitiesVM: ObservableObject {
             let personalRelationships:[String] = data["personal_contacts"] as? [String] ?? []
             
             personalRelationships.forEach { personalId in
+                guard personalId != "" else {
+                    print("Personal ID is empty")
+                    return
+                }
                 self.db.collection("users").document(personalId)
                     .addSnapshotListener { documentSnapshot, error in
                         guard let document = documentSnapshot else {
@@ -57,6 +61,10 @@ class ActivitiesVM: ObservableObject {
             let professionalRelationships:[String] = data["professional_contacts"] as? [String] ?? []
             
             professionalRelationships.forEach { professionalId in
+                guard professionalId != "" else {
+                    print("Professional ID is empty")
+                    return
+                }
                 self.db.collection("users").document(professionalId)
                     .addSnapshotListener { documentSnapshot, error in
                         guard let document = documentSnapshot else {
