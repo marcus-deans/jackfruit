@@ -200,9 +200,14 @@ struct ContactsAddView: View {
                                 contactAddedAlert = true
                             case .group:
 //                                groupSelected = false
-                                let doesGroupExist = checkGroupExistsAction(enteredNumber)
-                                print("The group \(enteredNumber) exists?: \(doesGroupExist)")
-                                addGroupContactAction(enteredNumber)
+//                                let doesGroupExist = checkGroupExistsAction(enteredNumber)
+                                
+                                if(checkGroupExistsAction(enteredNumber)){
+                                    print("The group \(enteredNumber) exists?: true with name \(groupName)")
+                                } else {
+                                    addGroupContactAction(enteredNumber)
+                                }
+                                
                             case .none:
                                 print("Error")
                             }
