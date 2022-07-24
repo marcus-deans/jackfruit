@@ -27,7 +27,7 @@ struct ContactsAddView: View {
     let addWorkContactAction: (String) -> Void
     let addGroupContactAction: (String) -> Void
     let addFriendContactAction: (String) -> Void
-    
+    let checkGroupExistsAction: (String) -> Bool
     
     @State var enteredNumber = ""
     @AppStorage("user_id") var userId: String = ""
@@ -200,6 +200,8 @@ struct ContactsAddView: View {
                                 contactAddedAlert = true
                             case .group:
 //                                groupSelected = false
+                                let doesGroupExist = checkGroupExistsAction(enteredNumber)
+                                print("The group \(enteredNumber) exists?: \(doesGroupExist)")
                                 addGroupContactAction(enteredNumber)
                             case .none:
                                 print("Error")
@@ -312,6 +314,9 @@ struct ContactsAddView_Previews: PreviewProvider {
             addFriendContactAction: { enteredNumber in
 //                return UserModel()
                 print(enteredNumber)
+            }, checkGroupExistsAction: { groupNumber in
+                print(groupNumber)
+                return true
             }, contactModel: .constant(UserModel()), groupName: .constant("testingGroup")
         )
     }

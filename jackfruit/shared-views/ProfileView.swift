@@ -309,18 +309,12 @@ func phoneOpener(){
     }
 }
 
-
-
 func sendMessage(phoneNumber: String){
     let smsNumber = ""+phoneNumber
     let sms: String = "sms:\(phoneNumber)&body=Hi, it was great meeting you today!"
     let strURL: String = sms.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
     UIApplication.shared.open(URL.init(string: strURL)!, options: [:], completionHandler: nil)
 }
-
-
-
-
 
 struct ButtonBG: ViewModifier {
     func body(content: Content) -> some View {

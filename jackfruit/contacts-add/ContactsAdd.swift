@@ -14,6 +14,8 @@ class ContactsAddVM: ObservableObject {
     let db = Firestore.firestore()
     @Published var contactModel: UserModel = UserModel()
     @Published var groupName: String = ""
+    @Published var groupExists: Bool?
+    
     func addPersonalRelationship(userId: String, personalContact: String){
         guard userId != "" else {
             print("User ID is empty")
@@ -60,29 +62,7 @@ class ContactsAddVM: ObservableObject {
         }
     }
     
-    func checkGroupExists(userId: String, groupId: String){
-        // Update one field, creating the document if it does not exist.
-        guard userId != "" else {
-            print("User ID is empty")
-            return
-        }
-        guard groupId != "" else {
-            print("Group ID is empty")
-            return
-        }
-        let docRef = db.collection("groups").document(groupId)
-        docRef.getDocument { (document, error) in
-            if let document = document, document.exists {
-//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
-                self.groupName = document.get("name") as? String ?? ""
-                print("Group name: \(self.groupName)")
-//                print("Document data: \(dataDescripti""on)")
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
-    
+
     func addGroup(userId: String, groupId: String){
         // Update one field, creating the document if it does not exist.
         guard userId != "" else {
@@ -94,7 +74,7 @@ class ContactsAddVM: ObservableObject {
             return
         }
         let docRef = db.collection("groups").document(groupId)
-        db.collection("groups").document(groupId).setData([ "members": FieldValue.arrayUnion([userId]) ], merge: true)
+        docRef.setData([ "members": FieldValue.arrayUnion([userId]) ], merge: true)
         { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -147,6 +127,32 @@ class ContactsAddVM: ObservableObject {
                 completion(contactModel)
             }
     }
+    
+    func checkGroupExists(userId: String, groupId: String, completion: @escaping(_ doesExist: Bool)->()){
+        // Update one field, creating the document if it does not exist.
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
+        guard groupId != "" else {
+            print("Group ID is empty")
+            return
+        }
+        let docRef = db.collection("groups").document(groupId)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+//                let dataDescription = document.data().map(String.init(describing:)) ?? "nil"
+                self.groupName = document.get("name") as? String ?? ""
+                print("Group name: \(self.groupName)")
+                completion(true)
+//                print("Document data: \(dataDescripti""on)")
+            } else {
+                print("Document does not exist")
+                completion(false)
+            }
+        }
+    }
+    
 }
 
 struct ContactsAdd: View {
@@ -166,7 +172,7 @@ struct ContactsAdd: View {
             addGroupContactAction: { enteredNumber in
                 print("Executing group with number \(enteredNumber)")
                 Task {
-                    viewModel.checkGroupExists(userId: storedUserId, groupId: enteredNumber)
+//                    viewModel.checkGroupExists(userId: storedUserId, groupId: enteredNumber)
                     viewModel.addGroup(userId: storedUserId, groupId: enteredNumber)
                 }
             },
@@ -176,6 +182,15 @@ struct ContactsAdd: View {
                     viewModel.addPersonalRelationship(userId: storedUserId, personalContact: enteredNumber)
                     viewModel.fetchContactOverview(contactNumber: enteredNumber)
                 }
+            },
+            checkGroupExistsAction: { groupNumber in
+                print("Checking whether group \(groupNumber) exists")
+                var groupDoesExist: Bool = false
+                viewModel.checkGroupExists(userId: storedUserId, groupId: groupNumber){ (doesExist) in
+                    print("Found that group \(groupNumber) exists? \(doesExist)")
+                    groupDoesExist = doesExist
+                }
+                return groupDoesExist
             },
             contactModel: $viewModel.contactModel,
             groupName: $viewModel.groupName
