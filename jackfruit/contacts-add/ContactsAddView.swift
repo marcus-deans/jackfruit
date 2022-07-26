@@ -37,6 +37,7 @@ struct ContactsAddView: View {
     @State var addSelected = false
     @Binding var contactModel: UserModel
     @Binding var groupName: String
+    @Binding var showContactAddedDialog: Bool
     enum relationType {
         case friend
         case work
@@ -54,7 +55,6 @@ struct ContactsAddView: View {
     @State var trimVal : CGFloat = 0
     @State var width : CGFloat = 70
     @State var hideTextLabel = false
-    @State var contactAddedAlert = false
 
     var body: some View {
         ZStack{
@@ -187,17 +187,8 @@ struct ContactsAddView: View {
                             switch selectedRelation{
                             case .friend:
                                 addFriendContactAction(enteredNumber)
-                                print("Printing contact model")
-                                print(contactModel.firstName ?? "No first name")
-                                print(contactModel.lastName ?? "No first name")
-                                friendSelected = false
-                                groupSelected=true
-                                contactAddedAlert = true
                             case .work:
                                 addWorkContactAction(enteredNumber)
-                                workSelected = false
-                                groupSelected = true
-                                contactAddedAlert = true
                             case .group:
 //                                groupSelected = false
 //                                let doesGroupExist = checkGroupExistsAction(enteredNumber)
@@ -207,7 +198,6 @@ struct ContactsAddView: View {
                                 } else {
                                     addGroupContactAction(enteredNumber)
                                 }
-                                
                             case .none:
                                 print("Error")
                             }
@@ -222,12 +212,13 @@ struct ContactsAddView: View {
                                     self.friendSelected = false
                                     self.workSelected = false
                                     self.groupSelected = true
+                                    showContactAddedDialog = false
                                     selectedRelation = .group
                                     print("Reset button")
                                 }
                             }
                         }
-                        .alert("\(self.contactModel.firstName ?? "") \(self.contactModel.lastName ?? "") Added", isPresented: $contactAddedAlert){
+                        .alert("\(self.contactModel.firstName ?? "") \(self.contactModel.lastName ?? "") Added", isPresented: $showContactAddedDialog){
                             Button("OK", role: .cancel){}
                         }
                 }
@@ -322,7 +313,7 @@ struct ContactsAddView_Previews: PreviewProvider {
             }, checkGroupExistsAction: { groupNumber in
                 print(groupNumber)
                 return true
-            }, contactModel: .constant(UserModel()), groupName: .constant("testingGroup")
+            }, contactModel: .constant(UserModel()), groupName: .constant("testingGroup"), showContactAddedDialog: .constant(false)
         )
     }
 }

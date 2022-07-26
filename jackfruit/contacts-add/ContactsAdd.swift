@@ -15,31 +15,25 @@ class ContactsAddVM: ObservableObject {
     @Published var contactModel: UserModel = UserModel()
     @Published var groupName: String = ""
     @Published var groupExists: Bool?
+    @Published var showContactAddedDialog: Bool = false
+    @AppStorage("user_id") var userId: String = ""
     
-    func addPersonalRelationship(userId: String, personalContact: String){
-        guard userId != "" else {
-            print("User ID is empty")
+    func addProfessionalContact(contactNumber: String) {
+        guard contactNumber != "" else {
+            print("Contact number is empty")
             return
         }
-        guard personalContact != "" else {
-            print("Personal contact number is empty")
-            return
-        }
-        print("user ID is \(userId)")
-        let currentUserRef = db.collection("users").document(userId)
-        currentUserRef.updateData([
-            "personal_contacts": FieldValue.arrayUnion([personalContact])
-            
-        ]) { err in
-            if let err = err {
-                print("Error updating document: \(err)")
-            } else {
-                print("Document successfully updated")
-            }
+        Task {
+            await doAsyncGetUser(contactNumber: contactNumber, completion: { contactModel in
+                self.contactModel = contactModel
+                self.showContactAddedDialog = true
+                self.addProfessionalRelationship(professionalContact: contactNumber)
+            })
         }
     }
     
-    func addProfessionalRelationship(userId: String, professionalContact: String){
+    
+    func addProfessionalRelationship(professionalContact: String){
         guard userId != "" else {
             print("User ID is empty")
             return
@@ -63,7 +57,7 @@ class ContactsAddVM: ObservableObject {
     }
     
 
-    func addGroup(userId: String, groupId: String){
+    func addGroup(groupId: String){
         // Update one field, creating the document if it does not exist.
         guard userId != "" else {
             print("User ID is empty")
@@ -84,26 +78,37 @@ class ContactsAddVM: ObservableObject {
         }
     }
     
-    func fetchContactOverview(contactNumber: String){
-        self.contactModel = UserModel()
+    func addPersonalContact(contactNumber: String) {
+        guard contactNumber != "" else {
+            print("Contact number is empty")
+            return
+        }
         Task {
-            await doAsyncStuff(contactNumber: contactNumber)
+            await doAsyncGetUser(contactNumber: contactNumber, completion: { contactModel in
+                self.contactModel = contactModel
+                self.showContactAddedDialog = true
+                self.addPersonalRelationship(personalContact: contactNumber)
+            })
         }
     }
-//        db.collection("users").document(professionalContact).getDocument { (snapshot, error) in
-//            if let error = error {
-//                print(error.localizedDescription)
-//            } else if let snapshot = snapshot {
-//                let contact: [UserModel] = snapshot.document.compactMap {
-//                    return try? $0.data(as: UserModel.self)
-//                }
-//            }
-//        }
-        
-    func doAsyncStuff(contactNumber: String) async{
-        await doAsyncGetUser(contactNumber: contactNumber, completion: { contactModel in
-            self.contactModel = contactModel
-        })
+    
+    func addPersonalRelationship(personalContact: String){
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
+        print("user ID is \(userId)")
+        let currentUserRef = db.collection("users").document(userId)
+        currentUserRef.updateData([
+            "personal_contacts": FieldValue.arrayUnion([personalContact])
+            
+        ]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+        }
     }
     
     func doAsyncGetUser(contactNumber: String, completion: @escaping (UserModel) -> Void) async {
@@ -128,7 +133,7 @@ class ContactsAddVM: ObservableObject {
             }
     }
     
-    func checkGroupExists(userId: String, groupId: String, completion: @escaping(_ doesExist: Bool)->()){
+    func checkGroupExists(groupId: String, completion: @escaping(_ doesExist: Bool)->()){
         // Update one field, creating the document if it does not exist.
         guard userId != "" else {
             print("User ID is empty")
@@ -158,42 +163,34 @@ class ContactsAddVM: ObservableObject {
 struct ContactsAdd: View {
     @StateObject var viewModel = ContactsAddVM()
     
-    @AppStorage("user_id") var storedUserId: String = ""
     
     var body: some View {
         ContactsAddView(
             addWorkContactAction: { enteredNumber in
-                print("Executing professional with number \(enteredNumber)")
-                Task {
-                    viewModel.addProfessionalRelationship(userId: storedUserId, professionalContact: enteredNumber)
-                    viewModel.fetchContactOverview(contactNumber: enteredNumber)
-                }
+                viewModel.addProfessionalContact(contactNumber: enteredNumber)
             },
             addGroupContactAction: { enteredNumber in
                 print("Executing group with number \(enteredNumber)")
                 Task {
 //                    viewModel.checkGroupExists(userId: storedUserId, groupId: enteredNumber)
-                    viewModel.addGroup(userId: storedUserId, groupId: enteredNumber)
+                    viewModel.addGroup(groupId: enteredNumber)
                 }
             },
             addFriendContactAction: { enteredNumber in
-                print("Executing personal with number \(enteredNumber)")
-                Task {
-                    viewModel.addPersonalRelationship(userId: storedUserId, personalContact: enteredNumber)
-                    viewModel.fetchContactOverview(contactNumber: enteredNumber)
-                }
+                viewModel.addPersonalContact(contactNumber: enteredNumber)
             },
             checkGroupExistsAction: { groupNumber in
                 print("Checking whether group \(groupNumber) exists")
                 var groupDoesExist: Bool = false
-                viewModel.checkGroupExists(userId: storedUserId, groupId: groupNumber){ (doesExist) in
+                viewModel.checkGroupExists(groupId: groupNumber){ (doesExist) in
                     print("Found that group \(groupNumber) exists? \(doesExist)")
                     groupDoesExist = doesExist
                 }
                 return groupDoesExist
             },
             contactModel: $viewModel.contactModel,
-            groupName: $viewModel.groupName
+            groupName: $viewModel.groupName,
+            showContactAddedDialog: $viewModel.showContactAddedDialog
         )
         .onAppear() {
         Analytics.logEvent(AnalyticsEventScreenView,
