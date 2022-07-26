@@ -13,6 +13,7 @@ class ContactsListVM: ObservableObject {
     //    @Published var users = [UserModel]()
     
     @Published var users: Set<UserModel> = Set()
+    @Published var ownUserModel: UserModel = UserModel()
     @AppStorage("user_id") var userId: String = ""
     let settings = FirestoreSettings()
     private var db = Firestore.firestore()
@@ -22,7 +23,25 @@ class ContactsListVM: ObservableObject {
         //TODO: set an appropriate value for this
         settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
         db.settings = settings
+        Task {
+            await getOwnUserModel(userId: userId, completion: { ownUserModel in
+                self.ownUserModel = ownUserModel
+            })
+        }
     }
+    
+    func getOwnUserModel(userId: String, completion: @escaping (UserModel) -> Void) async {
+        db.collection("users").document(userId).getDocument(as: UserModel.self){
+            result in
+            switch result {
+            case .success(let model):
+                completion(model)
+            case .failure(let error):
+                print("Could not obtain model, \(error)")
+            }
+        }
+    }
+
     
     func fetchData(userId: String) {
         //        users = [UserModel]()
@@ -36,6 +55,7 @@ class ContactsListVM: ObservableObject {
                 print("No documents")
                 return
             }
+            
             
             let personalRelationships:[String] = data["personal_contacts"] as? [String] ?? []
             
@@ -180,6 +200,7 @@ struct ContactsList: View {
     
     var body: some View {
         ContactsListView(users: $vm.users,
+                         ownUserModel: $vm.ownUserModel,
                          fetchDataAction: { userId in vm.fetchData(userId: userId)},
                          deleteContactAction: { userId in
                             vm.deleteUser(deletionContactId: userId)})

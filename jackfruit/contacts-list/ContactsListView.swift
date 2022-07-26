@@ -33,7 +33,7 @@ class Theme {
 }
 
 struct ContactsListView: View {
-    init(users: Binding<Set<UserModel>>, fetchDataAction: @escaping (String) -> Void, deleteContactAction: @escaping (String) -> Void){
+    init(users: Binding<Set<UserModel>>, ownUserModel: Binding<UserModel>, fetchDataAction: @escaping (String) -> Void, deleteContactAction: @escaping (String) -> Void){
         Theme.navigationBarColors(background: .transitionPage, titleColor: .black)
         UITableView.appearance().backgroundColor = UIColor(Color.clear)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
@@ -42,6 +42,7 @@ struct ContactsListView: View {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
         self._users = users
         self.fetchDataAction = fetchDataAction
+        self._ownUserModel = ownUserModel
         self.deleteContactAction = deleteContactAction
     }
     @State private var searchText = ""
@@ -49,6 +50,7 @@ struct ContactsListView: View {
     @State private var showProfileModal = false
     
     @Binding var users: Set<UserModel>
+    @Binding var ownUserModel: UserModel
     
     let fetchDataAction: (String) -> Void
     let deleteContactAction: (String) -> Void
@@ -58,52 +60,26 @@ struct ContactsListView: View {
         ZStack {
             NavigationView {
                 List {
+                    NavigationLink(destination: ProfileView(userModel: ownUserModel)){
+                        ProfileRowView(profileModel: ownUserModel)
+                    }
+                    .listRowSeparator(.hidden).padding(.trailing, 20)
+//                    .foregroundColor(Color.init(UIColor.transitionPage))
+                    .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
+                        .foregroundColor(.init(UIColor.cardColor))
+                        .shadow(radius: 1)
+                    )
+                    .padding(.top, 1)
+                    .listRowBackground(Color.init(UIColor.transitionPage))
+                    
                     ForEach(searchResults) {
                         userItem in
                         NavigationLink(destination: ProfileView(userModel: userItem)) {
-                            HStack{
-                                ProfilePhotoView(profileURL: userItem.photoURL!)
-                                    .padding(.vertical, 10)
-                                VStack(alignment: .leading) {
-                                    HStack {
-                                        Text(userItem.firstName!)
-                                            .font(Font.custom("CircularStd-Black", size: 20))
-                                        + Text(" ")
-                                        + Text(userItem.lastName!)
-                                            .font(Font.custom("CircularStd-Black", size: 20))
-                                    }
-                                    
-                                    Text(userItem.phoneNumber!)
-                                        .font(Font.custom("CircularStd-Black", size: 15))
-                                        .foregroundColor(Color.init(UIColor.smalltextColor))
-                                    
-                                    HStack{
-                                        if let companyPosition = userItem.companyPosition{
-                                            if companyPosition != "" {
-                                                Text("\(companyPosition) |")
-                                                    .font(Font.custom("CircularStd-Black", size: 15))
-                                                    .foregroundColor(Color.init(UIColor.smalltextColor))
-                                            }
-                                        }
-                                        
-                                        if let companyName = userItem.companyName{
-                                            if companyName != "" {
-                                                Text(companyName)
-                                                    .font(Font.custom("CircularStd-Black", size: 15))
-                                                    .foregroundColor(Color.init(UIColor.smalltextColor))
-                                            }
-                                        }
-                                        
-                                    }
-                                }
-                            }
-                            .foregroundColor(Color.init(UIColor.black))
-
+                            ProfileRowView(profileModel: userItem)
                         }
                         .listRowSeparator(.hidden).padding(.trailing, 20)
                     }
                     .onDelete(perform: delete)
-                    
                     .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .foregroundColor(.init(UIColor.cardColor))
                         .shadow(radius: 1)
@@ -166,6 +142,50 @@ struct ContactsListView: View {
     }
 }
 
+struct ProfileRowView: View {
+    let profileModel: UserModel
+    
+    var body: some View {
+        HStack{
+            ProfilePhotoView(profileURL: profileModel.photoURL!)
+                .padding(.vertical, 10)
+            VStack(alignment: .leading) {
+                HStack {
+                    Text(profileModel.firstName!)
+                        .font(Font.custom("CircularStd-Black", size: 20))
+                    + Text(" ")
+                    + Text(profileModel.lastName!)
+                        .font(Font.custom("CircularStd-Black", size: 20))
+                }
+                
+                Text(profileModel.phoneNumber!)
+                    .font(Font.custom("CircularStd-Black", size: 15))
+                    .foregroundColor(Color.init(UIColor.smalltextColor))
+                
+                HStack{
+                    if let companyPosition = profileModel.companyPosition{
+                        if companyPosition != "" {
+                            Text("\(companyPosition) |")
+                                .font(Font.custom("CircularStd-Black", size: 15))
+                                .foregroundColor(Color.init(UIColor.smalltextColor))
+                        }
+                    }
+                    
+                    if let companyName = profileModel.companyName{
+                        if companyName != "" {
+                            Text(companyName)
+                                .font(Font.custom("CircularStd-Black", size: 15))
+                                .foregroundColor(Color.init(UIColor.smalltextColor))
+                        }
+                    }
+                    
+                }
+            }
+        }
+        .foregroundColor(Color.init(UIColor.black))
+    }
+}
+
 struct ContactsListView_Previews: PreviewProvider {
     static var previews: some View {
         let userModelOne = (UserModel(
@@ -188,6 +208,6 @@ struct ContactsListView_Previews: PreviewProvider {
             parameters: ["pets", "traveling"],
             companyName: "Atomic",
             companyPosition: "Summer Intern"))
-        ContactsListView(users: .constant(Set([userModelOne, userModelTwo])), fetchDataAction: {_ in }, deleteContactAction: {_ in })
+        ContactsListView(users: .constant(Set([userModelOne, userModelTwo])), ownUserModel: .constant(userModelOne), fetchDataAction: {_ in }, deleteContactAction: {_ in })
     }
 }
