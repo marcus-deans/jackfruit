@@ -14,7 +14,15 @@ class ContactsListVM: ObservableObject {
     
     @Published var users: Set<UserModel> = Set()
     @AppStorage("user_id") var userId: String = ""
+    let settings = FirestoreSettings()
     private var db = Firestore.firestore()
+    
+    init(){
+        settings.isPersistenceEnabled = true
+        //TODO: set an appropriate value for this
+        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        db.settings = settings
+    }
     
     func fetchData(userId: String) {
         //        users = [UserModel]()
