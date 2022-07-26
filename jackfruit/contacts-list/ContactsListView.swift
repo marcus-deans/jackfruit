@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAnalytics
+import PhoneNumberKit
 
 class Theme {
     static func navigationBarColors(background : UIColor,
@@ -32,7 +33,7 @@ class Theme {
 }
 
 struct ContactsListView: View {
-    init(users: Binding<Set<UserModel>>, fetchDataAction: @escaping (String) -> Void){
+    init(users: Binding<Set<UserModel>>, fetchDataAction: @escaping (String) -> Void, deleteContactAction: @escaping (String) -> Void){
         Theme.navigationBarColors(background: .transitionPage, titleColor: .black)
         UITableView.appearance().backgroundColor = UIColor(Color.clear)
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).backgroundColor = .white
@@ -41,6 +42,7 @@ struct ContactsListView: View {
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.transitionPage]
         self._users = users
         self.fetchDataAction = fetchDataAction
+        self.deleteContactAction = deleteContactAction
     }
     @State private var searchText = ""
     @AppStorage("user_id") var userId: String = ""
@@ -49,6 +51,7 @@ struct ContactsListView: View {
     @Binding var users: Set<UserModel>
     
     let fetchDataAction: (String) -> Void
+    let deleteContactAction: (String) -> Void
     
     let screenWidth = UIScreen.main.bounds.width
     var body: some View {
@@ -99,6 +102,8 @@ struct ContactsListView: View {
                         }
                         .listRowSeparator(.hidden).padding(.trailing, 20)
                     }
+                    .onDelete(perform: delete)
+                    
                     .background(RoundedRectangle(cornerRadius: 12, style: .continuous)
                         .foregroundColor(.init(UIColor.cardColor))
                         .shadow(radius: 1)
@@ -108,6 +113,9 @@ struct ContactsListView: View {
                 }
                 .padding(.top, 5)
                 .listStyle(.plain).background(Color.init(UIColor.middleColor))
+                
+                
+    
                 
                 //.padding()
                 .onAppear() { // (3)
@@ -130,6 +138,30 @@ struct ContactsListView: View {
             }
         }
     }
+    
+    func assistDelete(userNumber: String){
+        print("Do firebase deletion etc.'")
+    }
+    
+    func delete(at offsets: IndexSet){
+        
+        print("user delete values")
+        
+        //users.remove(atOffsets: offsets)
+        for i in offsets.makeIterator() {
+                    let theItem = searchResults[i]
+                    print(theItem)
+                    // 
+                    // do your stuff with theItem.id
+                    // onDelete(id: theItem.id)
+                }
+     
+        
+        let deleteContactId = "9196414032"
+        deleteContactAction(deleteContactId)
+        
+    }
+    
     var searchResults: [UserModel] {
         let userList = Array(users)
         if searchText.isEmpty {
@@ -167,6 +199,6 @@ struct ContactsListView_Previews: PreviewProvider {
             parameters: ["pets", "traveling"],
             companyName: "Atomic",
             companyPosition: "Summer Intern"))
-        ContactsListView(users: .constant(Set([userModelOne, userModelTwo])), fetchDataAction: {_ in })
+        ContactsListView(users: .constant(Set([userModelOne, userModelTwo])), fetchDataAction: {_ in }, deleteContactAction: {_ in })
     }
 }

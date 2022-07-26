@@ -13,6 +13,7 @@ class ContactsListVM: ObservableObject {
     //    @Published var users = [UserModel]()
     
     @Published var users: Set<UserModel> = Set()
+    @AppStorage("user_id") var userId: String = ""
     private var db = Firestore.firestore()
     
     func fetchData(userId: String) {
@@ -73,6 +74,7 @@ class ContactsListVM: ObservableObject {
                         self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters, companyName: companyName, companyPosition: companyPosition, linkedinURL: linkedinURL, instagramURL: instagramURL, snapchatURL: snapchatURL, githubURL: githubURL, twitterURL: twitterURL, hometown: hometown, birthMonth: birthMonth, birthNumber: birthNumber, universityName: universityName, universityDegree: universityDegree))
                     }
             }
+
             
             
             let professionalRelationships:[String] = data["professional_contacts"] as? [String] ?? []
@@ -117,6 +119,32 @@ class ContactsListVM: ObservableObject {
         }
     }
     
+    
+    // deleting user based on phone number
+    func deleteUser(with id: String){
+        
+        //        let docRef = db.collection("groups").document(groupId)
+        
+        let docRef = db.collection("users").document(userId)
+        
+        
+        
+        //delete user functionality done here
+        
+        let db = Firestore.firestore()
+        db.collection("users").whereField("id", isEqualTo: id).getDocuments{(snap, err) in
+            if err != nil {
+                print("error deleting")
+                return
+            }
+            for i in snap!.documents {
+                DispatchQueue.main.async {
+                    i.reference.delete()
+                }
+            }
+        }
+    }
+    
     func fetchAllUsers() {
         db.collection("users").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -145,7 +173,10 @@ struct ContactsList: View {
     @StateObject var vm = ContactsListVM()
     
     var body: some View {
-        ContactsListView(users: $vm.users, fetchDataAction: { userId in vm.fetchData(userId: userId)})
+        ContactsListView(users: $vm.users,
+                         fetchDataAction: { userId in vm.fetchData(userId: userId)},
+                         deleteContactAction: { userId in
+                            vm.deleteUser(with: userId)})
             .onAppear() {
             Analytics.logEvent(AnalyticsEventScreenView,
                                parameters: [AnalyticsParameterScreenName: "\(ContactsList.self)",
