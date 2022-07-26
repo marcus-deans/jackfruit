@@ -160,13 +160,13 @@ struct ContactsAddView: View {
                 {
                     AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, hideTextLabel: $hideTextLabel )
                         .onTapGesture {
+                            print("Hit add with number \(enteredNumber)")
                             switch selectedRelation {
                             case .friend, .work:
                                 guard enteredNumber.count == 10 else {
                                     print("Contact number is invalid")
                                     return
                                 }
-                                return
                             case .group:
                                 guard enteredNumber.count == 5 else {
                                     print("Group number is invalid")
@@ -211,7 +211,6 @@ struct ContactsAddView: View {
                             case .none:
                                 print("Error")
                             }
-                            selectedRelation = .group
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                                 withAnimation(){
@@ -222,7 +221,8 @@ struct ContactsAddView: View {
                                     self.enteredNumber = ""
                                     self.friendSelected = false
                                     self.workSelected = false
-                                    self.groupSelected = false
+                                    self.groupSelected = true
+                                    selectedRelation = .group
                                     print("Reset button")
                                 }
                             }

@@ -138,28 +138,17 @@ struct ContactsListView: View {
             }
         }
     }
-    
-    func assistDelete(userNumber: String){
-        print("Do firebase deletion etc.'")
-    }
-    
     func delete(at offsets: IndexSet){
         
-        print("user delete values")
-        
-        //users.remove(atOffsets: offsets)
-        for i in offsets.makeIterator() {
-                    let theItem = searchResults[i]
-                    print(theItem)
-                    // 
-                    // do your stuff with theItem.id
-                    // onDelete(id: theItem.id)
-                }
-     
-        
-        let deleteContactId = "9196414032"
-        deleteContactAction(deleteContactId)
-        
+        print("User delete values")
+        for contact in offsets.makeIterator() {
+            let contactToDelete = searchResults[contact]
+            print(contactToDelete)
+//            users.remove(atOffsets: offsets)
+            users.remove(contactToDelete)
+            deleteContactAction(contactToDelete.phoneNumber ?? "")
+
+        }
     }
     
     var searchResults: [UserModel] {

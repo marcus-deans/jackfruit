@@ -121,26 +121,24 @@ class ContactsListVM: ObservableObject {
     
     
     // deleting user based on phone number
-    func deleteUser(with id: String){
-        
-        //        let docRef = db.collection("groups").document(groupId)
-        
-        let docRef = db.collection("users").document(userId)
-        
-        
-        
-        //delete user functionality done here
-        
-        let db = Firestore.firestore()
-        db.collection("users").whereField("id", isEqualTo: id).getDocuments{(snap, err) in
-            if err != nil {
-                print("error deleting")
-                return
-            }
-            for i in snap!.documents {
-                DispatchQueue.main.async {
-                    i.reference.delete()
-                }
+    func deleteUser(deletionContactId: String){
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
+        guard deletionContactId != "" else {
+            print("Deleted contact number is empty")
+            return
+        }
+        let currentUserRef = db.collection("users").document(userId)
+        currentUserRef.updateData([
+            "personal_contacts": FieldValue.arrayRemove([deletionContactId]),
+            "professional_contacts": FieldValue.arrayRemove([deletionContactId])
+        ]) { err in
+            if let err = err {
+                print("Error deleting contact: \(err)")
+            } else {
+                print("Contact \(deletionContactId) successfully deleted")
             }
         }
     }
@@ -176,7 +174,7 @@ struct ContactsList: View {
         ContactsListView(users: $vm.users,
                          fetchDataAction: { userId in vm.fetchData(userId: userId)},
                          deleteContactAction: { userId in
-                            vm.deleteUser(with: userId)})
+                            vm.deleteUser(deletionContactId: userId)})
             .onAppear() {
             Analytics.logEvent(AnalyticsEventScreenView,
                                parameters: [AnalyticsParameterScreenName: "\(ContactsList.self)",
