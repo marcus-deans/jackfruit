@@ -17,6 +17,7 @@ class ProfileModalVM: ObservableObject {
     
     @Published var userModel: UserModel
     
+    
     let db = Firestore.firestore()
     
     

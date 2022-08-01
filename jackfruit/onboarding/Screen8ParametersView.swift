@@ -31,7 +31,7 @@ final class Screen8ParametersVM: ObservableObject, Completeable {
 }
 
 struct Screen8ParametersView: View {
-    @StateObject var vm: Screen8ParametersVM
+    @StateObject var vm : Screen8ParametersVM
     
     var body: some View {
         Screen8ParametersPure(didTapNextAction: vm.didTapNext, selectedActivities: $vm.parameters)

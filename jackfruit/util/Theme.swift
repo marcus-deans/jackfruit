@@ -36,6 +36,7 @@ extension UIColor {
     
     static let activitiesRight = UIColor(rgb: 0xFFB700)
     
+    static let lighttransition = UIColor(rgb: 0xFFE9DE)
     
     static let transitionPage = UIColor(rgb: 0xff5400)
     

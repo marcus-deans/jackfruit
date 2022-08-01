@@ -160,71 +160,48 @@ struct ActivitiesPopUp: View {
     }
     
     func sortActivities() -> Array<ActivityItem> {
-        
         var activtiesWithCount : [ActivityItem] = []
-        // create the list of the all things
         for activity in searchResults.keys.sorted() {
             let freq = getNumberOfFriends(activity: searchResults[activity]!)
             activtiesWithCount.append(ActivityItem(activ : activity, count : freq))
         }
-        
         activtiesWithCount.sort { $0.count > $1.count }
-        print("ListOfShit" , activtiesWithCount)
         return activtiesWithCount
     }
     
     
     var body: some View {
-             
-                
-        
-                ZStack {
-                    let screenWidth = UIScreen.main.bounds.width
-                    let columns = [GridItem(.flexible()), GridItem(.flexible())]
-                    
-                    
-                    NavigationView {
-                        ScrollView {
-                            VStack{
-                                LazyVGrid(columns: columns, spacing: 10) {
-                                    
-//                                    ForEach(searchResults.keys.sorted(), id: \.self)  { item in
-//                                        NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item]!, activity: item)) {
-                                            
-                                        //    let count = getNumberOfFriends(activity: searchResults[item]!)
-                                            
-                                            let sortedList = sortActivities()
-//                                            let sortedArray = activtiesWithCount.sort { ($0[0] as? Int) < ($1[0] as? Int) }
-                                            ForEach(sortedList) { item in
-                                                NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item.activ]!, activity: item.activ)) {
-                                                    VStack {
-                                                        Text(item.activ)
-                                                            .font(Font.custom("CircularStd-Black", size: 20))
-                                                        Text("\(item.count) friends")
-                                                            .font(Font.custom("CircularStd-Black", size: 15))
-                                                    }
-                                                    .frame(width: screenWidth-240, height: 100)
-                                                    //.padding()
-                                                    .background(Color.init(UIColor.transitionPage))
-                                                    .foregroundColor(.white)
-                                                    .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
-                                                    }
-                                            }
-                                   //     }
-                                    //}
-                                }.padding(.horizontal, 33).padding(.vertical, 20)
-                                   // .frame(maxHeight: 700)
-                            }.background(Color.init(UIColor.middleColor))
-                        
-                            .navigationBarTitle("Discover")
-                            .navigationBarHidden(false)
-                        }.background(Color.init(UIColor.middleColor))
-                    }.foregroundColor(Color.init(UIColor.middleColor))
-                        
-                
-            }.onAppear() { // (3)
-                self.viewModel1.fetchData(userId: userId)
-            }
+        ZStack {
+            let screenWidth = UIScreen.main.bounds.width
+            let columns = [GridItem(.flexible()), GridItem(.flexible())]
+            NavigationView {
+                ScrollView {
+                    VStack{
+                        LazyVGrid(columns: columns, spacing: 10) {
+                                let sortedList = sortActivities()
+                                ForEach(sortedList) { item in
+                                    NavigationLink(destination: DetailsViewDiscover1(profiles: searchResults[item.activ]!, activity: item.activ)) {
+                                        VStack {
+                                            Text(item.activ)
+                                                .font(Font.custom("CircularStd-Black", size: 20))
+                                            Text("\(item.count) friends")
+                                                .font(Font.custom("CircularStd-Black", size: 15))
+                                        }
+                                        .frame(width: screenWidth-240, height: 100)
+                                        .background(Color.init(UIColor.transitionPage))
+                                        .foregroundColor(.white)
+                                        .clipShape(RoundedRectangle(cornerRadius: 10.0, style: .continuous))
+                                        }
+                                }
+                        }.padding(.horizontal, 33).padding(.vertical, 20)
+                    }.background(Color.init(UIColor.middleColor))
+                    .navigationBarTitle("Discover")
+                    .navigationBarHidden(false)
+                }.background(Color.init(UIColor.middleColor))
+            }.foregroundColor(Color.init(UIColor.middleColor))
+        }.onAppear() {
+        self.viewModel1.fetchData(userId: userId)
+        }
     }
 }
 
@@ -294,6 +271,8 @@ struct DetailsViewDiscover1: View {
         }
     }
 }
+
+
 
 
 

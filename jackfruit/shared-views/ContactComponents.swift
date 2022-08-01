@@ -17,25 +17,25 @@ var textEmojiMap = ["pets":"pets 🐶",
                     "creativity":"creativity 🎨",
                     "Duke University":"Duke 😈"]
 
-var ProfessionalInterests = ["Computer Science", "Robotics", "Biotech", "Politics/Government", "Healthcare", "Education", "Math", "Law", "Medicine", "Finance", "Humanities", "Activism"]
+var ProfessionalInterests = ["💻Computer Science", "🤖Robotics", "🧬Biotech", "👩‍⚖️Politics/Government", "⛑Healthcare", "📚Education", "♾Math", "Law", "Medicine", "Finance", "Humanities", "Activism"]
 
-var Sports = ["Pickup Sports","Soccer","Football", "Tennis", "Hockey", "Skiing", "Baseball", "Basketball", "Pickleball", "Table Tennis", "Badminton", "Running", "Swimming", "Weightlifting", "Climbing", "Bowling", "Surfing", "Snowboarding", "Cycling", "Yoga", "Boxing"]
+var Sports = ["Pickup Sports","Soccer", "🏈Football", "🎾Tennis", "🏒Hockey", "🎿Skiing", "⚾️Baseball", "🏀Basketball", "Pickleball", "Table Tennis", "Badminton", "Running", "Swimming", "Weightlifting", "Climbing", "Bowling", "🏄‍♂️Surfing", "🏂Snowboarding", "Cycling", "Yoga", "Boxing", "Rowing"]
 
-var Art = ["Sketching", "Dance", "Painting", "Writing", "Poetry", "Woodworking", "Sculpter", "Photography", "Fashion"]
+var Art = ["Sketching", "💃Dance", "🖌Painting", "Writing", "Poetry", "Woodworking", "Sculpter", "📸Photography", "👘Fashion"]
 
-var Outdoors = ["Hiking","Gardening", "Fishing", "Camping", "Winter Sports", "Climbing", "Backpacking", "Sight Seeing"]
+var Outdoors = ["Hiking","Gardening", "🎣Fishing", "⛺️Camping", "Winter Sports", "🧗Climbing", "Backpacking", "Sight Seeing"]
 
-var Entertainment = ["Marvel", "DC", "Sci-Fi", "Horror", "Sitcoms", "Documentaries", "Romance", "Mystery", "Bollywood", "Anime", "MLB", "NBA", "F1", "NASCAR", "NFL", "ATP/WTA", "PGA", "European Soccer", "MLS", "World Cup", "NHL", "Netflix Binger", "YouTube", "Twitch", "ESports", "TikTok", "Twitter", "Reddit"]
+var Entertainment = ["Marvel", "DC", "Sci-Fi", "Horror", "Sitcoms", "Documentaries", "Romance", "Mystery", "Bollywood", "Anime", "MLB", "NBA", "🏎F1", "🏁NASCAR", "NFL", "ATP/WTA", "PGA", "European Soccer", "MLS", "World Cup", "NHL", "Netflix Binger", "YouTube", "Twitch", "ESports", "TikTok", "Twitter", "Reddit"]
 
-var Music = ["Piano", "Brass Instrument", "Singing/Songwriting", "Guitar", "Violin/Viola", "Country", "Rap/Hip-Hop", "Classical", "Pop", "EDM", "Movie Soundtracks", "Metal", "Rock", "90s", "80s", "70s", "Latin", "K-Pop", "Indie"]
+var Music = ["🎹Piano", "Brass Instrument", "Singing/Songwriting", "🎸Guitar", "Violin/Viola", "Country", "Rap/Hip-Hop", "Classical", "Pop", "EDM", "Movie Soundtracks", "Metal", "Rock", "90s", "80s", "70s", "Latin", "K-Pop", "Indie"]
 
-var Food = ["Cooking", "Exploring Cuisines", "Baking"]
+var Food = ["Cooking", "Exploring Cuisines", "🍞Baking"]
 
-var Learning = ["Reading", "Podcasts", "News"]
+var Learning = ["📖Reading", "Podcasts", "News"]
 
-var Fun = ["Clubbing", "Bars", "Concerts", "Cards/Poker", "Sports Betting", "Theatre", "Comedy", "Trivia"]
+var Fun = ["🍾Clubbing", "🍻Bars", "🎶Concerts", "♦️Cards/Poker", "🎰Sports Betting", "Theatre", "Comedy", "Trivia"]
 
-var Misc = ["Traveling", "Dog Lover", "Cat Lover", "Shopping", "PC Gaming", "Console Gaming"]
+var Misc = ["Traveling", "🐶Dog Lover", "Cat Lover", "Shopping", "🖥PC Gaming", "Console Gaming"]
 
 
 
