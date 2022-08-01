@@ -22,6 +22,7 @@ struct jackfruitApp: App {
     var flowVM: FlowVM?
 
     var body: some Scene {
+        let _ = print("Current root user ID is \(userId)")
         WindowGroup {
             if isOnboarded && Auth.auth().currentUser != nil {
                 MainTabView()

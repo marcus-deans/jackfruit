@@ -12,6 +12,7 @@ import WrappingHStack
 
 struct ProfileModalView: View {
     let updateButtonAction: () -> Void
+    let updatePhotoAction: (UIImage) -> Void
     //    let onBuildAction: () -> Void
     @Environment(\.dismiss) var dismiss
     
@@ -229,6 +230,20 @@ struct ProfileModalView: View {
                             .padding()
                             .buttonStyle(LoginButtonStyle())
                         }
+                    }.padding()
+                    
+                    
+                    HStack{
+                        Button("Update Profile"){
+                            if let newImage = pickerSelectedImage {
+                                updatePhotoAction(newImage)
+                                pickerSelectedImage = nil
+                            }
+                            updateButtonAction()
+                            dismiss()
+                        }
+                        .padding()
+                        .buttonStyle(RoundedRectangleButtonStyle())
                     }
                 }.background(Color.init(UIColor.middleColor)).padding()
                 
@@ -247,7 +262,7 @@ struct ProfileModalView: View {
     struct ProfileModalView_Previews: PreviewProvider {
         static var previews: some View {
             ProfileModalView(
-                updateButtonAction:{},
+                updateButtonAction:{}, updatePhotoAction: {_ in},
                 userModel: .constant(UserModel(
                     firstName: "Marcus",
                     lastName: "Deans",

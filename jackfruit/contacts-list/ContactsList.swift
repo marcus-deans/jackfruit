@@ -13,7 +13,35 @@ class ContactsListVM: ObservableObject {
     //    @Published var users = [UserModel]()
     
     @Published var users: Set<UserModel> = Set()
+    @Published var ownUserModel: UserModel = UserModel()
+    @AppStorage("user_id") var userId: String = ""
+    let settings = FirestoreSettings()
     private var db = Firestore.firestore()
+    
+    init(){
+        settings.isPersistenceEnabled = true
+        //TODO: set an appropriate value for this
+        settings.cacheSizeBytes = FirestoreCacheSizeUnlimited
+        db.settings = settings
+        Task {
+            await getOwnUserModel(userId: userId, completion: { ownUserModel in
+                self.ownUserModel = ownUserModel
+            })
+        }
+    }
+    
+    func getOwnUserModel(userId: String, completion: @escaping (UserModel) -> Void) async {
+        db.collection("users").document(userId).getDocument(as: UserModel.self){
+            result in
+            switch result {
+            case .success(let model):
+                completion(model)
+            case .failure(let error):
+                print("Could not obtain model, \(error)")
+            }
+        }
+    }
+
     
     func fetchData(userId: String) {
         //        users = [UserModel]()
@@ -28,9 +56,14 @@ class ContactsListVM: ObservableObject {
                 return
             }
             
+            
             let personalRelationships:[String] = data["personal_contacts"] as? [String] ?? []
             
             personalRelationships.forEach { personalId in
+                guard personalId != "" else {
+                    print("Personal ID is empty")
+                    return
+                }
                 self.db.collection("users").document(personalId)
                     .addSnapshotListener { documentSnapshot, error in
                         guard let document = documentSnapshot else {
@@ -69,11 +102,16 @@ class ContactsListVM: ObservableObject {
                         self.users.update(with: UserModel(id: id, firstName: firstName, lastName: lastName, emailAddress: emailAddress, phoneNumber: phoneNumber, location: location, photoURL: photoURL, parameters: parameters, companyName: companyName, companyPosition: companyPosition, linkedinURL: linkedinURL, instagramURL: instagramURL, snapchatURL: snapchatURL, githubURL: githubURL, twitterURL: twitterURL, hometown: hometown, birthMonth: birthMonth, birthNumber: birthNumber, universityName: universityName, universityDegree: universityDegree))
                     }
             }
+
             
             
             let professionalRelationships:[String] = data["professional_contacts"] as? [String] ?? []
             
             professionalRelationships.forEach { professionalId in
+                guard professionalId != "" else {
+                    print("Professional ID is empty")
+                    return
+                }
                 self.db.collection("users").document(professionalId)
                     .addSnapshotListener { documentSnapshot, error in
                         guard let document = documentSnapshot else {
@@ -109,6 +147,30 @@ class ContactsListVM: ObservableObject {
         }
     }
     
+    
+    // deleting user based on phone number
+    func deleteUser(deletionContactId: String){
+        guard userId != "" else {
+            print("User ID is empty")
+            return
+        }
+        guard deletionContactId != "" else {
+            print("Deleted contact number is empty")
+            return
+        }
+        let currentUserRef = db.collection("users").document(userId)
+        currentUserRef.updateData([
+            "personal_contacts": FieldValue.arrayRemove([deletionContactId]),
+            "professional_contacts": FieldValue.arrayRemove([deletionContactId])
+        ]) { err in
+            if let err = err {
+                print("Error deleting contact: \(err)")
+            } else {
+                print("Contact \(deletionContactId) successfully deleted")
+            }
+        }
+    }
+    
     func fetchAllUsers() {
         db.collection("users").addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
@@ -137,7 +199,11 @@ struct ContactsList: View {
     @StateObject var vm = ContactsListVM()
     
     var body: some View {
-        ContactsListView(users: $vm.users, fetchDataAction: { userId in vm.fetchData(userId: userId)})
+        ContactsListView(users: $vm.users,
+                         ownUserModel: $vm.ownUserModel,
+                         fetchDataAction: { userId in vm.fetchData(userId: userId)},
+                         deleteContactAction: { userId in
+                            vm.deleteUser(deletionContactId: userId)})
             .onAppear() {
             Analytics.logEvent(AnalyticsEventScreenView,
                                parameters: [AnalyticsParameterScreenName: "\(ContactsList.self)",

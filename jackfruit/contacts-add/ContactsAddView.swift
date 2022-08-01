@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Awesome
 
 enum NumberButton: String {
     case one = "1"
@@ -26,7 +27,7 @@ struct ContactsAddView: View {
     let addWorkContactAction: (String) -> Void
     let addGroupContactAction: (String) -> Void
     let addFriendContactAction: (String) -> Void
-    
+    let checkGroupExistsAction: (String) -> Bool
     
     @State var enteredNumber = ""
     @AppStorage("user_id") var userId: String = ""
@@ -35,7 +36,8 @@ struct ContactsAddView: View {
     @State var groupSelected : Bool = true
     @State var addSelected = false
     @Binding var contactModel: UserModel
-    
+    @Binding var groupName: String
+    @Binding var showContactAddedDialog: Bool
     enum relationType {
         case friend
         case work
@@ -53,7 +55,6 @@ struct ContactsAddView: View {
     @State var trimVal : CGFloat = 0
     @State var width : CGFloat = 70
     @State var hideTextLabel = false
-    @State var contactAddedAlert = false
 
     var body: some View {
         ZStack{
@@ -159,13 +160,13 @@ struct ContactsAddView: View {
                 {
                     AddRelationButtonView(isChecked: $addSelected, trimVal: $trimVal, width: $width, hideTextLabel: $hideTextLabel )
                         .onTapGesture {
+                            print("Hit add with number \(enteredNumber)")
                             switch selectedRelation {
                             case .friend, .work:
                                 guard enteredNumber.count == 10 else {
                                     print("Contact number is invalid")
                                     return
                                 }
-                                return
                             case .group:
                                 guard enteredNumber.count == 5 else {
                                     print("Group number is invalid")
@@ -186,24 +187,20 @@ struct ContactsAddView: View {
                             switch selectedRelation{
                             case .friend:
                                 addFriendContactAction(enteredNumber)
-                                print("Printing contact model")
-                                print(contactModel.firstName ?? "No first name")
-                                print(contactModel.lastName ?? "No first name")
-                                friendSelected = false
-                                groupSelected=true
-                                contactAddedAlert = true
                             case .work:
                                 addWorkContactAction(enteredNumber)
-                                workSelected = false
-                                groupSelected = true
-                                contactAddedAlert = true
                             case .group:
 //                                groupSelected = false
-                                addGroupContactAction(enteredNumber)
+//                                let doesGroupExist = checkGroupExistsAction(enteredNumber)
+                                
+                                if(checkGroupExistsAction(enteredNumber)){
+                                    print("The group \(enteredNumber) exists?: true with name \(groupName)")
+                                } else {
+                                    addGroupContactAction(enteredNumber)
+                                }
                             case .none:
                                 print("Error")
                             }
-                            selectedRelation = .group
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                                 withAnimation(){
@@ -214,12 +211,14 @@ struct ContactsAddView: View {
                                     self.enteredNumber = ""
                                     self.friendSelected = false
                                     self.workSelected = false
-                                    self.groupSelected = false
+                                    self.groupSelected = true
+                                    showContactAddedDialog = false
+                                    selectedRelation = .group
                                     print("Reset button")
                                 }
                             }
                         }
-                        .alert("\(self.contactModel.firstName ?? "") \(self.contactModel.lastName ?? "") Added", isPresented: $contactAddedAlert){
+                        .alert("\(self.contactModel.firstName ?? "") \(self.contactModel.lastName ?? "") Added", isPresented: $showContactAddedDialog){
                             Button("OK", role: .cancel){}
                         }
                 }
@@ -241,7 +240,12 @@ struct ContactsAddView: View {
             let number = button.rawValue
             if enteredNumber == "" {
                 enteredNumber = number
-            } else {
+            } else if (selectedRelation == .friend || selectedRelation == .work) && enteredNumber.count >= 10{
+                enteredNumber = enteredNumber
+            } else if selectedRelation == .group && enteredNumber.count >= 5{
+                enteredNumber = enteredNumber
+            }
+            else {
                 enteredNumber = "\(enteredNumber)\(number)"
             }
         }
@@ -306,7 +310,10 @@ struct ContactsAddView_Previews: PreviewProvider {
             addFriendContactAction: { enteredNumber in
 //                return UserModel()
                 print(enteredNumber)
-            }, contactModel: .constant(UserModel())
+            }, checkGroupExistsAction: { groupNumber in
+                print(groupNumber)
+                return true
+            }, contactModel: .constant(UserModel()), groupName: .constant("testingGroup"), showContactAddedDialog: .constant(false)
         )
     }
 }
