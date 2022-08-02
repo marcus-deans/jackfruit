@@ -57,6 +57,13 @@
 		253A74C42877F4A00005D7E1 /* PTSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */; };
 		253A74C52877F4A00005D7E1 /* PTSansProBlk.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */; };
 		2587F3C92888E54F005AC88E /* ContactsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2587F3C82888E54E005AC88E /* ContactsListView.swift */; };
+		2597C8E82890DF1E00C5622A /* ContactRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597C8E72890DF1E00C5622A /* ContactRepository.swift */; };
+		2597C8EB2890DF9C00C5622A /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 2597C8EA2890DF9C00C5622A /* Factory */; };
+		2597C8ED2890E12500C5622A /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597C8EC2890E12500C5622A /* Contact.swift */; };
+		2597C8F12890EA9900C5622A /* Injections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597C8F02890EA9900C5622A /* Injections.swift */; };
+		2597C8F32890EB4500C5622A /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597C8F22890EB4500C5622A /* AuthRepository.swift */; };
+		2597C8F72890F0B500C5622A /* ListContacts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597C8F62890F0B500C5622A /* ListContacts.swift */; };
+		2597C8F92890F0C100C5622A /* ListContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2597C8F82890F0C100C5622A /* ListContactsView.swift */; };
 		25A197DF2887F56F0008A50E /* Screen8ParametersPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197DE2887F56F0008A50E /* Screen8ParametersPure.swift */; };
 		25A197E12887F9060008A50E /* Screen9PhotoPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E02887F9060008A50E /* Screen9PhotoPure.swift */; };
 		25A197E32887FA680008A50E /* Screen7LocationPure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A197E22887FA680008A50E /* Screen7LocationPure.swift */; };
@@ -149,6 +156,12 @@
 		253A74C12877F4A00005D7E1 /* PTSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PTSans-Bold.ttf"; sourceTree = "<group>"; };
 		253A74C22877F4A00005D7E1 /* PTSansProBlk.OTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = PTSansProBlk.OTF; sourceTree = "<group>"; };
 		2587F3C82888E54E005AC88E /* ContactsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListView.swift; sourceTree = "<group>"; };
+		2597C8E72890DF1E00C5622A /* ContactRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactRepository.swift; sourceTree = "<group>"; };
+		2597C8EC2890E12500C5622A /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		2597C8F02890EA9900C5622A /* Injections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injections.swift; sourceTree = "<group>"; };
+		2597C8F22890EB4500C5622A /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
+		2597C8F62890F0B500C5622A /* ListContacts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ListContacts.swift; path = ../../../../Downloads/ListContacts.swift; sourceTree = "<group>"; };
+		2597C8F82890F0C100C5622A /* ListContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListContactsView.swift; sourceTree = "<group>"; };
 		25A197DE2887F56F0008A50E /* Screen8ParametersPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen8ParametersPure.swift; sourceTree = "<group>"; };
 		25A197E02887F9060008A50E /* Screen9PhotoPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen9PhotoPure.swift; sourceTree = "<group>"; };
 		25A197E22887FA680008A50E /* Screen7LocationPure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screen7LocationPure.swift; sourceTree = "<group>"; };
@@ -190,6 +203,7 @@
 				251F855728866881000F64C4 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				253A74842877E2540005D7E1 /* FirebaseStorage in Frameworks */,
 				251F853D287FD6AA000F64C4 /* iPhoneNumberField in Frameworks */,
+				2597C8EB2890DF9C00C5622A /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -215,6 +229,7 @@
 			children = (
 				253A74AC2877E5820005D7E1 /* UserModel.swift */,
 				696D0AD0287D15C0008F4C34 /* ActivityModel.swift */,
+				2597C8EC2890E12500C5622A /* Contact.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -279,6 +294,8 @@
 		253A74512877E1920005D7E1 /* jackfruit */ = {
 			isa = PBXGroup;
 			children = (
+				2597C8F52890F0A900C5622A /* list-contacts */,
+				2597C8E62890DF0600C5622A /* repositories */,
 				2587F3CA2888E55B005AC88E /* profile-modal */,
 				251F85502885E484000F64C4 /* shared-views */,
 				251F854728854570000F64C4 /* contacts-add */,
@@ -371,6 +388,7 @@
 				253A74AA2877E5670005D7E1 /* Extensions.swift */,
 				251F8537287BF840000F64C4 /* ImagePicker.swift */,
 				251F8539287BFD04000F64C4 /* Log.swift */,
+				2597C8F02890EA9900C5622A /* Injections.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -394,6 +412,24 @@
 				251F854428852205000F64C4 /* ProfileModalView.swift */,
 			);
 			path = "profile-modal";
+			sourceTree = "<group>";
+		};
+		2597C8E62890DF0600C5622A /* repositories */ = {
+			isa = PBXGroup;
+			children = (
+				2597C8E72890DF1E00C5622A /* ContactRepository.swift */,
+				2597C8F22890EB4500C5622A /* AuthRepository.swift */,
+			);
+			path = repositories;
+			sourceTree = "<group>";
+		};
+		2597C8F52890F0A900C5622A /* list-contacts */ = {
+			isa = PBXGroup;
+			children = (
+				2597C8F62890F0B500C5622A /* ListContacts.swift */,
+				2597C8F82890F0C100C5622A /* ListContactsView.swift */,
+			);
+			path = "list-contacts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -434,6 +470,7 @@
 				25A197FE28888CDF0008A50E /* FirebaseRemoteConfig */,
 				25A1980028888CE30008A50E /* FirebaseRemoteConfigSwift-Beta */,
 				25A19805288891BD0008A50E /* FirebaseCrashlytics */,
+				2597C8EA2890DF9C00C5622A /* Factory */,
 			);
 			productName = jackfruit;
 			productReference = 253A744F2877E1920005D7E1 /* jackfruit.app */;
@@ -518,6 +555,7 @@
 				6993F02128817987001BFE0E /* XCRemoteSwiftPackageReference "WrappingHStack" */,
 				251F854D2885DF66000F64C4 /* XCRemoteSwiftPackageReference "NukeUI" */,
 				251F855B288742E3000F64C4 /* XCRemoteSwiftPackageReference "Awesome" */,
+				2597C8E92890DF9C00C5622A /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = 253A74502877E1920005D7E1 /* Products */;
 			projectDirPath = "";
@@ -601,6 +639,7 @@
 				253A749B2877E3D80005D7E1 /* Screen8ParametersView.swift in Sources */,
 				253A74A22877E4D00005D7E1 /* ContactsAdd.swift in Sources */,
 				25A197EF2887FC850008A50E /* Screen10CompletionPure.swift in Sources */,
+				2597C8F32890EB4500C5622A /* AuthRepository.swift in Sources */,
 				251F8538287BF840000F64C4 /* ImagePicker.swift in Sources */,
 				251F8536287B4FE7000F64C4 /* Screen9PhotoView.swift in Sources */,
 				251F8549288545C6000F64C4 /* ProfileView.swift in Sources */,
@@ -612,17 +651,22 @@
 				25A197E12887F9060008A50E /* Screen9PhotoPure.swift in Sources */,
 				69F825A0288A06E50050F3B9 /* LoginViewPure.swift in Sources */,
 				25A197E92887FC5B0008A50E /* Screen4NumberPure.swift in Sources */,
+				2597C8F92890F0C100C5622A /* ListContactsView.swift in Sources */,
 				696D0AD1287D15C1008F4C34 /* ActivityModel.swift in Sources */,
 				253A748B2877E3030005D7E1 /* FlowView.swift in Sources */,
 				2587F3C92888E54F005AC88E /* ContactsListView.swift in Sources */,
 				251F8543288521EE000F64C4 /* ProfileModal.swift in Sources */,
 				253A749D2877E4170005D7E1 /* Screen10CompletionView.swift in Sources */,
 				25A197DF2887F56F0008A50E /* Screen8ParametersPure.swift in Sources */,
+				2597C8F72890F0B500C5622A /* ListContacts.swift in Sources */,
+				2597C8ED2890E12500C5622A /* Contact.swift in Sources */,
+				2597C8E82890DF1E00C5622A /* ContactRepository.swift in Sources */,
 				253A74A72877E52B0005D7E1 /* Theme.swift in Sources */,
 				253A748F2877E33E0005D7E1 /* Screen2FirstNameView.swift in Sources */,
 				253A74892877E2B70005D7E1 /* FlowVM.swift in Sources */,
 				253A74952877E38C0005D7E1 /* Screen5VerificationView.swift in Sources */,
 				25A197EB2887FC6D0008A50E /* Screen3LastNamePure.swift in Sources */,
+				2597C8F12890EA9900C5622A /* Injections.swift in Sources */,
 				253A74532877E1920005D7E1 /* jackfruitApp.swift in Sources */,
 				253A74AB2877E5670005D7E1 /* Extensions.swift in Sources */,
 				25A197ED2887FC7B0008A50E /* Screen2FirstNamePure.swift in Sources */,
@@ -1010,6 +1054,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		2597C8E92890DF9C00C5622A /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		696D0ACD287B9A24008F4C34 /* XCRemoteSwiftPackageReference "ToastUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/quanshousio/ToastUI.git";
@@ -1092,6 +1144,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 253A74B22877ED660005D7E1 /* XCRemoteSwiftPackageReference "WrappingHStack" */;
 			productName = WrappingHStack;
+		};
+		2597C8EA2890DF9C00C5622A /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2597C8E92890DF9C00C5622A /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 		25A197F028887F600008A50E /* FirebaseAppCheck */ = {
 			isa = XCSwiftPackageProductDependency;
