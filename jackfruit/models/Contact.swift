@@ -9,7 +9,6 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-
 struct Contact {
     @DocumentID var docId: String?
     var id: String? = UUID().uuidString
@@ -34,15 +33,17 @@ struct Contact {
     var birthNumber: String?
     var universityName: String?
     var universityDegree: String?
+    var origins: [String:String]?
     @ServerTimestamp var createdTime: Timestamp?
 }
 
 extension Contact: Codable, Identifiable, Equatable {
     static func == (lhs: Contact, rhs: Contact) -> Bool {
-        return lhs.phoneNumber == rhs.phoneNumber
+        return lhs.id == rhs.id
     }
     
     enum CodingKeys: String, CodingKey {
+        case docId
         case id
         case firstName = "first_name"
         case lastName = "last_name"
@@ -65,6 +66,8 @@ extension Contact: Codable, Identifiable, Equatable {
         case birthNumber = "birth_number"
         case universityName = "university_name"
         case universityDegree = "university_degree"
+        case origins
+        case createdTime
     }
     
 }

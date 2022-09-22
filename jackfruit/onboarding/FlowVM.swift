@@ -12,6 +12,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import FirebaseStorage
 import os
+import Factory
 
 protocol Completeable {
     var didComplete: PassthroughSubject<Self, Never> { get }
@@ -23,6 +24,8 @@ class FlowVM: ObservableObject {
     // Automatic binding would be possible with combine or even a single VM.
     // However this may not scale well
     // and the views become dependant on something that is external to the view.
+    @Injected(Container.myAuthRepository) var authRepository
+
     private var model: UserModel
     var subscription = Set<AnyCancellable>()
     var verificationID = ""
@@ -214,6 +217,7 @@ class FlowVM: ObservableObject {
     func didComplete4(vm: Screen4NumberVM) {
         model.phoneNumber = vm.phoneNumber
         // Additional logic inc. updating model
+        authRepository.getPhoneVerificationCode(phoneNumber: vm.phoneNumber)
         PhoneAuthProvider.provider()
             .verifyPhoneNumber("+1\(vm.phoneNumber)", uiDelegate: nil) { verificationID, error in
                 if let error = error {
